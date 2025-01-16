@@ -4,8 +4,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="320.0" prefWidth="372.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.VisualizationSetupController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.VisualizationSetupController">
     <Text style="-fx-font-size: 24px;" text="Visualization Setup" />
     <Button onAction="#handleDataStructures" text="Data Structures" />
     <Button onAction="#handleAlgorithms" text="Algorithms" />
+    <Button onAction="#handleBack" text="Back" />
 </VBox>

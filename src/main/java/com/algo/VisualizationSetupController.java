@@ -1,30 +1,45 @@
 package com.algo;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import java.io.IOException;
 
 public class VisualizationSetupController {
 
     @FXML
-    private void handleDataStructures() {
-        // Logic to navigate to Data Structures
-        // For now, just show an alert
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Data Structures");
-        alert.setHeaderText(null);
-        alert.setContentText("Data Structures button clicked!");
-        alert.showAndWait();
+    private void handleDataStructures(ActionEvent event) throws IOException {
+        // Load the Data Structures screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/data_structures.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Data Structures");
+        stage.show();
     }
 
     @FXML
-    private void handleAlgorithms() {
-        // Logic to navigate to Algorithms
-        // For now, just show an alert
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Algorithms");
-        alert.setHeaderText(null);
-        alert.setContentText("Algorithms button clicked!");
-        alert.showAndWait();
+    private void handleAlgorithms(ActionEvent event) throws IOException {
+        // Load the Algorithms screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/algorithms.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Algorithms");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException {
+        // Load the main menu screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/main_menu.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Data Structure Visualizer");
+        stage.show();
     }
 }
