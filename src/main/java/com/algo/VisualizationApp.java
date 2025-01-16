@@ -8,23 +8,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
-public class App extends Application {
+public class VisualizationApp extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("main_menu"), 640, 480);
+        scene = new Scene(loadFXML("visualization_setup"), 640, 480);
         stage.setScene(scene);
         stage.setTitle("Data Structure Visualizer");
         stage.show();
-    }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -33,7 +26,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
-
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.MainMenuController">
+    <Text text="Data Structure Visualizer" style="-fx-font-size: 24px;"/>
+    <Button text="Start Visualization" onAction="#handleStartVisualization"/>
+    <Button text="Help/Instructions" onAction="#handleHelpInstructions"/>
+    <Button text="Exit" onAction="#handleExit"/>
+</VBox>
