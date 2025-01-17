@@ -34,13 +34,14 @@ public class DataStructuresController {
     }
 
     @FXML
-    private void handleQueue() {
-        // Logic for Queue
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Queue");
-        alert.setHeaderText(null);
-        alert.setContentText("Queue button clicked!");
-        alert.showAndWait();
+    private void handleQueue(ActionEvent event) throws IOException {
+        // Load the Queue Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/queue_visualization.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Queue Visualization");
+        stage.show();
     }
 
     @FXML
