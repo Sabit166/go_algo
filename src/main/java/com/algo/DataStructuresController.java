@@ -23,13 +23,14 @@ public class DataStructuresController {
     }
 
     @FXML
-    private void handleStack() {
-        // Logic for Stack
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Stack");
-        alert.setHeaderText(null);
-        alert.setContentText("Stack button clicked!");
-        alert.showAndWait();
+    private void handleStack(ActionEvent event) throws IOException {
+        // Load the Stack Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/stack_visualization.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Stack Visualization");
+        stage.show();
     }
 
     @FXML
