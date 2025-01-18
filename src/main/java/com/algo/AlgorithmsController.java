@@ -76,66 +76,106 @@ public class AlgorithmsController {
     }
 
     private void selectionSort() {
+        // Maintain a logical array for values
+        double[] heights = new double[bars.length];
+        for (int i = 0; i < bars.length; i++) {
+            heights[i] = ((Rectangle) bars[i].getChildren().get(0)).getHeight();
+        }
+    
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
         Duration stepDuration = Duration.seconds(1);
-
+    
         int n = bars.length;
-
+    
         // One by one move the boundary of the unsorted subarray
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
-
-            // Highlight the starting point of the outer loop
+    
+            // Debug: Log outer loop details
+            System.out.println("Outer loop i: " + i + ", minIndex: " + minIndex);
+    
+            // Highlight the starting boundary
             int finalI = i;
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalI, finalI)));
-
+    
             // Find the minimum element in the unsorted part
             for (int j = i + 1; j < n; j++) {
                 int finalJ = j;
-
+    
                 // Highlight the comparison
                 duration = duration.add(stepDuration);
                 int currentMinIndex = minIndex;
                 keyFrames.add(new KeyFrame(duration, e -> highlightBars(currentMinIndex, finalJ)));
-
-                // Update the minimum index if a smaller value is found
-                if (((Rectangle) bars[j].getChildren().get(0)).getHeight() < ((Rectangle) bars[minIndex].getChildren().get(0)).getHeight()) {
+    
+                // Update the minimum index
+                if (heights[j] < heights[minIndex]) {
                     minIndex = j;
-
+    
+                    // Debug: Log minimum update
+                    System.out.println("New minIndex found at " + minIndex);
+    
                     // Highlight the new minimum index
                     int updatedMinIndex = minIndex;
                     keyFrames.add(new KeyFrame(duration, e -> highlightBars(updatedMinIndex, finalJ)));
                 }
             }
-
-            // Swap the found minimum element with the first element
-            int finalMinIndex = minIndex;
-            duration = duration.add(stepDuration);
-            keyFrames.add(new KeyFrame(duration, e -> {
-                swapBars(finalI, finalMinIndex);
-                resetBarColors();
-            }));
+    
+            // Swap elements in the logical array
+            if (minIndex != i) {
+                double temp = heights[i];
+                heights[i] = heights[minIndex];
+                heights[minIndex] = temp;
+    
+                // Debug: Log swapping
+                System.out.println("Swapping: " + heights[minIndex] + " with " + heights[i]);
+    
+                // Swap elements visually
+                int finalMinIndex = minIndex;
+                duration = duration.add(stepDuration);
+                keyFrames.add(new KeyFrame(duration, e -> {
+                    swapBars(finalI, finalMinIndex);
+                    resetBarColors();
+                }));
+            } else {
+                // No swap needed, just reset colors
+                duration = duration.add(stepDuration);
+                keyFrames.add(new KeyFrame(duration, e -> resetBarColors()));
+            }
         }
-
+    
         // Play the timeline animation
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().addAll(keyFrames);
         timeline.setOnFinished(e -> resetBarColors());
         timeline.play();
     }
-
+    
+    
+    
     private void swapBars(int index1, int index2) {
         if (index1 != index2) {
+            // Debug: Log the heights before the swap
+            System.out.println("Before swap: Bar1 height = " + ((Rectangle) bars[index1].getChildren().get(0)).getHeight() +
+                               ", Bar2 height = " + ((Rectangle) bars[index2].getChildren().get(0)).getHeight());
+    
+            // Swap the heights of the rectangles
             double tempHeight = ((Rectangle) bars[index1].getChildren().get(0)).getHeight();
             ((Rectangle) bars[index1].getChildren().get(0)).setHeight(((Rectangle) bars[index2].getChildren().get(0)).getHeight());
             ((Rectangle) bars[index2].getChildren().get(0)).setHeight(tempHeight);
-
+    
+            // Swap the labels
             String tempLabel = ((Label) bars[index1].getChildren().get(1)).getText();
             ((Label) bars[index1].getChildren().get(1)).setText(((Label) bars[index2].getChildren().get(1)).getText());
             ((Label) bars[index2].getChildren().get(1)).setText(tempLabel);
+    
+            // Debug: Log the heights after the swap
+            System.out.println("After swap: Bar1 height = " + ((Rectangle) bars[index1].getChildren().get(0)).getHeight() +
+                               ", Bar2 height = " + ((Rectangle) bars[index2].getChildren().get(0)).getHeight());
         }
     }
+    
+    
 
     private void highlightBars(int index1, int index2) {
         resetBarColors();
