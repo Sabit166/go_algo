@@ -1,53 +1,45 @@
 package com.algo;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.application.Application;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import java.io.IOException;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-public class SegmentTreeVisualizationController extends Application{
-    @FXML
-    private TextField BuildInput;
+import java.io.IOException;
 
-    @FXML
-    private TextField QuerryInput;
-
-    @FXML
-    private TextField UpdateInput;
+public class SegmentTreeVisualizationController extends Application {
 
     @FXML
     private Canvas canvas;
     private GraphicsContext gc;
 
-    private static Scene scene;
+    @FXML
+    private TextField BuildInput;
+
     int N = 100000;
     int[] numbers = new int[N];
-    int[] segment_tree = new int[4*N];
+    int[] segment_tree = new int[4 * N];
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("segment_tree_visualizer"), 640, 480);
+        Parent root = loadFXML("segment_tree_visualizer");
+        Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.setTitle("SEGMENT TREE VISUALIZER");
         stage.show();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/algo/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SegmentTreeVisualizationController.class.getResource("/com/algo/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
@@ -56,16 +48,9 @@ public class SegmentTreeVisualizationController extends Application{
         gc = canvas.getGraphicsContext2D();
     }
 
-    void HandleBuild() {
+    @FXML
+    private void HandleBuild() {
         String input = BuildInput.getText();
-        if (input.isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Input Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Please enter some numbers.");
-            alert.showAndWait();
-            return;
-        }
         if (!input.matches("[0-9 ]+")) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Input Error");
@@ -76,37 +61,34 @@ public class SegmentTreeVisualizationController extends Application{
         }
 
         String[] inputArray = input.split("\\s+");
-        //int[] numbers = new int[inputArray.length];
+        numbers = new int[inputArray.length];
         for (int i = 0; i < inputArray.length; i++) {
             numbers[i] = Integer.parseInt(inputArray[i]);
         }
 
-        for(int i=0;i<numbers.length;i++){
-            System.out.println(numbers[i]);
-        }
-
-        segment_tree = new int[4*numbers.length];
         double canvas_width = canvas.getWidth();
-        //double canvas_height = canvas.getHeight();
-        build_segment_tree(1, 0, numbers.length-1, canvas_width/2, canvas_width);
+        build_segment_tree(1, 0, numbers.length - 1, canvas_width / 2, canvas_width);
     }
 
-    void build_segment_tree(int node, int start, int end,double canvas_start_point, double canvas_width){
-        if(start == end){
-            //segment_tree[node] = numbers[start];
+    @FXML
+    private void HandleQuerry() {
+        // Implement the logic for HandleQuerry
+    }
+
+    @FXML
+    private void HandleUpdate() {
+        // Implement the logic for HandleUpdate
+    }
+
+    void build_segment_tree(int node, int start, int end, double canvas_start_point, double canvas_width) {
+        if (start == end) {
             form_node(node, start, canvas_start_point, canvas_width);
-            try {
-            Thread.sleep(750); // Delay of half a second
-            } catch (InterruptedException e) {
-            e.printStackTrace();
-            }
-        }
-        else{
+        } else {
             int mid = (start + end) / 2;
-            build_segment_tree(2*node, start, mid,canvas_start_point, (canvas_start_point + canvas_width)/2);
-            build_segment_tree(2*node+1, mid+1, end,(canvas_start_point + canvas_width)/2, canvas_width);
-            segment_tree[node] = segment_tree[2*node] + segment_tree[2*node+1];
-            }
+            build_segment_tree(2 * node, start, mid, canvas_start_point, (canvas_start_point + canvas_width) / 2);
+            build_segment_tree(2 * node + 1, mid + 1, end, (canvas_start_point + canvas_width) / 2, canvas_width);
+            segment_tree[node] = segment_tree[2 * node] + segment_tree[2 * node + 1];
+        }
     }
 
     void form_node(int node, int start, double canvas_start_point, double canvas_width) {
@@ -115,7 +97,6 @@ public class SegmentTreeVisualizationController extends Application{
         double tree_height = Math.ceil(Math.log(numbers.length) / Math.log(2));
         double height_index = canvas.getHeight() / tree_height;
 
-        // Draw a circle at the calculated position with animation
         new Thread(() -> {
             for (double opacity = 0.0; opacity <= 1.0; opacity += 0.1) {
                 final double currentOpacity = opacity;
@@ -132,7 +113,7 @@ public class SegmentTreeVisualizationController extends Application{
                     e.printStackTrace();
                 }
             }
-            javafx.application.Platform.runLater(() -> gc.setGlobalAlpha(1.0)); // Reset opacity to 1.0
+            Platform.runLater(() -> gc.setGlobalAlpha(1.0)); // Reset opacity to 1.0
         }).start();
     }
 

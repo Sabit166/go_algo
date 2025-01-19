@@ -35,6 +35,6 @@
       </Text>
       <TextField fx:id="UpdateInput" onAction="#HandleUpdate" prefHeight="36.0" prefWidth="786.0" promptText="Please enter required index and updated number" />
       <Button mnemonicParsing="false" text="Update" />
-      <Canvas fx:id="Canvas" height="427.0" width="785.0" />
+      <Canvas fx:id="canvas" height="427.0" width="785.0" />
    </children>
 </VBox>
