@@ -91,7 +91,10 @@ public class SegmentTreeVisualizationController extends Application {
 
     void visualize_segment_tree()
     {
-
+        for(int i = 1; i < numbers.length; i++)
+        {
+            System.out.println(segment_tree[i]);
+        }
     }
 
     public static void main(String[] args) {
