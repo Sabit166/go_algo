@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.SegmentTreeVisualizationController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SEGMENT TREE VISUALIZER" textAlignment="CENTER" wrappingWidth="786.4797210693359">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BUILD" textAlignment="CENTER" wrappingWidth="786.7830657958984">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField prefHeight="11.0" prefWidth="786.0" promptText="Please enter input array e.g. 1 2 3 4 5" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="QUERRY" textAlignment="CENTER" wrappingWidth="786.7830657958984">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField prefHeight="11.0" prefWidth="786.0" promptText="Please enter Querry in two numbers e.g. 1 4" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE" textAlignment="CENTER" wrappingWidth="786.7830657958984">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField prefHeight="11.0" prefWidth="786.0" promptText="Please enter required index and new number for update" />
+   </children>
+</VBox>
