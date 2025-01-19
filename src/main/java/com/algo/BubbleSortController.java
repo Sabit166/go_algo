@@ -1,3 +1,4 @@
+// filepath: /c:/Users/Alif Ul Haque/Desktop/project_java/go_algo/src/main/java/com/algo/BubbleSortController.java
 package com.algo;
 
 import javafx.animation.KeyFrame;
@@ -15,14 +16,14 @@ import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlgorithmsController {
+public class BubbleSortController {
 
     private static final int BAR_WIDTH = 30;
     private static final int MAX_HEIGHT = 300;
@@ -35,15 +36,15 @@ public class AlgorithmsController {
     private TextField inputField;
 
     @FXML
-    private void handleSelectionSort() {
+    private void handleBubbleSort() {
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Selection Sort");
+        alert.setTitle("Bubble Sort");
         alert.setHeaderText(null);
-        alert.setContentText("Selection Sort button clicked!");
+        alert.setContentText("Bubble Sort button clicked!");
         alert.showAndWait();
 
         initializeBars(); // Initialize the bar visualization
-        selectionSort();  // Perform the sorting with animation
+        bubbleSort();  // Perform the sorting with animation
     }
 
     private void initializeBars() {
@@ -75,112 +76,61 @@ public class AlgorithmsController {
         }
     }
 
-    private void selectionSort() {
-        // Maintain a logical array for values
-        double[] heights = new double[bars.length];
-        for (int i = 0; i < bars.length; i++) {
-            heights[i] = ((Rectangle) bars[i].getChildren().get(0)).getHeight();
-        }
-    
+    private void bubbleSort() {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
         Duration stepDuration = Duration.seconds(1);
-    
+
         int n = bars.length;
-    
-        // One by one move the boundary of the unsorted subarray
+        double[] heights = new double[n];
+        for (int i = 0; i < n; i++) {
+            heights[i] = ((Rectangle) bars[i].getChildren().get(0)).getHeight();
+        }
+
+        // Bubble Sort algorithm with animation
         for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-    
-            // Debug: Log outer loop details
-            System.out.println("Outer loop i: " + i + ", minIndex: " + minIndex);
-    
-            // Highlight the starting boundary
-            int finalI = i;
-            keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalI, finalI)));
-    
-            // Find the minimum element in the unsorted part
-            for (int j = i + 1; j < n; j++) {
+            for (int j = 0; j < n - i - 1; j++) {
                 int finalJ = j;
-    
+                int nextJ = j + 1;
+
                 // Highlight the comparison
                 duration = duration.add(stepDuration);
-                int currentMinIndex = minIndex;
-                keyFrames.add(new KeyFrame(duration, e -> highlightBars(currentMinIndex, finalJ)));
-    
-                // Update the minimum index
-                if (heights[j] < heights[minIndex]) {
-                    minIndex = j;
-    
-                    // Debug: Log minimum update
-                    System.out.println("New minIndex found at " + minIndex);
-    
-                    // Highlight the new minimum index
-                    int updatedMinIndex = minIndex;
-                    keyFrames.add(new KeyFrame(duration, e -> highlightBars(updatedMinIndex, finalJ)));
+                keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ, nextJ)));
+
+                // Swap if the element found is greater than the next element
+                if (heights[j] > heights[j + 1]) {
+                    double temp = heights[j];
+                    heights[j] = heights[j + 1];
+                    heights[j + 1] = temp;
+
+                    // Swap elements visually
+                    duration = duration.add(stepDuration);
+                    keyFrames.add(new KeyFrame(duration, e -> {
+                        swapBars(finalJ, nextJ);
+                        resetBarColors();
+                    }));
                 }
             }
-    
-            // Swap elements in the logical array
-            if (minIndex != i) {
-                double temp = heights[i];
-                heights[i] = heights[minIndex];
-                heights[minIndex] = temp;
-    
-                // Debug: Log swapping
-                System.out.println("Swapping: " + heights[minIndex] + " with " + heights[i]);
-    
-                // Swap elements visually
-                int finalMinIndex = minIndex;
-                duration = duration.add(stepDuration);
-                keyFrames.add(new KeyFrame(duration, e -> {
-                    swapBars(finalI, finalMinIndex);
-                    resetBarColors();
-                }));
-            } else {
-                // No swap needed, just reset colors
-                duration = duration.add(stepDuration);
-                keyFrames.add(new KeyFrame(duration, e -> resetBarColors()));
-            }
         }
-    
+
         // Play the timeline animation
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().addAll(keyFrames);
         timeline.setOnFinished(e -> resetBarColors());
         timeline.play();
     }
-    
-    @FXML
-    private void loadBubbleSort(ActionEvent event) throws IOException {
-        Parent bubbleSort = FXMLLoader.load(getClass().getResource("/com/algo/bubble_sort.fxml"));
-        barContainer.getChildren().clear();
-        barContainer.getChildren().add(bubbleSort);
-    }
-    
+
     private void swapBars(int index1, int index2) {
         if (index1 != index2) {
-            // Debug: Log the heights before the swap
-            System.out.println("Before swap: Bar1 height = " + ((Rectangle) bars[index1].getChildren().get(0)).getHeight() +
-                               ", Bar2 height = " + ((Rectangle) bars[index2].getChildren().get(0)).getHeight());
-    
-            // Swap the heights of the rectangles
             double tempHeight = ((Rectangle) bars[index1].getChildren().get(0)).getHeight();
             ((Rectangle) bars[index1].getChildren().get(0)).setHeight(((Rectangle) bars[index2].getChildren().get(0)).getHeight());
             ((Rectangle) bars[index2].getChildren().get(0)).setHeight(tempHeight);
-    
-            // Swap the labels
+
             String tempLabel = ((Label) bars[index1].getChildren().get(1)).getText();
             ((Label) bars[index1].getChildren().get(1)).setText(((Label) bars[index2].getChildren().get(1)).getText());
             ((Label) bars[index2].getChildren().get(1)).setText(tempLabel);
-    
-            // Debug: Log the heights after the swap
-            System.out.println("After swap: Bar1 height = " + ((Rectangle) bars[index1].getChildren().get(0)).getHeight() +
-                               ", Bar2 height = " + ((Rectangle) bars[index2].getChildren().get(0)).getHeight());
         }
     }
-    
-    
 
     private void highlightBars(int index1, int index2) {
         resetBarColors();

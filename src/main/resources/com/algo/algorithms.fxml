@@ -9,6 +9,7 @@
     <children>
         <TextField fx:id="inputField" promptText="Enter numbers separated by commas"/>
         <Button text="Start Selection Sort" onAction="#handleSelectionSort"/>
+        <Button text="Start Bubble Sort" onAction="#loadBubbleSort"/>
         <HBox fx:id="barContainer" spacing="5"/>
         <Button text="Back" onAction="#handleBack"/>
     </children>
