@@ -88,33 +88,52 @@ public class SegmentTreeVisualizationController extends Application{
         segment_tree = new int[4*numbers.length];
         double canvas_width = canvas.getWidth();
         //double canvas_height = canvas.getHeight();
-        build_segment_tree_array(1, 0, numbers.length-1, canvas_width/2, canvas_width);
+        build_segment_tree(1, 0, numbers.length-1, canvas_width/2, canvas_width);
     }
 
-    void build_segment_tree_array(int node, int start, int end,double canvas_start_point, double canvas_width){
+    void build_segment_tree(int node, int start, int end,double canvas_start_point, double canvas_width){
         if(start == end){
             //segment_tree[node] = numbers[start];
             form_node(node, start, canvas_start_point, canvas_width);
+            try {
+            Thread.sleep(750); // Delay of half a second
+            } catch (InterruptedException e) {
+            e.printStackTrace();
+            }
         }
         else{
             int mid = (start + end) / 2;
-            build_segment_tree_array(2*node, start, mid,canvas_start_point, (canvas_start_point + canvas_width)/2);
-            build_segment_tree_array(2*node+1, mid+1, end,(canvas_start_point + canvas_width)/2, canvas_width);
+            build_segment_tree(2*node, start, mid,canvas_start_point, (canvas_start_point + canvas_width)/2);
+            build_segment_tree(2*node+1, mid+1, end,(canvas_start_point + canvas_width)/2, canvas_width);
             segment_tree[node] = segment_tree[2*node] + segment_tree[2*node+1];
-        }
+            }
     }
 
-    void form_node(int node, int start, double canvas_start_point, double canvas_width){
+    void form_node(int node, int start, double canvas_start_point, double canvas_width) {
         segment_tree[node] = numbers[start];
         double width_point = (canvas_start_point + canvas_width) / 2;
-        double tree_height =  Math.ceil(Math.log(numbers.length) / Math.log(2));
+        double tree_height = Math.ceil(Math.log(numbers.length) / Math.log(2));
         double height_index = canvas.getHeight() / tree_height;
 
-        // Draw a circle at the calculated position
-        gc.setFill(Color.BLUE);
-        gc.fillOval(width_point - 10, height_index * node - 10, 20, 20); // Draw a circle with radius 10
-        gc.setFill(Color.BLACK);
-        gc.fillText(String.valueOf(segment_tree[node]), width_point - 5, height_index * node + 5); // Draw the value inside the circle
+        // Draw a circle at the calculated position with animation
+        new Thread(() -> {
+            for (double opacity = 0.0; opacity <= 1.0; opacity += 0.1) {
+                final double currentOpacity = opacity;
+                javafx.application.Platform.runLater(() -> {
+                    gc.setGlobalAlpha(currentOpacity);
+                    gc.setFill(Color.BLUE);
+                    gc.fillOval(width_point - 10, height_index * node - 10, 20, 20); // Draw a circle with radius 10
+                    gc.setFill(Color.GREY);
+                    gc.fillText(String.valueOf(segment_tree[node]), width_point - 5, height_index * node + 5); // Draw the value inside the circle
+                });
+                try {
+                    Thread.sleep(100); // Delay for animation effect
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            javafx.application.Platform.runLater(() -> gc.setGlobalAlpha(1.0)); // Reset opacity to 1.0
+        }).start();
     }
 
     public static void main(String[] args) {
