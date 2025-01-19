@@ -6,18 +6,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.AlgorithmsController">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
     <children>
-        <TextField fx:id="inputField" promptText="Enter numbers separated by commas"/>
-        <Button text="Start Selection Sort" onAction="#handleSelectionSort"/>
-        <Button text="Start Bubble Sort" onAction="#loadBubbleSort"/>
-        <Button text="Start Binary Search" onAction="#loadBinarySearch"/>
+        <TextField fx:id="numElementsField" promptText="Enter number of elements"/>
+        <TextField fx:id="inputField" promptText="Enter sorted numbers separated by commas"/>
+        <TextField fx:id="searchField" promptText="Enter number to search"/>
+        <Button text="Start Binary Search" onAction="#handleBinarySearch"/>
         <HBox fx:id="barContainer" spacing="5"/>
         <HBox spacing="10">
             <Label text="Start: Blue Arrow"/>
             <Label text="End: Red Arrow"/>
             <Label text="Mid: Green Arrow"/>
         </HBox>
+        <Label fx:id="foundLabel" text="" style="-fx-text-fill: green;"/>
         <Button text="Back" onAction="#handleBack"/>
     </children>
 </VBox>

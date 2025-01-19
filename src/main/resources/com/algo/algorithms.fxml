@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,7 +11,13 @@
         <TextField fx:id="inputField" promptText="Enter numbers separated by commas"/>
         <Button text="Start Selection Sort" onAction="#handleSelectionSort"/>
         <Button text="Start Bubble Sort" onAction="#loadBubbleSort"/>
+        <Button text="Start Binary Search" onAction="#loadBinarySearch"/>
         <HBox fx:id="barContainer" spacing="5"/>
+        <HBox spacing="10">
+            <Label text="Start: Blue Arrow"/>
+            <Label text="End: Red Arrow"/>
+            <Label text="Mid: Green Arrow"/>
+        </HBox>
         <Button text="Back" onAction="#handleBack"/>
     </children>
 </VBox>
