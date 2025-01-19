@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.application.Application;
@@ -15,15 +17,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import javafx.scene.paint.Color;
 
-public class SegmentTreeVisualizationController extends Application {
+public class SegmentTreeVisualizationController extends Application{
     @FXML
     private TextField BuildInput;
+
     @FXML
     private TextField QuerryInput;
+
     @FXML
     private TextField UpdateInput;
+
     @FXML
+    private Canvas canvas;
+    private GraphicsContext gc;
 
     private static Scene scene;
     int N = 100000;
@@ -43,6 +51,10 @@ public class SegmentTreeVisualizationController extends Application {
         return fxmlLoader.load();
     }
 
+    @FXML
+    public void initialize() {
+        gc = canvas.getGraphicsContext2D();
+    }
 
     void HandleBuild() {
         String input = BuildInput.getText();
@@ -74,27 +86,35 @@ public class SegmentTreeVisualizationController extends Application {
         }
 
         segment_tree = new int[4*numbers.length];
-        build_segment_tree_array(1, 0, numbers.length-1);
+        double canvas_width = canvas.getWidth();
+        //double canvas_height = canvas.getHeight();
+        build_segment_tree_array(1, 0, numbers.length-1, canvas_width/2, canvas_width);
     }
 
-    void build_segment_tree_array(int node, int start, int end){
+    void build_segment_tree_array(int node, int start, int end,double canvas_start_point, double canvas_width){
         if(start == end){
-            segment_tree[node] = numbers[start];
+            //segment_tree[node] = numbers[start];
+            form_node(node, start, canvas_start_point, canvas_width);
         }
         else{
             int mid = (start + end) / 2;
-            build_segment_tree_array(2*node, start, mid);
-            build_segment_tree_array(2*node+1, mid+1, end);
+            build_segment_tree_array(2*node, start, mid,canvas_start_point, (canvas_start_point + canvas_width)/2);
+            build_segment_tree_array(2*node+1, mid+1, end,(canvas_start_point + canvas_width)/2, canvas_width);
             segment_tree[node] = segment_tree[2*node] + segment_tree[2*node+1];
         }
     }
 
-    void visualize_segment_tree()
-    {
-        for(int i = 1; i < numbers.length; i++)
-        {
-            System.out.println(segment_tree[i]);
-        }
+    void form_node(int node, int start, double canvas_start_point, double canvas_width){
+        segment_tree[node] = numbers[start];
+        double width_point = (canvas_start_point + canvas_width) / 2;
+        double tree_height =  Math.ceil(Math.log(numbers.length) / Math.log(2));
+        double height_index = canvas.getHeight() / tree_height;
+
+        // Draw a circle at the calculated position
+        gc.setFill(Color.BLUE);
+        gc.fillOval(width_point - 10, height_index * node - 10, 20, 20); // Draw a circle with radius 10
+        gc.setFill(Color.BLACK);
+        gc.fillText(String.valueOf(segment_tree[node]), width_point - 5, height_index * node + 5); // Draw the value inside the circle
     }
 
     public static void main(String[] args) {
