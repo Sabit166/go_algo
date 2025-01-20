@@ -1,0 +1,20 @@
+.root {
+    background-image: url("background.jpeg");
+    -fx-background-image: url("background.jpeg");
+    background-size: cover;
+    -fx-background-size: cover;
+    background-position: center;
+    -fx-background-position: center;
+}
+
+.myButton {
+    -fx-background-radius: 20px;
+}
+
+.myButton:hover {
+    -fx-background-radius: 20px;
+    background-color: #06ff7f;
+    -fx-background-color: #06ff7f;
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
