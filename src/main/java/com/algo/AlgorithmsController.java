@@ -164,6 +164,13 @@ public class AlgorithmsController {
         barContainer.getChildren().clear();
         barContainer.getChildren().add(binarySearch);
     }
+
+    @FXML
+    private void loadBFS(ActionEvent event) throws IOException {
+        Parent bfs = FXMLLoader.load(getClass().getResource("/com/algo/bfs.fxml"));
+        barContainer.getChildren().clear();
+        barContainer.getChildren().add(bfs);
+    }
     
     private void swapBars(int index1, int index2) {
         if (index1 != index2) {
