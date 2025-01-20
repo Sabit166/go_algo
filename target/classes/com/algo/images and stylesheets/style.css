@@ -1,6 +1,6 @@
 .root {
-    background-image: url("bgimage.jpg");
-    -fx-background-image: url("bgimage.jpg");
+    background-image: url("background.jpeg");
+    -fx-background-image: url("background.jpeg");
     background-size: cover;
     -fx-background-size: cover;
     background-position: center;
