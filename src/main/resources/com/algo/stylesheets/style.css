@@ -1,0 +1,25 @@
+.light-button {
+    -fx-background-color: #f9f9f9;  /* Light background */
+    -fx-text-fill: #333;            /* Dark text */
+    -fx-font-size: 14px;            /* Font size */
+    -fx-font-family: "Arial";       /* Font family */
+    -fx-border-color: #ccc;         /* Light gray border */
+    -fx-border-radius: 10px;        /* Rounded corners */
+    -fx-background-radius: 10px;    /* Match background radius */
+    -fx-padding: 10px;              /* Padding inside the button */
+    -fx-cursor: hand;               /* Hand cursor on hover */
+}
+
+.light-button:hover {
+    -fx-background-color: #e0e0e0;  /* Slightly darker on hover */
+}
+
+.light-button:pressed {
+    -fx-background-color: #d6d6d6;  /* Even darker when pressed */
+}
+
+.background {
+    -fx-background-image: url("/com/algo/images/background");
+    -fx-background-size: cover; /* Adjust the size of the background image */
+    -fx-background-position: center center; /* Center the background image */
+}
