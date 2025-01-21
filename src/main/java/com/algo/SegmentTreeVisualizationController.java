@@ -200,13 +200,13 @@ public class SegmentTreeVisualizationController extends Application {
         double y = segment_tree[node].y;
 
         if (l <= start && end <= r) {
-            build_helper(x, y, segment_tree[node].value, node, Color.WHITESMOKE);
+            build_helper(x, y, segment_tree[node].value, Color.WHITESMOKE, start, end);
             return segment_tree[node].value; // Current segment is completely within range
         }
         int mid = (start + end) / 2;
         int left_sum = query_segment_tree(2 * node, start, mid, l, r);
         int right_sum = query_segment_tree(2 * node + 1, mid + 1, end, l, r);
-        build_helper(x, y, segment_tree[node].value, node, Color.WHITESMOKE);
+        build_helper(x, y, segment_tree[node].value,  Color.WHITESMOKE, start, end);
         return left_sum + right_sum;
     }
 
@@ -225,7 +225,7 @@ public class SegmentTreeVisualizationController extends Application {
         }
         double x = segment_tree[node].x;
         double y = segment_tree[node].y;
-        build_helper(x, y, segment_tree[node].value, node, Color.WHEAT);
+        build_helper(x, y, segment_tree[node].value, Color.WHEAT, start, end);
     }
 
     void build_segment_tree(int node, int start, int end, double canvas_start_point, double canvas_width) {
@@ -272,7 +272,7 @@ public class SegmentTreeVisualizationController extends Application {
 
     void build_circle(int node, int start, int end) {
         if (start == end) {
-            build_helper(segment_tree[node].x, segment_tree[node].y, segment_tree[node].value, node, Color.GRAY);
+            build_helper(segment_tree[node].x, segment_tree[node].y, segment_tree[node].value, Color.GRAY, start, end);
             // pauseUI(1000); // Pause UI for 1 second
             return;
         } else {
@@ -283,12 +283,11 @@ public class SegmentTreeVisualizationController extends Application {
             double x = segment_tree[node].x;
             double y = segment_tree[node].y;
 
-            build_helper(x, y, segment_tree[node].value, node, Color.GRAY);
+            build_helper(x, y, segment_tree[node].value, Color.GRAY, start, end);
             // pauseUI(1000); // Pause UI for 1 second
         }
     }
-
-    // Method to pause the entire UI
+    
     // private void pauseUI(int milliseconds) {
     //     try {
     //         Thread.sleep(milliseconds); // Pause the JavaFX Application Thread
@@ -297,7 +296,7 @@ public class SegmentTreeVisualizationController extends Application {
     //     }
     // }
 
-    void build_helper(double x, double y, int value, int node, Color color) {
+    void build_helper(double x, double y, int value, Color color, int l, int r) {
         Platform.runLater(() -> {
             gc.setGlobalAlpha(1.0);
             gc.setFill(color);
@@ -311,7 +310,7 @@ public class SegmentTreeVisualizationController extends Application {
             gc.setFont(new Font(20)); // Set font size to 20
             gc.fillText(String.valueOf(value), x + 3, y + 6); // Draw the value
             gc.setFill(Color.BLACK);
-            gc.fillText(String.valueOf(node), x + 3, y + 50); // Draw the value
+            gc.fillText("[" + l + "," + r + "]", x - 10, y + 50); // Draw the range
         });
     }
 
