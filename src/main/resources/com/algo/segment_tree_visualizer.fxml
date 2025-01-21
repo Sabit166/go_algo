@@ -27,14 +27,14 @@
          </font>
       </Text>
       <TextField fx:id="QuerryInput" onAction="#HandleQuerry" prefHeight="11.0" prefWidth="786.0" promptText="Please enter Querry in two numbers e.g. 1 4" />
-      <Button mnemonicParsing="false" styleClass="myButton" text="Querry" />
+      <Button mnemonicParsing="false" onAction="#HandleQuerry" styleClass="myButton" text="Querry" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading" text="UPDATE" textAlignment="CENTER" wrappingWidth="786.7830657958984">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <TextField fx:id="UpdateInput" onAction="#HandleUpdate" prefHeight="36.0" prefWidth="786.0" promptText="Please enter required index and updated number" />
-      <Button mnemonicParsing="false" styleClass="myButton" text="Update" />
+      <Button mnemonicParsing="false" onAction="#HandleUpdate" styleClass="myButton" text="Update" />
       <Canvas fx:id="canvas" height="427.0" styleClass="container" width="785.0" />
    </children>
 </VBox>
