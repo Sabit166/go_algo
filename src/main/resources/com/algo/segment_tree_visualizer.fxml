@@ -26,7 +26,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="QuerryInput" onAction="#HandleQuerry" prefHeight="11.0" prefWidth="786.0" promptText="Please enter Querry of start index and next  index to end index e.g. 1 4" styleClass="textField" />
+      <TextField fx:id="QuerryInput" onAction="#HandleQuerry" prefHeight="11.0" prefWidth="786.0" promptText="Please enter Querry of start index and end index e.g. 1 4" styleClass="textField" />
       <Button mnemonicParsing="false" onAction="#HandleQuerry" styleClass="myButton" text="Querry" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading" text="UPDATE" textAlignment="CENTER" wrappingWidth="786.7830657958984">
          <font>
