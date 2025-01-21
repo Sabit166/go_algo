@@ -14,7 +14,8 @@ public class VisualizationApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("visualization_setup"), 640, 480);
+        scene = new Scene(loadFXML("visualization_setup"));
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setTitle("Data Structure Visualizer");
         stage.show();

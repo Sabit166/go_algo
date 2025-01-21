@@ -7,34 +7,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.SegmentTreeVisualizationController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="810.0" stylesheets="@images%20and%20stylesheets/style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.SegmentTreeVisualizationController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SEGMENT TREE VISUALIZER" textAlignment="CENTER" wrappingWidth="786.4797210693359">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading" text="SEGMENT TREE VISUALIZER" textAlignment="CENTER" wrappingWidth="786.4797210693359">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BUILD" textAlignment="CENTER" wrappingWidth="786.7830657958984">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading" text="BUILD" textAlignment="CENTER" wrappingWidth="786.7830657958984">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <TextField fx:id="BuildInput" minHeight="-Infinity" minWidth="-Infinity" onAction="#HandleBuild" prefHeight="30.0" prefWidth="786.0" promptText="Please enter input array e.g. 1 2 3 4 5" />
-      <Button mnemonicParsing="false" onAction="#HandleBuild" text="Build" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="QUERRY" textAlignment="CENTER" wrappingWidth="786.7830657958984">
+      <Button mnemonicParsing="false" onAction="#HandleBuild" styleClass="myButton" text="Build" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading" text="QUERRY" textAlignment="CENTER" wrappingWidth="786.7830657958984">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <TextField fx:id="QuerryInput" onAction="#HandleQuerry" prefHeight="11.0" prefWidth="786.0" promptText="Please enter Querry in two numbers e.g. 1 4" />
-      <Button mnemonicParsing="false" text="Querry" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE" textAlignment="CENTER" wrappingWidth="786.7830657958984">
+      <Button mnemonicParsing="false" onAction="#HandleQuerry" styleClass="myButton" text="Querry" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading" text="UPDATE" textAlignment="CENTER" wrappingWidth="786.7830657958984">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <TextField fx:id="UpdateInput" onAction="#HandleUpdate" prefHeight="36.0" prefWidth="786.0" promptText="Please enter required index and updated number" />
-      <Button mnemonicParsing="false" text="Update" />
-      <Canvas fx:id="canvas" height="427.0" width="785.0" />
+      <Button mnemonicParsing="false" onAction="#HandleUpdate" styleClass="myButton" text="Update" />
+      <Canvas fx:id="canvas" height="427.0" styleClass="container" width="785.0" />
    </children>
 </VBox>

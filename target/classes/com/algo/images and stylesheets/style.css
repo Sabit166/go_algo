@@ -1,0 +1,88 @@
+.root {
+    background-image: url("background.jpeg");
+    -fx-background-image: url("background.jpeg");
+    background-size: cover;
+    -fx-background-size: cover;
+    background-position: center;
+    -fx-background-position: center;
+}
+
+/* Buttons */
+.myButton {
+    -fx-background-radius: 25px;
+    -fx-background-color: #4CAF50; /* Soft green */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-border-color: #3a9d40; /* Slightly darker green for the border */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1); /* Subtle shadow */
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.myButton:hover {
+    -fx-background-color: #06ff7f; /* Vibrant green */
+    -fx-border-color: #05cc66;
+    -fx-scale-x: 1.05; /* Slightly enlarge */
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0, 2);
+    -fx-cursor: hand;
+}
+
+.myButton:pressed {
+    -fx-background-color: #04b05d; /* Darker green */
+    -fx-scale-x: 0.95; /* Slightly shrink */
+    -fx-scale-y: 0.95;
+}
+
+/* Headings */
+.heading {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Dark grey */
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2); /* Light shadow */
+    -fx-padding: 10px 0;
+    -fx-border-style: solid hidden hidden hidden;
+    -fx-border-width: 2px;
+    -fx-border-color: #4CAF50;
+}
+
+/* Text */
+.text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555; /* Medium grey */
+    -fx-font-family: "Arial", sans-serif;
+    -fx-padding: 5px 0;
+}
+
+/* Text Fields */
+.textField {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #cccccc; /* Light grey border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Dark grey text */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0.3, 0, 1); /* Subtle shadow */
+}
+
+.textField:focused {
+    -fx-border-color: #4CAF50; /* Green border on focus */
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.3), 5, 0.5, 0, 2); /* Greenish shadow */
+}
+
+.textField:hover {
+    -fx-border-color: #06ff7f; /* Brighter green */
+}
+
+/* Common Styles */
+.container {
+    -fx-background-color: #f9f9f9; /* Light background */
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.3, 0, 2); /* Subtle container shadow */
+}
+
