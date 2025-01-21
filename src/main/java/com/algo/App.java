@@ -17,7 +17,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("main_menu"), 640, 480);
+        scene = new Scene(loadFXML("main_menu"));
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setTitle("Data Structure Visualizer");
         stage.show();
