@@ -27,6 +27,7 @@ public class VisualizationSetupController {
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/algorithms.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setTitle("Algorithms");
         stage.show();
