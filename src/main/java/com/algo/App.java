@@ -19,7 +19,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("main_menu"));
         scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/style.css").toExternalForm());
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
         stage.setScene(scene);
         stage.setTitle("Data Structure Visualizer");
         stage.setResizable(false);

@@ -3,8 +3,8 @@
     -fx-background-radius: 25px;
     border-radius: 25px;
     -fx-border-radius: 25px;
-    background-image: url("background.jpeg");
-    -fx-background-image: url("background.jpeg");
+    background-image: url("bg2.jpg");
+    -fx-background-image: url("bg2.jpg");
     background-size: cover;
     -fx-background-size: cover;
     background-position: center;
@@ -12,7 +12,7 @@
 }
 
 @font-face {
-    font-family: 'SupercellMagic';
+    font-family: 'Supercell-Magic';
     src: url('/resources/com/algo/supercell-magic.ttf');
 }
 
@@ -115,8 +115,8 @@
 }
 
 .mainmenu {
-    background-color: blanchedalmond;
-    -fx-background-color: blanchedalmond;
+    background-color: rgb(173, 221, 251);
+    -fx-background-color: rgb(173, 221, 251);
 
     -fx-background-radius: 0px 25px 25px 0px;
     border-radius: 0px 25px 25px 0px;
@@ -124,18 +124,23 @@
 }
 
 .image {
+    background-image: url("logo.png");
+    -fx-background-image: url("logo.png");
+    background-size: cover;
+    -fx-background-size: cover;
+    background-position: center;
+    -fx-background-position: center;
+
     border-radius: 25px;
     -fx-border-radius: 25px;
     -fx-background-radius: 25px;
-    -fx-border-width: 20px;
-    -fx-border-color: #4CAF50;
 }
 
 
 .custom-text {
-    font-family: 'SuperCellMagic', sans-serif;
-    font-family: 'SuperCellMagic', sans-serif;
-    -fx-font-family: 'SuperCellMagic', sans-serif;
+    font-family: 'Supercell-Magic', sans-serif;
+    font-family: 'Supercell-Magic', sans-serif;
+    -fx-font-family: 'Supercell-Magic', sans-serif;
     /* Optional: Set the desired font family */
     font-size: 16px;
     /* Standard property for compatibility */
@@ -145,12 +150,19 @@
     /* Optional: Set the desired text color */
 }
 
+.rbutton {
+    transition: all 0.3s ease;
+}
 
 .rbutton {
     -fx-background-radius: 25px;
 }
 
-.rbutton:hover {
-    -fx-scale-x: 1.5;
-    -fx-scale-y: 1.5;
+
+
+.all_button:hover {
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    transition: all 0.3s ease;
 }
+
