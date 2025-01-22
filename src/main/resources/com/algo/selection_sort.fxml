@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BubbleSortController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.SelectionSortController">
     <children>
         <TextField fx:id="inputField" promptText="Enter numbers separated by commas"/>
-        <Button text="Start Bubble Sort" onAction="#handleBubbleSort"/>
+        <Button text="Start Selection Sort" onAction="#handleSelectionSort"/>
         <HBox fx:id="barContainer" spacing="5"/>
         <Button text="Back" onAction="#handleBack"/>
     </children>

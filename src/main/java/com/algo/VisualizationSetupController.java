@@ -12,34 +12,25 @@ public class VisualizationSetupController {
 
     @FXML
     private void handleDataStructures(ActionEvent event) throws IOException {
-        // Load the Data Structures screen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/data_structures.fxml"));
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Data Structures");
-        stage.show();
+        loadPage("data_structures", event);
     }
 
     @FXML
     private void handleAlgorithms(ActionEvent event) throws IOException {
-        // Load the Algorithms screen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/algorithms.fxml"));
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Algorithms");
-        stage.show();
+        loadPage("algorithms", event);
     }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
-        // Load the main menu screen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/main_menu.fxml"));
+        loadPage("main_menu", event);
+    }
+
+    private void loadPage(String fxml, ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/" + fxml + ".fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Data Structure Visualizer");
+        stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();
     }
 }
