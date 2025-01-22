@@ -22,10 +22,10 @@ import javafx.scene.Scene;
 
 import java.util.*;
 
-public class BFSController {
+public class GraphVisualizerController {
 
     private static final int NODE_RADIUS = 20;
-    private static final int CIRCLE_RADIUS = 150; // Radius for circular layout
+    private static final int GAP_SIZE = 50;
     private Map<Integer, StackPane> nodes;
     private List<Line> edges;
     private Map<Integer, List<Integer>> adjacencyList;
@@ -71,30 +71,7 @@ public class BFSController {
             nodes = new HashMap<>();
             edges = new ArrayList<>();
             adjacencyList = new HashMap<>();
-
-            // Create nodes in a circular layout
-            for (int i = 0; i < numNodes; i++) {
-                Circle circle = new Circle(NODE_RADIUS, Color.SKYBLUE);
-                Label label = new Label(String.valueOf(i));
-                label.setTextFill(Color.BLACK);
-                StackPane stackPane = new StackPane();
-                stackPane.getChildren().addAll(circle, label);
-
-                // Circular layout
-                double angle = 2 * Math.PI * i / numNodes;
-                double centerX = graphContainer.getWidth() / 2;
-                double centerY = graphContainer.getHeight() / 2;
-                double x = centerX + CIRCLE_RADIUS * Math.cos(angle);
-                double y = centerY + CIRCLE_RADIUS * Math.sin(angle);
-                stackPane.setLayoutX(x);
-                stackPane.setLayoutY(y);
-
-                nodes.put(i, stackPane);
-                graphContainer.getChildren().add(stackPane);
-                adjacencyList.put(i, new ArrayList<>());
-            }
-
-            // Parse edges
+            initializeNodes(numNodes, graphContainer.getWidth(), graphContainer.getHeight());
             String[] edgesArray = edgesText.split(",");
             if (edgesArray.length != numEdges) {
                 showAlert("Input Error", "The number of edges does not match the provided list.");
@@ -104,11 +81,7 @@ public class BFSController {
                 String[] nodes = edge.split("-");
                 int node1 = Integer.parseInt(nodes[0].trim());
                 int node2 = Integer.parseInt(nodes[1].trim());
-                Line line = new Line();
-                line.startXProperty().bind(this.nodes.get(node1).layoutXProperty().add(NODE_RADIUS));
-                line.startYProperty().bind(this.nodes.get(node1).layoutYProperty().add(NODE_RADIUS));
-                line.endXProperty().bind(this.nodes.get(node2).layoutXProperty().add(NODE_RADIUS));
-                line.endYProperty().bind(this.nodes.get(node2).layoutYProperty().add(NODE_RADIUS));
+                Line line = createEdge(node1, node2);
                 edges.add(line);
                 graphContainer.getChildren().add(line);
 
@@ -122,6 +95,53 @@ public class BFSController {
         }
 
         return true;
+    }
+
+    private void initializeNodes(int numNodes, double width, double height) {
+        double centerX = width / 2;
+        double centerY = height / 2;
+        double angleStep = 360.0 / numNodes;
+
+        for (int i = 0; i < numNodes; i++) {
+            double angle = Math.toRadians(i * angleStep);
+            double x = centerX + 200 * Math.cos(angle);
+            double y = centerY + 200 * Math.sin(angle);
+
+            Circle circle = new Circle(NODE_RADIUS, Color.SKYBLUE);
+            Label label = new Label(String.valueOf(i));
+            label.setTextFill(Color.BLACK);
+            StackPane stackPane = new StackPane();
+            stackPane.getChildren().addAll(circle, label);
+            stackPane.setLayoutX(x - NODE_RADIUS);
+            stackPane.setLayoutY(y - NODE_RADIUS);
+            nodes.put(i, stackPane);
+            graphContainer.getChildren().add(stackPane);
+            adjacencyList.put(i, new ArrayList<>());
+        }
+    }
+
+    private Line createEdge(int node1, int node2) {
+        StackPane node1Pane = nodes.get(node1);
+        StackPane node2Pane = nodes.get(node2);
+
+        double startX = node1Pane.getLayoutX() + NODE_RADIUS;
+        double startY = node1Pane.getLayoutY() + NODE_RADIUS;
+        double endX = node2Pane.getLayoutX() + NODE_RADIUS;
+        double endY = node2Pane.getLayoutY() + NODE_RADIUS;
+
+        double dx = endX - startX;
+        double dy = endY - startY;
+        double distance = Math.sqrt(dx * dx + dy * dy);
+        double offsetX = dx * NODE_RADIUS / distance;
+        double offsetY = dy * NODE_RADIUS / distance;
+
+        Line line = new Line();
+        line.setStartX(startX + offsetX);
+        line.setStartY(startY + offsetY);
+        line.setEndX(endX - offsetX);
+        line.setEndY(endY - offsetY);
+
+        return line;
     }
 
     private void bfs() {
@@ -153,13 +173,7 @@ public class BFSController {
                 if (!visited.contains(neighbor)) {
                     queue.add(neighbor);
                     visited.add(neighbor);
-
-                    // Highlight edge
-                    Line edge = findEdge(currentNode, neighbor);
                     int finalNeighbor = neighbor;
-                    duration = duration.add(stepDuration);
-                    keyFrames.add(new KeyFrame(duration, e -> edge.setStroke(Color.ORANGE)));
-
                     duration = duration.add(stepDuration);
                     keyFrames.add(new KeyFrame(duration, e -> highlightNode(finalNeighbor, Color.YELLOW)));
                 }
@@ -171,22 +185,6 @@ public class BFSController {
         timeline.getKeyFrames().addAll(keyFrames);
         timeline.setOnFinished(e -> resultLabel.setText("BFS Completed"));
         timeline.play();
-    }
-
-    private Line findEdge(int node1, int node2) {
-        for (Line edge : edges) {
-            if ((edge.getStartX() == nodes.get(node1).getLayoutX() + NODE_RADIUS &&
-                 edge.getStartY() == nodes.get(node1).getLayoutY() + NODE_RADIUS &&
-                 edge.getEndX() == nodes.get(node2).getLayoutX() + NODE_RADIUS &&
-                 edge.getEndY() == nodes.get(node2).getLayoutY() + NODE_RADIUS) ||
-                (edge.getStartX() == nodes.get(node2).getLayoutX() + NODE_RADIUS &&
-                 edge.getStartY() == nodes.get(node2).getLayoutY() + NODE_RADIUS &&
-                 edge.getEndX() == nodes.get(node1).getLayoutX() + NODE_RADIUS &&
-                 edge.getEndY() == nodes.get(node1).getLayoutY() + NODE_RADIUS)) {
-                return edge;
-            }
-        }
-        return null;
     }
 
     private void highlightNode(int node, Color color) {

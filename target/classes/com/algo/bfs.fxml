@@ -4,16 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BFSController">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.GraphVisualizerController">
     <children>
         <TextField fx:id="numNodesField" promptText="Enter number of nodes"/>
         <TextField fx:id="numEdgesField" promptText="Enter number of edges"/>
         <TextField fx:id="edgesField" promptText="Enter edges (e.g., 0-1,1-2)"/>
         <TextField fx:id="startNodeField" promptText="Enter start node"/>
         <Button text="Start BFS" onAction="#handleBFS"/>
-        <HBox fx:id="graphContainer" spacing="5"/>
+        <Pane fx:id="graphContainer" prefHeight="400" prefWidth="600"/>
         <Label fx:id="resultLabel" text="" style="-fx-text-fill: green;"/>
         <Button text="Back" onAction="#handleBack"/>
     </children>
