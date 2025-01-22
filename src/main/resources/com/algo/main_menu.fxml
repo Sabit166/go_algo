@@ -21,27 +21,27 @@
                   <Glow />
                </effect>
             </ImageView>
-            <Text layoutX="32.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go_Algo" textAlignment="CENTER" wrappingWidth="143.34375">
+            <Text fx:id="goalgo" layoutX="32.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go_Algo" textAlignment="CENTER" wrappingWidth="143.34375">
                <font>
                   <Font name="Supercell-Magic" size="28.0" />
                </font>
             </Text>
-            <Text layoutX="32.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn" textAlignment="CENTER" wrappingWidth="143.34375">
+            <Text fx:id="learn" layoutX="32.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn" textAlignment="CENTER" wrappingWidth="143.34375">
                <font>
                   <Font name="Supercell-Magic" size="19.0" />
                </font>
             </Text>
-            <Text layoutX="-3.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algo-rythmically" textAlignment="CENTER" wrappingWidth="216.34375">
+            <Text fx:id="aaa" layoutX="-3.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algo-rythmically" textAlignment="CENTER" wrappingWidth="216.34375">
                <font>
                   <Font name="Supercell-Magic" size="19.0" />
                </font>
             </Text>
-            <Text layoutX="32.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" textAlignment="CENTER" wrappingWidth="143.34375">
+            <Text fx:id="to" layoutX="32.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" textAlignment="CENTER" wrappingWidth="143.34375">
                <font>
                   <Font name="Supercell-Magic" size="28.0" />
                </font>
             </Text>
-            <Text layoutX="35.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="143.34375">
+            <Text fx:id="welcome" layoutX="35.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="143.34375">
                <font>
                   <Font name="Supercell-Magic" size="28.0" />
                </font>
@@ -52,72 +52,72 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="24.0" layoutY="106.0" prefHeight="112.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+            <AnchorPane fx:id="visualize" layoutX="24.0" layoutY="106.0" prefHeight="112.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
                <children>
                   <Button layoutX="30.0" mnemonicParsing="false" onAction="#handleStartVisualization" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
                      <graphic>
-                        <ImageView blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                        <ImageView fx:id="button1image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
                            <image>
                               <Image url="@images%20and%20stylesheets/brainstorming.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Text fill="WHITE" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visualize" textAlignment="CENTER" wrappingWidth="143.34375">
+                  <Text fx:id="vtext" fill="WHITE" layoutX="-32.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visualize" textAlignment="CENTER" wrappingWidth="206.34375">
                      <font>
                         <Font name="Supercell-Magic" size="19.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="196.0" layoutY="106.0" prefHeight="112.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+            <AnchorPane fx:id="helpme" layoutX="196.0" layoutY="106.0" prefHeight="112.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
                <children>
                   <Button layoutX="30.0" mnemonicParsing="false" onAction="#handleHelpInstructions" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
                      <graphic>
-                        <ImageView blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                        <ImageView fx:id="button2image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
                            <image>
                               <Image url="@images%20and%20stylesheets/cloud-computing.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Text fill="WHITE" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help me!!" textAlignment="CENTER" wrappingWidth="143.34375">
+                  <Text fx:id="htext" fill="WHITE" layoutX="-35.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help me!!" textAlignment="CENTER" wrappingWidth="212.84375">
                      <font>
                         <Font name="Supercell-Magic" size="19.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="24.0" layoutY="238.0" prefHeight="118.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+            <AnchorPane fx:id="exit" layoutX="24.0" layoutY="238.0" prefHeight="118.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
                <children>
                   <Button layoutX="30.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
                      <graphic>
-                        <ImageView blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                        <ImageView fx:id="button3image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
                            <image>
                               <Image url="@images%20and%20stylesheets/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Text fill="WHITE" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER" wrappingWidth="143.34375">
+                  <Text fx:id="etext" fill="WHITE" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER" wrappingWidth="143.34375">
                      <font>
                         <Font name="Supercell-Magic" size="19.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="196.0" layoutY="241.0" prefHeight="113.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+            <AnchorPane fx:id="aboutus" layoutX="196.0" layoutY="241.0" prefHeight="113.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
                <children>
-                  <Button layoutX="30.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
+                  <Button fx:id="button4" layoutX="30.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
                      <graphic>
-                        <ImageView blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                        <ImageView fx:id="button4image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
                            <image>
                               <Image url="@images%20and%20stylesheets/user.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Text fill="WHITE" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About US" textAlignment="CENTER" wrappingWidth="143.34375">
+                  <Text fx:id="aboutustext" fill="WHITE" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About US" textAlignment="CENTER" wrappingWidth="143.34375">
                      <font>
                         <Font name="Supercell-Magic" size="19.0" />
                      </font>
