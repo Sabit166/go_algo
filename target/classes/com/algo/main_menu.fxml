@@ -1,13 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.MainMenuController">
-    <Text text="Data Structure Visualizer" style="-fx-font-size: 24px;"/>
-    <Button text="Start Visualization" onAction="#handleStartVisualization"/>
-    <Button text="Help/Instructions" onAction="#handleHelpInstructions"/>
-    <Button text="Exit" onAction="#handleExit"/>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="root" stylesheets="@images%20and%20stylesheets/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.MainMenuController">
+   <left>
+      <AnchorPane blendMode="HARD_LIGHT" opacity="0.8" prefHeight="369.0" prefWidth="207.0" styleClass="mainmenu" stylesheets="@images%20and%20stylesheets/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView blendMode="DARKEN" fitHeight="127.0" fitWidth="181.0" layoutX="43.0" layoutY="60.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="image">
+               <image>
+                  <Image url="@images%20and%20stylesheets/logo2.png" />
+               </image>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <Text fx:id="goalgo" layoutX="32.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go_Algo" textAlignment="CENTER" wrappingWidth="143.34375">
+               <font>
+                  <Font name="Supercell-Magic" size="28.0" />
+               </font>
+            </Text>
+            <Text fx:id="learn" layoutX="32.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn" textAlignment="CENTER" wrappingWidth="143.34375">
+               <font>
+                  <Font name="Supercell-Magic" size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="aaa" layoutX="-3.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algo-rythmically" textAlignment="CENTER" wrappingWidth="216.34375">
+               <font>
+                  <Font name="Supercell-Magic" size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="to" layoutX="32.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" textAlignment="CENTER" wrappingWidth="143.34375">
+               <font>
+                  <Font name="Supercell-Magic" size="28.0" />
+               </font>
+            </Text>
+            <Text fx:id="welcome" layoutX="35.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="143.34375">
+               <font>
+                  <Font name="Supercell-Magic" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="visualize" layoutX="24.0" layoutY="106.0" prefHeight="112.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+               <children>
+                  <Button layoutX="30.0" mnemonicParsing="false" onAction="#handleStartVisualization" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
+                     <graphic>
+                        <ImageView fx:id="button1image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                           <image>
+                              <Image url="@images%20and%20stylesheets/brainstorming.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fx:id="vtext" fill="WHITE" layoutX="-32.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visualize" textAlignment="CENTER" wrappingWidth="206.34375">
+                     <font>
+                        <Font name="Supercell-Magic" size="19.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="helpme" layoutX="196.0" layoutY="106.0" prefHeight="112.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+               <children>
+                  <Button layoutX="30.0" mnemonicParsing="false" onAction="#handleHelpInstructions" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
+                     <graphic>
+                        <ImageView fx:id="button2image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                           <image>
+                              <Image url="@images%20and%20stylesheets/cloud-computing.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fx:id="htext" fill="WHITE" layoutX="-35.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help me!!" textAlignment="CENTER" wrappingWidth="212.84375">
+                     <font>
+                        <Font name="Supercell-Magic" size="19.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="exit" layoutX="24.0" layoutY="238.0" prefHeight="118.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+               <children>
+                  <Button layoutX="30.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
+                     <graphic>
+                        <ImageView fx:id="button3image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                           <image>
+                              <Image url="@images%20and%20stylesheets/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fx:id="etext" fill="WHITE" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER" wrappingWidth="143.34375">
+                     <font>
+                        <Font name="Supercell-Magic" size="19.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="aboutus" layoutX="196.0" layoutY="241.0" prefHeight="113.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
+               <children>
+                  <Button fx:id="button4" layoutX="30.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
+                     <graphic>
+                        <ImageView fx:id="button4image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
+                           <image>
+                              <Image url="@images%20and%20stylesheets/user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fx:id="aboutustext" fill="WHITE" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About US" textAlignment="CENTER" wrappingWidth="143.34375">
+                     <font>
+                        <Font name="Supercell-Magic" size="19.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

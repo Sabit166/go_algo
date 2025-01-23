@@ -1,13 +1,19 @@
 package com.algo;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * JavaFX App
+ */
 public class App extends Application {
 
     private static Scene scene;
@@ -15,9 +21,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("main_menu"));
-        stage.setFullScreen(true);
+        scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/style.css").toExternalForm());
+        Image icon = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/logo2.png"));
+        stage.getIcons().add(icon);
+        stage.setFullScreen(false);
         stage.setScene(scene);
-        stage.setTitle("Data Structure Visualizer");
+        stage.setTitle("Go-Algo");
+        stage.setResizable(false);
         stage.show();
     }
 
