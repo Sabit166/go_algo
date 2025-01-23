@@ -90,14 +90,17 @@ public class SegmentTreeVisualizationController extends Application {
         }
     }
 
-    @FXML
-    private void HandleBuild() {
-        // Clear the canvas
+    void reset() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        // Reset the segment tree array
         for (int i = 0; i < segment_tree.length; i++) {
             segment_tree[i] = new Segment_Tree_Nodes();
         }
+    }
+
+    @FXML
+    private void HandleBuild() {
+        // Clear the canvas
+        reset();
 
         String input = BuildInput.getText();
         if (input.isEmpty()) {
@@ -238,6 +241,7 @@ public class SegmentTreeVisualizationController extends Application {
 
     void build_segment_tree(int node, int start, int end, double canvas_start_point, double canvas_width) {
         if (start == end) {
+            // Leaf node
             build_helper(node, canvas_start_point, canvas_width, numbers[start], start, end);
         } else {
             int mid = (start + end) / 2;
@@ -246,9 +250,8 @@ public class SegmentTreeVisualizationController extends Application {
             int n = segment_tree[2 * node].value + segment_tree[2 * node + 1].value;
             build_helper(node, canvas_start_point, canvas_width, n, start, end);
         }
-        // System.out.println("Building tree: node=" + node + ", range=[" + start + ", "
-        // + end + "]");
     }
+    
 
     void build_helper(int node, double canvas_start_point, double canvas_width, int value, int start, int end) {
         segment_tree[node].start = start;
@@ -257,7 +260,7 @@ public class SegmentTreeVisualizationController extends Application {
         double tree_height = Math.ceil(Math.log(numbers.length) / Math.log(2));
         double width_point = (canvas_start_point + canvas_width) / 2;
         int level = (int) (Math.log(node) / Math.log(2)); // Determine the level of the node
-        double y = level * (canvas.getHeight() / tree_height) * 0.5 + 50; // Adjust y position
+        double y = level * (canvas.getHeight() / tree_height) * 0.75 + 50; // Adjust y position
         segment_tree[node].x = width_point - 15;
         segment_tree[node].y = y - 15;
     }
