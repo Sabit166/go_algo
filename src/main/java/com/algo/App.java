@@ -22,7 +22,7 @@ public class App extends Application {
         scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/style.css").toExternalForm());
         Image icon = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/logo2.png"));
         stage.getIcons().add(icon);
-        stage.setFullScreen(false);
+        //stage.setFullScreen(false);
         stage.setScene(scene);
         stage.setTitle("Go-Algo");
         stage.setResizable(false);
