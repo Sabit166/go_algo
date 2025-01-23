@@ -21,7 +21,7 @@ import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BubbleSortController {
+public class SelectionSortController {
 
     private static final int BAR_WIDTH = 50; // Increased width
     private static final int MAX_HEIGHT = 400; // Increased height
@@ -34,9 +34,9 @@ public class BubbleSortController {
     private TextField inputField;
 
     @FXML
-    private void handleBubbleSort() {
+    private void handleSelectionSort() {
         initializeBars(); // Initialize the bar visualization
-        bubbleSort();     // Perform the sorting with animation
+        selectionSort();  // Perform the sorting with animation
     }
 
     private void initializeBars() {
@@ -68,7 +68,7 @@ public class BubbleSortController {
         }
     }
 
-    private void bubbleSort() {
+    private void selectionSort() {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
         Duration stepDuration = Duration.seconds(1);
@@ -80,25 +80,30 @@ public class BubbleSortController {
         }
 
         for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
                 int finalJ = j;
-                int finalJ1 = j + 1;
+                int finalMinIndex = minIndex;
 
                 // Highlight the bars being compared
                 duration = duration.add(stepDuration);
-                keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ, finalJ1)));
+                keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalMinIndex, finalJ)));
 
-                if (heights[j] > heights[j + 1]) {
-                    // Swap heights
-                    double temp = heights[j];
-                    heights[j] = heights[j + 1];
-                    heights[j + 1] = temp;
-
-                    // Swap bars visually
-                    duration = duration.add(stepDuration);
-                    keyFrames.add(new KeyFrame(duration, e -> swapBars(finalJ, finalJ1)));
+                if (heights[j] < heights[minIndex]) {
+                    minIndex = j;
                 }
             }
+
+            // Swap heights
+            double temp = heights[minIndex];
+            heights[minIndex] = heights[i];
+            heights[i] = temp;
+
+            // Swap bars visually
+            int finalI = i;
+            int finalMinIndex1 = minIndex;
+            duration = duration.add(stepDuration);
+            keyFrames.add(new KeyFrame(duration, e -> swapBars(finalI, finalMinIndex1)));
         }
 
         // Play the timeline animation
