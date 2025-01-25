@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-<<<<<<< HEAD
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -17,11 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-=======
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
->>>>>>> Algorithm
 
 public class MainMenuController {
 
@@ -95,18 +91,7 @@ public class MainMenuController {
 
     @FXML
     private void handleStartVisualization(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-        // Load the visualization setup screen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/visualization_setup.fxml"));
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/style.css").toExternalForm());
-        stage.setScene(scene);
-        stage.setTitle("Visualization Setup");
-        stage.show();
-=======
         loadPage("visualization_setup", event);
->>>>>>> Algorithm
     }
 
     @FXML
@@ -116,17 +101,6 @@ public class MainMenuController {
 
     @FXML
     private void handleExit(ActionEvent event) {
-<<<<<<< HEAD
-        // Logic to close the application
-
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("Are you sure you want to exit?");
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.close();
-        }
-=======
         System.exit(0);
     }
 
@@ -137,7 +111,6 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();
->>>>>>> Algorithm
     }
 
 }
