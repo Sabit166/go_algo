@@ -61,7 +61,6 @@ public class SegmentTreeVisualizationController extends Application {
 
     int[] numbers;
     private final Segment_Tree_Nodes[] segment_tree = new Segment_Tree_Nodes[4 * 16]; // Initialize the segment tree
-                                                                                      
 
     Scanner sc = new Scanner(System.in);
 
@@ -129,7 +128,7 @@ public class SegmentTreeVisualizationController extends Application {
         build_segment_tree(1, 0, numbers.length - 1, 0, canvas_width);
         build_lines(1, 0, numbers.length - 1);
         build_circle(1, 0, numbers.length - 1);
-        //build_circle();
+        // build_circle();
     }
 
     @FXML
@@ -156,7 +155,7 @@ public class SegmentTreeVisualizationController extends Application {
             return;
         }
 
-        build_circle(1, 0, numbers.length - 1);
+        instant_build_circle(1, 0, numbers.length - 1);
         int result = query_segment_tree(1, 0, numbers.length - 1, l, r);
         prompt("The sum of the range [" + l + ", " + r + "] is: " + result);
     }
@@ -182,7 +181,7 @@ public class SegmentTreeVisualizationController extends Application {
             return;
         }
 
-        build_circle(1, 0, numbers.length - 1);
+        instant_build_circle(1, 0, numbers.length - 1);
         update_segment_tree(1, 0, numbers.length - 1, index, value);
         prompt("The value at index [" + index + "] has been updated to: " + value);
     }
@@ -197,10 +196,10 @@ public class SegmentTreeVisualizationController extends Application {
 
     void prompt(String message) {
         gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(0, canvas.getHeight() - 40, canvas.getWidth(), 40);
+        gc.fillRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
         gc.setStroke(Color.DARKGRAY);
         gc.setLineWidth(2);
-        gc.strokeRect(0, canvas.getHeight() - 40, canvas.getWidth(), 40);
+        gc.strokeRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
         gc.setFill(Color.BLACK);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         gc.fillText(message, 10, canvas.getHeight() - 15);
@@ -210,16 +209,23 @@ public class SegmentTreeVisualizationController extends Application {
         if (r < start || end < l) {
             return 0; // Out of range
         }
-
+        PauseTransition pause = new PauseTransition(Duration.seconds(node));
 
         if (l <= start && end <= r) {
-            build_helper(node, Color.WHITESMOKE);
+            pause.setOnFinished(e -> {
+                build_helper(node, Color.WHITESMOKE);
+            });
+            pause.play();
             return segment_tree[node].value; // Current segment is completely within range
         }
         int mid = (start + end) / 2;
         int left_sum = query_segment_tree(2 * node, start, mid, l, r);
         int right_sum = query_segment_tree(2 * node + 1, mid + 1, end, l, r);
-        build_helper(node,  Color.WHITESMOKE);
+        pause.setOnFinished(e -> {
+            build_helper(node, Color.WHITESMOKE);
+        });
+        pause.play();
+        // build_helper(node, Color.WHITESMOKE);
         return left_sum + right_sum;
     }
 
@@ -236,7 +242,11 @@ public class SegmentTreeVisualizationController extends Application {
             }
             segment_tree[node].value = segment_tree[2 * node].value + segment_tree[2 * node + 1].value;
         }
-        build_helper(node, Color.WHEAT);
+        PauseTransition pause = new PauseTransition(Duration.seconds(node));
+        pause.setOnFinished(e -> {
+            build_helper(node, Color.WHEAT);
+        });
+        pause.play();
     }
 
     void build_segment_tree(int node, int start, int end, double canvas_start_point, double canvas_width) {
@@ -251,7 +261,6 @@ public class SegmentTreeVisualizationController extends Application {
             build_helper(node, canvas_start_point, canvas_width, n, start, end);
         }
     }
-    
 
     void build_helper(int node, double canvas_start_point, double canvas_width, int value, int start, int end) {
         segment_tree[node].start = start;
@@ -262,7 +271,7 @@ public class SegmentTreeVisualizationController extends Application {
         int level = (int) (Math.log(node) / Math.log(2)); // Determine the level of the node
         double y = level * (canvas.getHeight() / tree_height) * 0.75 + 50; // Adjust y position
         segment_tree[node].x = width_point - 15;
-        segment_tree[node].y = y - 15;
+        segment_tree[node].y = y - 35;
     }
 
     Pair<Double, Double> build_lines(int node, int start, int end) {
@@ -286,12 +295,10 @@ public class SegmentTreeVisualizationController extends Application {
     }
 
     void build_circle(int node, int start, int end) {
-        //int level = (int) (Math.log(node) / Math.log(2));
-        //level++;
         PauseTransition pause = new PauseTransition(Duration.seconds(node));
-        
+
         if (start != end) {
-            
+
             int mid = (start + end) / 2;
             build_circle(2 * node, start, mid);
             build_circle(2 * node + 1, mid + 1, end);
@@ -302,27 +309,37 @@ public class SegmentTreeVisualizationController extends Application {
         pause.play();
     }
 
-    private void build_circle() {
-        for (int i = numbers.length * 2; i > 0; i--) {
-            if (segment_tree[i].value == -1)
-                continue;
-            final int index = i; // Create a final copy of i
-            PauseTransition pause = new PauseTransition(Duration.seconds(numbers.length * 2 - i)); // Stagger pauses
-            pause.setOnFinished(e -> {
-                build_helper(index, Color.GRAY); // Draw the circle
-            });
-            pause.play(); // Start the pause transition
+    void instant_build_circle(int node, int start, int end) {
+        if (start != end) {
+
+            int mid = (start + end) / 2;
+            build_circle(2 * node, start, mid);
+            build_circle(2 * node + 1, mid + 1, end);
         }
+        build_helper(node, Color.GRAY); // Draw the circle
     }
 
-    void build_helper(int node,  Color color) {
+    // private void build_circle() {
+    // for (int i = numbers.length * 2; i > 0; i--) {
+    // if (segment_tree[i].value == -1)
+    // continue;
+    // final int index = i; // Create a final copy of i
+    // PauseTransition pause = new PauseTransition(Duration.seconds(numbers.length *
+    // 2 - i)); // Stagger pauses
+    // pause.setOnFinished(e -> {
+    // build_helper(index, Color.GRAY); // Draw the circle
+    // });
+    // pause.play(); // Start the pause transition
+    // }
+    // }
+
+    void build_helper(int node, Color color) {
 
         double x = segment_tree[node].x;
         double y = segment_tree[node].y;
         int value = segment_tree[node].value;
         int l = segment_tree[node].start;
         int r = segment_tree[node].end;
-
 
         gc.setFill(color);
         gc.fillOval(x - 15, y - 15, 50, 50); // Adjust circle position and increase radius
