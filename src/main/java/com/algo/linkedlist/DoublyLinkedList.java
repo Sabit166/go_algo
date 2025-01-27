@@ -1,14 +1,19 @@
 package com.algo.linkedlist;
 
-public class DoublyLinkedList {
+import javafx.scene.canvas.Canvas;
+
+public class DoublyLinkedList extends SinglyLinkedList {
     private doublyNode head;
+
+    LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
+    Canvas canvas = linkedListVisualizationController.canvas;
 
     public DoublyLinkedList() {
         this.head = null;
     }
 
     // Push to the front
-    public void pushFront(int value, double x, double y) {
+    public void pushFront(int value) {
         doublyNode newNode = new doublyNode(value, x, y);
         newNode.setNext(head);
         if (head != null) {
@@ -71,7 +76,7 @@ public class DoublyLinkedList {
     }
 }
 
-class doublyNode {
+class doublyNode extends SinglyNode {
     private int value;
     private double x, y;
     private doublyNode next;

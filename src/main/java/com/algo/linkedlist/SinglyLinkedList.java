@@ -1,10 +1,37 @@
 package com.algo.linkedlist;
 
+import javafx.scene.canvas.Canvas;
+
 public class SinglyLinkedList {
     private SinglyNode head;
 
+    LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
+    Canvas canvas = linkedListVisualizationController.canvas;
+
     public SinglyLinkedList() {
         this.head = null;
+    }
+
+    // Push to the front
+    public void pushFront(int value) {
+        SinglyNode newNode = new SinglyNode(value, x, y);
+        newNode.setNext(head);
+        head = newNode;
+    }
+
+    // Push to the back
+
+    public void pushBack(int value, double x, double y) {
+        SinglyNode newNode = new SinglyNode(value, x, y);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        SinglyNode temp = head;
+        while (temp.getNext() != null) {
+            temp = temp.getNext();
+        }
+        temp.setNext(newNode);
     }
 
     // Insert at the end
