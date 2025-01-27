@@ -20,7 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("main_menu"));
         scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/style.css").toExternalForm());
-        Image icon = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/logo2.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/newlogo.png"));
         stage.getIcons().add(icon);
         //stage.setFullScreen(false);
         stage.setScene(scene);
