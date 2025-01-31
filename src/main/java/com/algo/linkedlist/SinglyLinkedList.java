@@ -1,9 +1,17 @@
 package com.algo.linkedlist;
 
 import javafx.scene.canvas.Canvas;
+import javafx.util.Pair;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class SinglyLinkedList {
     private SinglyNode head;
+    private LinkedList<SinglyNode> nodes = new LinkedList<>();
+    protected Map<Pair<Double, Double>, Pair<Double, Double>> map = new HashMap<>();
+
 
     LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
     Canvas canvas = linkedListVisualizationController.canvas;
@@ -124,13 +132,24 @@ public class SinglyLinkedList {
         }
         System.out.println();
     }
+
+    void drawList()
+    {
+
+    }
 }
 
 class SinglyNode {
     protected int value;
     private SinglyNode next;
-    protected double x;
-    protected double y;
+    protected double NodeTopRightCornerX;
+    protected double NodeTopRightCornerY;
+    protected double nodeWidth = 50;
+    protected double nodeHeight = 50;
+    protected double NextPointOutX;
+    protected double NextPointOutY;
+    protected double NextPointInX;
+    protected double NextPointInY;
 
     public SinglyNode() {
         this.next = null;
