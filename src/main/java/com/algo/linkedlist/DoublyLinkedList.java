@@ -1,9 +1,11 @@
 package com.algo.linkedlist;
 
 import javafx.scene.canvas.Canvas;
+import java.util.LinkedList;
 
 public class DoublyLinkedList extends SinglyLinkedList {
     private doublyNode head;
+    private LinkedList<doublyNode> nodes = new LinkedList<>();
 
     LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
     Canvas canvas = linkedListVisualizationController.canvas;
@@ -14,7 +16,7 @@ public class DoublyLinkedList extends SinglyLinkedList {
 
     // Push to the front
     public void pushFront(int value) {
-        doublyNode newNode = new doublyNode(value, x, y);
+        doublyNode newNode = new doublyNode(value);
         newNode.setNext(head);
         if (head != null) {
             head.setPrev(newNode);
@@ -24,7 +26,7 @@ public class DoublyLinkedList extends SinglyLinkedList {
 
     // Push to the back
     public void pushBack(int value) {
-        doublyNode newNode = new doublyNode(value, x, y);
+        doublyNode newNode = new doublyNode(value);
         if (head == null) {
             head = newNode;
             return;
@@ -77,15 +79,15 @@ public class DoublyLinkedList extends SinglyLinkedList {
 }
 
 class doublyNode extends SinglyNode {
-    private int value;
-    private double x, y;
     private doublyNode next;
     private doublyNode prev;
+    protected double PrevPointOutX;
+    protected double PrevPointOutY;
+    protected double PrevPointInX;
+    protected double PrevPointInY;
 
-    public doublyNode(int value, double x, double y) {
+    public doublyNode(int value) {
         this.value = value;
-        this.x = x;
-        this.y = y;
         this.next = null;
         this.prev = null;
     }
@@ -98,21 +100,6 @@ class doublyNode extends SinglyNode {
         this.value = value;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 
     public doublyNode getNext() {
         return next;
