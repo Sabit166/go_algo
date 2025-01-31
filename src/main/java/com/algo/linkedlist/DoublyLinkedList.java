@@ -23,7 +23,7 @@ public class DoublyLinkedList extends SinglyLinkedList {
     }
 
     // Push to the back
-    public void pushBack(int value, double x, double y) {
+    public void pushBack(int value) {
         doublyNode newNode = new doublyNode(value, x, y);
         if (head == null) {
             head = newNode;

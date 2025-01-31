@@ -21,7 +21,7 @@ public class SinglyLinkedList {
 
     // Push to the back
 
-    public void pushBack(int value, double x, double y) {
+    public void pushBack(int value) {
         SinglyNode newNode = new SinglyNode(value, x, y);
         if (head == null) {
             head = newNode;
@@ -35,7 +35,7 @@ public class SinglyLinkedList {
     }
 
     // Insert at the end
-    public void insertAtEnd(int value, double x, double y) {
+    public void insertAtEnd(int value) {
         SinglyNode newNode = new SinglyNode(value, x, y);
         if (head == null) {
             head = newNode;
