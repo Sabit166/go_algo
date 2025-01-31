@@ -6,13 +6,17 @@ import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.ArrayList;
 import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
+
 
 public class SinglyLinkedList extends LinkedListVisualizationController {
     protected int nodeNumber;
     private SinglyNode head;
     private LinkedList<SinglyNode> nodes = new LinkedList<>();
     protected Map<Pair<Double, Double>, Pair<Double, Double>> map = new HashMap<>();
+    private ArrayList<stage> stages;// = new ArrayList<>();
 
     LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
     Canvas canvas = linkedListVisualizationController.canvas;
@@ -23,7 +27,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     }
 
     // Push to the front
-    public void pushFront(int value) {
+    public ArrayList<stage> pushFront(int value) {
         nodeNumber++;
         if (nodeNumber > 4) {
             alert("Error", "Cannot add more than 4 nodes");
@@ -33,13 +37,11 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         // newNode.setNext(head);
         // head = newNode;
         nodes.addFirst(newNode);
-        newNode.setNext(head);
-        head = newNode;
     }
 
     // Push to the back
 
-    public void pushBack(int value) {
+    public ArrayList<stage> pushBack(int value) {
         nodeNumber++;
         if (nodeNumber > 4) {
             alert("Error", "Cannot add more than 4 nodes");
@@ -58,27 +60,9 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         nodes.addLast(newNode);
     }
 
-    // Insert at the end
-    // public void insertAtEnd(int value) {
-    // nodeNumber++;
-    // if(nodeNumber > 4) {
-    // alert("Error", "Cannot add more than 4 nodes");
-    // return;
-    // }
-    // SinglyNode newNode = new SinglyNode(value);
-    // if (head == null) {
-    // head = newNode;
-    // return;
-    // }
-    // SinglyNode temp = head;
-    // while (temp.getNext() != null) {
-    // temp = temp.getNext();
-    // }
-    // temp.setNext(newNode);
-    // }
 
     // Pop from the front
-    public void popFront() {
+    public ArrayList<stage> popFront() {
         nodeNumber--;
         if (nodeNumber < 0) {
             alert("Error", "There are no nodes to delete");
@@ -96,7 +80,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     }
 
     // Pop from the back
-    public void popBack() {
+    public ArrayList<stage> popBack() {
         nodeNumber--;
         if (nodeNumber < 0) {
             alert("Error", "There are no nodes to delete");
@@ -116,7 +100,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     }
 
     // Insert at a specific position
-    public void insertAt(int index, int value, double x, double y) {
+    public ArrayList<stage> insertAt(int index, int value) {
         SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50, canvas.getHeight() * 0.75);
         if (index == 0) {
             newNode.setNext(head);
@@ -136,7 +120,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     }
 
     // Delete at a specific position
-    public void deleteAt(int index) {
+    public ArrayList<stage> deleteAt(int index) {
         if (head == null) {
             return;
         }
@@ -193,12 +177,11 @@ class SinglyNode extends LinkedListVisualizationController {
     protected double NextPointOutY;
     protected double NextPointInX;
     protected double NextPointInY;
+    protected Color ValCol;
+    protected Color NextCol;
 
     public SinglyNode() {
         this.next = null;
-        // this.value = 0;
-        // nodeWidth = 50;
-        // nodeHeight = 50;
     }
 
     public SinglyNode(int value, double NodeTopLeftCornerX, double NodeTopLeftCornerY) {
@@ -212,7 +195,8 @@ class SinglyNode extends LinkedListVisualizationController {
         NextPointOutY = NodeTopLeftCornerY + nodeHeight / 2;
         NextPointInY = NodeTopLeftCornerY + nodeHeight / 2;
         NextPointInX = NodeTopLeftCornerX;
-
+        ValCol = Color.YELLOW;
+        NextCol = Color.YELLOWGREEN;
     }
 
     public SinglyNode getNext() {
