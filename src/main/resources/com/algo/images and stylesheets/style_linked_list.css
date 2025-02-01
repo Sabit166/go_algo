@@ -36,7 +36,11 @@
 }
 .button:hover {
     -fx-background-color: #388E3C;
+    -fx-scale-x: 2; /* Scale the button slightly larger */
+    -fx-scale-y: 2; /* Scale the button slightly larger */
 }
 .button:pressed {
     -fx-background-color: #2E7D32;
+    -fx-scale-x: 1.0; /* Reset scale when pressed */
+    -fx-scale-y: 1.0; /* Reset scale when pressed */
 }
