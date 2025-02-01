@@ -13,13 +13,14 @@ import java.io.IOException;
 public class DataStructuresController {
 
     @FXML
-    private void handleLinkedList() {
+    private void handleLinkedList(ActionEvent event) throws IOException {
         // Logic for Linked List
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Linked List");
-        alert.setHeaderText(null);
-        alert.setContentText("Linked List button clicked!");
-        alert.showAndWait();
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist/linkedlist_visualization.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -50,6 +51,7 @@ public class DataStructuresController {
        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/segment_tree_visualizer.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setTitle("Segment Tree Visualization");
         stage.show();

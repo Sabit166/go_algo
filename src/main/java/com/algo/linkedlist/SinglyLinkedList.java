@@ -113,7 +113,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
 
     // Pop from the back
     public ArrayList<stage> popBack() {
-        if (nodes,size() < 0) {
+        if (nodes.size() < 0) {
             alert("Error", "There are no nodes to delete");
             return null;
         }
