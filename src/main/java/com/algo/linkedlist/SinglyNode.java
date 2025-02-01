@@ -76,13 +76,25 @@ public class SinglyNode extends LinkedListVisualizationController {
 
     public Pair<Double, Double> getNodeDimensions() {
         return new Pair<>(nodeWidth, nodeHeight);
-    }
+        }
 
-    public Pair<Double, Double> getAllWidth() {
-        return new Pair<>(valWidth, nextWidth);
-    }
+        public double getNodeWidth() {
+        return nodeWidth;
+        }
 
-    public Pair<Double, Double> getNextPointOut() {
+        public double getNodeHeight() {
+        return nodeHeight;
+        }
+
+        public double getValWidth() {
+        return valWidth;
+        }
+
+        public double getNextWidth() {
+        return nextWidth;
+        }
+
+        public Pair<Double, Double> getNextPointOut() {
         return new Pair<>(NextPointOutX, NextPointOutY);
     }
 

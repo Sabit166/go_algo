@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 public class SinglyLinkedList extends LinkedListVisualizationController {
-    protected int nodeNumber;
     private SinglyNode head;
     private LinkedList<SinglyNode> nodes = new LinkedList<>();
     protected Map<Pair<Double, Double>, Pair<Double, Double>> map = new HashMap<>();
@@ -20,24 +19,21 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     Canvas canvas = linkedListVisualizationController.canvas;
 
     public SinglyLinkedList() {
-        this.head = null;
-        nodeNumber = 0;
     }
 
     // Push to the front
     public ArrayList<stage> pushFront(int value) {
-        nodeNumber++;
-        if (nodeNumber > 4) {
+        if (nodes.size() > 4) {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        SinglyNode newNode = new SinglyNode(value, (nodeNumber - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
+        SinglyNode newNode = new SinglyNode(value, (nodes.size() - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
         if (nodes.size() == 1) {
             stages = new ArrayList<>();
             nodes.addFirst(newNode);
             stages.add(new stage(nodes, null));
-            // SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50,
-            // canvas.getHeight() * 0.75);
+            newNode.indicateHead();
+            stages.add(new stage(nodes, null));
             return stages;
         } 
         else // there will be two stages: adding the new node and updating the pointion of  
@@ -57,6 +53,9 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             stages.add(new stage(nodes, map));
             map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointOut());
             stages.add(new stage(nodes, map));
+            newNode.indicateHead();
+            nodes.get(1).setNormal();
+            stages.add(new stage(nodes, map));
             return stages;
         }
     }
@@ -64,12 +63,11 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     // Push to the back
 
     public ArrayList<stage> pushBack(int value) {
-        nodeNumber++;
-        if (nodeNumber > 4) {
+        if (nodes.size() == 4) {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        SinglyNode newNode = new SinglyNode(value, (nodeNumber - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
+        SinglyNode newNode = new SinglyNode(value, (nodes.size() - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
         if (nodes.size() == 1) {
             stages = new ArrayList<>();
             nodes.addLast(newNode);
@@ -98,8 +96,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
 
     // Pop from the front
     public ArrayList<stage> popFront() {
-        nodeNumber--;
-        if (nodeNumber == 0) {
+        if (nodes.size() == 0) {
             alert("Error", "There are no nodes to delete");
             return null;
         }
@@ -116,8 +113,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
 
     // Pop from the back
     public ArrayList<stage> popBack() {
-        nodeNumber--;
-        if (nodeNumber < 0) {
+        if (nodes,size() < 0) {
             alert("Error", "There are no nodes to delete");
             return null;
         }
@@ -135,7 +131,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     }
 
     public ArrayList<stage> insertAt(int index, int value) {
-        SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50, canvas.getHeight() * 0.75);
+        SinglyNode newNode = new SinglyNode(value, 50 + nodes.size() * 50, canvas.getHeight() * 0.75);
         if (index == 0) {
             newNode.setNext(head);
             head = newNode;
