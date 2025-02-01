@@ -2,6 +2,7 @@ package com.algo.linkedlist;
 
 import javafx.util.Pair;
 import javafx.scene.paint.Color;
+import javafx.scene.canvas.Canvas;
 
 public class SinglyNode extends LinkedListVisualizationController {
     protected int value;
@@ -18,6 +19,7 @@ public class SinglyNode extends LinkedListVisualizationController {
     protected double NextPointOutY;
     protected double NextPointInX;
     protected double NextPointInY;
+    protected double shift;
     protected Color ValCol;
     protected Color NextCol;
 
@@ -25,14 +27,15 @@ public class SinglyNode extends LinkedListVisualizationController {
         this.next = null;
     }
 
-    public SinglyNode(int value, double NodeValTopLeftCornerX, double NodeValTopLeftCornerY) {
+    public SinglyNode(Canvas canvas, int value) {
         this.value = value;
         this.next = null;
         nodeWidth = canvas.getWidth() / 5;
-        nodeHeight = canvas.getHeight() / 5;
+        nodeHeight = canvas.getHeight();
+        shift = canvas.getWidth() / 4;
         valWidth = nextWidth = nodeWidth / 2;
-        this.NodeValTopLeftCornerX = NodeValTopLeftCornerX;
-        this.NodeValTopLeftCornerY = NodeValTopLeftCornerY;
+        NodeValTopLeftCornerX = 25;
+        NodeValTopLeftCornerY = nodeHeight / 2;
         NodeNxtTopLeftCornerX = NodeValTopLeftCornerX + nodeWidth/2;
         NodeNxtTopLeftCornerY = NodeValTopLeftCornerY;
         NextPointOutX = NodeValTopLeftCornerX + nodeWidth;
@@ -41,6 +44,23 @@ public class SinglyNode extends LinkedListVisualizationController {
         NextPointInX = NodeValTopLeftCornerX;
         ValCol = Color.YELLOW;
         NextCol = Color.YELLOWGREEN;
+        this.canvas = canvas;
+        this.gc = canvas.getGraphicsContext2D();
+
+        System.out.println("Value: " + value);
+        System.out.println("NodeValTopLeftCornerX: " + NodeValTopLeftCornerX);
+        System.out.println("NodeValTopLeftCornerY: " + NodeValTopLeftCornerY);
+        System.out.println("NodeNxtTopLeftCornerX: " + NodeNxtTopLeftCornerX);
+        System.out.println("NodeNxtTopLeftCornerY: " + NodeNxtTopLeftCornerY);
+        System.out.println("NodeWidth: " + nodeWidth);
+        System.out.println("NodeHeight: " + nodeHeight);
+        System.out.println("ValWidth: " + valWidth);
+        System.out.println("NextWidth: " + nextWidth);
+        System.out.println("NextPointOutX: " + NextPointOutX);
+        System.out.println("NextPointOutY: " + NextPointOutY);
+        System.out.println("NextPointInX: " + NextPointInX);
+        System.out.println("NextPointInY: " + NextPointInY);
+        System.out.println("Shift: " + shift);
     }
 
     public SinglyNode getNext() {
@@ -108,16 +128,15 @@ public class SinglyNode extends LinkedListVisualizationController {
 
     public void shiftRight()
     {
-        double shift = canvas.getWidth() / 4;
         NodeValTopLeftCornerX += shift;
         NodeNxtTopLeftCornerX += shift;
         NextPointOutX += shift;
         NextPointInX += shift;
+        System.out.println("Shifted right at point: (" + NodeValTopLeftCornerX + ", " + NodeValTopLeftCornerY + ")");
     }
 
     public void shiftLeft()
     {
-        double shift = canvas.getWidth() / 4;
         NodeValTopLeftCornerX -= shift;
         NodeNxtTopLeftCornerX -= shift;
         NextPointOutX -= shift;

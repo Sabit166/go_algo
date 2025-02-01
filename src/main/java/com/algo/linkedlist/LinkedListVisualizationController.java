@@ -1,9 +1,5 @@
 package com.algo.linkedlist;
 
-import java.util.Scanner;
-
-import com.algo.SegmentTreeVisualizationController;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,14 +9,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.stage.Stage;
 
 public class LinkedListVisualizationController extends Application {
-    Scanner scanner = new Scanner(System.in);
 
     @FXML
     Canvas canvas;
@@ -50,18 +43,19 @@ public class LinkedListVisualizationController extends Application {
     @FXML
     public void initialize() {
         gc = canvas.getGraphicsContext2D();
-        singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList = new SinglyLinkedList(canvas);
+        System.out.println("At initialization: "+ canvas.getWidth());
     }
 
     @FXML
     void toSingle() {
-        singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList = new SinglyLinkedList(canvas);
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
     @FXML
     void toDouble() {
-        singlyLinkedList = new DoublyLinkedList();
+        singlyLinkedList = new DoublyLinkedList(canvas);
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
@@ -157,6 +151,23 @@ public class LinkedListVisualizationController extends Application {
             s.draw(s);
         }
     }
+    // void display(ArrayList<stage> stages) {
+    //     new Thread(() -> {
+    //         for (stage s : stages) {
+    //             try {
+    //                 javafx.application.Platform.runLater(() -> {
+    //                     s.draw(s);
+    //                 });
+    //                 Thread.sleep(3000);
+    //                 javafx.application.Platform.runLater(() -> {
+    //                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    //                 });
+    //             } catch (InterruptedException e) {
+    //                 e.printStackTrace();
+    //             }
+    //         }
+    //     }).start();
+    // }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

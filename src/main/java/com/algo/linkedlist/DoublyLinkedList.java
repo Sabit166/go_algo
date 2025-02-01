@@ -10,8 +10,8 @@ public class DoublyLinkedList extends SinglyLinkedList {
     LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
     Canvas canvas = linkedListVisualizationController.canvas;
 
-    public DoublyLinkedList() {
-        this.head = null;
+    public DoublyLinkedList(Canvas canvas) {
+        this.canvas = canvas;
     }
 
     // Push to the front

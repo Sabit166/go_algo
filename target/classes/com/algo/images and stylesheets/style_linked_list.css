@@ -1,61 +1,42 @@
-/* Light theme background */
 .root {
-
-    -fx-background-radius: 25px;
-    border-radius: 25px;
-    -fx-border-radius: 25px;
-    background-image: url("background.jpeg");
-    -fx-background-image: url("background.jpeg");
-    background-size: cover;
+    -fx-font-family: "Arial";
+    -fx-background-image: url("Dark_Background.jpeg");
     -fx-background-size: cover;
-    background-position: center;
     -fx-background-position: center;
 }
 
-AnchorPane {
-    -fx-background-color: #f8f9fa; /* Soft light gray */
+/* TextFields */
+.text-field {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #4CAF50;
+    -fx-border-radius: 8px;
+    -fx-padding: 8px;
+}
+.text-field:focused {
+    -fx-border-color: #00FF00;
+    -fx-background-color: #262626;
 }
 
-/* Title text styling */
-Text {
-    -fx-fill: #333333; /* Dark gray for contrast */
-    -fx-font-weight: bold;
-}
-
-/* Buttons Styling */
-Button {
-    -fx-background-color: #e0e0e0; /* Light gray */
-    -fx-text-fill: #000000; /* Black text */
+/* Labels */
+.label {
+    -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-padding: 5px 10px;
+    -fx-border-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.3), 5, 0, 0, 2);
+    -fx-cursor: hand;
 }
-
-/* Hover effect for buttons */
-Button:hover {
-    -fx-background-color: #d6d6d6; /* Slightly darker gray */
+.button:hover {
+    -fx-background-color: #388E3C;
 }
-
-/* Pressed effect for buttons */
-Button:pressed {
-    -fx-background-color: #c0c0c0;
-}
-
-/* Text Fields */
-TextField {
-    -fx-background-color: #ffffff; /* Pure white */
-    -fx-border-color: #b0b0b0;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-padding: 5px;
-    -fx-text-fill: #000000;
-}
-
-/* Canvas Styling */
-Canvas {
-    -fx-background-color: #ffffff; /* White background */
-    -fx-border-color: #b0b0b0;
-    -fx-border-width: 1px;
+.button:pressed {
+    -fx-background-color: #2E7D32;
 }

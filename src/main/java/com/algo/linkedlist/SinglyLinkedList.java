@@ -18,44 +18,42 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
     Canvas canvas = linkedListVisualizationController.canvas;
 
-    public SinglyLinkedList() {
+    public SinglyLinkedList(Canvas canvas) {
+        this.canvas = canvas;
+        this.gc = canvas.getGraphicsContext2D();
     }
 
     // Push to the front
     public ArrayList<stage> pushFront(int value) {
-        if (nodes.size() > 4) {
+        if (nodes.size() == 4) {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        SinglyNode newNode = new SinglyNode(value, (nodes.size() - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
-        if (nodes.size() == 1) {
+        SinglyNode newNode = new SinglyNode(canvas, value);
+        System.out.println("New node created: " + newNode);
+        if (nodes.size() == 0) {
             stages = new ArrayList<>();
             nodes.addFirst(newNode);
-            stages.add(new stage(nodes, null));
+            System.out.println("Nodes after adding first node: " + nodes);
+            stages.add(new stage(canvas, nodes, null));
             newNode.indicateHead();
-            stages.add(new stage(nodes, null));
             return stages;
-        } 
-        else // there will be two stages: adding the new node and updating the pointion of  
+        }
+        else
         {
             stages = new ArrayList<>();
-            stages.add(new stage(nodes, map));
             nodes.addFirst(newNode);
+            System.out.println("Nodes after adding new node: " + nodes);
             for (int i = 1; i < nodes.size(); i++) {
-                SinglyNode node = nodes.get(i);
-                node.shiftRight();
+                nodes.get(i).shiftRight();
+                System.out.println("Node shifted right: " + nodes.get(i).getValue());
             }
-            // for (int i = 1; i < nodes.size() - 1; i++) {
-            //     // SinglyNode node1 = nodes.get(i);
-            //     // SinglyNode node2 = nodes.get(i + 1);
-            //     map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointOut());
-            // }
-            stages.add(new stage(nodes, map));
-            map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointOut());
-            stages.add(new stage(nodes, map));
+            stages.add(new stage(canvas, nodes, map));
+            map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointIn());
+            stages.add(new stage(canvas, nodes, map));
             newNode.indicateHead();
             nodes.get(1).setNormal();
-            stages.add(new stage(nodes, map));
+            stages.add(new stage(canvas, nodes, map));
             return stages;
         }
     }
@@ -67,11 +65,11 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        SinglyNode newNode = new SinglyNode(value, (nodes.size() - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
+        SinglyNode newNode = new SinglyNode(canvas, value);
         if (nodes.size() == 1) {
             stages = new ArrayList<>();
             nodes.addLast(newNode);
-            stages.add(new stage(nodes, null));
+            stages.add(new stage(canvas, nodes, null));
             // SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50,
             // canvas.getHeight() * 0.75);
             return stages;
@@ -79,7 +77,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         else // there will be two stages: adding the new node and updating the pointion of  
         {
             stages = new ArrayList<>();
-            stages.add(new stage(nodes, map));
+            stages.add(new stage(canvas, nodes, map));
             nodes.addLast(newNode);
 
             for (int i = 0; i < nodes.size() - 2; i++) {
@@ -87,9 +85,9 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
                 // SinglyNode node2 = nodes.get(i + 1);
                 map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointOut());
             }
-            stages.add(new stage(nodes, map));
+            stages.add(new stage(canvas, nodes, map));
             map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointOut());
-            stages.add(new stage(nodes, map));
+            stages.add(new stage(canvas, nodes, map));
             return stages;
         }
     }
@@ -131,7 +129,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     }
 
     public ArrayList<stage> insertAt(int index, int value) {
-        SinglyNode newNode = new SinglyNode(value, 50 + nodes.size() * 50, canvas.getHeight() * 0.75);
+        SinglyNode newNode = new SinglyNode(value);
         if (index == 0) {
             newNode.setNext(head);
             head = newNode;
@@ -181,10 +179,6 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             temp = temp.getNext();
         }
         System.out.println();
-    }
-
-    void drawList() {
-
     }
 
     void alert(String title, String message) {
