@@ -2,14 +2,12 @@ package com.algo.linkedlist;
 
 import javafx.scene.canvas.Canvas;
 import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
-
 
 public class SinglyLinkedList extends LinkedListVisualizationController {
     protected int nodeNumber;
@@ -33,10 +31,34 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50, canvas.getHeight() * 0.75);
-        // newNode.setNext(head);
-        // head = newNode;
-        nodes.addFirst(newNode);
+        SinglyNode newNode = new SinglyNode(value, (nodeNumber - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
+        if (nodes.size() == 1) {
+            stages = new ArrayList<>();
+            nodes.addFirst(newNode);
+            stages.add(new stage(nodes, null));
+            // SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50,
+            // canvas.getHeight() * 0.75);
+            return stages;
+        } 
+        else // there will be two stages: adding the new node and updating the pointion of  
+        {
+            stages = new ArrayList<>();
+            stages.add(new stage(nodes, map));
+            nodes.addFirst(newNode);
+            for (int i = 1; i < nodes.size(); i++) {
+                SinglyNode node = nodes.get(i);
+                node.shiftRight();
+            }
+            // for (int i = 1; i < nodes.size() - 1; i++) {
+            //     // SinglyNode node1 = nodes.get(i);
+            //     // SinglyNode node2 = nodes.get(i + 1);
+            //     map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointOut());
+            // }
+            stages.add(new stage(nodes, map));
+            map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointOut());
+            stages.add(new stage(nodes, map));
+            return stages;
+        }
     }
 
     // Push to the back
@@ -45,28 +67,41 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         nodeNumber++;
         if (nodeNumber > 4) {
             alert("Error", "Cannot add more than 4 nodes");
-            return;
+            return null;
         }
-        SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50, canvas.getHeight() * 0.75);
-        if (head == null) {
-            head = newNode;
-            return;
-        }
-        SinglyNode temp = head;
-        while (temp.getNext() != null) {
-            temp = temp.getNext();
-        }
-        temp.setNext(newNode);
-        nodes.addLast(newNode);
-    }
+        SinglyNode newNode = new SinglyNode(value, (nodeNumber - 1) * (canvas.getWidth() / 4) + 50, canvas.getHeight() * 0.75);
+        if (nodes.size() == 1) {
+            stages = new ArrayList<>();
+            nodes.addLast(newNode);
+            stages.add(new stage(nodes, null));
+            // SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50,
+            // canvas.getHeight() * 0.75);
+            return stages;
+        } 
+        else // there will be two stages: adding the new node and updating the pointion of  
+        {
+            stages = new ArrayList<>();
+            stages.add(new stage(nodes, map));
+            nodes.addLast(newNode);
 
+            for (int i = 0; i < nodes.size() - 2; i++) {
+                // SinglyNode node1 = nodes.get(i);
+                // SinglyNode node2 = nodes.get(i + 1);
+                map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointOut());
+            }
+            stages.add(new stage(nodes, map));
+            map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointOut());
+            stages.add(new stage(nodes, map));
+            return stages;
+        }
+    }
 
     // Pop from the front
     public ArrayList<stage> popFront() {
         nodeNumber--;
-        if (nodeNumber < 0) {
+        if (nodeNumber == 0) {
             alert("Error", "There are no nodes to delete");
-            return;
+            return null;
         }
         if (!head.equals(nodes.getFirst())) {
             alert("Error", "Cannot delete node from the front");
@@ -84,7 +119,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         nodeNumber--;
         if (nodeNumber < 0) {
             alert("Error", "There are no nodes to delete");
-            return;
+            return null;
         }
         if (head.getNext() == null) {
             head = null;
@@ -99,7 +134,6 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         nodes.removeLast();
     }
 
-    // Insert at a specific position
     public ArrayList<stage> insertAt(int index, int value) {
         SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50, canvas.getHeight() * 0.75);
         if (index == 0) {
@@ -110,7 +144,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         SinglyNode temp = head;
         for (int i = 0; i < index - 1; i++) {
             if (temp.getNext() == null) {
-                return;
+                return null;
             }
             temp = temp.getNext();
         }
@@ -163,90 +197,5 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-}
-
-class SinglyNode extends LinkedListVisualizationController {
-    protected int value;
-    private SinglyNode next;
-    protected double NodeValTopLeftCornerX;
-    protected double NodeValTopLeftCornerY;
-    protected double NodeNxtTopLeftCornerX;
-    protected double NodeNxtTopLeftCornerY;
-    protected double nodeWidth;
-    protected double nodeHeight;
-    protected double NextPointOutX;
-    protected double NextPointOutY;
-    protected double NextPointInX;
-    protected double NextPointInY;
-    protected Color ValCol;
-    protected Color NextCol;
-
-    public SinglyNode() {
-        this.next = null;
-    }
-
-    public SinglyNode(int value, double NodeValTopLeftCornerX, double NodeValTopLeftCornerY) {
-        this.value = value;
-        this.next = null;
-        nodeWidth = canvas.getWidth() / 5;
-        nodeHeight = canvas.getHeight() / 5;
-        this.NodeValTopLeftCornerX = NodeValTopLeftCornerX;
-        this.NodeValTopLeftCornerY = NodeValTopLeftCornerY;
-        NodeNxtTopLeftCornerX = NodeValTopLeftCornerX + nodeWidth/2;
-        NodeNxtTopLeftCornerY = NodeValTopLeftCornerY;
-        NextPointOutX = NodeValTopLeftCornerX + nodeWidth;
-        NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 2;
-        NextPointInY = NodeValTopLeftCornerY + nodeHeight / 2;
-        NextPointInX = NodeValTopLeftCornerX;
-        ValCol = Color.YELLOW;
-        NextCol = Color.YELLOWGREEN;
-    }
-
-    public SinglyNode getNext() {
-        return next;
-    }
-
-    public void setNext(SinglyNode next) {
-        this.next = next;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-    public void setValCol(Color valCol) {
-        this.ValCol = valCol;
-    }
-
-    public void setNextCol(Color nextCol) {
-        this.NextCol = nextCol;
-    }
-
-    public Pair<Double, Double> getNodeValTopLeftCorner() {
-        return new Pair<>(NodeValTopLeftCornerX, NodeValTopLeftCornerY);
-    }
-
-    public Pair<Double, Double> getNodeNxtTopLeftCorner() {
-        return new Pair<>(NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY);
-    }
-
-    public Pair<Double, Double> getNodeDimensions() {
-        return new Pair<>(nodeWidth, nodeHeight);
-    }
-
-    public Pair<Double, Double> getNextPointOut() {
-        return new Pair<>(NextPointOutX, NextPointOutY);
-    }
-
-    public Pair<Double, Double> getNextPointIn() {
-        return new Pair<>(NextPointInX, NextPointInY);
-    }
-
-    public Pair<Color, Color> getColors() {
-        return new Pair<>(ValCol, NextCol);
     }
 }

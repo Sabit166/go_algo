@@ -108,6 +108,16 @@ public class LinkedListVisualizationController{
 
 class stage
 {
-    LinkedList<SinglyNode> nodes = new LinkedList<>();
-    Map<Pair<Double, Double>, Pair<Double, Double>> map = new HashMap<>();
+    LinkedList<SinglyNode> nodes;
+    Map<Pair<Double, Double>, Pair<Double, Double>> map;
+    public stage()
+    {
+        this.nodes = new LinkedList<>();
+        this.map = new HashMap<>();
+    }
+    public stage(LinkedList<SinglyNode> nodes, Map<Pair<Double, Double>, Pair<Double, Double>> map)
+    {
+        this.nodes = nodes;
+        this.map = map;
+    }
 }
