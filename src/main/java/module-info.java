@@ -5,6 +5,9 @@ module com.algo {
 
     opens com.algo to javafx.fxml;
     exports com.algo;
+
+    // Specify the main class to run when debugging
+    uses com.algo.App;
 }
 
 // module com.algo {

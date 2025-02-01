@@ -15,7 +15,7 @@ public class DoublyLinkedList extends SinglyLinkedList {
     }
 
     // Push to the front
-    public void pushFront(int value) {
+    public  pushFront(int value) {
         doublyNode newNode = new doublyNode(value);
         newNode.setNext(head);
         if (head != null) {
