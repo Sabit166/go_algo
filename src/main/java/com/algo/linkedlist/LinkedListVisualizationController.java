@@ -110,6 +110,7 @@ public class LinkedListVisualizationController extends Application {
             int value = Integer.parseInt(valueText);
             stages = singlyLinkedList.pushFront(value);
             display(stages);
+            pushFrontValue.clear();
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter a valid number for value.");
         }

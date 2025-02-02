@@ -9,12 +9,12 @@
 .text-field {
     -fx-background-color: #1e1e1e;
     -fx-text-fill: #ffffff;
-    -fx-border-color: #4CAF50;
+    -fx-border-color: #8A2BE2; /* Electric Violet */
     -fx-border-radius: 8px;
     -fx-padding: 8px;
 }
 .text-field:focused {
-    -fx-border-color: #00FF00;
+    -fx-border-color: #D500F9; /* Neon Purple */
     -fx-background-color: #262626;
 }
 
@@ -26,21 +26,23 @@
 
 /* Buttons */
 .button {
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
+    -fx-background-color: #8A2BE2; /* Electric Violet */
+    -fx-text-fill: rgb(50, 13, 42);
     -fx-font-weight: bold;
     -fx-border-radius: 8px;
     -fx-padding: 8px 16px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.3), 5, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(138, 43, 226, 0.3), 5, 0, 0, 2); /* Violet glow */
     -fx-cursor: hand;
+    -fx-font-size: 24px;
 }
 .button:hover {
-    -fx-background-color: #388E3C;
-    -fx-scale-x: 2; /* Scale the button slightly larger */
-    -fx-scale-y: 2; /* Scale the button slightly larger */
+    -fx-background-color: #6A1B9A; /* Deep Purple */
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    -fx-text-fill: #FFD700; /* Gold */
 }
 .button:pressed {
-    -fx-background-color: #2E7D32;
-    -fx-scale-x: 1.0; /* Reset scale when pressed */
-    -fx-scale-y: 1.0; /* Reset scale when pressed */
+    -fx-background-color: #4A148C; /* Dark Purple */
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
 }

@@ -48,6 +48,13 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
                 nodes.get(i).shiftRight();
                 System.out.println("Node shifted right: " + nodes.get(i).getValue());
             }
+            map.clear();
+            for (int i = 1; i < nodes.size() - 1; i++) {
+                SinglyNode node1 = nodes.get(i);
+                SinglyNode node2 = nodes.get(i + 1);
+                map.put(node1.getNextPointOut(), node2.getNextPointIn());
+            }
+
             stages.add(new stage(canvas, nodes, map));
             map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointIn());
             stages.add(new stage(canvas, nodes, map));

@@ -2,6 +2,11 @@ package com.algo.linkedlist;
 
 import javafx.util.Pair;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Line;
+
+import java.util.Map;
+
 import javafx.scene.canvas.Canvas;
 
 public class SinglyNode extends LinkedListVisualizationController {
@@ -20,8 +25,12 @@ public class SinglyNode extends LinkedListVisualizationController {
     protected double NextPointInX;
     protected double NextPointInY;
     protected double shift;
+    protected double pointerLength;
     protected Color ValCol;
     protected Color NextCol;
+    protected Rectangle valueBox;
+    protected Rectangle nextBox;
+    protected Line nextPointer;
 
     public SinglyNode() {
         this.next = null;
@@ -33,17 +42,24 @@ public class SinglyNode extends LinkedListVisualizationController {
         nodeWidth = canvas.getWidth() / 5;
         nodeHeight = canvas.getHeight();
         shift = canvas.getWidth() / 4;
+        pointerLength = shift - nodeWidth;
         valWidth = nextWidth = nodeWidth / 2;
         NodeValTopLeftCornerX = 25;
         NodeValTopLeftCornerY = nodeHeight / 2;
         NodeNxtTopLeftCornerX = NodeValTopLeftCornerX + nodeWidth/2;
         NodeNxtTopLeftCornerY = NodeValTopLeftCornerY;
         NextPointOutX = NodeValTopLeftCornerX + nodeWidth;
-        NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 2;
-        NextPointInY = NodeValTopLeftCornerY + nodeHeight / 2;
+        NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 4;
+        NextPointInY = NodeValTopLeftCornerY + nodeHeight / 4;
         NextPointInX = NodeValTopLeftCornerX;
         ValCol = Color.YELLOW;
         NextCol = Color.YELLOWGREEN;
+        valueBox = new Rectangle(NodeValTopLeftCornerX, NodeValTopLeftCornerY, valWidth, nodeHeight);
+        //valueBox.setStyle("-fx-border-color: black");
+        nextBox = new Rectangle(NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY, nextWidth, nodeHeight);
+        //nextBox.setStyle("-fx-border-color: black");
+        nextPointer = new Line(NextPointOutX, NextPointOutY, NextPointOutX + pointerLength, NextPointOutY);
+        //nextPointer.setStyle("-fx-stroke: black");
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
 
@@ -61,29 +77,6 @@ public class SinglyNode extends LinkedListVisualizationController {
         System.out.println("NextPointInX: " + NextPointInX);
         System.out.println("NextPointInY: " + NextPointInY);
         System.out.println("Shift: " + shift);
-    }
-
-    public SinglyNode getNext() {
-        return next;
-    }
-
-    public void setNext(SinglyNode next) {
-        this.next = next;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-    public void setValCol(Color valCol) {
-        this.ValCol = valCol;
-    }
-
-    public void setNextCol(Color nextCol) {
-        this.NextCol = nextCol;
     }
 
     public Pair<Double, Double> getNodeValTopLeftCorner() {
@@ -126,8 +119,24 @@ public class SinglyNode extends LinkedListVisualizationController {
         return new Pair<>(ValCol, NextCol);
     }
 
+    void drawValBox()
+    {
+        
+    }
+
+    void drawNextBox()
+    {
+
+    }
+
+    void drawNextPointer()
+    {
+
+    }
+
     public void shiftRight()
     {
+        //map.put(new Pair<>(NextPointOutX + shift, NextPointOutY), new Pair<>(NextPointInX + shift, NextPointInY));
         NodeValTopLeftCornerX += shift;
         NodeNxtTopLeftCornerX += shift;
         NextPointOutX += shift;

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
+
 
 public class stage extends LinkedListVisualizationController
 {
@@ -60,7 +62,10 @@ public class stage extends LinkedListVisualizationController
             y1 = p1.getValue();
             x2 = p2.getKey();
             y2 = p2.getValue();
+            gc.setStroke(Color.LIGHTGREY);
+            gc.setLineWidth(6.0);
             gc.strokeLine(x1, y1, x2, y2);
+            System.out.println("Pointer drawn from: (" + x1 + ", " + y1 + ") to (" + x2 + ", " + y2 + ")");
         }
     }
 }
