@@ -42,10 +42,17 @@ public class stage extends LinkedListVisualizationController
             Double x1 = nd.getValWidth();
             Double x2 = nd.getNextWidth();
 
-            gc.setFill(nd.getColors().getKey());
+            gc.setFill(nd.ValGradient);
             gc.fillRect(p1.getKey(), p1.getValue(), x1, nd.getNodeHeight());
-            gc.setFill(nd.getColors().getValue());
+            gc.setStroke(nd.PointerGradient);
+            gc.setLineWidth(6.0);
+            gc.strokeRect(p1.getKey(), p1.getValue(), x1, nd.getNodeHeight());
+
+            gc.setFill(nd.NextGradient);
             gc.fillRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
+            gc.setStroke(nd.PointerGradient);
+            gc.setLineWidth(6.0);
+            gc.strokeRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
             System.out.println("Node drawn at: (" + p1.getKey() + ", " + p1.getValue() + ") and node value: " + nd.getValue());
         }
     }
@@ -62,7 +69,7 @@ public class stage extends LinkedListVisualizationController
             y1 = p1.getValue();
             x2 = p2.getKey();
             y2 = p2.getValue();
-            gc.setStroke(Color.LIGHTGREY);
+            gc.setStroke(nd.PointerGradient);
             gc.setLineWidth(6.0);
             gc.strokeLine(x1, y1, x2, y2);
             System.out.println("Pointer drawn from: (" + x1 + ", " + y1 + ") to (" + x2 + ", " + y2 + ")");

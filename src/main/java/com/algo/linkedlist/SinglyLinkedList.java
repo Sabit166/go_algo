@@ -36,7 +36,6 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             nodes.addFirst(newNode);
             System.out.println("Nodes after adding first node: " + nodes);
             stages.add(new stage(canvas, nodes, null));
-            newNode.indicateHead();
             return stages;
         }
         else
@@ -46,7 +45,6 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             System.out.println("Nodes after adding new node: " + nodes);
             for (int i = 1; i < nodes.size(); i++) {
                 nodes.get(i).shiftRight();
-                System.out.println("Node shifted right: " + nodes.get(i).getValue());
             }
             map.clear();
             for (int i = 1; i < nodes.size() - 1; i++) {
@@ -58,8 +56,6 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             stages.add(new stage(canvas, nodes, map));
             map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointIn());
             stages.add(new stage(canvas, nodes, map));
-            newNode.indicateHead();
-            nodes.get(1).setNormal();
             stages.add(new stage(canvas, nodes, map));
             return stages;
         }

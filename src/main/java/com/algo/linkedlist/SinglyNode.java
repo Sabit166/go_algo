@@ -2,11 +2,13 @@ package com.algo.linkedlist;
 
 import javafx.util.Pair;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Line;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 
 import java.util.Map;
-
 import javafx.scene.canvas.Canvas;
 
 public class SinglyNode extends LinkedListVisualizationController {
@@ -26,7 +28,9 @@ public class SinglyNode extends LinkedListVisualizationController {
     protected double NextPointInY;
     protected double shift;
     protected double pointerLength;
-    protected Color ValCol;
+    protected LinearGradient ValGradient;
+    protected LinearGradient NextGradient;
+    protected LinearGradient PointerGradient;
     protected Color NextCol;
     protected Rectangle valueBox;
     protected Rectangle nextBox;
@@ -46,20 +50,36 @@ public class SinglyNode extends LinkedListVisualizationController {
         valWidth = nextWidth = nodeWidth / 2;
         NodeValTopLeftCornerX = 25;
         NodeValTopLeftCornerY = nodeHeight / 2;
-        NodeNxtTopLeftCornerX = NodeValTopLeftCornerX + nodeWidth/2;
+        NodeNxtTopLeftCornerX = NodeValTopLeftCornerX + nodeWidth / 2;
         NodeNxtTopLeftCornerY = NodeValTopLeftCornerY;
         NextPointOutX = NodeValTopLeftCornerX + nodeWidth;
         NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 4;
         NextPointInY = NodeValTopLeftCornerY + nodeHeight / 4;
         NextPointInX = NodeValTopLeftCornerX;
-        ValCol = Color.YELLOW;
-        NextCol = Color.YELLOWGREEN;
         valueBox = new Rectangle(NodeValTopLeftCornerX, NodeValTopLeftCornerY, valWidth, nodeHeight);
-        //valueBox.setStyle("-fx-border-color: black");
+        // valueBox.setStyle("-fx-border-color: black");
         nextBox = new Rectangle(NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY, nextWidth, nodeHeight);
-        //nextBox.setStyle("-fx-border-color: black");
+        // nextBox.setStyle("-fx-border-color: black");
         nextPointer = new Line(NextPointOutX, NextPointOutY, NextPointOutX + pointerLength, NextPointOutY);
-        //nextPointer.setStyle("-fx-stroke: black");
+        // nextPointer.setStyle("-fx-stroke: black");
+
+        ValGradient = new LinearGradient(
+                NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+                NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
+
+        NextGradient = new LinearGradient(
+                NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+                NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.NAVY), new Stop(1, Color.CYAN));
+
+        PointerGradient = new LinearGradient(
+                NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+                NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.BLACK), new Stop(1, Color.DARKGRAY));
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
 
@@ -89,25 +109,29 @@ public class SinglyNode extends LinkedListVisualizationController {
 
     public Pair<Double, Double> getNodeDimensions() {
         return new Pair<>(nodeWidth, nodeHeight);
-        }
+    }
 
-        public double getNodeWidth() {
+    public double getNodeWidth() {
         return nodeWidth;
-        }
+    }
 
-        public double getNodeHeight() {
+    public double getNodeHeight() {
         return nodeHeight;
-        }
+    }
 
-        public double getValWidth() {
+    public double getValWidth() {
         return valWidth;
-        }
+    }
 
-        public double getNextWidth() {
+    public double getNextWidth() {
         return nextWidth;
-        }
+    }
 
-        public Pair<Double, Double> getNextPointOut() {
+    public int getValue() {
+        return value;
+    }
+
+    public Pair<Double, Double> getNextPointOut() {
         return new Pair<>(NextPointOutX, NextPointOutY);
     }
 
@@ -115,28 +139,33 @@ public class SinglyNode extends LinkedListVisualizationController {
         return new Pair<>(NextPointInX, NextPointInY);
     }
 
-    public Pair<Color, Color> getColors() {
-        return new Pair<>(ValCol, NextCol);
+    public LinearGradient getValGradient() {
+        return ValGradient;
     }
 
-    void drawValBox()
-    {
-        
+    public LinearGradient getNextGradient() {
+        return NextGradient;
     }
 
-    void drawNextBox()
-    {
-
+    public LinearGradient getPointerGradient() {
+        return PointerGradient;
     }
 
-    void drawNextPointer()
-    {
+    void drawValBox() {
 
     }
 
-    public void shiftRight()
-    {
-        //map.put(new Pair<>(NextPointOutX + shift, NextPointOutY), new Pair<>(NextPointInX + shift, NextPointInY));
+    void drawNextBox() {
+
+    }
+
+    void drawNextPointer() {
+
+    }
+
+    public void shiftRight() {
+        // map.put(new Pair<>(NextPointOutX + shift, NextPointOutY), new
+        // Pair<>(NextPointInX + shift, NextPointInY));
         NodeValTopLeftCornerX += shift;
         NodeNxtTopLeftCornerX += shift;
         NextPointOutX += shift;
@@ -144,23 +173,10 @@ public class SinglyNode extends LinkedListVisualizationController {
         System.out.println("Shifted right at point: (" + NodeValTopLeftCornerX + ", " + NodeValTopLeftCornerY + ")");
     }
 
-    public void shiftLeft()
-    {
+    public void shiftLeft() {
         NodeValTopLeftCornerX -= shift;
         NodeNxtTopLeftCornerX -= shift;
         NextPointOutX -= shift;
         NextPointInX -= shift;
-    }
-
-    public void indicateHead()
-    {
-        ValCol = Color.RED;
-        NextCol = Color.RED;
-    }
-
-    public void setNormal()
-    {
-        ValCol = Color.YELLOW;
-        NextCol = Color.YELLOWGREEN;
     }
 }
