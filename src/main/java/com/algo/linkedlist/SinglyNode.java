@@ -73,7 +73,7 @@ public class SinglyNode extends LinkedListVisualizationController {
                 NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
                 NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
                 false, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.NAVY), new Stop(1, Color.CYAN));
+                new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
 
         PointerGradient = new LinearGradient(
                 NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,

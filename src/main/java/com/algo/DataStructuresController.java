@@ -15,12 +15,12 @@ public class DataStructuresController {
     @FXML
     private void handleLinkedList(ActionEvent event) throws IOException {
         // Logic for Linked List
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist/linkedlist_visualization.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
+        stage.setFullScreen(true);
     }
 
     @FXML
