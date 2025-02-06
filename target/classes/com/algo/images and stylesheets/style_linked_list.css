@@ -26,23 +26,25 @@
 
 /* Buttons */
 .button {
-    -fx-background-color: #8A2BE2; /* Electric Violet */
-    -fx-text-fill: rgb(50, 13, 42);
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(150, 110, 141);
     -fx-font-weight: bold;
     -fx-border-radius: 8px;
+    -fx-border-width: 2px; /* Thicker border */
+    -fx-border-color: #8A2BE2; /* Electric Violet */
     -fx-padding: 8px 16px;
     -fx-effect: dropshadow(gaussian, rgba(138, 43, 226, 0.3), 5, 0, 0, 2); /* Violet glow */
     -fx-cursor: hand;
     -fx-font-size: 24px;
 }
 .button:hover {
-    -fx-background-color: #6A1B9A; /* Deep Purple */
+    -fx-background-color: transparent;
     -fx-scale-x: 1.5;
     -fx-scale-y: 1.5;
     -fx-text-fill: #FFD700; /* Gold */
 }
 .button:pressed {
-    -fx-background-color: #4A148C; /* Dark Purple */
+    -fx-background-color: transparent;
     -fx-scale-x: 1.5;
     -fx-scale-y: 1.5;
 }

@@ -1,5 +1,6 @@
 package com.algo.linkedlist;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class LinkedListVisualizationController extends Application {
 
@@ -147,28 +151,21 @@ public class LinkedListVisualizationController extends Application {
         }
     }
 
+    // void display(ArrayList<stage> stages) {
+    //     for (stage s : stages) {
+    //         s.draw(s);
+    //     }
     void display(ArrayList<stage> stages) {
-        for (stage s : stages) {
-            s.draw(s);
+        for (int i = 0; i < stages.size(); i++) {
+            stage s = stages.get(i);
+            PauseTransition pause = new PauseTransition(Duration.seconds(i + 1));
+            pause.setOnFinished(e -> {
+                s.draw(s);
+            });
+            System.out.println("Drawing stage " + i);
+            pause.play();
         }
     }
-    // void display(ArrayList<stage> stages) {
-    //     new Thread(() -> {
-    //         for (stage s : stages) {
-    //             try {
-    //                 javafx.application.Platform.runLater(() -> {
-    //                     s.draw(s);
-    //                 });
-    //                 Thread.sleep(3000);
-    //                 javafx.application.Platform.runLater(() -> {
-    //                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    //                 });
-    //             } catch (InterruptedException e) {
-    //                 e.printStackTrace();
-    //             }
-    //         }
-    //     }).start();
-    // }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

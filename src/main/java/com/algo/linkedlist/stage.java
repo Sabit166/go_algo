@@ -69,7 +69,7 @@ public class stage extends LinkedListVisualizationController
             y1 = p1.getValue();
             x2 = p2.getKey();
             y2 = p2.getValue();
-            gc.setStroke(nd.PointerGradient);
+            gc.setStroke(Color.BLACK);
             gc.setLineWidth(6.0);
             gc.strokeLine(x1, y1, x2, y2);
             System.out.println("Pointer drawn from: (" + x1 + ", " + y1 + ") to (" + x2 + ", " + y2 + ")");

@@ -83,20 +83,20 @@ public class SinglyNode extends LinkedListVisualizationController {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
 
-        System.out.println("Value: " + value);
-        System.out.println("NodeValTopLeftCornerX: " + NodeValTopLeftCornerX);
-        System.out.println("NodeValTopLeftCornerY: " + NodeValTopLeftCornerY);
-        System.out.println("NodeNxtTopLeftCornerX: " + NodeNxtTopLeftCornerX);
-        System.out.println("NodeNxtTopLeftCornerY: " + NodeNxtTopLeftCornerY);
-        System.out.println("NodeWidth: " + nodeWidth);
-        System.out.println("NodeHeight: " + nodeHeight);
-        System.out.println("ValWidth: " + valWidth);
-        System.out.println("NextWidth: " + nextWidth);
-        System.out.println("NextPointOutX: " + NextPointOutX);
-        System.out.println("NextPointOutY: " + NextPointOutY);
-        System.out.println("NextPointInX: " + NextPointInX);
-        System.out.println("NextPointInY: " + NextPointInY);
-        System.out.println("Shift: " + shift);
+        // System.out.println("Value: " + value);
+        // System.out.println("NodeValTopLeftCornerX: " + NodeValTopLeftCornerX);
+        // System.out.println("NodeValTopLeftCornerY: " + NodeValTopLeftCornerY);
+        // System.out.println("NodeNxtTopLeftCornerX: " + NodeNxtTopLeftCornerX);
+        // System.out.println("NodeNxtTopLeftCornerY: " + NodeNxtTopLeftCornerY);
+        // System.out.println("NodeWidth: " + nodeWidth);
+        // System.out.println("NodeHeight: " + nodeHeight);
+        // System.out.println("ValWidth: " + valWidth);
+        // System.out.println("NextWidth: " + nextWidth);
+        // System.out.println("NextPointOutX: " + NextPointOutX);
+        // System.out.println("NextPointOutY: " + NextPointOutY);
+        // System.out.println("NextPointInX: " + NextPointInX);
+        // System.out.println("NextPointInY: " + NextPointInY);
+        // System.out.println("Shift: " + shift);
     }
 
     public Pair<Double, Double> getNodeValTopLeftCorner() {
@@ -151,16 +151,18 @@ public class SinglyNode extends LinkedListVisualizationController {
         return PointerGradient;
     }
 
-    void drawValBox() {
-
+    void makeHead()
+    {
+        NextGradient = ValGradient;
     }
 
-    void drawNextBox() {
-
-    }
-
-    void drawNextPointer() {
-
+    void removeHead()
+    {
+        NextGradient = new LinearGradient(
+            NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+            NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
     }
 
     public void shiftRight() {
