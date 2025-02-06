@@ -48,13 +48,13 @@ public class DataStructuresController {
     @FXML
     private void handleSegmentTree(ActionEvent event) throws IOException {
         // Logic for Segment Tree
-       Parent root = FXMLLoader.load(getClass().getResource("/com/algo/segment_tree_visualizer.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/segment_tree_visualizer.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setTitle("Segment Tree Visualization");
         stage.show();
+        stage.setFullScreen(true);
     }
 
     @FXML

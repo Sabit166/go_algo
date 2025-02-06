@@ -9,34 +9,15 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.canvas.Canvas;
 
-public class SinglyNode extends LinkedListVisualizationController {
-    protected int value;
-    protected double NodeValTopLeftCornerX;
-    protected double NodeValTopLeftCornerY;
-    protected double NodeNxtTopLeftCornerX;
-    protected double NodeNxtTopLeftCornerY;
-    protected double nodeWidth;
-    protected double nodeHeight;
-    protected double valWidth;
-    protected double nextWidth;
-    protected double NextPointOutX;
-    protected double NextPointOutY;
-    protected double NextPointInX;
-    protected double NextPointInY;
-    protected double shift;
-    protected double pointerLength;
-    protected LinearGradient ValGradient;
-    protected LinearGradient NextGradient;
-    protected LinearGradient PointerGradient;
-    protected Color NextCol;
-    protected Rectangle valueBox;
-    protected Rectangle nextBox;
-    protected Line nextPointer;
+public class DoublyNode extends SinglyNode{
 
-    public SinglyNode() {
+    public DoublyNode()
+    {
+        super();
     }
 
-    public SinglyNode(Canvas canvas, int value) {
+    public DoublyNode(Canvas canvas, int value)
+    {
         this.value = value;
         nodeWidth = canvas.getWidth() / 5;
         nodeHeight = canvas.getHeight();

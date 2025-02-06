@@ -11,9 +11,9 @@ import javafx.scene.paint.Color;
 
 public class SinglyLinkedList extends LinkedListVisualizationController {
     private SinglyNode head;
-    private LinkedList<SinglyNode> nodes = new LinkedList<>();
+    protected LinkedList<SinglyNode> nodes = new LinkedList<>();
     protected Map<Pair<Double, Double>, Pair<Double, Double>> map = new HashMap<>();
-    private ArrayList<stage> stages;// = new ArrayList<>();
+    protected ArrayList<stage> stages;// = new ArrayList<>();
 
     LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
     Canvas canvas = linkedListVisualizationController.canvas;
@@ -30,7 +30,6 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
             return null;
         }
         SinglyNode newNode = new SinglyNode(canvas, value);
-        System.out.println("New node created: " + newNode);
         if (nodes.size() == 0) {
             stages = new ArrayList<>();
             nodes.addFirst(newNode);

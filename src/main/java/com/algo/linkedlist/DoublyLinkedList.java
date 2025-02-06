@@ -1,119 +1,170 @@
 package com.algo.linkedlist;
 
 import javafx.scene.canvas.Canvas;
+import javafx.util.Pair;
+import java.util.HashMap;
 import java.util.LinkedList;
-
+import java.util.Map;
+import java.util.ArrayList;
+import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
 public class DoublyLinkedList extends SinglyLinkedList {
-    private doublyNode head;
-    private LinkedList<doublyNode> nodes = new LinkedList<>();
-
-    LinkedListVisualizationController linkedListVisualizationController = new LinkedListVisualizationController();
-    Canvas canvas = linkedListVisualizationController.canvas;
+    
 
     public DoublyLinkedList(Canvas canvas) {
-        this.canvas = canvas;
+        super(canvas);
     }
 
     // Push to the front
-    public  pushFront(int value) {
-        doublyNode newNode = new doublyNode(value);
-        newNode.setNext(head);
-        if (head != null) {
-            head.setPrev(newNode);
+    public ArrayList<stage> pushFront(int value) {
+        if (nodes.size() == 4) {
+            alert("Error", "Cannot add more than 4 nodes");
+            return null;
         }
-        head = newNode;
+        SinglyNode newNode = new SinglyNode(canvas, value);
+        if (nodes.size() == 0) {
+            stages = new ArrayList<>();
+            nodes.addFirst(newNode);
+            newNode.makeHead();
+            //System.out.println("Nodes after adding first node: " + nodes);
+            stages.add(new stage(canvas, nodes, null));
+            return stages;
+        }
+        else
+        {
+            stages = new ArrayList<>();
+            nodes.addFirst(newNode);
+            //System.out.println("Nodes after adding new node: " + nodes);
+            for (int i = 1; i < nodes.size(); i++) {
+                nodes.get(i).shiftRight();
+            }
+            map.clear();
+            for (int i = 1; i < nodes.size() - 1; i++) {
+                SinglyNode node1 = nodes.get(i);
+                SinglyNode node2 = nodes.get(i + 1);
+                map.put(node1.getNextPointOut(), node2.getNextPointIn());
+            }
+
+            stages.add(new stage(canvas, nodes, map));
+            map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointIn());
+            stages.add(new stage(canvas, nodes, map));
+            nodes.get(0).makeHead();
+            nodes.get(1).removeHead();
+            stages.add(new stage(canvas, nodes, map));
+            return stages;
+        }
     }
 
     // Push to the back
-    public void pushBack(int value) {
-        doublyNode newNode = new doublyNode(value);
-        if (head == null) {
-            head = newNode;
-            return;
+
+    public ArrayList<stage> pushBack(int value) {
+        if (nodes.size() == 4) {
+            alert("Error", "Cannot add more than 4 nodes");
+            return null;
         }
-        doublyNode temp = head;
-        while (temp.getNext() != null) {
-            temp = temp.getNext();
+        SinglyNode newNode = new SinglyNode(canvas, value);
+        if (nodes.size() == 1) {
+            stages = new ArrayList<>();
+            nodes.addLast(newNode);
+            stages.add(new stage(canvas, nodes, null));
+            // SinglyNode newNode = new SinglyNode(value, 50 + nodeNumber * 50,
+            // canvas.getHeight() * 0.75);
+            return stages;
+        } 
+        else // there will be two stages: adding the new node and updating the pointion of  
+        {
+            stages = new ArrayList<>();
+            stages.add(new stage(canvas, nodes, map));
+            nodes.addLast(newNode);
+
+            for (int i = 0; i < nodes.size() - 2; i++) {
+                // SinglyNode node1 = nodes.get(i);
+                // SinglyNode node2 = nodes.get(i + 1);
+                map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointOut());
+            }
+            stages.add(new stage(canvas, nodes, map));
+            map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointOut());
+            stages.add(new stage(canvas, nodes, map));
+            return stages;
         }
-        temp.setNext(newNode);
-        newNode.setPrev(temp);
     }
 
     // Pop from the front
-    public void popFront() {
-        if (head != null) {
-            doublyNode temp = head;
-            head = head.getNext();
-            if (head != null) {
-                head.setPrev(null);
-            }
-            temp = null;
+    public ArrayList<stage> popFront() {
+        if (nodes.size() == 0) {
+            alert("Error", "There are no nodes to delete");
+            return null;
         }
+        if (!head.equals(nodes.getFirst())) {
+            alert("Error", "Cannot delete node from the front");
+            return;
+        }
+        SinglyNode temp = head;
+        head = head.getNext();
+        temp = null;
+        nodes.removeFirst();
+
     }
 
     // Pop from the back
-    public void popBack() {
-        if (head == null) {
-            return;
+    public ArrayList<stage> popBack() {
+        if (nodes.size() < 0) {
+            alert("Error", "There are no nodes to delete");
+            return null;
         }
         if (head.getNext() == null) {
             head = null;
+            nodes.removeLast();
             return;
         }
-        doublyNode temp = head;
+        SinglyNode temp = head;
         while (temp.getNext().getNext() != null) {
             temp = temp.getNext();
         }
         temp.setNext(null);
+        nodes.removeLast();
     }
 
-    // Print the list
-    public void printList() {
-        doublyNode temp = head;
-        while (temp != null) {
-            System.out.print(temp.getValue() + " ");
+    public ArrayList<stage> insertAt(int index, int value) {
+        SinglyNode newNode = new SinglyNode(value);
+        if (index == 0) {
+            newNode.setNext(head);
+            head = newNode;
+            return;
+        }
+        SinglyNode temp = head;
+        for (int i = 0; i < index - 1; i++) {
+            if (temp.getNext() == null) {
+                return null;
+            }
             temp = temp.getNext();
         }
-        System.out.println();
-    }
-}
-
-class doublyNode extends SinglyNode {
-    private doublyNode next;
-    private doublyNode prev;
-    protected double PrevPointOutX;
-    protected double PrevPointOutY;
-    protected double PrevPointInX;
-    protected double PrevPointInY;
-
-    public doublyNode(int value) {
-        this.value = value;
-        this.next = null;
-        this.prev = null;
+        newNode.setNext(temp.getNext());
+        temp.setNext(newNode);
+        nodes.add(index, newNode);
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-
-    public doublyNode getNext() {
-        return next;
-    }
-
-    public void setNext(doublyNode next) {
-        this.next = next;
-    }
-
-    public doublyNode getPrev() {
-        return prev;
-    }
-
-    public void setPrev(doublyNode prev) {
-        this.prev = prev;
+    // Delete at a specific position
+    public ArrayList<stage> deleteAt(int index) {
+        if (head == null) {
+            return null;
+        }
+        if (index == 0) {
+            SinglyNode temp = head;
+            head = head.getNext();
+            temp = null;
+            return;
+        }
+        SinglyNode temp = head;
+        for (int i = 0; i < index - 1; i++) {
+            if (temp.getNext() == null) {
+                return;
+            }
+            temp = temp.getNext();
+        }
+        SinglyNode delNode = temp.getNext();
+        temp.setNext(delNode.getNext());
+        delNode = null;
+        nodes.remove(index);
     }
 }

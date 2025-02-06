@@ -53,7 +53,6 @@ public class stage extends LinkedListVisualizationController
             gc.setStroke(nd.PointerGradient);
             gc.setLineWidth(6.0);
             gc.strokeRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
-            System.out.println("Node drawn at: (" + p1.getKey() + ", " + p1.getValue() + ") and node value: " + nd.getValue());
         }
     }
 
@@ -72,7 +71,6 @@ public class stage extends LinkedListVisualizationController
             gc.setStroke(Color.BLACK);
             gc.setLineWidth(6.0);
             gc.strokeLine(x1, y1, x2, y2);
-            System.out.println("Pointer drawn from: (" + x1 + ", " + y1 + ") to (" + x2 + ", " + y2 + ")");
         }
     }
 }
