@@ -3,8 +3,6 @@ package com.algo.linkedlist;
 import javafx.util.Pair;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Line;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.canvas.Canvas;
@@ -29,9 +27,6 @@ public class SinglyNode extends LinkedListVisualizationController {
     protected LinearGradient NextGradient;
     protected LinearGradient PointerGradient;
     protected Color NextCol;
-    protected Rectangle valueBox;
-    protected Rectangle nextBox;
-    protected Line nextPointer;
 
     public SinglyNode() {
     }
@@ -39,7 +34,7 @@ public class SinglyNode extends LinkedListVisualizationController {
     public SinglyNode(Canvas canvas, int value) {
         this.value = value;
         nodeWidth = canvas.getWidth() / 5;
-        nodeHeight = canvas.getHeight();
+        nodeHeight = canvas.getHeight()/2;
         shift = canvas.getWidth() / 4;
         pointerLength = shift - nodeWidth;
         valWidth = nextWidth = nodeWidth / 2;
@@ -48,8 +43,8 @@ public class SinglyNode extends LinkedListVisualizationController {
         NodeNxtTopLeftCornerX = NodeValTopLeftCornerX + nodeWidth / 2;
         NodeNxtTopLeftCornerY = NodeValTopLeftCornerY;
         NextPointOutX = NodeValTopLeftCornerX + nodeWidth;
-        NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 4;
-        NextPointInY = NodeValTopLeftCornerY + nodeHeight / 4;
+        NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 2;
+        NextPointInY = NodeValTopLeftCornerY + nodeHeight / 2;
         NextPointInX = NodeValTopLeftCornerX;
 
         ValGradient = new LinearGradient(
@@ -63,12 +58,6 @@ public class SinglyNode extends LinkedListVisualizationController {
                 NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
                 false, CycleMethod.NO_CYCLE,
                 new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
-
-        PointerGradient = new LinearGradient(
-                NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
-                NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
-                false, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.BLACK), new Stop(1, Color.DARKGRAY));
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
 

@@ -1,6 +1,7 @@
 package com.algo.linkedlist;
 
 import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +47,6 @@ public class LinkedListVisualizationController extends Application {
     public void initialize() {
         gc = canvas.getGraphicsContext2D();
         singlyLinkedList = new SinglyLinkedList(canvas);
-        System.out.println("At initialization: "+ canvas.getWidth());
     }
 
     @FXML
@@ -120,7 +118,6 @@ public class LinkedListVisualizationController extends Application {
         }
     }
 
-
     @FXML
     void handlePopBack() {
         stages = singlyLinkedList.popBack();
@@ -152,19 +149,23 @@ public class LinkedListVisualizationController extends Application {
     }
 
     // void display(ArrayList<stage> stages) {
-    //     for (stage s : stages) {
-    //         s.draw(s);
-    //     }
+    // for (stage s : stages) {
+    // s.draw(s);
+    // }
     void display(ArrayList<stage> stages) {
+        SequentialTransition sequentialTransition = new SequentialTransition();
+
         for (int i = 0; i < stages.size(); i++) {
-            stage s = stages.get(i);
-            PauseTransition pause = new PauseTransition(Duration.seconds(i + 1));
+            int index = i; // Needed for lambda scope
+            PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
             pause.setOnFinished(e -> {
-                s.draw(s);
+                System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
+                stages.get(index).draw(stages.get(index));
             });
-            System.out.println("Drawing stage " + i);
-            pause.play();
+            sequentialTransition.getChildren().add(pause);
         }
+
+        sequentialTransition.play();
     }
 
     private void showAlert(String title, String message) {
@@ -178,7 +179,7 @@ public class LinkedListVisualizationController extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(
-            getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
+                getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
