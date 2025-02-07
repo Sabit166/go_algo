@@ -10,8 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 public class SinglyLinkedList extends LinkedListVisualizationController {
-    private SinglyNode head;
-    protected LinkedList<SinglyNode> nodes = new LinkedList<>();
+    private LinkedList<SinglyNode> nodes = new LinkedList<>();
     protected Map<Pair<Double, Double>, Pair<Double, Double>> map = new HashMap<>();
     protected ArrayList<stage> stages;// = new ArrayList<>();
 
@@ -44,13 +43,7 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         for (int i = 1; i < nodes.size(); i++) {
             nodes.get(i).shiftRight();
         }
-        map.clear();
-        for (int i = 1; i < nodes.size() - 1; i++) {
-            SinglyNode node1 = nodes.get(i);
-            SinglyNode node2 = nodes.get(i + 1);
-            map.put(node1.getNextPointOut(), node2.getNextPointIn());
-        }
-
+        setPointers();
         stages.add(new stage(canvas, nodes, map));
         map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointIn());
         stages.add(new stage(canvas, nodes, map));
@@ -168,26 +161,15 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
 
     // Delete at a specific position
     public ArrayList<stage> deleteAt(int index) {
-        if (head == null) {
+        if (nodes.size() == 0) {
             return null;
         }
-        if (index == 0) {
-            SinglyNode temp = head;
-            head = head.getNext();
-            temp = null;
-            return;
+
+        if (nodes.size() == 1) {
+            return popFront();
         }
-        SinglyNode temp = head;
-        for (int i = 0; i < index - 1; i++) {
-            if (temp.getNext() == null) {
-                return;
-            }
-            temp = temp.getNext();
-        }
-        SinglyNode delNode = temp.getNext();
-        temp.setNext(delNode.getNext());
-        delNode = null;
-        nodes.remove(index);
+        stages = new ArrayList<>();
+        return stages;
     }
 
     void setPointers() {
