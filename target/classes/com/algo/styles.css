@@ -1,4 +1,4 @@
 .root {
-    -fx-background-image: url('com/algo/background.jpeg');
+    -fx-background-image: url('background.jpeg');
     -fx-background-size: cover;
 }
