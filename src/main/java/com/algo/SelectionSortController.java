@@ -3,6 +3,7 @@ package com.algo;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -22,8 +23,9 @@ import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionSortController {
+public class SelectionSortController extends Application{
 
+    private static Scene scene;
     private static final int BAR_WIDTH = 50; // Increased width
     private static final int MAX_HEIGHT = 400; // Increased height
     private StackPane[] bars;
@@ -157,5 +159,26 @@ public class SelectionSortController {
         stage.setScene(scene);
         stage.setTitle("Algorithms");
         stage.show();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("selection_sort"), 640, 480);
+        stage.setScene(scene);
+        stage.setTitle("Selection Sort");
+        stage.show();
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/algo/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }

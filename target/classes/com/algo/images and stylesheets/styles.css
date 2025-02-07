@@ -1,0 +1,74 @@
+.root {
+    -fx-background-image: url('Dark_Background.jpeg');
+    -fx-background-size: cover;
+}
+
+/* Styling for all text elements */
+.label, .text {
+    -fx-text-fill: #E0E0E0; /* Light gray text for readability */
+    -fx-font-size: 14px;
+}
+
+/* Styling for TextField */
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #444; /* Subtle border */
+    -fx-border-radius: 8px;
+    -fx-padding: 6px;
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 16px; /* Increased font size */
+    -fx-font-family: 'Arial', sans-serif; /* Good font */
+}
+
+.text-field:focused {
+    -fx-border-color: #1E88E5; /* Highlight when focused */
+}
+
+/* Styling for Buttons */
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: #1E88E5; /* Blue outline */
+    -fx-border-radius: 12px;
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 16px; /* Increased font size */
+    -fx-font-family: 'Arial', sans-serif; /* Good font */
+    -fx-padding: 6px 12px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: rgba(30, 136, 229, 0.2); /* Light blue on hover */
+}
+}
+
+.button:pressed {
+    -fx-background-color: rgba(30, 136, 229, 0.4); /* Darker on press */
+}
+
+/* HBox & VBox Spacing */
+.hbox, .vbox {
+    -fx-spacing: 10px;
+}
+
+/* Custom ScrollPane Styling */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #444; /* Gray thumb */
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #666; /* Lighter on hover */
+}
