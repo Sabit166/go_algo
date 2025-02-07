@@ -26,7 +26,7 @@ import java.util.List;
 public class SelectionSortController extends Application{
 
     private static Scene scene;
-    private static final int BAR_WIDTH = 50; // Increased width
+    private static final int BAR_WIDTH = 100; // Increased width
     private static final int MAX_HEIGHT = 400; // Increased height
     private StackPane[] bars;
 
@@ -67,7 +67,7 @@ public class SelectionSortController extends Application{
             bars = new StackPane[size];
             for (int i = 0; i < size; i++) {
                 double height = 100; // Set a constant height for all bars
-                Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.SKYBLUE);
+                Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.DARKVIOLET);
                 Label label = new Label(elementsArray[i].trim());
                 label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
@@ -139,7 +139,7 @@ public class SelectionSortController extends Application{
 
     private void resetBarColors() {
         for (StackPane bar : bars) {
-            ((Rectangle) bar.getChildren().get(0)).setFill(Color.SKYBLUE);
+            ((Rectangle) bar.getChildren().get(0)).setFill(Color.DARKVIOLET);
         }
     }
 
