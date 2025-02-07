@@ -40,6 +40,8 @@ public class DoublyNode extends SinglyNode {
         NextPointInX = NodeValTopLeftCornerX;
         PrevPointOutX = NodePrevTopLeftCornerX + nodeWidth;
         PrevPointOutY = NextPointOutY + nodeHeight / 3;
+        PrevPointInY = NodeNxtTopLeftCornerY + nodeHeight / 3;
+        PrevPointInX = NodePrevTopLeftCornerX;
 
         ValGradient = new LinearGradient(
                 NodeValTopLeftCornerX, NodeValTopLeftCornerY,
@@ -77,14 +79,6 @@ public class DoublyNode extends SinglyNode {
         // System.out.println("Shift: " + shift);
     }
 
-    public Pair<Double, Double> getNodeValTopLeftCorner() {
-        return new Pair<>(NodeValTopLeftCornerX, NodeValTopLeftCornerY);
-    }
-
-    public Pair<Double, Double> getNodeNxtTopLeftCorner() {
-        return new Pair<>(NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY);
-    }
-
     public Pair<Double, Double> getNodeDimensions() {
         return new Pair<>(nodeWidth, nodeHeight);
     }
@@ -117,6 +111,14 @@ public class DoublyNode extends SinglyNode {
         return new Pair<>(NextPointInX, NextPointInY);
     }
 
+    public Pair<Double, Double> getPrevPointOut() {
+        return new Pair<>(PrevPointOutX, PrevPointOutY);
+    }
+
+    public Pair<Double, Double> getPrevPointIn() {
+        return new Pair<>(PrevPointInX, PrevPointInY);
+    }
+
     public LinearGradient getValGradient() {
         return ValGradient;
     }
@@ -130,11 +132,74 @@ public class DoublyNode extends SinglyNode {
     }
 
     void makeHead() {
-        NextGradient = ValGradient;
-        PrevGradient = ValGradient;
+        ValGradient = new LinearGradient(
+            NodePrevTopLeftCornerX, NodePrevTopLeftCornerY,
+            NodePrevTopLeftCornerX + valWidth, NodePrevTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.ORANGE), new Stop(1, Color.DARKRED));
+
+        NextGradient = new LinearGradient(
+            NodePrevTopLeftCornerX, NodePrevTopLeftCornerY,
+            NodePrevTopLeftCornerX + valWidth, NodePrevTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.ORANGE), new Stop(1, Color.DARKRED));
+
+        PrevGradient = new LinearGradient(
+                NodePrevTopLeftCornerX, NodePrevTopLeftCornerY,
+                NodePrevTopLeftCornerX + valWidth, NodePrevTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.ORANGE), new Stop(1, Color.DARKRED));
     }
 
-    void removeHead() {
+    void makeTail() {
+        ValGradient =new LinearGradient(
+            NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+            NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
+
+        NextGradient = new LinearGradient(
+                NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+                NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
+
+        PrevGradient = new LinearGradient(
+            NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+            NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
+    }
+
+    void makeTemp()
+    {
+        ValGradient = new LinearGradient(
+                NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+                NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
+
+        NextGradient = new LinearGradient(
+            NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+            NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
+
+        PrevGradient = new LinearGradient(
+            NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+            NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
+    }
+
+    void setNormalGradient()
+    {
+        ValGradient = new LinearGradient(
+                NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+                NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+                false, CycleMethod.NO_CYCLE,
+                new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
+
         NextGradient = new LinearGradient(
                 NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
                 NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
@@ -148,33 +213,10 @@ public class DoublyNode extends SinglyNode {
                 new Stop(0, Color.ORANGE), new Stop(1, Color.DARKRED));
     }
 
-    void makeTail() {
-        PrevGradient = NextGradient;
-        ValGradient = NextGradient;
-    }
-
-    void removeTail() {
-        PrevGradient = new LinearGradient(
-                NodePrevTopLeftCornerX, NodePrevTopLeftCornerY,
-                NodePrevTopLeftCornerX + valWidth, NodePrevTopLeftCornerY + nodeHeight,
-                false, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.ORANGE), new Stop(1, Color.DARKRED));
-
-        ValGradient = new LinearGradient(
-                NodeValTopLeftCornerX, NodeValTopLeftCornerY,
-                NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
-                false, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
-
-    }
-
     public void shiftRight() {
-        // map.put(new Pair<>(NextPointOutX + shift, NextPointOutY), new
-        // Pair<>(NextPointInX + shift, NextPointInY));
         NodeValTopLeftCornerX += shift;
         NodeNxtTopLeftCornerX += shift;
         NodePrevTopLeftCornerX+=shift;
-        NodeNxtTopLeftCornerY+=shift;
         NextPointOutX += shift;
         NextPointInX += shift;
         PrevPointOutX += shift;
@@ -184,7 +226,10 @@ public class DoublyNode extends SinglyNode {
     public void shiftLeft() {
         NodeValTopLeftCornerX -= shift;
         NodeNxtTopLeftCornerX -= shift;
+        NodePrevTopLeftCornerX-=shift;
         NextPointOutX -= shift;
         NextPointInX -= shift;
+        PrevPointOutX -= shift;
+        PrevPointInX -= shift;
     }
 }

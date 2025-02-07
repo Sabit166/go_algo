@@ -131,17 +131,37 @@ public class SinglyNode extends LinkedListVisualizationController {
 
     void makeHead()
     {
-        NextGradient = ValGradient;
+        NextGradient = ValGradient = new LinearGradient(
+            NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+            NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
     }
 
-    void removeHead()
+    void makeTemp()
+    {
+        NextGradient = ValGradient = new LinearGradient(
+            NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
+            NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
+    }
+
+    void setNormalGradient()
     {
         NextGradient = new LinearGradient(
             NodeNxtTopLeftCornerX, NodeNxtTopLeftCornerY,
             NodeNxtTopLeftCornerX + valWidth, NodeNxtTopLeftCornerY + nodeHeight,
             false, CycleMethod.NO_CYCLE,
             new Stop(0, Color.PURPLE), new Stop(1, Color.DARKVIOLET));
+            
+        ValGradient = new LinearGradient(
+            NodeValTopLeftCornerX, NodeValTopLeftCornerY,
+            NodeValTopLeftCornerX + valWidth, NodeValTopLeftCornerY + nodeHeight,
+            false, CycleMethod.NO_CYCLE,
+            new Stop(0, Color.CYAN), new Stop(1, Color.NAVY));
     }
+
 
     public void shiftRight() {
         // map.put(new Pair<>(NextPointOutX + shift, NextPointOutY), new

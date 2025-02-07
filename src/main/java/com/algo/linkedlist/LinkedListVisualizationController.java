@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 import javafx.util.Duration;
 
 public class LinkedListVisualizationController extends Application {
@@ -147,11 +148,25 @@ public class LinkedListVisualizationController extends Application {
             showAlert("Error", "Please enter a valid number for index.");
         }
     }
-
     // void display(ArrayList<stage> stages) {
-    // for (stage s : stages) {
-    // s.draw(s);
+    // SequentialTransition sequentialTransition = new SequentialTransition();
+
+    // for (int i = 0; i < stages.size(); i++) {
+    // int index = i; // Needed for lambda scope
+    // PauseTransition pause = new PauseTransition(Duration.seconds(1));
+    // pause.setOnFinished(e -> {
+    // Platform.runLater(() -> {
+    // System.out.println("Drawing stage " + index + " at time " + (index + 1) + "
+    // seconds");
+    // stages.get(index).draw(stages.get(index));
+    // });
+    // });
+    // sequentialTransition.getChildren().add(pause);
     // }
+
+    // sequentialTransition.play();
+    // }
+
     void display(ArrayList<stage> stages) {
         SequentialTransition sequentialTransition = new SequentialTransition();
 
@@ -160,7 +175,14 @@ public class LinkedListVisualizationController extends Application {
             PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
             pause.setOnFinished(e -> {
                 System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
-                stages.get(index).draw(stages.get(index));
+
+                // Use Platform.runLater to ensure UI updates are rendered incrementally
+                Platform.runLater(() -> {
+                    // Clear the canvas before drawing the new stage
+                    gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                    // Draw the current stage
+                    stages.get(index).draw(stages.get(index));
+                });
             });
             sequentialTransition.getChildren().add(pause);
         }
