@@ -12,16 +12,25 @@ import javafx.scene.paint.Color;
 
 public class stage extends LinkedListVisualizationController
 {
-    LinkedList<SinglyNode> nodes;
+    LinkedList<SinglyNode> singlynodes;
+    LinkedList<DoublyNode> doublynodes;
     Map<Pair<Double, Double>, Pair<Double, Double>> map;
     public stage()
     {
-        this.nodes = new LinkedList<>();
+        this.singlynodes = new LinkedList<>();
+        this.doublynodes = new LinkedList<>();
         this.map = new HashMap<>();
     }
-    public stage(Canvas canvas, LinkedList<SinglyNode> nodes, Map<Pair<Double, Double>, Pair<Double, Double>> mp)
+    public stage(Canvas canvas, LinkedList<SinglyNode> singlynodes, Map<Pair<Double, Double>, Pair<Double, Double>> mp)
     {
-        this.nodes = nodes;
+        this.singlynodes = singlynodes;
+        this.map = mp;
+        this.canvas = canvas;
+        this.gc = canvas.getGraphicsContext2D();
+    }
+    public stage(Canvas canvas, LinkedList<DoublyNode> doublynodes, Map<Pair<Double, Double>, Pair<Double, Double>> mp, boolean isDoubly)
+    {
+        this.doublynodes = doublynodes;
         this.map = mp;
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
@@ -53,7 +62,7 @@ public class stage extends LinkedListVisualizationController
         //     gc.strokeRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
         // }
 
-        drawNodes(st.nodes);
+        drawNodes(st.singlynodes);
         drawPointers(st.map);
 
         // Double x1, y1, x2, y2;
@@ -68,7 +77,7 @@ public class stage extends LinkedListVisualizationController
         //     gc.setLineWidth(6.0);
         //     gc.strokeLine(x1, y1, x2, y2);
         // }
-    }
+    } 
 
     void drawNodes(LinkedList<SinglyNode> node)
     {

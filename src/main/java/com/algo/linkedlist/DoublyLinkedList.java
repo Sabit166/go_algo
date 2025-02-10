@@ -21,13 +21,13 @@ public class DoublyLinkedList extends SinglyLinkedList {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        SinglyNode newNode = new DoublyNode(canvas, value);
+        DoublyNode newNode = new DoublyNode(canvas, value);
         if (nodes.size() == 0) {
             stages = new ArrayList<>();
             nodes.addFirst(newNode);
             newNode.makeHead();
             // System.out.println("Nodes after adding first node: " + nodes);
-            stages.add(new stage(canvas, nodes, null));
+            stages.add(new stage(canvas, nodes, null, true));
             return stages;
         }
         stages = new ArrayList<>();
@@ -38,17 +38,19 @@ public class DoublyLinkedList extends SinglyLinkedList {
         }
         map.clear();
         for (int i = 1; i < nodes.size() - 1; i++) {
-            SinglyNode node1 = nodes.get(i);
-            SinglyNode node2 = nodes.get(i + 1);
+            DoublyNode node1 = nodes.get(i);
+            DoublyNode node2 = nodes.get(i + 1);
             map.put(node1.getNextPointOut(), node2.getNextPointIn());
+            map.put(node1.getPrevPointIn(), node2.getPrevPointOut());
         }
 
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         map.put(nodes.get(0).getNextPointOut(), nodes.get(1).getNextPointIn());
-        stages.add(new stage(canvas, nodes, map));
+        map.put(nodes.get(0).getPrevPointOut(), nodes.get(1).getPrevPointIn());
+        stages.add(new stage(canvas, nodes, map, true));
         nodes.get(0).makeHead();
         nodes.get(1).setNormalGradient();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         return stages;
 
     }
@@ -64,28 +66,30 @@ public class DoublyLinkedList extends SinglyLinkedList {
             return pushFront(value);
         }
 
-        SinglyNode newNode = new DoublyNode(canvas, value);
+        DoublyNode newNode = new DoublyNode(canvas, value);
         stages = new ArrayList<>();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         nodes.get(0).makeTemp();
 
         for (int i = 1; i < nodes.size(); i++) {
+            nodes.get(i).makeTemp();
             if(i == 1) nodes.get(i - 1).makeHead();
             else nodes.get(i - 1).setNormalGradient();
-            nodes.get(i).makeTemp();
-            stages.add(new stage(canvas, nodes, map));
+            stages.add(new stage(canvas, nodes, map, true));
             newNode.shiftRight();
         }
 
         nodes.addLast(newNode);
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
 
         for (int i = 0; i < nodes.size() - 2; i++) {
             map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointOut());
+            map.put(nodes.get(i).getPrevPointIn(), nodes.get(i + 1).getPrevPointIn());
         }
-        stages.add(new stage(canvas, nodes, map));
-        map.put(nodes.get(nodes.size() - 2).getNextPointOut(), nodes.get(nodes.size() - 1).getNextPointOut());
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
+        map.put(nodes.get(nodes.size() - 2).getNextPointOut(), nodes.get(nodes.size() - 1).getNextPointIn());
+        map.put(nodes.get(nodes.size() - 2).getPrevPointOut(), nodes.get(nodes.size() - 1).getPrevPointIn());
+        stages.add(new stage(canvas, nodes, map, true));
         return stages;
 
     }
@@ -99,20 +103,20 @@ public class DoublyLinkedList extends SinglyLinkedList {
         if (nodes.size() == 1) {
             stages = new ArrayList<>();
             nodes.removeFirst();
-            stages.add(new stage(canvas, nodes, null));
+            stages.add(new stage(canvas, nodes, null, true));
             return stages;
         }
         stages = new ArrayList<>();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         nodes.get(0).setNormalGradient();
         nodes.get(1).makeHead();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         nodes.removeFirst();
         for (int i = 0; i < nodes.size(); i++) {
             nodes.get(i).shiftLeft();
         }
         setPointers();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         return stages;
     }
 
