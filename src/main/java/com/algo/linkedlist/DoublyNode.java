@@ -42,7 +42,7 @@ public class DoublyNode extends SinglyNode {
         PrevPointOutY = NextPointOutY + nodeHeight / 3;
         PrevPointInY = PrevPointOutY;
         PrevPointInX = NodePrevTopLeftCornerX;
-        ValueDisplayX = NodeValTopLeftCornerX + valWidth / 5;
+        ValueDisplayX = NodeValTopLeftCornerX + valWidth / 2;
         ValueDisplayY = NodeValTopLeftCornerY + nodeHeight / 2;
 
         ValGradient = new LinearGradient(
@@ -189,6 +189,7 @@ public class DoublyNode extends SinglyNode {
         NextPointInX += shift;
         PrevPointOutX += shift;
         PrevPointInX += shift;
+        ValueDisplayX += shift;
     }
 
     public void shiftLeft() {
@@ -199,5 +200,6 @@ public class DoublyNode extends SinglyNode {
         NextPointInX -= shift;
         PrevPointOutX -= shift;
         PrevPointInX -= shift;
+        ValueDisplayX -= shift;
     }
 }

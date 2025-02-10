@@ -48,7 +48,7 @@ public class SinglyNode extends LinkedListVisualizationController {
         NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 2;
         NextPointInY = NodeValTopLeftCornerY + nodeHeight / 2;
         NextPointInX = NodeValTopLeftCornerX;
-        ValueDisplayX = NodeValTopLeftCornerX + valWidth / 5;
+        ValueDisplayX = NodeValTopLeftCornerX + valWidth / 2;
         ValueDisplayY = NodeValTopLeftCornerY + nodeHeight / 2;
 
         ValGradient = new LinearGradient(
@@ -178,6 +178,7 @@ public class SinglyNode extends LinkedListVisualizationController {
         NodeNxtTopLeftCornerX += shift;
         NextPointOutX += shift;
         NextPointInX += shift;
+        ValueDisplayX += shift;
     }
 
     public void shiftLeft() {
@@ -185,5 +186,6 @@ public class SinglyNode extends LinkedListVisualizationController {
         NodeNxtTopLeftCornerX -= shift;
         NextPointOutX -= shift;
         NextPointInX -= shift;
+        ValueDisplayX -= shift;
     }
 }

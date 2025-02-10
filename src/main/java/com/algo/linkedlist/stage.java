@@ -101,7 +101,7 @@ public class stage extends LinkedListVisualizationController
             gc.strokeRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
 
             gc.setFill(Color.BLACK);
-            gc.setFont(new Font(20)); 
+            gc.setFont(new Font(80)); 
             gc.fillText(nd.getValue(), p3.getKey(), p3.getValue());
         }
     }
@@ -197,8 +197,8 @@ public class stage extends LinkedListVisualizationController
             gc.strokeRect(p3.getKey(), p3.getValue(), x3, nd.getNodeHeight());
 
             gc.setFill(Color.BLACK);
-            gc.setFont(new Font(20)); 
-            gc.fillText(nd.getValue(), p3.getKey(), p3.getValue());
+            gc.setFont(new Font(80)); 
+            gc.fillText(nd.getValue(), p4.getKey(), p4.getValue());
         }
     }
 }
