@@ -8,11 +8,13 @@ import javafx.scene.paint.Stop;
 import javafx.scene.canvas.Canvas;
 
 public class SinglyNode extends LinkedListVisualizationController {
-    protected int value;
+    protected String value;
     protected double NodeValTopLeftCornerX;
     protected double NodeValTopLeftCornerY;
     protected double NodeNxtTopLeftCornerX;
     protected double NodeNxtTopLeftCornerY;
+    protected double ValueDisplayX;
+    protected double ValueDisplayY;
     protected double nodeWidth;
     protected double nodeHeight;
     protected double valWidth;
@@ -32,7 +34,7 @@ public class SinglyNode extends LinkedListVisualizationController {
     }
 
     public SinglyNode(Canvas canvas, int value) {
-        this.value = value;
+        this.value = String.valueOf(value);
         nodeWidth = canvas.getWidth() / 5;
         nodeHeight = canvas.getHeight()/2;
         shift = canvas.getWidth() / 4;
@@ -46,6 +48,8 @@ public class SinglyNode extends LinkedListVisualizationController {
         NextPointOutY = NodeValTopLeftCornerY + nodeHeight / 2;
         NextPointInY = NodeValTopLeftCornerY + nodeHeight / 2;
         NextPointInX = NodeValTopLeftCornerX;
+        ValueDisplayX = NodeValTopLeftCornerX + valWidth / 5;
+        ValueDisplayY = NodeValTopLeftCornerY + nodeHeight / 2;
 
         ValGradient = new LinearGradient(
                 NodeValTopLeftCornerX, NodeValTopLeftCornerY,
@@ -105,7 +109,7 @@ public class SinglyNode extends LinkedListVisualizationController {
         return nextWidth;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -115,6 +119,10 @@ public class SinglyNode extends LinkedListVisualizationController {
 
     public Pair<Double, Double> getNextPointIn() {
         return new Pair<>(NextPointInX, NextPointInY);
+    }
+
+    public Pair<Double, Double> getValueDisplay() {
+        return new Pair<>(ValueDisplayX, ValueDisplayY);
     }
 
     public LinearGradient getValGradient() {

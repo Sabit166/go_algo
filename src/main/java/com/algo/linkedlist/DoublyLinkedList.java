@@ -41,7 +41,7 @@ public class DoublyLinkedList extends SinglyLinkedList {
             DoublyNode node1 = nodes.get(i);
             DoublyNode node2 = nodes.get(i + 1);
             map.put(node1.getNextPointOut(), node2.getNextPointIn());
-            map.put(node1.getPrevPointIn(), node2.getPrevPointOut());
+            map.put(node1.getPrevPointOut(), node2.getPrevPointIn());
         }
 
         stages.add(new stage(canvas, nodes, map, true));

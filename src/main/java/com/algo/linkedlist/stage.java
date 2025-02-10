@@ -2,12 +2,12 @@ package com.algo.linkedlist;
 
 import javafx.util.Pair;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 
 public class stage extends LinkedListVisualizationController
@@ -84,6 +84,7 @@ public class stage extends LinkedListVisualizationController
         for (SinglyNode nd : node) {
             Pair<Double, Double> p1 = nd.getNodeValTopLeftCorner();
             Pair<Double, Double> p2 = nd.getNodeNxtTopLeftCorner();
+            Pair<Double, Double> p3 = nd.getValueDisplay();
             Double x1 = nd.getValWidth();
             Double x2 = nd.getNextWidth();
 
@@ -98,6 +99,10 @@ public class stage extends LinkedListVisualizationController
             gc.setStroke(nd.BorderGradient);
             gc.setLineWidth(6.0);
             gc.strokeRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
+
+            gc.setFill(Color.BLACK);
+            gc.setFont(new Font(20)); 
+            gc.fillText(nd.getValue(), p3.getKey(), p3.getValue());
         }
     }
 
@@ -167,7 +172,8 @@ public class stage extends LinkedListVisualizationController
         for (DoublyNode nd : node) {
             Pair<Double, Double> p1 = nd.getNodeValTopLeftCorner();
             Pair<Double, Double> p2 = nd.getNodeNxtTopLeftCorner();
-            Pair<Double, Double>p3 = nd.getNodePrevTopLeftCorner();
+            Pair<Double, Double> p3 = nd.getNodePrevTopLeftCorner();
+            Pair<Double, Double> p4 = nd.getValueDisplay();
             Double x1 = nd.getValWidth();
             Double x2 = nd.getNextWidth();
             Double x3 = nd.getPrevWidth();
@@ -189,6 +195,10 @@ public class stage extends LinkedListVisualizationController
             gc.setStroke(nd.BorderGradient);
             gc.setLineWidth(6.0);
             gc.strokeRect(p3.getKey(), p3.getValue(), x3, nd.getNodeHeight());
+
+            gc.setFill(Color.BLACK);
+            gc.setFont(new Font(20)); 
+            gc.fillText(nd.getValue(), p3.getKey(), p3.getValue());
         }
     }
 }

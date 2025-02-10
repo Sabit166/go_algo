@@ -43,6 +43,7 @@ public class LinkedListVisualizationController extends Application {
 
     private SinglyLinkedList singlyLinkedList;
     private ArrayList<stage> stages;
+    private boolean isDoubly = false;
 
     @FXML
     public void initialize() {
@@ -60,6 +61,7 @@ public class LinkedListVisualizationController extends Application {
     void toDouble() {
         singlyLinkedList = new DoublyLinkedList(canvas);
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        isDoubly = true;
     }
 
     @FXML
@@ -180,13 +182,14 @@ public class LinkedListVisualizationController extends Application {
                 Platform.runLater(() -> {
                     // Clear the canvas before drawing the new stage
                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    // Draw the current stage
-                    stages.get(index).draw(stages.get(index));
+                    if (isDoubly)
+                        stages.get(index).draw(stages.get(index), true);
+                    else
+                        stages.get(index).draw(stages.get(index));
                 });
             });
             sequentialTransition.getChildren().add(pause);
         }
-
         sequentialTransition.play();
     }
 
