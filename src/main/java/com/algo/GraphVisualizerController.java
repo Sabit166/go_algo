@@ -215,6 +215,7 @@ public class GraphVisualizerController {
                 label.setStyle("-fx-background-color: lightgray; -fx-padding: 5px;");
             }
             queueContainer.getChildren().add(label);
+            System.out.println("Node: " + node);
         }
         for (int node : visited) {
             Label label = new Label(String.valueOf(node));
