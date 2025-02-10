@@ -8,14 +8,14 @@ import javafx.scene.paint.Stop;
 import javafx.scene.canvas.Canvas;
 
 public class DoublyNode extends SinglyNode {
-    private double prevWidth;
+    protected double prevWidth;
     private double NodePrevTopLeftCornerX;
     private double NodePrevTopLeftCornerY;
     private double PrevPointOutX;
     private double PrevPointOutY;
     private double PrevPointInX;
     private double PrevPointInY;
-    private LinearGradient PrevGradient;
+    protected LinearGradient PrevGradient;
 
     public DoublyNode() {
         super();
@@ -79,36 +79,12 @@ public class DoublyNode extends SinglyNode {
         // System.out.println("Shift: " + shift);
     }
 
-    public Pair<Double, Double> getNodeDimensions() {
-        return new Pair<>(nodeWidth, nodeHeight);
+    public Pair<Double, Double> getNodePrevTopLeftCorner() {
+        return new Pair<>(NodePrevTopLeftCornerX, NodePrevTopLeftCornerY);
     }
 
-    public double getNodeWidth() {
-        return nodeWidth;
-    }
-
-    public double getNodeHeight() {
-        return nodeHeight;
-    }
-
-    public double getValWidth() {
-        return valWidth;
-    }
-
-    public double getNextWidth() {
-        return nextWidth;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public Pair<Double, Double> getNextPointOut() {
-        return new Pair<>(NextPointOutX, NextPointOutY);
-    }
-
-    public Pair<Double, Double> getNextPointIn() {
-        return new Pair<>(NextPointInX, NextPointInY);
+    public Double getPrevWidth() {
+        return prevWidth;
     }
 
     public Pair<Double, Double> getPrevPointOut() {
@@ -117,14 +93,6 @@ public class DoublyNode extends SinglyNode {
 
     public Pair<Double, Double> getPrevPointIn() {
         return new Pair<>(PrevPointInX, PrevPointInY);
-    }
-
-    public LinearGradient getValGradient() {
-        return ValGradient;
-    }
-
-    public LinearGradient getNextGradient() {
-        return NextGradient;
     }
 
     public LinearGradient getPrevGradient() {

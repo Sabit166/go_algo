@@ -25,7 +25,7 @@ public class SinglyNode extends LinkedListVisualizationController {
     protected double pointerLength;
     protected LinearGradient ValGradient;
     protected LinearGradient NextGradient;
-    protected LinearGradient PointerGradient;
+    protected LinearGradient BorderGradient;
     protected Color NextCol;
 
     public SinglyNode() {
@@ -125,8 +125,8 @@ public class SinglyNode extends LinkedListVisualizationController {
         return NextGradient;
     }
 
-    public LinearGradient getPointerGradient() {
-        return PointerGradient;
+    public LinearGradient getBorderGradient() {
+        return BorderGradient;
     }
 
     void makeHead()
