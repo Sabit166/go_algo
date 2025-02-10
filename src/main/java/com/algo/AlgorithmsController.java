@@ -39,6 +39,7 @@ public class AlgorithmsController {
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/" + fxml + ".fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();

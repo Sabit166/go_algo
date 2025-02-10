@@ -163,8 +163,9 @@ public class SelectionSortController extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("selection_sort"), 640, 480);
+        scene = new Scene(loadFXML("selection_sort"));
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Selection Sort");
         stage.show();
     }
