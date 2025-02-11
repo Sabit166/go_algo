@@ -1,8 +1,22 @@
 package com.algo;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -13,15 +27,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.util.Duration;
-import javafx.event.ActionEvent;
-import java.io.IOException;
-import javafx.scene.Parent;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-
-import java.util.*;
+import javafx.util.Duration;
 
 public class GraphVisualizerController {
 
@@ -112,7 +119,7 @@ public class GraphVisualizerController {
             double x = centerX + 200 * Math.cos(angle);
             double y = centerY + 100 * Math.sin(angle);
 
-            Circle circle = new Circle(NODE_RADIUS, Color.SKYBLUE);
+            Circle circle = new Circle(NODE_RADIUS, Color.DARKVIOLET);
             Label label = new Label(String.valueOf(i));
             label.setTextFill(Color.BLACK);
             StackPane stackPane = new StackPane();
