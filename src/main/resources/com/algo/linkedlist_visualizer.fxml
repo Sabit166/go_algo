@@ -55,7 +55,7 @@
          <font>
             <Font size="24.0" />
          </font></Button>
-      <TextField fx:id="InsertAtValue" layoutX="430.0" layoutY="294.0" onAction="#handleInsertAt" prefHeight="53.0" prefWidth="206.0" promptText="Enter Insert Value">
+      <TextField fx:id="insertAtValue" layoutX="430.0" layoutY="294.0" onAction="#handleInsertAt" prefHeight="53.0" prefWidth="206.0" promptText="Enter Insert Value">
          <font>
             <Font size="24.0" />
          </font></TextField>
