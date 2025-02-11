@@ -25,7 +25,7 @@ import java.util.*;
 
 public class GraphVisualizerController {
 
-    private static final int NODE_RADIUS = 20;
+    private static final int NODE_RADIUS = 50;
     private static final int GAP_SIZE = 50;
     private Map<Integer, StackPane> nodes;
     private List<Line> edges;
@@ -103,14 +103,14 @@ public class GraphVisualizerController {
     }
 
     private void initializeNodes(int numNodes, double width, double height) {
-        double centerX = width / 2;
-        double centerY = height / 2;
+        double centerX = width / 2 +100;
+        double centerY = height / 2 +50;
         double angleStep = 360.0 / numNodes;
 
         for (int i = 0; i < numNodes; i++) {
             double angle = Math.toRadians(i * angleStep);
             double x = centerX + 200 * Math.cos(angle);
-            double y = centerY + 200 * Math.sin(angle);
+            double y = centerY + 100 * Math.sin(angle);
 
             Circle circle = new Circle(NODE_RADIUS, Color.SKYBLUE);
             Label label = new Label(String.valueOf(i));

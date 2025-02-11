@@ -25,8 +25,8 @@ import java.util.List;
 
 public class BinarySearchController {
 
-    private static final int BAR_SIZE = 30; // Use square blocks
-    private static final int GAP_SIZE = 35; // Gap for arrows
+    private static final int BAR_SIZE = 100; // Use square blocks
+    private static final int GAP_SIZE = 40; // Gap for arrows
     private StackPane[] bars;
 
     @FXML
@@ -56,12 +56,12 @@ public class BinarySearchController {
         String numElementsText = numElementsField.getText();
         String input = inputField.getText();
         if (numElementsText.isEmpty() || input.isEmpty()) {
-            showAlert("Input Error", "Please provide the number of elements and a comma-separated list of numbers.");
+            showAlert("Input Error", "Please provide the number of elements and a space-separated list of numbers.");
             return;
         }
         try {
             int numElements = Integer.parseInt(numElementsText.trim());
-            String[] inputArray = input.split(",");
+            String[] inputArray = input.split("\\s+");
             if (inputArray.length != numElements) {
                 showAlert("Input Error", "The number of elements does not match the provided list.");
                 return;
@@ -69,7 +69,7 @@ public class BinarySearchController {
             bars = new StackPane[numElements];
             for (int i = 0; i < numElements; i++) {
                 double size = BAR_SIZE;
-                Rectangle rectangle = new Rectangle(size, size, Color.SKYBLUE);
+                Rectangle rectangle = new Rectangle(size, size, Color.DARKVIOLET);
                 Label label = new Label(inputArray[i].trim());
                 label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
@@ -136,8 +136,8 @@ public class BinarySearchController {
     private void highlightBars(int left, int right, int mid) {
         resetBarColors();
         addArrow(left, Color.BLUE, "up");  // Start element: blue arrow above
-        addArrow(right, Color.RED, "down"); // End element: red arrow below
-        addArrow(mid, Color.GREEN, "mid");  // Middle element: green arrow on the block
+        addArrow(right, Color.RED, "up"); // End element: red arrow below
+        addArrow(mid, Color.GREEN, "down");  // Middle element: green arrow on the block
     }
 
     private void addArrow(int index, Color color, String position) {
@@ -171,7 +171,7 @@ public class BinarySearchController {
 
     private void resetBarColors() {
         for (StackPane bar : bars) {
-            ((Rectangle) bar.getChildren().get(0)).setFill(Color.SKYBLUE);
+            ((Rectangle) bar.getChildren().get(0)).setFill(Color.DARKVIOLET);
             bar.getChildren().removeIf(node -> node instanceof Polygon || (node instanceof Label && "Found".equals(((Label) node).getText()))); 
         }
     }
