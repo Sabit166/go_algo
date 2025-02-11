@@ -33,8 +33,8 @@ public class SinglyNode extends LinkedListVisualizationController {
     public SinglyNode() {
     }
 
-    public SinglyNode(Canvas canvas, int value) {
-        this.value = String.valueOf(value);
+    public SinglyNode(Canvas canvas, String value) {
+        this.value = value;
         nodeWidth = canvas.getWidth() / 5;
         nodeHeight = canvas.getHeight()/2;
         shift = canvas.getWidth() / 4;

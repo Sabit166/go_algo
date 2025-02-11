@@ -39,6 +39,9 @@ public class LinkedListVisualizationController extends Application {
     private TextField popBackValue;
 
     @FXML
+    private TextField popFrontValue;
+
+    @FXML
     private TextField deleteAtIndex;
 
     private SinglyLinkedList singlyLinkedList;
@@ -55,6 +58,7 @@ public class LinkedListVisualizationController extends Application {
     void toSingle() {
         singlyLinkedList = new SinglyLinkedList(canvas);
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        isDoubly = false;
     }
 
     @FXML
@@ -76,8 +80,7 @@ public class LinkedListVisualizationController extends Application {
 
         try {
             int index = Integer.parseInt(indexText);
-            int value = Integer.parseInt(valueText);
-            stages = singlyLinkedList.insertAt(index, value);
+            stages = singlyLinkedList.insertAt(index, valueText);
             display(stages);
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter valid numbers for index and value.");
@@ -87,6 +90,7 @@ public class LinkedListVisualizationController extends Application {
     @FXML
     void handlePushBack() {
         String valueText = pushBackValue.getText();
+        System.out.println(valueText);
 
         if (valueText.isEmpty()) {
             showAlert("Error", "Please enter a value.");
@@ -94,9 +98,10 @@ public class LinkedListVisualizationController extends Application {
         }
 
         try {
-            int value = Integer.parseInt(valueText);
-            stages = singlyLinkedList.pushBack(value);
+            stages = singlyLinkedList.pushBack(valueText);
             display(stages);
+            System.out.println("pushBack");
+            pushBackValue.clear();
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter a valid number for value.");
         }
@@ -112,8 +117,7 @@ public class LinkedListVisualizationController extends Application {
         }
 
         try {
-            int value = Integer.parseInt(valueText);
-            stages = singlyLinkedList.pushFront(value);
+            stages = singlyLinkedList.pushFront(valueText);
             display(stages);
             pushFrontValue.clear();
         } catch (NumberFormatException e) {
@@ -169,28 +173,53 @@ public class LinkedListVisualizationController extends Application {
     // sequentialTransition.play();
     // }
 
-    void display(ArrayList<stage> stages) {
-        SequentialTransition sequentialTransition = new SequentialTransition();
+    // void display(ArrayList<stage> stages) {
+    // SequentialTransition sequentialTransition = new SequentialTransition();
 
+    // for (int i = 0; i < stages.size(); i++) {
+    // int index = i; // Needed for lambda scope
+    // PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
+    // pause.setOnFinished(e -> {
+    // System.out.println("Drawing stage " + index + " at time " + (index + 1) + "
+    // seconds");
+
+    // // Use Platform.runLater to ensure UI updates are rendered incrementally
+    // Platform.runLater(() -> {
+    // // Clear the canvas before drawing the new stage
+    // gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    // if (isDoubly)
+    // stages.get(index).draw(stages.get(index), true);
+    // else
+    // stages.get(index).draw(stages.get(index));
+    // });
+    // });
+    // sequentialTransition.getChildren().add(pause);
+    // }
+    // sequentialTransition.play();
+    // }
+
+    // private void showAlert(String title, String message) {
+    // Alert alert = new Alert(Alert.AlertType.ERROR);
+    // alert.setTitle(title);
+    // alert.setHeaderText(null);
+    // alert.setContentText(message);
+    // alert.showAndWait();
+    // }
+
+    void display(ArrayList<stage> stages) {
         for (int i = 0; i < stages.size(); i++) {
             int index = i; // Needed for lambda scope
             PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
             pause.setOnFinished(e -> {
                 System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
-
-                // Use Platform.runLater to ensure UI updates are rendered incrementally
-                Platform.runLater(() -> {
-                    // Clear the canvas before drawing the new stage
-                    gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    if (isDoubly)
-                        stages.get(index).draw(stages.get(index), true);
-                    else
-                        stages.get(index).draw(stages.get(index));
-                });
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                if (isDoubly)
+                    stages.get(index).draw(stages.get(index), true);
+                else
+                    stages.get(index).draw(stages.get(index));
             });
-            sequentialTransition.getChildren().add(pause);
+            pause.play();
         }
-        sequentialTransition.play();
     }
 
     private void showAlert(String title, String message) {
