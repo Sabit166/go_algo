@@ -113,8 +113,9 @@ public class VisualizationSetupController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Data Structures");
+        stage.centerOnScreen();
         stage.show();
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
     }
 
     @FXML
