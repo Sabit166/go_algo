@@ -3,7 +3,6 @@ package com.algo.segmenttree;
 import java.util.Scanner;
 import javafx.util.Pair;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,28 +21,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-class Segment_Tree_Nodes {
-    int value;
-    double x, y;
-    int start, end;
-
-    Segment_Tree_Nodes() {
-        value = -1;
-        x = -1;
-        y = -1;
-        start = -1;
-        end = -1;
-    }
-
-    Segment_Tree_Nodes(int value, double x, double y, int start, int end) {
-        this.value = value;
-        this.x = x;
-        this.y = y;
-        this.start = start;
-        this.end = end;
-    }
-}
-
 public class SegmentTreeVisualizationController extends Application {
 
     @FXML
@@ -60,7 +37,7 @@ public class SegmentTreeVisualizationController extends Application {
     private TextField UpdateInput;
 
     int[] numbers;
-    private final Segment_Tree_Nodes[] segment_tree = new Segment_Tree_Nodes[4 * 16]; // Initialize the segment tree
+    private final SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
 
     Scanner sc = new Scanner(System.in);
 
@@ -85,14 +62,14 @@ public class SegmentTreeVisualizationController extends Application {
         gc = canvas.getGraphicsContext2D();
         // Initialize the segment_tree array with Segment_Tree_Nodes instances
         for (int i = 0; i < segment_tree.length; i++) {
-            segment_tree[i] = new Segment_Tree_Nodes();
+            segment_tree[i] = new SegmentTreeNodes();
         }
     }
 
     void reset() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int i = 0; i < segment_tree.length; i++) {
-            segment_tree[i] = new Segment_Tree_Nodes();
+            segment_tree[i] = new SegmentTreeNodes();
         }
     }
 
