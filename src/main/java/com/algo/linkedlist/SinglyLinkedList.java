@@ -67,18 +67,18 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
 
         stages = new ArrayList<>();
         for (int i = 0; i < nodes.size(); i++) {
-            if(i>1) nodes.get(i - 1).setNormalGradient();
+            //if(i>1) nodes.get(i - 1).setNormalGradient();
             nodes.get(0).makeHead();
-            nodes.get(i).makeTemp();
+            //nodes.get(i).makeTemp();
             //nodes.get(0).makeHead();
             stages.add(new stage(canvas, nodes, map));
             newNode.shiftRight();
         }
 
-        nodes.get(nodes.size() - 1).setNormalGradient();
         nodes.addLast(newNode);
         //nodes.get(0).makeHead();
         stages.add(new stage(canvas, nodes, map));
+        nodes.get(nodes.size() - 1).setNormalGradient();
 
         for (int i = 0; i < nodes.size() - 2; i++) {
             map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointIn());

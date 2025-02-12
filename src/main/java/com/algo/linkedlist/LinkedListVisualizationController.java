@@ -233,7 +233,7 @@ public class LinkedListVisualizationController extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
+        getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
