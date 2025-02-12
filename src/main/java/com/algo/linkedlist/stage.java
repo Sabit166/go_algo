@@ -36,10 +36,8 @@ public class stage extends LinkedListVisualizationController
         this.gc = canvas.getGraphicsContext2D();
     }
 
-    void draw(stage st)
+    void draw(Canvas canvas, LinkedList<SinglyNode> singlynodes, Map<Pair<Double, Double>, Pair<Double, Double>> mp)
     {
-        if(st == null)
-            return;
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // LinkedList<SinglyNode> node = st.nodes;
         // Map<Pair<Double, Double>, Pair<Double, Double>> mp = st.map;
@@ -62,8 +60,8 @@ public class stage extends LinkedListVisualizationController
         //     gc.strokeRect(p2.getKey(), p2.getValue(), x2, nd.getNodeHeight());
         // }
 
-        drawNodes(st.singlynodes);
-        drawPointers(st.map);
+        drawNodes(singlynodes);
+        drawPointers(map);
 
         // Double x1, y1, x2, y2;
         // for (Map.Entry<Pair<Double, Double>, Pair<Double, Double>> entry : mp.entrySet()) {

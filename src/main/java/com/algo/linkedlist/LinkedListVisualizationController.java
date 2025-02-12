@@ -1,7 +1,5 @@
 package com.algo.linkedlist;
 
-import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +12,6 @@ import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.stage.Stage;
-import javafx.application.Platform;
-import javafx.util.Duration;
 
 public class LinkedListVisualizationController extends Application {
 
@@ -81,7 +77,7 @@ public class LinkedListVisualizationController extends Application {
         try {
             int index = Integer.parseInt(indexText);
             stages = singlyLinkedList.insertAt(index, valueText);
-            display(stages);
+            //display(stages);
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter valid numbers for index and value.");
         }
@@ -99,7 +95,7 @@ public class LinkedListVisualizationController extends Application {
 
         try {
             stages = singlyLinkedList.pushBack(valueText);
-            display(stages);
+            //display(stages);
             System.out.println("pushBack");
             pushBackValue.clear();
         } catch (NumberFormatException e) {
@@ -117,8 +113,8 @@ public class LinkedListVisualizationController extends Application {
         }
 
         try {
-            stages = singlyLinkedList.pushFront(valueText);
-            display(stages);
+            singlyLinkedList.pushFront(valueText);
+            //display(stages);
             pushFrontValue.clear();
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter a valid number for value.");
@@ -128,13 +124,13 @@ public class LinkedListVisualizationController extends Application {
     @FXML
     void handlePopBack() {
         stages = singlyLinkedList.popBack();
-        display(stages);
+        //display(stages);
     }
 
     @FXML
     void handlePopFront() {
         stages = singlyLinkedList.popFront();
-        display(stages);
+        //display(stages);
     }
 
     @FXML
@@ -149,7 +145,7 @@ public class LinkedListVisualizationController extends Application {
         try {
             int index = Integer.parseInt(indexText);
             stages = singlyLinkedList.deleteAt(index);
-            display(stages);
+            //display(stages);
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter a valid number for index.");
         }
@@ -206,21 +202,21 @@ public class LinkedListVisualizationController extends Application {
     // alert.showAndWait();
     // }
 
-    void display(ArrayList<stage> stages) {
-        for (int i = 0; i < stages.size(); i++) {
-            int index = i; // Needed for lambda scope
-            PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
-            pause.setOnFinished(e -> {
-                System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
-                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                if (isDoubly)
-                    stages.get(index).draw(stages.get(index), true);
-                else
-                    stages.get(index).draw(stages.get(index));
-            });
-            pause.play();
-        }
-    }
+    // void display(ArrayList<stage> stages) {
+    //     for (int i = 0; i < stages.size(); i++) {
+    //         int index = i; // Needed for lambda scope
+    //         PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
+    //         pause.setOnFinished(e -> {
+    //             System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
+    //             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    //             if (isDoubly)
+    //                 stages.get(index).draw(stages.get(index), true);
+    //             else
+    //                 stages.get(index).draw(stages.get(index));
+    //         });
+    //         pause.play();
+    //     }
+    // }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
