@@ -1,4 +1,4 @@
-package com.algo;
+package com.algo.segmenttree;
 
 import java.util.Scanner;
 import javafx.util.Pair;
