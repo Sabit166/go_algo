@@ -1,6 +1,5 @@
 package com.algo.segmenttree;
 
-import java.util.Scanner;
 import javafx.util.Pair;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -36,10 +35,10 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private TextField UpdateInput;
 
+    SegmentTreeVisualizationHelper helper = new SegmentTreeVisualizationHelper();
     int[] numbers;
     private final SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
 
-    Scanner sc = new Scanner(System.in);
 
     @Override
     public void start(Stage stage) throws IOException {
