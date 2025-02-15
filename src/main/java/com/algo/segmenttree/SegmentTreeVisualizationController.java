@@ -23,8 +23,8 @@ import java.io.IOException;
 public class SegmentTreeVisualizationController extends Application {
 
     @FXML
-    private Canvas canvas;
-    private GraphicsContext gc;
+    protected Canvas canvas;
+    protected GraphicsContext gc;
 
     @FXML
     private TextField BuildInput;
@@ -35,9 +35,9 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private TextField UpdateInput;
 
-    SegmentTreeVisualizationHelper helper = new SegmentTreeVisualizationHelper();
-    int[] numbers;
-    private final SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
+    SegmentTreeVisualizationHelper helper;
+    protected int[] numbers;
+    protected final SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
 
 
     @Override
@@ -59,6 +59,7 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     public void initialize() {
         gc = canvas.getGraphicsContext2D();
+        helper = new SegmentTreeVisualizationHelper(canvas);
         // Initialize the segment_tree array with Segment_Tree_Nodes instances
         for (int i = 0; i < segment_tree.length; i++) {
             segment_tree[i] = new SegmentTreeNodes();
@@ -70,6 +71,7 @@ public class SegmentTreeVisualizationController extends Application {
         for (int i = 0; i < segment_tree.length; i++) {
             segment_tree[i] = new SegmentTreeNodes();
         }
+        helper = new SegmentTreeVisualizationHelper(canvas);
     }
 
     @FXML
