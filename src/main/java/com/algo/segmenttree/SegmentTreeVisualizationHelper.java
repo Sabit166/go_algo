@@ -13,9 +13,16 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         
     }
 
-    public SegmentTreeVisualizationHelper(Canvas canvas) {
-        canvas = this.canvas;
+    public SegmentTreeVisualizationHelper(Canvas canvas, int[] numbers) {
+        this.canvas = canvas;
+        this.gc = canvas.getGraphicsContext2D();
+        // Initialize the segment_tree array with Segment_Tree_Nodes instances
+        for (int i = 0; i < segment_tree.length; i++) {
+            segment_tree[i] = new SegmentTreeNodes();
+        }
+        this.numbers = numbers;
     }
+
 
     int query_segment_tree(int node, int start, int end, int l, int r) {
         if (r < start || end < l) {
@@ -130,20 +137,6 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         }
         build_helper(node, Color.GRAY); // Draw the circle
     }
-
-    // private void build_circle() {
-    // for (int i = numbers.length * 2; i > 0; i--) {
-    // if (segment_tree[i].value == -1)
-    // continue;
-    // final int index = i; // Create a final copy of i
-    // PauseTransition pause = new PauseTransition(Duration.seconds(numbers.length *
-    // 2 - i)); // Stagger pauses
-    // pause.setOnFinished(e -> {
-    // build_helper(index, Color.GRAY); // Draw the circle
-    // });
-    // pause.play(); // Start the pause transition
-    // }
-    // }
 
     void build_helper(int node, Color color) {
 
