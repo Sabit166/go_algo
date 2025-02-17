@@ -7,12 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -75,18 +70,18 @@ public class SegmentTreeVisualizationController extends Application {
 
         String input = BuildInput.getText();
         if (input.isEmpty()) {
-            alert("Please enter some digits.");
+            helper.alert("Please enter some digits.");
             return;
         }
         if (!input.matches("[0-9 ]+")) {
-            alert("Please enter only digits separated by spaces.");
+            helper.alert("Please enter only digits separated by spaces.");
             return;
         }
 
         String[] inputArray = input.split("\\s+");
 
         if (inputArray.length > 16) {
-            alert("Please enter at most " + 16 + " digits.");
+            helper.alert("Please enter at most " + 16 + " digits.");
             return;
         }
         numbers = new int[inputArray.length];
@@ -109,7 +104,7 @@ public class SegmentTreeVisualizationController extends Application {
     private void HandleQuerry() {
         String input = QuerryInput.getText();
         if (!input.matches("[0-9 ]+")) { // Match two numbers separated by one or more spaces, allowing leading/trailing
-            alert("Please enter only digits.");
+            helper.alert("Please enter only digits.");
             return;
         }
 
@@ -118,66 +113,48 @@ public class SegmentTreeVisualizationController extends Application {
             System.out.println(inputArray[i]);
         }
         if (inputArray.length != 2) {
-            alert("Please enter only two digits.");
+            helper.alert("Please enter only two digits.");
             return;
         }
         int l = Integer.parseInt(inputArray[0]);
         int r = Integer.parseInt(inputArray[1]);
 
         if (l < 0 || l >= numbers.length || r < 0 || r >= numbers.length) {
-            alert("Please enter valid indices.");
+            helper.alert("Please enter valid indices.");
             return;
         }
 
         helper.instant_build_circle(1, 0, numbers.length - 1);
         int result = helper.query_segment_tree(1, 0, numbers.length - 1, l, r);
-        prompt("The sum of the range [" + l + ", " + r + "] is: " + result);
+        helper.prompt("The sum of the range [" + l + ", " + r + "] is: " + result);
     }
 
     @FXML
     private void HandleUpdate() {
         String input = UpdateInput.getText(); // Trim leading/trailing spaces
         if (!input.matches("[0-9 ]+")) { // Match two numbers separated by one or more spaces
-            alert("Please enter an index and a value separated by a space.");
+            helper.alert("Please enter an index and a value separated by a space.");
             return;
         }
 
         String[] inputArray = input.split("\\s+"); // Split on one or more spaces
         if (inputArray.length != 2) {
-            alert("Please enter only two digits.");
+            helper.alert("Please enter only two digits.");
             return;
         }
         int index = Integer.parseInt(inputArray[0]);
         int value = Integer.parseInt(inputArray[1]);
 
         if (index < 0 || index >= numbers.length) {
-            alert("Please enter a valid index.");
+            helper.alert("Please enter a valid index.");
             return;
         }
 
         helper.instant_build_circle(1, 0, numbers.length - 1);
         helper.update_segment_tree(1, 0, numbers.length - 1, index, value);
-        prompt("The value at index [" + index + "] has been updated to: " + value);
+        helper.prompt("The value at index [" + index + "] has been updated to: " + value);
     }
 
-    void alert(String message) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Input Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    void prompt(String message) {
-        gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
-        gc.setStroke(Color.DARKGRAY);
-        gc.setLineWidth(2);
-        gc.strokeRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
-        gc.setFill(Color.BLACK);
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        gc.fillText(message, 10, canvas.getHeight() - 15);
-    }
 
     public static void main(String[] args) {
         launch(args);

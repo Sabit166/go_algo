@@ -2,8 +2,11 @@ package com.algo.segmenttree;
 
 import javafx.animation.PauseTransition;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
@@ -136,6 +139,25 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
             build_circle(2 * node + 1, mid + 1, end);
         }
         build_helper(node, Color.GRAY); // Draw the circle
+    }
+
+    void alert(String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Input Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    void prompt(String message) {
+        gc.setFill(Color.LIGHTGRAY);
+        gc.fillRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
+        gc.setStroke(Color.DARKGRAY);
+        gc.setLineWidth(2);
+        gc.strokeRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
+        gc.setFill(Color.BLACK);
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        gc.fillText(message, 10, canvas.getHeight() - 15);
     }
 
     void build_helper(int node, Color color) {

@@ -1,0 +1,11 @@
+Function Update(node, start, end, idx, value):
+    if start == end:
+        array[idx] = value
+        st[node] = value
+    else:
+        mid = (start + end) / 2
+        if start <= idx and idx <= mid:
+            Update(2 * node, start, mid, idx, value)
+        else:
+            Update(2 * node + 1, mid + 1, end, idx, value)
+        st[node] = st[2 * node] + st[2 * node + 1]
