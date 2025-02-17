@@ -16,9 +16,10 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         
     }
 
-    public SegmentTreeVisualizationHelper(Canvas canvas, int[] numbers) {
+    public SegmentTreeVisualizationHelper(Canvas canvas, int[] numbers, SegmentTreeWriteandDraw draw) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
+        this.draw = draw;
         // Initialize the segment_tree array with Segment_Tree_Nodes instances
         for (int i = 0; i < segment_tree.length; i++) {
             segment_tree[i] = new SegmentTreeNodes();
@@ -35,7 +36,7 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
 
         if (l <= start && end <= r) {
             pause.setOnFinished(e -> {
-                build_helper(node, Color.WHITESMOKE);
+                draw.build_helper(segment_tree[node], Color.WHITESMOKE);
             });
             pause.play();
             return segment_tree[node].value; // Current segment is completely within range
@@ -44,7 +45,7 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         int left_sum = query_segment_tree(2 * node, start, mid, l, r);
         int right_sum = query_segment_tree(2 * node + 1, mid + 1, end, l, r);
         pause.setOnFinished(e -> {
-            build_helper(node, Color.WHITESMOKE);
+            draw.build_helper(segment_tree[node], Color.WHITESMOKE);
         });
         pause.play();
         // build_helper(node, Color.WHITESMOKE);
@@ -66,7 +67,7 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         }
         PauseTransition pause = new PauseTransition(Duration.seconds(node));
         pause.setOnFinished(e -> {
-            build_helper(node, Color.WHEAT);
+            draw.build_helper(segment_tree[node], Color.WHEAT);
         });
         pause.play();
     }
@@ -110,8 +111,8 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         double x = segment_tree[node].x;
         double y = segment_tree[node].y;
 
-        build_helper(x, y, left.getKey(), left.getValue());
-        build_helper(x, y, right.getKey(), right.getValue());
+        draw.build_helper(x, y, left.getKey(), left.getValue());
+        draw.build_helper(x, y, right.getKey(), right.getValue());
 
         return new Pair<>(x, y);
     }
@@ -126,7 +127,7 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
             build_circle(2 * node + 1, mid + 1, end);
         }
         pause.setOnFinished(e -> {
-            build_helper(node, Color.GRAY); // Draw the circle
+            draw.build_helper(segment_tree[node], Color.GRAY); // Draw the circle
         });
         pause.play();
     }
@@ -138,7 +139,7 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
             build_circle(2 * node, start, mid);
             build_circle(2 * node + 1, mid + 1, end);
         }
-        build_helper(node, Color.GRAY); // Draw the circle
+        draw.build_helper(segment_tree[node], Color.GRAY); // Draw the circle
     }
 
     void alert(String message) {
@@ -158,36 +159,5 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         gc.setFill(Color.BLACK);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         gc.fillText(message, 10, canvas.getHeight() - 15);
-    }
-
-    void build_helper(int node, Color color) {
-
-        double x = segment_tree[node].x;
-        double y = segment_tree[node].y;
-        int value = segment_tree[node].value;
-        int l = segment_tree[node].start;
-        int r = segment_tree[node].end;
-
-        gc.setFill(color);
-        gc.fillOval(x - 15, y - 15, 50, 50); // Adjust circle position and increase radius
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(2);
-        gc.strokeOval(x - 15, y - 15, 50, 50); // Add border to the circle
-        gc.setFill(Color.rgb(0, 0, 0, 0.3)); // Set shadow color
-        gc.fillOval(x - 10, y - 10, 50, 50); // Add shadow to the circle
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font(20)); // Set font size to 20
-        gc.fillText(String.valueOf(value), x + 3, y + 6); // Draw the value
-        gc.setFill(Color.BLACK);
-        gc.fillText("[" + l + "," + r + "]", x - 10, y + 50); // Draw the range
-
-    }
-
-    void build_helper(double x1, double y1, double x2, double y2) {
-
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(0.5);
-        gc.strokeLine(x1, y1, x2, y2);
-
     }
 }

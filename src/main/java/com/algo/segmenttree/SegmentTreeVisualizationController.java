@@ -27,8 +27,9 @@ public class SegmentTreeVisualizationController extends Application {
     private TextField UpdateInput;
 
     SegmentTreeVisualizationHelper helper;
+    SegmentTreeWriteandDraw draw;
     protected int[] numbers;
-    protected final SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
+    protected SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
 
 
     @Override
@@ -65,7 +66,6 @@ public class SegmentTreeVisualizationController extends Application {
 
     @FXML
     private void HandleBuild() {
-        // Clear the canvas
         reset();
 
         String input = BuildInput.getText();
@@ -91,7 +91,9 @@ public class SegmentTreeVisualizationController extends Application {
         for (int i = 0; i < inputArray.length; i++) {
             numbers[i] = Integer.parseInt(inputArray[i]);
         }
-        helper = new SegmentTreeVisualizationHelper(canvas, numbers);
+
+        draw = new SegmentTreeWriteandDraw(canvas);
+        helper = new SegmentTreeVisualizationHelper(canvas, numbers, draw);
 
         double canvas_width = canvas.getWidth();
         helper.build_segment_tree(1, 0, numbers.length - 1, 0, canvas_width);

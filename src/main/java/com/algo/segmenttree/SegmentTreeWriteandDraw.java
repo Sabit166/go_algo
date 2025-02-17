@@ -13,29 +13,29 @@ public class SegmentTreeWriteandDraw extends SegmentTreeVisualizationHelper {
     List<String> queryLines;
     List<String> updateLines;
 
-    public SegmentTreeWriteandDraw(Canvas canvas, int[] numbers) {
+    public SegmentTreeWriteandDraw(Canvas canvas) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
-        try {
-            buildLines = Files.readAllLines(Paths.get("BuildOperation"));
-            System.out.println("BuildOperation Lines:");
-            for (String line : buildLines) {
-                System.out.println(line);
-            }
-            queryLines = Files.readAllLines(Paths.get("QueryOperation"));
-            updateLines = Files.readAllLines(Paths.get("UpdateOperation"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     buildLines = Files.readAllLines(Paths.get("BuildOperation"));
+        //     System.out.println("BuildOperation Lines:");
+        //     for (String line : buildLines) {
+        //         System.out.println(line);
+        //     }
+        //     queryLines = Files.readAllLines(Paths.get("QueryOperation"));
+        //     updateLines = Files.readAllLines(Paths.get("UpdateOperation"));
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
     }
 
-    void build_helper(int node, Color color) {
+    void build_helper(SegmentTreeNodes node, Color color) {
 
-        double x = segment_tree[node].x;
-        double y = segment_tree[node].y;
-        int value = segment_tree[node].value;
-        int l = segment_tree[node].start;
-        int r = segment_tree[node].end;
+        double x = node.x;
+        double y = node.y;
+        int value = node.value;
+        int l = node.start;
+        int r = node.end;
 
         gc.setFill(color);
         gc.fillOval(x - 15, y - 15, 50, 50); // Adjust circle position and increase radius
