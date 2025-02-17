@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import java.io.IOException;
@@ -135,26 +136,40 @@ public class BinarySearchController {
 
     private void highlightBars(int left, int right, int mid) {
         resetBarColors();
-        addArrow(left, Color.BLUE, "up");  // Start element: blue arrow above
-        addArrow(right, Color.RED, "up"); // End element: red arrow below
-        addArrow(mid, Color.GREEN, "down");  // Middle element: green arrow on the block
+        boolean isOverlap = (left == right);
+        addArrow(left, Color.BLUE, "up", isOverlap);  // Start element: blue arrow above
+        addArrow(right, Color.RED, "up1", isOverlap); // End element: red arrow above
+        addArrow(mid, Color.GREEN, "down", false);  // Middle element: green arrow on the block
     }
 
-    private void addArrow(int index, Color color, String position) {
+    private void addArrow(int index, Color color, String position, boolean isOverlap) {
         Polygon arrow = new Polygon();
         arrow.getPoints().addAll(new Double[]{
             0.0, 0.0,
             10.0, 20.0,
             -10.0, 20.0 });
         arrow.setFill(color);
-
+    
         if (position.equals("up")) {
             arrow.setRotate(180);
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(-GAP_SIZE); // Gap above the bar
+            if (isOverlap) {
+                arrow.setTranslateX(-20); // Shift left to avoid overlap
+            }
+        }else if (position.equals("up1")) {
+            arrow.setRotate(180);
+            bars[index].getChildren().add(arrow);
+            arrow.setTranslateY(-GAP_SIZE); // Gap above the bar
+            if (isOverlap) {
+                arrow.setTranslateX(0); // Shift left to avoid overlap
+            }
         } else if (position.equals("down")) {
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(GAP_SIZE); // Gap below the bar
+            if (isOverlap) {
+                arrow.setTranslateX(10); // Shift right to avoid overlap
+            }
         } else if (position.equals("mid")) {
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(0); // Centered directly on the bar
@@ -165,6 +180,7 @@ public class BinarySearchController {
         resetBarColors();
         Label foundLabel = new Label("Found");
         foundLabel.setTextFill(Color.GREEN);
+        foundLabel.setStyle("-fx-font-size: 100px;"); // Set the font size using CSS
         bars[index].getChildren().add(foundLabel); // Highlight the found element with "Found"
         this.foundLabel.setText("It has been found at index = " + index); // Update the found label
     }
