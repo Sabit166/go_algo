@@ -12,21 +12,30 @@ public class SegmentTreeWriteandDraw extends SegmentTreeVisualizationHelper {
     List<String> buildLines;
     List<String> queryLines;
     List<String> updateLines;
+    double writingHeight;
+    double writingBreadth;
+    double linesDistance;
 
     public SegmentTreeWriteandDraw(Canvas canvas) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
-        // try {
-        //     buildLines = Files.readAllLines(Paths.get("BuildOperation"));
-        //     System.out.println("BuildOperation Lines:");
-        //     for (String line : buildLines) {
-        //         System.out.println(line);
-        //     }
-        //     queryLines = Files.readAllLines(Paths.get("QueryOperation"));
-        //     updateLines = Files.readAllLines(Paths.get("UpdateOperation"));
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+        try {
+            buildLines = Files.readAllLines(Paths.get("src/main/java/com/algo/segmenttree/BuildOperation.txt"));
+            // System.out.println("BuildOperation Lines:");
+            // for (String line : buildLines) {
+            //     System.out.println(line);
+            // }
+            queryLines = Files.readAllLines(Paths.get("src/main/java/com/algo/segmenttree/QueryOperation.txt"));
+            // for (String line : queryLines) {
+            //     System.out.println(line);
+            // }
+            updateLines = Files.readAllLines(Paths.get("src/main/java/com/algo/segmenttree/UpdateOperation.txt"));
+            // for (String line : updateLines) {
+            //     System.out.println(line);
+            // }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
     }
 
     void build_helper(SegmentTreeNodes node, Color color) {
@@ -60,18 +69,24 @@ public class SegmentTreeWriteandDraw extends SegmentTreeVisualizationHelper {
 
     }
 
-    void writeBuild()
+    void write(String key)
     {
-
-    }
-
-    void writeQuery()
-    {
-
-    }
-
-    void writeUpdate()
-    {
-
+        writingHeight = 25;
+        writingBreadth = canvas.getWidth() * 0.6 - 10;
+        linesDistance = 40;
+        gc.clearRect(writingBreadth, 0, canvas.getWidth(), canvas.getHeight());
+        List<String> lines = null;
+        if(key == "build") lines = buildLines;
+        if(key == "query") lines = queryLines;
+        if(key == "update") lines = updateLines;
+        
+        for(String line: lines)
+            {
+                gc.setFill(Color.BLACK);
+                gc.setFont(new Font(30));
+                gc.fillText(line, writingBreadth, writingHeight);
+                System.out.println(line);
+                writingHeight += linesDistance;
+            }
     }
 }

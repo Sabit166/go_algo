@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="900.0" stylesheets="@images%20and%20stylesheets/style_segment_tree.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.segmenttree.SegmentTreeVisualizationController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="900.0" stylesheets="@images%20and%20stylesheets/style_segment_tree.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.segmenttree.SegmentTreeVisualizationController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="SEGMENT TREE VISUALIZER" textAlignment="CENTER" wrappingWidth="786.4797210693359">
          <font>
@@ -35,6 +35,6 @@
       </Text>
       <TextField fx:id="UpdateInput" onAction="#HandleUpdate" prefHeight="36.0" prefWidth="786.0" promptText="Please enter required index and updated number" styleClass="textField" />
       <Button mnemonicParsing="false" onAction="#HandleUpdate" styleClass="myButton" text="Update" />
-      <Canvas fx:id="canvas" height="412.0" styleClass="container" width="897.0" />
+      <Canvas fx:id="canvas" height="534.0" styleClass="container" width="1531.0" />
    </children>
 </VBox>

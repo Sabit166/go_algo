@@ -92,9 +92,9 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         double tree_height = Math.ceil(Math.log(numbers.length) / Math.log(2));
         double width_point = (canvas_start_point + canvas_width) / 2;
         int level = (int) (Math.log(node) / Math.log(2)); // Determine the level of the node
-        double y = level * (canvas.getHeight() / tree_height) * 0.75 + 50; // Adjust y position
+        double y = level * (canvas.getHeight() / tree_height) * 0.75 + 25; // Adjust y position
         segment_tree[node].x = width_point - 15;
-        segment_tree[node].y = y - 35;
+        segment_tree[node].y = y;
     }
 
     Pair<Double, Double> build_lines(int node, int start, int end) {
@@ -150,14 +150,16 @@ public class SegmentTreeVisualizationHelper extends SegmentTreeVisualizationCont
         alert.showAndWait();
     }
 
-    void prompt(String message) {
+    void prompt(String message, String timeComplexity) {
+        double height = canvas.getHeight()  - 40;
         gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
+        gc.fillRect(0, height , canvas.getWidth(), 40);
         gc.setStroke(Color.DARKGRAY);
         gc.setLineWidth(2);
-        gc.strokeRect(0, canvas.getHeight()  - 40, canvas.getWidth(), 40);
+        gc.strokeRect(0, height, canvas.getWidth(), 40);
         gc.setFill(Color.BLACK);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        gc.fillText(message, 10, canvas.getHeight() - 15);
+        gc.fillText(message, 50, height + 25);
+        gc.fillText(timeComplexity, canvas.getWidth() - 400, height + 25);
     }
 }

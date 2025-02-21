@@ -28,8 +28,9 @@ public class SegmentTreeVisualizationController extends Application {
 
     SegmentTreeVisualizationHelper helper;
     SegmentTreeWriteandDraw draw;
+    private int maxSize = 8;
     protected int[] numbers;
-    protected SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * 16]; // Initialize the segment tree
+    protected SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * maxSize]; // Initialize the segment tree
 
 
     @Override
@@ -80,8 +81,8 @@ public class SegmentTreeVisualizationController extends Application {
 
         String[] inputArray = input.split("\\s+");
 
-        if (inputArray.length > 16) {
-            helper.alert("Please enter at most " + 16 + " digits.");
+        if (inputArray.length > maxSize) {
+            helper.alert("Please enter at most " + maxSize + " digits.");
             return;
         }
         numbers = new int[inputArray.length];
@@ -95,11 +96,12 @@ public class SegmentTreeVisualizationController extends Application {
         draw = new SegmentTreeWriteandDraw(canvas);
         helper = new SegmentTreeVisualizationHelper(canvas, numbers, draw);
 
-        double canvas_width = canvas.getWidth();
+        double canvas_width = canvas.getWidth()*(3.0/5.0);
         helper.build_segment_tree(1, 0, numbers.length - 1, 0, canvas_width);
         helper.build_lines(1, 0, numbers.length - 1);
         helper.build_circle(1, 0, numbers.length - 1);
-        // build_circle();
+        draw.write("build");
+        helper.prompt("Segment Tree is building.", "Time Complexity: O(n)");
     }
 
     @FXML
@@ -127,8 +129,9 @@ public class SegmentTreeVisualizationController extends Application {
         }
 
         helper.instant_build_circle(1, 0, numbers.length - 1);
+        draw.write("query");
         int result = helper.query_segment_tree(1, 0, numbers.length - 1, l, r);
-        helper.prompt("The sum of the range [" + l + ", " + r + "] is: " + result);
+        helper.prompt("The sum of the range [" + l + ", " + r + "] is: " + result, "Time Complexity: O(log n)");
     }
 
     @FXML
@@ -153,8 +156,9 @@ public class SegmentTreeVisualizationController extends Application {
         }
 
         helper.instant_build_circle(1, 0, numbers.length - 1);
+        draw.write("update");
         helper.update_segment_tree(1, 0, numbers.length - 1, index, value);
-        helper.prompt("The value at index [" + index + "] has been updated to: " + value);
+        helper.prompt("The value at index [" + index + "] has been updated to: " + value, "Time Complexity: O(log n)");
     }
 
 
