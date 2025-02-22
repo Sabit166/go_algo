@@ -48,7 +48,16 @@ public class BinarySearchController extends Application{
     private Label foundLabel;
 
     @FXML
-    private Label operations;
+    private Label startOperation;
+
+    @FXML
+    private Label endOperation;
+
+    @FXML
+    private Label midOperation;
+
+    @FXML
+    private Label iterationOperation;
 
     @FXML
     private void handleBinarySearch() {
@@ -134,7 +143,10 @@ public class BinarySearchController extends Application{
             int finalIterations = iterations;
             //this.foundLabel.setText("start = " + finalLeft + " mid = " + finalMid + " end " + finalRight); // Update the operations label
             duration = duration.add(stepDuration);
-            keyFrames.add(new KeyFrame(duration, e -> this.operations.setText("start = " + finalLeft + " ,mid = " + finalMid + " ,end " + finalRight + " ,total number of iterations = " + finalIterations)));
+            keyFrames.add(new KeyFrame(duration, e -> this.startOperation.setText("start:  " + finalLeft)));
+            keyFrames.add(new KeyFrame(duration, e -> this.midOperation.setText("mid:  " + finalMid)));
+            keyFrames.add(new KeyFrame(duration, e -> this.endOperation.setText("end:  " + finalRight)));
+            keyFrames.add(new KeyFrame(duration, e -> this.iterationOperation.setText("iteration:  " + finalIterations)));
             //ration = duration.add(stepDuration);
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalLeft, finalRight, finalMid)));
 

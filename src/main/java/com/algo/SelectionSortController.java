@@ -83,7 +83,7 @@ public class SelectionSortController extends Application{
     private void selectionSort() {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
-        Duration stepDuration = Duration.seconds(1);
+        Duration stepDuration = Duration.seconds(1.5);
 
         int n = bars.length;
         int[] values = new int[n];

@@ -19,7 +19,14 @@
             <Label text="End: Red Arrow" textFill="#ef0505" />
             <Label text="Mid: Green Arrow" textFill="#01790d" />
         </HBox>
-      <Label fx:id="operations" alignment="CENTER" prefHeight="142.0" prefWidth="722.0" />
+      <HBox alignment="CENTER" prefHeight="166.0" prefWidth="640.0">
+         <children>
+            <Label fx:id="startOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" />
+            <Label fx:id="midOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" textFill="#ea0c0c" />
+            <Label fx:id="endOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" textFill="#2a810a" />
+            <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" textFill="#514b4b" />
+         </children>
+      </HBox>
         <Label fx:id="foundLabel" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
         <Button onAction="#handleBack" text="Back" />
     </children>
