@@ -14,6 +14,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
+
+import javafx.application.Application;
 import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +25,9 @@ import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinarySearchController {
+public class BinarySearchController extends Application{
 
+    private static Scene scene;
     private static final int BAR_SIZE = 30; // Use square blocks
     private static final int GAP_SIZE = 35; // Gap for arrows
     private StackPane[] bars;
@@ -192,5 +195,27 @@ public class BinarySearchController {
         stage.setScene(scene);
         stage.setTitle("Visualization Setup");
         stage.show();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("binary_search"));
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setTitle("BINARY SEARCH");
+        stage.show();
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/algo/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }
