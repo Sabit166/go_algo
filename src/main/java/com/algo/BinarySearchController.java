@@ -48,6 +48,9 @@ public class BinarySearchController extends Application{
     private Label foundLabel;
 
     @FXML
+    private Label operations;
+
+    @FXML
     private void handleBinarySearch() {
         initializeBars(); // Initialize the bar visualization
         binarySearch();   // Perform the search with animation
@@ -69,6 +72,18 @@ public class BinarySearchController extends Application{
             if (inputArray.length != numElements) {
                 showAlert("Input Error", "The number of elements does not match the provided list.");
                 return;
+            }
+            int[] intArray = new int[numElements];
+            for (int i = 0; i < numElements; i++) {
+                intArray[i] = Integer.parseInt(inputArray[i].trim());
+            }
+
+            // Check if the array is sorted
+            for (int i = 1; i < intArray.length; i++) {
+                if (intArray[i] < intArray[i - 1]) {
+                    showAlert("Input Error", "The input array must be sorted in ascending order.");
+                    return;
+                }
             }
             bars = new StackPane[numElements];
             for (int i = 0; i < numElements; i++) {
@@ -105,6 +120,7 @@ public class BinarySearchController extends Application{
             return;
         }
 
+        int iterations = 0;
         int left = 0;
         int right = n - 1;
 
@@ -115,12 +131,17 @@ public class BinarySearchController extends Application{
             int finalLeft = left;
             int finalRight = right;
             int finalMid = mid;
+            int finalIterations = iterations;
+            //this.foundLabel.setText("start = " + finalLeft + " mid = " + finalMid + " end " + finalRight); // Update the operations label
             duration = duration.add(stepDuration);
+            keyFrames.add(new KeyFrame(duration, e -> this.operations.setText("start = " + finalLeft + " ,mid = " + finalMid + " ,end " + finalRight + " ,total number of iterations = " + finalIterations)));
+            //ration = duration.add(stepDuration);
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalLeft, finalRight, finalMid)));
 
             if (values[mid] == target) {
                 // Target found
                 duration = duration.add(stepDuration);
+                //keyFrames.add(new KeyFrame(duration, e -> this.operations.setText("Target found at index = " + finalMid)));
                 keyFrames.add(new KeyFrame(duration, e -> highlightFound(finalMid)));
                 break;
             } else if (values[mid] < target) {
@@ -128,6 +149,7 @@ public class BinarySearchController extends Application{
             } else {
                 right = mid - 1;
             }
+            iterations++;
         }
 
         // Play the timeline animation
