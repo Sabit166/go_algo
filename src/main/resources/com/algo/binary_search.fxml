@@ -5,20 +5,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
     <children>
-        <TextField fx:id="numElementsField" promptText="Enter number of elements"/>
-        <TextField fx:id="inputField" promptText="Enter sorted numbers separated by commas"/>
-        <TextField fx:id="searchField" promptText="Enter number to search"/>
-        <Button text="Start Binary Search" onAction="#handleBinarySearch"/>
-        <HBox fx:id="barContainer" spacing="5"/>
-        <HBox spacing="10">
-            <Label text="Start: Blue Arrow"/>
-            <Label text="End: Red Arrow"/>
-            <Label text="Mid: Green Arrow"/>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BINARY SEARCH" />
+        <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers separated by commas" />
+        <TextField fx:id="searchField" onAction="#handleBinarySearch" promptText="Enter number to search" />
+        <Button onAction="#handleBinarySearch" text="Start Binary Search" />
+        <HBox fx:id="barContainer" alignment="CENTER" prefHeight="0.0" prefWidth="640.0" spacing="5" />
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="Start: Blue Arrow" />
+            <Label text="End: Red Arrow" />
+            <Label text="Mid: Green Arrow" />
         </HBox>
-        <Label fx:id="foundLabel" text="" style="-fx-text-fill: green;"/>
-        <Button text="Back" onAction="#handleBack"/>
+        <Label fx:id="foundLabel" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
+        <Button onAction="#handleBack" text="Back" />
     </children>
 </VBox>

@@ -28,15 +28,15 @@ import java.util.List;
 public class BinarySearchController extends Application{
 
     private static Scene scene;
-    private static final int BAR_SIZE = 30; // Use square blocks
-    private static final int GAP_SIZE = 35; // Gap for arrows
+    private static final int BAR_SIZE = 75; // Use square blocks
+    private static final int GAP_SIZE = 50; // Gap for arrows
     private StackPane[] bars;
 
     @FXML
     private HBox barContainer;
 
-    @FXML
-    private TextField numElementsField;
+    // @FXML
+    // private TextField numElementsField;
 
     @FXML
     private TextField inputField;
@@ -56,15 +56,16 @@ public class BinarySearchController extends Application{
     private void initializeBars() {
         barContainer.getChildren().clear();
         foundLabel.setText(""); // Clear the found label
-        String numElementsText = numElementsField.getText();
+        //String numElementsText = numElementsField.getText();
         String input = inputField.getText();
-        if (numElementsText.isEmpty() || input.isEmpty()) {
-            showAlert("Input Error", "Please provide the number of elements and a comma-separated list of numbers.");
-            return;
-        }
+        // if (numElementsText.isEmpty() || input.isEmpty()) {
+        //     showAlert("Input Error", "Please provide the number of elements and a comma-separated list of numbers.");
+        //     return;
+        // }
         try {
-            int numElements = Integer.parseInt(numElementsText.trim());
+            //int numElements = Integer.parseInt(numElementsText.trim());
             String[] inputArray = input.split(",");
+            int numElements = inputArray.length;
             if (inputArray.length != numElements) {
                 showAlert("Input Error", "The number of elements does not match the provided list.");
                 return;
