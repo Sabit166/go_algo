@@ -3,28 +3,34 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="760.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
+<VBox alignment="CENTER" prefHeight="760.0" prefWidth="640.0" spacing="20.0" styleClass="root" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
     <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BINARY SEARCH" textAlignment="CENTER" />
+      <Text fill="#ccc8f2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
         <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers separated by commas" />
         <TextField fx:id="searchField" onAction="#handleBinarySearch" promptText="Enter number to search" />
         <Button onAction="#handleBinarySearch" text="Start Binary Search" />
+      <AnchorPane prefHeight="119.0" prefWidth="640.0">
+         <children>
+            <Text layoutX="309.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
+      </AnchorPane>
         <HBox fx:id="barContainer" alignment="CENTER" prefHeight="243.0" prefWidth="640.0" spacing="5" />
         <HBox alignment="CENTER" spacing="10">
-            <Label text="Start: Blue Arrow" textFill="#2d0bc1" />
-            <Label text="End: Red Arrow" textFill="#ef0505" />
-            <Label text="Mid: Green Arrow" textFill="#01790d" />
+            <Label styleClass="label-blue" text="Start: Blue Arrow" textFill="#2d0bc1" />
+            <Label styleClass="label-green" text="End: Red Arrow" textFill="#ef0505" />
+            <Label styleClass="label-red" text="Mid: Green Arrow" textFill="#01790d" />
         </HBox>
       <HBox alignment="CENTER" prefHeight="166.0" prefWidth="640.0">
          <children>
-            <Label fx:id="startOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" />
-            <Label fx:id="midOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" textFill="#ea0c0c" />
-            <Label fx:id="endOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" textFill="#2a810a" />
-            <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" textFill="#514b4b" />
+            <Label fx:id="startOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" styleClass="label-blue" />
+            <Label fx:id="midOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" styleClass="label-green" textFill="#ea0c0c" />
+            <Label fx:id="endOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" styleClass="label-red" textFill="#2a810a" />
+            <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="32.0" prefWidth="188.0" styleClass="label-grey" textFill="#514b4b" />
          </children>
       </HBox>
         <Label fx:id="foundLabel" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />

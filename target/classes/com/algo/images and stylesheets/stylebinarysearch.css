@@ -1,0 +1,80 @@
+.root {
+    -fx-background-image: url('premium_photo-1673126680964-b9fc3587096c.jpeg');
+    -fx-background-size: cover;
+}
+
+.rectangle {
+    -fx-fill: #1E90FF; /* DodgerBlue background color */
+    -fx-stroke: black; /* Black border color */
+    -fx-stroke-width: 8; /* Thick border */
+    -fx-arc-width: 20; /* Oval corners */
+    -fx-arc-height: 20; /* Oval corners */
+    -fx-width: 100px; /* Width of the rectangle */
+    -fx-height: 100px; /* Height of the rectangle */
+}
+
+.label {
+    -fx-font-size: 30px; /* Large font size */
+    -fx-text-fill: white; /* White text color */
+}
+
+.label-red {
+    -fx-font-size: 30px; /* Large font size */
+    -fx-text-fill: red; /* Red text color */
+}
+
+.label-blue {
+    -fx-font-size: 30px; /* Large font size */
+    -fx-text-fill: blue; /* Blue text color */
+}
+
+.label-green {
+    -fx-font-size: 30px; /* Large font size */
+    -fx-text-fill: green; /* Green text color */
+}
+
+.label-grey {
+    -fx-font-size: 30px; /* Large font size */
+    -fx-text-fill: grey; /* Grey text color */
+}
+
+/* Styling for text box */
+.text-box {
+    -fx-font-size: 18px; /* Font size for text box */
+    -fx-padding: 10px; /* Padding inside the text box */
+    -fx-border-color: #1E90FF; /* Border color */
+    -fx-border-width: 2px; /* Border width */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-background-radius: 5px; /* Rounded corners */
+}
+
+/* Styling for main heading */
+.main-heading {
+    -fx-font-size: 40px; /* Big font size for main heading */
+    -fx-text-fill: rgb(151, 135, 198); /* White text color */
+    -fx-font-weight: bold; /* Bold font */
+    -fx-padding: 20px; /* Padding around the heading */
+    -fx-font-family: 'Arial'; /* Font family */
+    -fx-background-color: #1E90FF; /* DodgerBlue background color */
+}
+
+/* Styling for buttons */
+
+.button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-text-fill: rgb(107, 109, 169); /* White text color */
+    -fx-font-size: 18px; /* Font size for button text */
+    -fx-padding: 10px 20px; /* Padding inside the button */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-border-color: black; /* Border color */
+    -fx-border-width: 5px; /* Border width */
+    -fx-cursor: hand; /* Hand cursor on hover */
+}
+.button:hover {
+    -fx-background-color: #104E8B; /* Darker blue on hover */
+}
+
+.button:pressed {
+    -fx-background-color: #4682B4; /* Lighter blue on press */
+}

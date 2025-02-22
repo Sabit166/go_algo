@@ -25,18 +25,15 @@ import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinarySearchController extends Application{
+public class BinarySearchController extends Application {
 
     private static Scene scene;
-    private static final int BAR_SIZE = 75; // Use square blocks
-    private static final int GAP_SIZE = 50; // Gap for arrows
+    private static final int BAR_SIZE = 100; // Use square blocks
+    private static final int GAP_SIZE = 75; // Gap for arrows
     private StackPane[] bars;
 
     @FXML
     private HBox barContainer;
-
-    // @FXML
-    // private TextField numElementsField;
 
     @FXML
     private TextField inputField;
@@ -51,10 +48,10 @@ public class BinarySearchController extends Application{
     private Label startOperation;
 
     @FXML
-    private Label endOperation;
+    private Label midOperation;
 
     @FXML
-    private Label midOperation;
+    private Label endOperation;
 
     @FXML
     private Label iterationOperation;
@@ -68,14 +65,8 @@ public class BinarySearchController extends Application{
     private void initializeBars() {
         barContainer.getChildren().clear();
         foundLabel.setText(""); // Clear the found label
-        //String numElementsText = numElementsField.getText();
         String input = inputField.getText();
-        // if (numElementsText.isEmpty() || input.isEmpty()) {
-        //     showAlert("Input Error", "Please provide the number of elements and a comma-separated list of numbers.");
-        //     return;
-        // }
         try {
-            //int numElements = Integer.parseInt(numElementsText.trim());
             String[] inputArray = input.split(",");
             int numElements = inputArray.length;
             if (inputArray.length != numElements) {
@@ -96,10 +87,10 @@ public class BinarySearchController extends Application{
             }
             bars = new StackPane[numElements];
             for (int i = 0; i < numElements; i++) {
-                double size = BAR_SIZE;
-                Rectangle rectangle = new Rectangle(size, size, Color.SKYBLUE);
+                Rectangle rectangle = new Rectangle(BAR_SIZE, BAR_SIZE);
+                rectangle.getStyleClass().add("rectangle"); // Apply the CSS class to the rectangle
                 Label label = new Label(inputArray[i].trim());
-                label.setTextFill(Color.BLACK);
+                label.getStyleClass().add("label"); // Apply the CSS class to the label
                 StackPane stackPane = new StackPane();
                 stackPane.getChildren().addAll(rectangle, label);
                 bars[i] = stackPane;
@@ -141,19 +132,16 @@ public class BinarySearchController extends Application{
             int finalRight = right;
             int finalMid = mid;
             int finalIterations = iterations;
-            //this.foundLabel.setText("start = " + finalLeft + " mid = " + finalMid + " end " + finalRight); // Update the operations label
             duration = duration.add(stepDuration);
             keyFrames.add(new KeyFrame(duration, e -> this.startOperation.setText("start:  " + finalLeft)));
             keyFrames.add(new KeyFrame(duration, e -> this.midOperation.setText("mid:  " + finalMid)));
             keyFrames.add(new KeyFrame(duration, e -> this.endOperation.setText("end:  " + finalRight)));
             keyFrames.add(new KeyFrame(duration, e -> this.iterationOperation.setText("iteration:  " + finalIterations)));
-            //ration = duration.add(stepDuration);
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalLeft, finalRight, finalMid)));
 
             if (values[mid] == target) {
                 // Target found
                 duration = duration.add(stepDuration);
-                //keyFrames.add(new KeyFrame(duration, e -> this.operations.setText("Target found at index = " + finalMid)));
                 keyFrames.add(new KeyFrame(duration, e -> highlightFound(finalMid)));
                 break;
             } else if (values[mid] < target) {
@@ -182,8 +170,8 @@ public class BinarySearchController extends Application{
         Polygon arrow = new Polygon();
         arrow.getPoints().addAll(new Double[]{
             0.0, 0.0,
-            10.0, 20.0,
-            -10.0, 20.0 });
+            30.0, 60.0,
+            -30.0, 60.0 });
         arrow.setFill(color);
 
         if (position.equals("up")) {
@@ -209,7 +197,7 @@ public class BinarySearchController extends Application{
 
     private void resetBarColors() {
         for (StackPane bar : bars) {
-            ((Rectangle) bar.getChildren().get(0)).setFill(Color.SKYBLUE);
+            ((Rectangle) bar.getChildren().get(0)).setFill(Color.web("#1E90FF"));
             bar.getChildren().removeIf(node -> node instanceof Polygon || (node instanceof Label && "Found".equals(((Label) node).getText()))); 
         }
     }
@@ -235,6 +223,7 @@ public class BinarySearchController extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("binary_search"));
+        scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/stylebinarysearch.css").toExternalForm());
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("BINARY SEARCH");
