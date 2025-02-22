@@ -16,6 +16,8 @@ import javafx.util.Duration;
 import javafx.event.ActionEvent;
 
 import javafx.application.Application;
+
+import java.io.File;
 import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
@@ -24,12 +26,15 @@ import javafx.scene.Scene;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class BinarySearchController extends Application {
 
     private static Scene scene;
     private static final int BAR_SIZE = 100; // Use square blocks
     private static final int GAP_SIZE = 75; // Gap for arrows
+    private MediaPlayer mediaPlayer;
     private StackPane[] bars;
 
     @FXML
@@ -59,7 +64,7 @@ public class BinarySearchController extends Application {
     @FXML
     private void handleBinarySearch() {
         initializeBars(); // Initialize the bar visualization
-        binarySearch();   // Perform the search with animation
+        binarySearch(); // Perform the search with animation
     }
 
     private void initializeBars() {
@@ -105,6 +110,7 @@ public class BinarySearchController extends Application {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
         Duration stepDuration = Duration.seconds(2); // Slow down the simulation
+        playAudio("binarysearchstarted"); // Play the binary search audio
 
         int n = bars.length;
         int[] values = new int[n];
@@ -136,12 +142,14 @@ public class BinarySearchController extends Application {
             keyFrames.add(new KeyFrame(duration, e -> this.startOperation.setText("start:  " + finalLeft)));
             keyFrames.add(new KeyFrame(duration, e -> this.midOperation.setText("mid:  " + finalMid)));
             keyFrames.add(new KeyFrame(duration, e -> this.endOperation.setText("end:  " + finalRight)));
-            keyFrames.add(new KeyFrame(duration, e -> this.iterationOperation.setText("iteration:  " + finalIterations)));
+            keyFrames.add(
+                    new KeyFrame(duration, e -> this.iterationOperation.setText("iteration:  " + finalIterations)));
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalLeft, finalRight, finalMid)));
 
             if (values[mid] == target) {
                 // Target found
                 duration = duration.add(stepDuration);
+                keyFrames.add(new KeyFrame(duration, e -> playAudio("timecomplexity")));
                 keyFrames.add(new KeyFrame(duration, e -> highlightFound(finalMid)));
                 break;
             } else if (values[mid] < target) {
@@ -161,17 +169,17 @@ public class BinarySearchController extends Application {
 
     private void highlightBars(int left, int right, int mid) {
         resetBarColors();
-        addArrow(left, Color.BLUE, "up");  // Start element: blue arrow above
+        addArrow(left, Color.BLUE, "up"); // Start element: blue arrow above
         addArrow(right, Color.RED, "down"); // End element: red arrow below
-        addArrow(mid, Color.GREEN, "mid");  // Middle element: green arrow on the block
+        addArrow(mid, Color.GREEN, "mid"); // Middle element: green arrow on the block
     }
 
     private void addArrow(int index, Color color, String position) {
         Polygon arrow = new Polygon();
-        arrow.getPoints().addAll(new Double[]{
-            0.0, 0.0,
-            30.0, 60.0,
-            -30.0, 60.0 });
+        arrow.getPoints().addAll(new Double[] {
+                0.0, 0.0,
+                30.0, 60.0,
+                -30.0, 60.0 });
         arrow.setFill(color);
 
         if (position.equals("up")) {
@@ -182,8 +190,9 @@ public class BinarySearchController extends Application {
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(GAP_SIZE); // Gap below the bar
         } else if (position.equals("mid")) {
+            arrow.setRotate(180);
             bars[index].getChildren().add(arrow);
-            arrow.setTranslateY(0); // Centered directly on the bar
+            arrow.setTranslateY(-GAP_SIZE); // Centered directly on the bar
         }
     }
 
@@ -198,7 +207,8 @@ public class BinarySearchController extends Application {
     private void resetBarColors() {
         for (StackPane bar : bars) {
             ((Rectangle) bar.getChildren().get(0)).setFill(Color.web("#1E90FF"));
-            bar.getChildren().removeIf(node -> node instanceof Polygon || (node instanceof Label && "Found".equals(((Label) node).getText()))); 
+            bar.getChildren().removeIf(node -> node instanceof Polygon
+                    || (node instanceof Label && "Found".equals(((Label) node).getText())));
         }
     }
 
@@ -208,6 +218,21 @@ public class BinarySearchController extends Application {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void playAudio(String fileName) {
+        try {
+            String path = new File("src/main/resources/com/algo/" + fileName + ".mp3").toURI().toString();
+            Media media = new Media(path);
+            mediaPlayer = new MediaPlayer(media); // Store it in the class variable
+
+            // Ensure the audio plays fully
+            mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.dispose());
+
+            mediaPlayer.play();
+        } catch (Exception e) {
+            showAlert("Audio Error", "Failed to play audio: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -223,7 +248,8 @@ public class BinarySearchController extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("binary_search"));
-        scene.getStylesheets().add(getClass().getResource("/com/algo/images and stylesheets/stylebinarysearch.css").toExternalForm());
+        scene.getStylesheets()
+                .add(getClass().getResource("/com/algo/images and stylesheets/stylebinarysearch.css").toExternalForm());
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("BINARY SEARCH");
