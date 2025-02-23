@@ -110,7 +110,7 @@ public class BinarySearchController extends Application {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
         Duration stepDuration = Duration.seconds(2); // Slow down the simulation
-        playAudio("binarysearchstarted"); // Play the binary search audio
+        playAudio("letsdobinarysearch"); // Play the binary search audio
 
         int n = bars.length;
         int[] values = new int[n];

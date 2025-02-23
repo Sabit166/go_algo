@@ -26,28 +26,28 @@
 }
 
 .label-red {
-    -fx-font-size: 50px; /* Large font size */
+    -fx-font-size: 30px; /* Large font size */
     -fx-text-fill: red; /* Red text color */
     -fx-font-weight: bold; /* Bold text */
     -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
 }
 
 .label-blue {
-    -fx-font-size: 50px; /* Large font size */
+    -fx-font-size: 30px; /* Large font size */
     -fx-text-fill: rgb(61, 124, 240); /* Blue text color */
     -fx-font-weight: bold; /* Bold text */
     -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
 }
 
 .label-green {
-    -fx-font-size: 50px; /* Large font size */
+    -fx-font-size: 30px; /* Large font size */
     -fx-text-fill: green; /* Green text color */
     -fx-font-weight: bold; /* Bold text */
     -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
 }
 
 .label-grey {
-    -fx-font-size: 50px; /* Large font size */
+    -fx-font-size: 30px; /* Large font size */
     -fx-text-fill: grey; /* Grey text color */
     -fx-font-weight: bold; /* Bold text */
     -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
