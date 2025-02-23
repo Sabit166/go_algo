@@ -139,11 +139,10 @@ public class BinarySearchController extends Application {
             int finalMid = mid;
             int finalIterations = iterations;
             duration = duration.add(stepDuration);
-            keyFrames.add(new KeyFrame(duration, e -> this.startOperation.setText("start:  " + finalLeft)));
-            keyFrames.add(new KeyFrame(duration, e -> this.midOperation.setText("mid:  " + finalMid)));
-            keyFrames.add(new KeyFrame(duration, e -> this.endOperation.setText("end:  " + finalRight)));
-            keyFrames.add(
-                    new KeyFrame(duration, e -> this.iterationOperation.setText("iteration:  " + finalIterations)));
+            keyFrames.add(new KeyFrame(duration, e -> this.startOperation.setText("START:  " + finalLeft)));
+            keyFrames.add(new KeyFrame(duration, e -> this.midOperation.setText("MID:  " + finalMid)));
+            keyFrames.add(new KeyFrame(duration, e -> this.endOperation.setText("END:  " + finalRight)));
+            keyFrames.add(new KeyFrame(duration, e -> this.iterationOperation.setText("ITERATION:  " + finalIterations)));
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalLeft, finalRight, finalMid)));
 
             if (values[mid] == target) {
@@ -169,30 +168,44 @@ public class BinarySearchController extends Application {
 
     private void highlightBars(int left, int right, int mid) {
         resetBarColors();
-        addArrow(left, Color.BLUE, "up"); // Start element: blue arrow above
-        addArrow(right, Color.RED, "down"); // End element: red arrow below
-        addArrow(mid, Color.GREEN, "mid"); // Middle element: green arrow on the block
+        boolean eq = false;
+        if(left==right) eq = true;
+        addArrow(left, Color.BLUE, "up",eq); // Start element: blue arrow above
+        addArrow(right, Color.RED, "up1",eq); // End element: red arrow below
+        addArrow(mid, Color.GREEN, "down",eq); // Middle element: green arrow on the block
     }
 
-    private void addArrow(int index, Color color, String position) {
+    private void addArrow(int index, Color color, String position, boolean isOverlap) {
         Polygon arrow = new Polygon();
-        arrow.getPoints().addAll(new Double[] {
-                0.0, 0.0,
-                30.0, 60.0,
-                -30.0, 60.0 });
+        arrow.getPoints().addAll(new Double[]{
+            0.0, 0.0,
+            30.0, 60.0,
+            -30.0, 60.0 });
         arrow.setFill(color);
-
+    
         if (position.equals("up")) {
             arrow.setRotate(180);
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(-GAP_SIZE); // Gap above the bar
+            if (isOverlap) {
+                arrow.setTranslateX(-20); // Shift left to avoid overlap
+            }
+        }else if (position.equals("up1")) {
+            arrow.setRotate(180);
+            bars[index].getChildren().add(arrow);
+            arrow.setTranslateY(-GAP_SIZE); // Gap above the bar
+            if (isOverlap) {
+                arrow.setTranslateX(0); // Shift left to avoid overlap
+            }
         } else if (position.equals("down")) {
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(GAP_SIZE); // Gap below the bar
+            if (isOverlap) {
+                arrow.setTranslateX(10); // Shift right to avoid overlap
+            }
         } else if (position.equals("mid")) {
-            arrow.setRotate(180);
             bars[index].getChildren().add(arrow);
-            arrow.setTranslateY(-GAP_SIZE); // Centered directly on the bar
+            arrow.setTranslateY(0); // Centered directly on the bar
         }
     }
 

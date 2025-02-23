@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="760.0" prefWidth="640.0" spacing="20.0" styleClass="root" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
+<VBox alignment="CENTER" prefHeight="760.0" prefWidth="640.0" spacing="20.0" styleClass="root" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
     <children>
       <Text fill="#ccc8f2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
         <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers separated by commas" />
@@ -20,10 +20,10 @@
          </children>
       </AnchorPane>
         <HBox fx:id="barContainer" alignment="CENTER" prefHeight="243.0" prefWidth="640.0" spacing="5" />
-        <HBox alignment="CENTER" spacing="10">
-            <Label styleClass="label-blue" text="Start: Blue Arrow" textFill="#2d0bc1" />
-            <Label styleClass="label-green" text="End: Red Arrow" textFill="#ef0505" />
-            <Label styleClass="label-red" text="Mid: Green Arrow" textFill="#01790d" />
+        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="687.0" spacing="10">
+            <Label prefHeight="45.0" prefWidth="229.0" styleClass="label-blue" text="Start: Blue Arrow" textFill="#2d0bc1" />
+            <Label styleClass="label-green" text="Mid: Green Arrow" textFill="#ef0505" />
+            <Label styleClass="label-red" text="End: Red Arrow" textFill="#01790d" />
         </HBox>
       <HBox alignment="CENTER" prefHeight="166.0" prefWidth="640.0">
          <children>
