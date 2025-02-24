@@ -10,7 +10,7 @@
 
 <VBox alignment="CENTER" prefHeight="760.0" prefWidth="1038.0" spacing="20.0" styleClass="root" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
     <children>
-      <Text fill="#ccc8f2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
+      <Text fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
         <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers separated by commas" styleClass="text-box" />
         <TextField fx:id="searchField" onAction="#handleBinarySearch" promptText="Enter number to search" styleClass="text-box" />
         <Button onAction="#handleBinarySearch" text="Start Binary Search" />
