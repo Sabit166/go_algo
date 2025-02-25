@@ -1,15 +1,27 @@
 package com.algo.segmenttree;
 
+import java.io.IOException;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import java.io.IOException;
+import javafx.util.Duration;
 
 public class SegmentTreeVisualizationController extends Application {
 
@@ -26,12 +38,23 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private TextField UpdateInput;
 
+    @FXML
+    private AnchorPane sidemenu, bpane, mainpane;
+
+    private Timeline timeline;
+    @FXML
+    private Button menubutton;
+    @FXML
+    private MenuButton drawitem;
+
+    private double LastX, LastY;
+    private boolean candraw = false;
+
     SegmentTreeVisualizationHelper helper;
     SegmentTreeWriteandDraw draw;
     private int maxSize = 8;
     protected int[] numbers;
     protected SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * maxSize]; // Initialize the segment tree
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -51,11 +74,79 @@ public class SegmentTreeVisualizationController extends Application {
 
     @FXML
     public void initialize() {
+        sidemenu.setVisible(false);
         gc = canvas.getGraphicsContext2D();
         // Initialize the segment_tree array with Segment_Tree_Nodes instances
         for (int i = 0; i < segment_tree.length; i++) {
             segment_tree[i] = new SegmentTreeNodes();
         }
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+            bpane.setOpacity(0.3);
+        }));
+        timeline.setCycleCount(1); // Run only once
+
+        timeline.play();
+
+        bpane.setOnMouseEntered(event -> {
+            bpane.setOpacity(1.0); // Reset opacity to full
+            timeline.stop(); // Stop the existing timeline
+        });
+
+        bpane.setOnMouseExited(event -> {
+            timeline.stop();
+            timeline.playFromStart(); // Restart the countdown
+        });
+
+        menubutton.setOnAction(event -> {
+            sidemenu.setVisible(true);
+            bpane.setDisable(true);
+            bpane.setVisible(false);
+        });
+
+        mainpane.setOnMouseClicked(event -> {
+            sidemenu.setVisible(false);
+            bpane.setDisable(false);
+            bpane.setVisible(true);
+        });
+
+        MenuItem item1 = new MenuItem("Draw");
+        MenuItem item2 = new MenuItem("Erase");
+        MenuItem item3 = new MenuItem("Off");
+
+        item1.setOnAction(eh -> {
+            candraw = true;
+        });
+        item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
+        item3.setOnAction(eh -> {
+            candraw = false;
+        });
+
+        drawitem.getItems().addAll(item1, item2, item3);
+
+        mainpane.setOnMousePressed(event -> {
+            if (candraw) {
+                LastX = event.getSceneX();
+                LastY = event.getSceneY();
+            }
+        });
+
+        mainpane.setOnMouseDragged(event -> {
+            if (candraw) {
+                draw(mainpane, event);
+            }
+        });
+
+    }
+
+    private void draw(AnchorPane pane, MouseEvent event) {
+        Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
+        line.setStroke(Color.BLACK);
+        line.setStrokeWidth(2);
+        pane.getChildren().add(line);
+
+        LastX = event.getSceneX();
+        LastY = event.getSceneY();
     }
 
     void reset() {
@@ -86,7 +177,6 @@ public class SegmentTreeVisualizationController extends Application {
             return;
         }
         numbers = new int[inputArray.length];
-        
 
         numbers = new int[inputArray.length];
         for (int i = 0; i < inputArray.length; i++) {
@@ -96,7 +186,7 @@ public class SegmentTreeVisualizationController extends Application {
         draw = new SegmentTreeWriteandDraw(canvas);
         helper = new SegmentTreeVisualizationHelper(canvas, numbers, draw);
 
-        double canvas_width = canvas.getWidth()*(3.0/5.0);
+        double canvas_width = canvas.getWidth() * (3.0 / 5.0);
         helper.build_segment_tree(1, 0, numbers.length - 1, 0, canvas_width);
         helper.build_lines(1, 0, numbers.length - 1);
         helper.build_circle(1, 0, numbers.length - 1);
@@ -161,6 +251,50 @@ public class SegmentTreeVisualizationController extends Application {
         helper.prompt("The value at index [" + index + "] has been updated to: " + value, "Time Complexity: O(log n)");
     }
 
+    @FXML
+    private void handleLinkedList(ActionEvent event) throws IOException {
+        // Logic for Linked List
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setFullScreen(true);
+    }
+
+    @FXML
+    private void handleStack(ActionEvent event) throws IOException {
+        // Load the Stack Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/stack_visualization.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Stack Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleQueue(ActionEvent event) throws IOException {
+        // Load the Queue Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/queue_visualization.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Queue Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) throws IOException {
+        // Load the visualization setup screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/data_structures.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Visualization Setup");
+        stage.centerOnScreen();
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch(args);

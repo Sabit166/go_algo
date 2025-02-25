@@ -52,6 +52,7 @@ public class DataStructuresController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Segment Tree Visualization");
+        stage.centerOnScreen();
         stage.show();
         stage.setFullScreen(true);
     }
