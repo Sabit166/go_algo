@@ -59,16 +59,7 @@ public class BinarySearchController extends Application {
     private Label foundLabel;
 
     @FXML
-    private Label startOperation;
-
-    @FXML
-    private Label midOperation;
-
-    @FXML
-    private Label endOperation;
-
-    @FXML
-    private Label iterationOperation;
+    private Label startOperation, midOperation, endOperation, iterationOperation;
 
     @FXML
     private AnchorPane sidemenu, bpane, mainpane;
@@ -351,6 +342,40 @@ public class BinarySearchController extends Application {
         stage.setTitle("Visualization Setup");
         stage.show();
     }
+
+    @FXML
+    private void handleBubbleSort(ActionEvent event) throws IOException {
+        // Logic for Linked List
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bubble_sort.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setFullScreen(true);
+    }
+
+    @FXML
+    private void handleSelectionSort(ActionEvent event) throws IOException {
+        // Load the Stack Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/selection_sort.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Stack Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBFS(ActionEvent event) throws IOException {
+        // Load the Queue Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bfs.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Queue Visualization");
+        stage.show();
+    }
+
 
     @Override
     public void start(Stage stage) throws IOException {
