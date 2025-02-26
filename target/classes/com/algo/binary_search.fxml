@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
    <children>
       <VBox alignment="CENTER" layoutX="292.0" layoutY="2.0" prefHeight="760.0" prefWidth="959.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
          <children>
@@ -55,32 +55,36 @@
             </MenuButton>
          </children>
       </AnchorPane>
-      <VBox fx:id="sidemenu" alignment="CENTER" layoutX="6.0" layoutY="300.0" prefHeight="491.0" prefWidth="280.0" spacing="50.0" stylesheets="@images%20and%20stylesheets/stylefordatasmainpage.css">
+      <AnchorPane fx:id="sidemenu" layoutX="14.0" layoutY="261.0" prefHeight="504.0" prefWidth="336.0">
          <children>
-            <Button alignment="CENTER" onAction="#handleBubbleSort" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Bubble Sort">
-               <font>
-                  <Font name="Supercell-Magic" size="33.0" />
-               </font>
-            </Button>
-            <Button onAction="#handleSelectionSort" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Selection Sort" textAlignment="CENTER">
-               <font>
-                  <Font name="Supercell-Magic" size="33.0" />
-               </font>
-            </Button>
-            <Button onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
-               <font>
-                  <Font name="Supercell-Magic" size="33.0" />
-               </font>
-            </Button>
-            <Button onAction="#handleBack" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Back" textAlignment="CENTER">
-               <font>
-                  <Font name="Supercell-Magic" size="33.0" />
-               </font>
-            </Button>
+            <VBox alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="491.0" prefWidth="280.0" spacing="50.0" stylesheets="@images%20and%20stylesheets/stylefordatasmainpage.css">
+               <children>
+                  <Button alignment="CENTER" onAction="#handleBubbleSort" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Bubble Sort">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+                  <Button onAction="#handleSelectionSort" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Selection Sort" textAlignment="CENTER">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+                  <Button onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+                  <Button onAction="#handleBack" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Back" textAlignment="CENTER">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

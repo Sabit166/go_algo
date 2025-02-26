@@ -29,7 +29,6 @@ import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.media.Media;
@@ -50,16 +49,10 @@ public class BinarySearchController extends Application {
     private HBox barContainer;
 
     @FXML
-    private TextField inputField;
+    private TextField inputField, searchField;
 
     @FXML
-    private TextField searchField;
-
-    @FXML
-    private Label foundLabel;
-
-    @FXML
-    private Label startOperation, midOperation, endOperation, iterationOperation;
+    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
 
     @FXML
     private AnchorPane sidemenu, bpane, mainpane;
@@ -181,8 +174,8 @@ public class BinarySearchController extends Application {
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.BLACK);
-        line.setStrokeWidth(2);
+        line.setStroke(Color.INDIGO);
+        line.setStrokeWidth(5);
         pane.getChildren().add(line);
 
         LastX = event.getSceneX();
