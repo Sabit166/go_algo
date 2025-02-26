@@ -110,3 +110,26 @@
     -fx-background-color: rgba(255, 255, 255, 0.6); /* Even lighter on press */
     -fx-border-color: white;
 }
+.menu-item {
+    -fx-text-fill: #FFD700; /* Bright Gold text color */
+    font-size: 18px; /* Font size for menu item text */
+    -fx-font-size: 18px; /* Font size for menu item text */
+    padding: 10px 20px; /* Padding around the menu item */
+    -fx-padding: 10px 20px; /* Padding around the menu item */
+    background-color: transparent; /* Transparent background */
+    -fx-background-color: transparent; /* Transparent background */
+    font-family: "Arial", sans-serif; /* Clean and professional font */
+    -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background on hover */
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background on hover */
+    -fx-text-fill: white; /* White text color on hover */
+}
+
+.menu-item:focused {
+    background-color: rgba(255, 255, 255, 0.2); /* More visible background when focused */
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* More visible background when focused */
+    -fx-text-fill: white; /* White text color when focused */
+}

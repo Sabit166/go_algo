@@ -43,7 +43,7 @@ public class BinarySearchController extends Application {
     private MediaPlayer mediaPlayer;
     private StackPane[] bars;
     private double LastX, LastY;
-    private boolean candraw = false;
+    private boolean candraw = false, menubuttonclicked = false;
 
     @FXML
     private HBox barContainer;
@@ -62,6 +62,9 @@ public class BinarySearchController extends Application {
 
     @FXML
     private MenuButton drawitem;
+
+    @FXML
+    private MenuItem item1, item2, item3;
 
     @FXML
     public void initialize() {
@@ -87,9 +90,14 @@ public class BinarySearchController extends Application {
         });
 
         menubutton.setOnAction(event -> {
-            sidemenu.setVisible(true);
-            bpane.setDisable(true);
-            bpane.setVisible(false);
+            menubuttonclicked = !menubuttonclicked;
+            if (menubuttonclicked) {
+                sidemenu.setVisible(true);
+                bpane.setDisable(true);
+            } else {
+                sidemenu.setVisible(false);
+                bpane.setDisable(false);
+            }
         });
 
         mainpane.setOnMouseClicked(event -> {
@@ -98,9 +106,9 @@ public class BinarySearchController extends Application {
             bpane.setVisible(true);
         });
 
-        MenuItem item1 = new MenuItem("Draw");
-        MenuItem item2 = new MenuItem("Erase");
-        MenuItem item3 = new MenuItem("Off");
+        // MenuItem item1 = new MenuItem("Draw");
+        // MenuItem item2 = new MenuItem("Erase");
+        // MenuItem item3 = new MenuItem("Off");
 
         item1.setOnAction(eh -> {
             candraw = true;
@@ -110,7 +118,12 @@ public class BinarySearchController extends Application {
             candraw = false;
         });
 
-        drawitem.getItems().addAll(item1, item2, item3);
+        // Add CSS classes to the menu items
+        item1.getStyleClass().add("menu-item");
+        item2.getStyleClass().add("menu-item");
+        item3.getStyleClass().add("menu-item");
+
+        //drawitem.getItems().addAll(item1, item2, item3);
 
         mainpane.setOnMousePressed(event -> {
             if (candraw) {
@@ -174,7 +187,7 @@ public class BinarySearchController extends Application {
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.INDIGO);
+        line.setStroke(Color.web("#FFD700")); // Indigo color code
         line.setStrokeWidth(5);
         pane.getChildren().add(line);
 
@@ -368,7 +381,6 @@ public class BinarySearchController extends Application {
         stage.setTitle("Queue Visualization");
         stage.show();
     }
-
 
     @Override
     public void start(Stage stage) throws IOException {
