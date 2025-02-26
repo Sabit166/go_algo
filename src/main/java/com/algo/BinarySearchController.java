@@ -5,11 +5,17 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -32,10 +38,13 @@ import javafx.scene.media.MediaPlayer;
 public class BinarySearchController extends Application {
 
     private static Scene scene;
+    private Timeline timeline;
     private static final int BAR_SIZE = 100; // Use square blocks
     private static final int GAP_SIZE = 75; // Gap for arrows
     private MediaPlayer mediaPlayer;
     private StackPane[] bars;
+    private double LastX, LastY;
+    private boolean candraw = false;
 
     @FXML
     private HBox barContainer;
@@ -60,6 +69,79 @@ public class BinarySearchController extends Application {
 
     @FXML
     private Label iterationOperation;
+
+    @FXML
+    private AnchorPane sidemenu, bpane, mainpane;
+
+    @FXML
+    private Button menubutton;
+
+    @FXML
+    private MenuButton drawitem;
+
+    @FXML
+    public void initialize() {
+        sidemenu.setVisible(false);
+        // gc = canvas.getGraphicsContext2D();
+        // Initialize the segment_tree array with Segment_Tree_Nodes instances
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+            bpane.setOpacity(0.3);
+        }));
+        timeline.setCycleCount(1); // Run only once
+
+        timeline.play();
+
+        bpane.setOnMouseEntered(event -> {
+            bpane.setOpacity(1.0); // Reset opacity to full
+            timeline.stop(); // Stop the existing timeline
+        });
+
+        bpane.setOnMouseExited(event -> {
+            timeline.stop();
+            timeline.playFromStart(); // Restart the countdown
+        });
+
+        menubutton.setOnAction(event -> {
+            sidemenu.setVisible(true);
+            bpane.setDisable(true);
+            bpane.setVisible(false);
+        });
+
+        mainpane.setOnMouseClicked(event -> {
+            sidemenu.setVisible(false);
+            bpane.setDisable(false);
+            bpane.setVisible(true);
+        });
+
+        MenuItem item1 = new MenuItem("Draw");
+        MenuItem item2 = new MenuItem("Erase");
+        MenuItem item3 = new MenuItem("Off");
+
+        item1.setOnAction(eh -> {
+            candraw = true;
+        });
+        item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
+        item3.setOnAction(eh -> {
+            candraw = false;
+        });
+
+        drawitem.getItems().addAll(item1, item2, item3);
+
+        mainpane.setOnMousePressed(event -> {
+            if (candraw) {
+                LastX = event.getSceneX();
+                LastY = event.getSceneY();
+            }
+        });
+
+        mainpane.setOnMouseDragged(event -> {
+            if (candraw) {
+                draw(mainpane, event);
+            }
+        });
+
+    }
 
     @FXML
     private void handleBinarySearch() {
@@ -106,6 +188,16 @@ public class BinarySearchController extends Application {
         }
     }
 
+    private void draw(AnchorPane pane, MouseEvent event) {
+        Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
+        line.setStroke(Color.BLACK);
+        line.setStrokeWidth(2);
+        pane.getChildren().add(line);
+
+        LastX = event.getSceneX();
+        LastY = event.getSceneY();
+    }
+
     private void binarySearch() {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
@@ -142,7 +234,8 @@ public class BinarySearchController extends Application {
             keyFrames.add(new KeyFrame(duration, e -> this.startOperation.setText("START:  " + finalLeft)));
             keyFrames.add(new KeyFrame(duration, e -> this.midOperation.setText("MID:  " + finalMid)));
             keyFrames.add(new KeyFrame(duration, e -> this.endOperation.setText("END:  " + finalRight)));
-            keyFrames.add(new KeyFrame(duration, e -> this.iterationOperation.setText("ITERATION:  " + finalIterations)));
+            keyFrames.add(
+                    new KeyFrame(duration, e -> this.iterationOperation.setText("ITERATION:  " + finalIterations)));
             keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalLeft, finalRight, finalMid)));
 
             if (values[mid] == target) {
@@ -169,20 +262,21 @@ public class BinarySearchController extends Application {
     private void highlightBars(int left, int right, int mid) {
         resetBarColors();
         boolean eq = false;
-        if(left==right) eq = true;
-        addArrow(left, Color.BLUE, "up",eq); // Start element: blue arrow above
-        addArrow(right, Color.RED, "up1",eq); // End element: red arrow below
-        addArrow(mid, Color.GREEN, "down",eq); // Middle element: green arrow on the block
+        if (left == right)
+            eq = true;
+        addArrow(left, Color.BLUE, "up", eq); // Start element: blue arrow above
+        addArrow(right, Color.RED, "up1", eq); // End element: red arrow below
+        addArrow(mid, Color.GREEN, "down", eq); // Middle element: green arrow on the block
     }
 
     private void addArrow(int index, Color color, String position, boolean isOverlap) {
         Polygon arrow = new Polygon();
-        arrow.getPoints().addAll(new Double[]{
-            0.0, 0.0,
-            30.0, 60.0,
-            -30.0, 60.0 });
+        arrow.getPoints().addAll(new Double[] {
+                0.0, 0.0,
+                30.0, 60.0,
+                -30.0, 60.0 });
         arrow.setFill(color);
-    
+
         if (position.equals("up")) {
             arrow.setRotate(180);
             bars[index].getChildren().add(arrow);
@@ -190,7 +284,7 @@ public class BinarySearchController extends Application {
             if (isOverlap) {
                 arrow.setTranslateX(-20); // Shift left to avoid overlap
             }
-        }else if (position.equals("up1")) {
+        } else if (position.equals("up1")) {
             arrow.setRotate(180);
             bars[index].getChildren().add(arrow);
             arrow.setTranslateY(-GAP_SIZE); // Gap above the bar
