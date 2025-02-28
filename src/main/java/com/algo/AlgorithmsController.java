@@ -41,6 +41,7 @@ public class AlgorithmsController {
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();
     }
