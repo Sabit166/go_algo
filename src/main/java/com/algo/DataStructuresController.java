@@ -1,25 +1,25 @@
 package com.algo;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.event.ActionEvent;
-import java.io.IOException;
 
 public class DataStructuresController {
 
     @FXML
-    private void handleLinkedList() {
+    private void handleLinkedList(ActionEvent event) throws IOException {
         // Logic for Linked List
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Linked List");
-        alert.setHeaderText(null);
-        alert.setContentText("Linked List button clicked!");
-        alert.showAndWait();
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setFullScreen(true);
     }
 
     @FXML
@@ -47,12 +47,14 @@ public class DataStructuresController {
     @FXML
     private void handleSegmentTree(ActionEvent event) throws IOException {
         // Logic for Segment Tree
-       Parent root = FXMLLoader.load(getClass().getResource("/com/algo/segment_tree_visualizer.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/segment_tree_visualizer.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Segment Tree Visualization");
+        stage.centerOnScreen();
         stage.show();
+        stage.setFullScreen(true);
     }
 
     @FXML
@@ -63,6 +65,7 @@ public class DataStructuresController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Visualization Setup");
+        stage.centerOnScreen();
         stage.show();
     }
 }

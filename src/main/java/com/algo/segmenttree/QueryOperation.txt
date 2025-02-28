@@ -1,0 +1,9 @@
+Function Query(node, start, end, L, R):
+    if R < start or end < L:
+        return 0
+    if L <= start and end <= R:
+        return segment_tree[node]
+    mid = (start + end) / 2
+    left_sum = Query(2 * node, start, mid, L, R)
+    right_sum = Query(2 * node + 1, mid + 1, end, L, R)
+    return left_sum + right_sum

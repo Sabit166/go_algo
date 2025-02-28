@@ -3,82 +3,79 @@
     -fx-background-radius: 25px;
     border-radius: 25px;
     -fx-border-radius: 25px;
-    background-image: url("background.jpeg");
-    -fx-background-image: url("background.jpeg");
+    background-image: url("b6.png");
+    -fx-background-image: url("b6.png");
     background-size: cover;
     -fx-background-size: cover;
     background-position: center;
     -fx-background-position: center;
 }
 
-.myButton {
+.button {
+    -fx-background-radius: 50px;
+    border-radius: 50px;
+    -fx-border-radius: 50px;
+
+    background-color: #090a0c;
+    -fx-background-color:
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114, 131, 148, 0.9), rgba(255, 255, 255, 0));
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+.button:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    transition: all 0.3s ease;
+
+    -fx-background-color:
+        linear-gradient(#e68400, #ffd65b),
+        linear-gradient(#f2ba44, #ffef84),
+        linear-gradient(#efaa22, #ffea6a),
+        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0, 1, 2, 3, 0;
+    -fx-text-fill: #654b00;
+}
+
+.button:pressed {
+    fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+.go-back-button {
     -fx-background-radius: 25px;
-    -fx-background-color: #4CAF50;
-    /* Soft green */
+    -fx-border-radius: 25px;
+    -fx-padding: 10px 20px;
+    
+    /* Smooth gradient background */
+    -fx-background-color: linear-gradient(to bottom, #ff4d4d, #cc0000);
+    
+    /* Soft shadow for a modern look */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 2, 2);
+    
+    /* Text styling */
     -fx-text-fill: white;
     -fx-font-size: 16px;
-    -fx-padding: 10px 20px;
-    -fx-border-color: #3a9d40;
-    /* Slightly darker green for the border */
-    -fx-border-width: 2px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
-    /* Subtle shadow */
-    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    
+    /* Add hover effect */
+    -fx-transition: 0.3s;
 }
 
-.myButton:hover {
-    -fx-background-color: #06ff7f;
-    /* Vibrant green */
-    -fx-border-color: #05cc66;
+.go-back-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff6666, #ff1a1a);
     -fx-scale-x: 1.05;
-    /* Slightly enlarge */
     -fx-scale-y: 1.05;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0, 2);
-    -fx-cursor: hand;
 }
 
-.myButton:pressed {
-    -fx-background-color: #04b05d;
-    /* Darker green */
+.go-back-button:pressed {
+    -fx-background-color: #b30000;
     -fx-scale-x: 0.95;
-    /* Slightly shrink */
     -fx-scale-y: 0.95;
-}
-
-/* Text */
-.text {
-    -fx-font-size: 14px;
-    -fx-text-fill: #555555;
-    /* Medium grey */
-    -fx-font-family: "Arial", sans-serif;
-    -fx-padding: 5px 0;
-}
-
-/* Text Fields */
-.textField {
-    -fx-background-color: #ffffff;
-    /* White background */
-    -fx-border-color: #cccccc;
-    /* Light grey border */
-    -fx-border-width: 1px;
-    -fx-border-radius: 5px;
-    -fx-padding: 8px;
-    -fx-font-family: "Segoe UI", sans-serif;
-    -fx-font-size: 14px;
-    -fx-text-fill: #333333;
-    /* Dark grey text */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0.3, 0, 1);
-    /* Subtle shadow */
-}
-
-.textField:focused {
-    -fx-border-color: #4CAF50;
-    /* Green border on focus */
-    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.3), 5, 0.5, 0, 2);
-    /* Greenish shadow */
-}
-
-.textField:hover {
-    -fx-border-color: #06ff7f;
-    /* Brighter green */
 }

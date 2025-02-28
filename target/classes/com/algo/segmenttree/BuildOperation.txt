@@ -1,0 +1,8 @@
+Function Build(node, start, end):
+    if start == end:
+       st[node] = array[start]
+    else:
+        mid = (start + end) / 2
+        Build(2 * node, start, mid)
+        Build(2 * node + 1, mid + 1, end)
+        st[node] = st[2 * node] + st[2 * node + 1]
