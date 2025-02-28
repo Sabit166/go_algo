@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -49,6 +50,9 @@ public class GraphVisualizerController {
     private Label resultLabel;
 
     @FXML
+    private HBox queueContainer;
+
+    @FXML
     private void handleBFS() {
         if (initializeGraph()) { // Initialize the graph visualization
             bfs();             // Perform BFS with animation
@@ -57,6 +61,7 @@ public class GraphVisualizerController {
 
     private boolean initializeGraph() {
         graphContainer.getChildren().clear();
+        queueContainer.getChildren().clear();
         resultLabel.setText(""); // Clear the result label
         String numNodesText = numNodesField.getText();
         String numEdgesText = numEdgesField.getText();
@@ -140,6 +145,7 @@ public class GraphVisualizerController {
         line.setStartY(startY + offsetY);
         line.setEndX(endX - offsetX);
         line.setEndY(endY - offsetY);
+        line.setStroke(Color.WHITE); // Set the line color to white
 
         return line;
     }
@@ -167,7 +173,10 @@ public class GraphVisualizerController {
             int currentNode = queue.poll();
             int finalCurrentNode = currentNode;
             duration = duration.add(stepDuration);
-            keyFrames.add(new KeyFrame(duration, e -> highlightNode(finalCurrentNode, Color.GREEN)));
+            keyFrames.add(new KeyFrame(duration, e -> {
+                highlightNode(finalCurrentNode, Color.GREEN);
+                updateQueueVisualization(queue, visited);
+            }));
 
             for (int neighbor : adjacencyList.get(currentNode)) {
                 if (!visited.contains(neighbor)) {
@@ -175,7 +184,10 @@ public class GraphVisualizerController {
                     visited.add(neighbor);
                     int finalNeighbor = neighbor;
                     duration = duration.add(stepDuration);
-                    keyFrames.add(new KeyFrame(duration, e -> highlightNode(finalNeighbor, Color.YELLOW)));
+                    keyFrames.add(new KeyFrame(duration, e -> {
+                        highlightNode(finalNeighbor, Color.DARKSLATEGRAY);
+                        updateQueueVisualization(queue, visited);
+                    }));
                 }
             }
         }
@@ -189,6 +201,27 @@ public class GraphVisualizerController {
 
     private void highlightNode(int node, Color color) {
         ((Circle) nodes.get(node).getChildren().get(0)).setFill(color);
+    }
+
+    private void updateQueueVisualization(Queue<Integer> queue, Set<Integer> visited) {
+        queueContainer.getChildren().clear();
+        boolean isFirst = true;
+        for (int node : queue) {
+            Label label = new Label(String.valueOf(node));
+            if (isFirst) {
+                label.setStyle("-fx-background-color: darkslategray; -fx-padding: 5px;");
+                isFirst = false;
+            } else {
+                label.setStyle("-fx-background-color: lightgray; -fx-padding: 5px;");
+            }
+            queueContainer.getChildren().add(label);
+            System.out.println("Node: " + node);
+        }
+        for (int node : visited) {
+            Label label = new Label(String.valueOf(node));
+            label.setStyle("-fx-background-color: green; -fx-padding: 5px;");
+            queueContainer.getChildren().add(label);
+        }
     }
 
     private void showAlert(String title, String content) {

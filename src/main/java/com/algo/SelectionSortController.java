@@ -1,7 +1,9 @@
+// filepath: /c:/Users/Alif Ul Haque/Desktop/project_java/go_algo/src/main/java/com/algo/SelectionSortController.java
 package com.algo;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -21,9 +23,10 @@ import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionSortController {
+public class SelectionSortController extends Application{
 
-    private static final int BAR_WIDTH = 50; // Increased width
+    private static Scene scene;
+    private static final int BAR_WIDTH = 100; // Increased width
     private static final int MAX_HEIGHT = 400; // Increased height
     private StackPane[] bars;
 
@@ -31,7 +34,10 @@ public class SelectionSortController {
     private HBox barContainer;
 
     @FXML
-    private TextField inputField;
+    private TextField numElementsField;
+
+    @FXML
+    private TextField elementsField;
 
     @FXML
     private void handleSelectionSort() {
@@ -41,22 +47,28 @@ public class SelectionSortController {
 
     private void initializeBars() {
         barContainer.getChildren().clear();
-        String input = inputField.getText();
-        if (input.isEmpty()) {
-            showAlert("Input Error", "Please provide a comma-separated list of numbers.");
+        String numElementsInput = numElementsField.getText().trim();
+        String elementsInput = elementsField.getText().trim();
+
+        if (numElementsInput.isEmpty() || elementsInput.isEmpty()) {
+            showAlert("Input Error", "Please provide the number of elements and the elements separated by spaces.");
             return;
         }
+
         try {
-            String[] inputArray = input.split(",");
-            bars = new StackPane[inputArray.length];
-            for (int i = 0; i < inputArray.length; i++) {
-                double height = Double.parseDouble(inputArray[i].trim()) * 10;
-                if (height > MAX_HEIGHT) {
-                    showAlert("Input Error", "Please ensure numbers are small enough to fit the display.");
-                    return;
-                }
-                Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.SKYBLUE);
-                Label label = new Label(inputArray[i].trim());
+            int size = Integer.parseInt(numElementsInput);
+            String[] elementsArray = elementsInput.split("\\s+");
+
+            if (elementsArray.length != size) {
+                showAlert("Input Error", "The number of elements does not match the specified size.");
+                return;
+            }
+
+            bars = new StackPane[size];
+            for (int i = 0; i < size; i++) {
+                double height = 100; // Set a constant height for all bars
+                Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.DARKVIOLET);
+                Label label = new Label(elementsArray[i].trim());
                 label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
                 stackPane.getChildren().addAll(rectangle, label);
@@ -64,19 +76,19 @@ public class SelectionSortController {
                 barContainer.getChildren().add(bars[i]);
             }
         } catch (NumberFormatException e) {
-            showAlert("Input Error", "Ensure all inputs are valid numbers.");
+            showAlert("Input Error", "Ensure the size and all elements are valid numbers.");
         }
     }
 
     private void selectionSort() {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
-        Duration stepDuration = Duration.seconds(1);
+        Duration stepDuration = Duration.seconds(1.5);
 
         int n = bars.length;
-        double[] heights = new double[n];
+        int[] values = new int[n];
         for (int i = 0; i < n; i++) {
-            heights[i] = ((Rectangle) bars[i].getChildren().get(0)).getHeight();
+            values[i] = Integer.parseInt(((Label) bars[i].getChildren().get(1)).getText());
         }
 
         for (int i = 0; i < n - 1; i++) {
@@ -89,15 +101,15 @@ public class SelectionSortController {
                 duration = duration.add(stepDuration);
                 keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalMinIndex, finalJ)));
 
-                if (heights[j] < heights[minIndex]) {
+                if (values[j] < values[minIndex]) {
                     minIndex = j;
                 }
             }
 
-            // Swap heights
-            double temp = heights[minIndex];
-            heights[minIndex] = heights[i];
-            heights[i] = temp;
+            // Swap values
+            int temp = values[minIndex];
+            values[minIndex] = values[i];
+            values[i] = temp;
 
             // Swap bars visually
             int finalI = i;
@@ -114,10 +126,6 @@ public class SelectionSortController {
     }
 
     private void swapBars(int index1, int index2) {
-        double tempHeight = ((Rectangle) bars[index1].getChildren().get(0)).getHeight();
-        ((Rectangle) bars[index1].getChildren().get(0)).setHeight(((Rectangle) bars[index2].getChildren().get(0)).getHeight());
-        ((Rectangle) bars[index2].getChildren().get(0)).setHeight(tempHeight);
-
         String tempLabel = ((Label) bars[index1].getChildren().get(1)).getText();
         ((Label) bars[index1].getChildren().get(1)).setText(((Label) bars[index2].getChildren().get(1)).getText());
         ((Label) bars[index2].getChildren().get(1)).setText(tempLabel);
@@ -131,7 +139,7 @@ public class SelectionSortController {
 
     private void resetBarColors() {
         for (StackPane bar : bars) {
-            ((Rectangle) bar.getChildren().get(0)).setFill(Color.SKYBLUE);
+            ((Rectangle) bar.getChildren().get(0)).setFill(Color.DARKVIOLET);
         }
     }
 
@@ -151,5 +159,27 @@ public class SelectionSortController {
         stage.setScene(scene);
         stage.setTitle("Algorithms");
         stage.show();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("selection_sort"));
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setTitle("Selection Sort");
+        stage.show();
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/algo/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }

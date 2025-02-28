@@ -1,0 +1,76 @@
+.root {
+    -fx-background-image: url('Dark_Background.jpeg');
+    -fx-background-size: cover;
+}
+
+/* Styling for all text elements */
+.label, .text {
+    -fx-text-fill: #E0E0E0; /* Light gray text for readability */
+    -fx-font-size: 14px;
+}
+
+/* Styling for TextField */
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #444; /* Subtle border */
+    -fx-border-radius: 8px;
+    -fx-padding: 6px;
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 16px; /* Increased font size */
+    -fx-font-family: 'Arial', sans-serif; /* Good font */
+}
+
+.text-field:focused {
+    -fx-border-color: #1E88E5; /* Highlight when focused */
+}
+
+/* Styling for Buttons */
+.button {
+    -fx-background-color:
+            #090a0c,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+}
+
+.button:hover {
+    -fx-background-color: rgba(30, 136, 229, 0.2); /* Light blue on hover */
+}
+}
+
+.button:pressed {
+    -fx-background-color: rgba(30, 136, 229, 0.4); /* Darker on press */
+}
+
+/* HBox & VBox Spacing */
+.hbox, .vbox {
+    -fx-spacing: 10px;
+}
+
+/* Custom ScrollPane Styling */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #444; /* Gray thumb */
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #666; /* Lighter on hover */
+}

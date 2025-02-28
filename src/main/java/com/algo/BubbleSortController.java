@@ -23,15 +23,17 @@ import java.util.List;
 
 public class BubbleSortController {
 
-    private static final int BAR_WIDTH = 50; // Increased width
-    private static final int MAX_HEIGHT = 400; // Increased height
+    private static final int BAR_SIZE = 100; // Square size
     private StackPane[] bars;
 
     @FXML
     private HBox barContainer;
 
     @FXML
-    private TextField inputField;
+    private TextField numElementsField;
+
+    @FXML
+    private TextField elementsField;
 
     @FXML
     private void handleBubbleSort() {
@@ -41,22 +43,28 @@ public class BubbleSortController {
 
     private void initializeBars() {
         barContainer.getChildren().clear();
-        String input = inputField.getText();
-        if (input.isEmpty()) {
-            showAlert("Input Error", "Please provide a comma-separated list of numbers.");
+        String numElementsInput = numElementsField.getText().trim();
+        String elementsInput = elementsField.getText().trim();
+
+        if (numElementsInput.isEmpty() || elementsInput.isEmpty()) {
+            showAlert("Input Error", "Please provide the number of elements and the elements separated by spaces.");
             return;
         }
+
         try {
-            String[] inputArray = input.split(",");
-            bars = new StackPane[inputArray.length];
-            for (int i = 0; i < inputArray.length; i++) {
-                double height = Double.parseDouble(inputArray[i].trim()) * 10;
-                if (height > MAX_HEIGHT) {
-                    showAlert("Input Error", "Please ensure numbers are small enough to fit the display.");
-                    return;
-                }
-                Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.SKYBLUE);
-                Label label = new Label(inputArray[i].trim());
+            int size = Integer.parseInt(numElementsInput);
+            String[] elementsArray = elementsInput.split("\\s+");
+
+            if (elementsArray.length != size) {
+                showAlert("Input Error", "The number of elements does not match the specified size.");
+                return;
+            }
+
+            bars = new StackPane[size];
+            for (int i = 0; i < size; i++) {
+                int value = Integer.parseInt(elementsArray[i].trim());
+                Rectangle rectangle = new Rectangle(BAR_SIZE, BAR_SIZE, Color.DARKVIOLET);
+                Label label = new Label(elementsArray[i].trim());
                 label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
                 stackPane.getChildren().addAll(rectangle, label);
@@ -74,9 +82,9 @@ public class BubbleSortController {
         Duration stepDuration = Duration.seconds(1);
 
         int n = bars.length;
-        double[] heights = new double[n];
+        int[] values = new int[n];
         for (int i = 0; i < n; i++) {
-            heights[i] = ((Rectangle) bars[i].getChildren().get(0)).getHeight();
+            values[i] = Integer.parseInt(((Label) bars[i].getChildren().get(1)).getText());
         }
 
         for (int i = 0; i < n - 1; i++) {
@@ -88,11 +96,11 @@ public class BubbleSortController {
                 duration = duration.add(stepDuration);
                 keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ, finalJ1)));
 
-                if (heights[j] > heights[j + 1]) {
-                    // Swap heights
-                    double temp = heights[j];
-                    heights[j] = heights[j + 1];
-                    heights[j + 1] = temp;
+                if (values[j] > values[j + 1]) {
+                    // Swap values
+                    int temp = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = temp;
 
                     // Swap bars visually
                     duration = duration.add(stepDuration);
@@ -109,10 +117,6 @@ public class BubbleSortController {
     }
 
     private void swapBars(int index1, int index2) {
-        double tempHeight = ((Rectangle) bars[index1].getChildren().get(0)).getHeight();
-        ((Rectangle) bars[index1].getChildren().get(0)).setHeight(((Rectangle) bars[index2].getChildren().get(0)).getHeight());
-        ((Rectangle) bars[index2].getChildren().get(0)).setHeight(tempHeight);
-
         String tempLabel = ((Label) bars[index1].getChildren().get(1)).getText();
         ((Label) bars[index1].getChildren().get(1)).setText(((Label) bars[index2].getChildren().get(1)).getText());
         ((Label) bars[index2].getChildren().get(1)).setText(tempLabel);
@@ -126,7 +130,7 @@ public class BubbleSortController {
 
     private void resetBarColors() {
         for (StackPane bar : bars) {
-            ((Rectangle) bar.getChildren().get(0)).setFill(Color.SKYBLUE);
+            ((Rectangle) bar.getChildren().get(0)).setFill(Color.DARKVIOLET);
         }
     }
 
@@ -144,6 +148,7 @@ public class BubbleSortController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Algorithms");
         stage.show();
     }

@@ -7,15 +7,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.GraphVisualizerController">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.GraphVisualizerController" stylesheets="@images%20and%20stylesheets/styles.css">
     <children>
-        <TextField fx:id="numNodesField" promptText="Enter number of nodes"/>
-        <TextField fx:id="numEdgesField" promptText="Enter number of edges"/>
-        <TextField fx:id="edgesField" promptText="Enter edges (e.g., 0-1,1-2)"/>
-        <TextField fx:id="startNodeField" promptText="Enter start node"/>
-        <Button text="Start BFS" onAction="#handleBFS"/>
-        <Pane fx:id="graphContainer" prefHeight="400" prefWidth="600"/>
-        <Label fx:id="resultLabel" text="" style="-fx-text-fill: green;"/>
-        <Button text="Back" onAction="#handleBack"/>
+        <TextField fx:id="numNodesField" promptText="Enter number of nodes" />
+        <TextField fx:id="numEdgesField" promptText="Enter number of edges" />
+        <TextField fx:id="edgesField" promptText="Enter edges (e.g., 0-1,1-2)" />
+        <TextField fx:id="startNodeField" promptText="Enter start node" />
+        <Button text="Start BFS" onAction="#handleBFS" />
+        <Pane fx:id="graphContainer" prefHeight="400" prefWidth="600">
+            <children>
+                <HBox fx:id="queueContainer" spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 10;" />
+            </children>
+        </Pane>
+        <Label fx:id="resultLabel" text="" style="-fx-text-fill: green;" />
+        <Button text="Back" onAction="#handleBack" />
     </children>
 </VBox>

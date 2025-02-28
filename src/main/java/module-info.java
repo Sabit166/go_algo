@@ -1,7 +1,9 @@
 module com.algo {
     requires javafx.controls;
     requires javafx.fxml;
-    requires transitive javafx.graphics;
+    requires javafx.media;
+    requires javafx.graphics;
+
 
     opens com.algo to javafx.fxml;
     opens com.algo.linkedlist to javafx.fxml;

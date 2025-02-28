@@ -1,24 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
-    <children>
-        <TextField fx:id="numElementsField" promptText="Enter number of elements"/>
-        <TextField fx:id="inputField" promptText="Enter sorted numbers separated by commas"/>
-        <TextField fx:id="searchField" promptText="Enter number to search"/>
-        <Button text="Start Binary Search" onAction="#handleBinarySearch"/>
-        <HBox fx:id="barContainer" spacing="5"/>
-        <HBox spacing="10">
-            <Label text="Start: Blue Arrow"/>
-            <Label text="End: Red Arrow"/>
-            <Label text="Mid: Green Arrow"/>
-        </HBox>
-        <Label fx:id="foundLabel" text="" style="-fx-text-fill: green;"/>
-        <Button text="Back" onAction="#handleBack"/>
-    </children>
-</VBox>
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
+   <children>
+      <VBox alignment="CENTER" layoutX="292.0" layoutY="2.0" prefHeight="760.0" prefWidth="959.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+         <children>
+            <Text fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
+            <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers separated by commas" styleClass="text-box" />
+            <TextField fx:id="searchField" onAction="#handleBinarySearch" promptText="Enter number to search" styleClass="text-box" />
+            <Button onAction="#handleBinarySearch" text="Start Binary Search" />
+            <HBox fx:id="barContainer" alignment="CENTER" prefHeight="221.0" prefWidth="959.0" spacing="5" />
+            <HBox alignment="CENTER" prefHeight="166.0" prefWidth="640.0">
+               <children>
+                  <Label fx:id="startOperation" alignment="CENTER" prefHeight="36.0" prefWidth="244.0" styleClass="label-blue" />
+                  <Label fx:id="midOperation" alignment="CENTER" prefHeight="36.0" prefWidth="249.0" styleClass="label-green" textFill="#ea0c0c" />
+                  <Label fx:id="endOperation" alignment="CENTER" prefHeight="36.0" prefWidth="219.0" styleClass="label-red" textFill="#2a810a" />
+                  <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="36.0" prefWidth="244.0" styleClass="label-grey" textFill="#514b4b" />
+               </children>
+            </HBox>
+            <Label fx:id="foundLabel" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
+         </children>
+      </VBox>
+      <AnchorPane fx:id="bpane" layoutX="-102.0" layoutY="2.0" prefHeight="238.0" prefWidth="311.0" stylesheets="@images%20and%20stylesheets/sidemenu.css">
+         <children>
+            <Button fx:id="menubutton" layoutX="121.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images%20and%20stylesheets/menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <MenuButton fx:id="drawitem" layoutX="119.0" layoutY="131.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="86.0" styleClass="button" stylesheets="@images%20and%20stylesheets/sidemenu.css">
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images%20and%20stylesheets/digital-painting.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <items>
+                  <MenuItem fx:id="item1" mnemonicParsing="false" text="Write" />
+                  <MenuItem fx:id="item2" mnemonicParsing="false" text="Erase" />
+                  <MenuItem fx:id="item3" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Off" />
+               </items>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="sidemenu" layoutX="14.0" layoutY="261.0" prefHeight="504.0" prefWidth="336.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="491.0" prefWidth="280.0" spacing="50.0" stylesheets="@images%20and%20stylesheets/stylefordatasmainpage.css">
+               <children>
+                  <Button alignment="CENTER" onAction="#handleBubbleSort" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Bubble Sort">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+                  <Button onAction="#handleSelectionSort" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Selection Sort" textAlignment="CENTER">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+                  <Button onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+                  <Button onAction="#handleBack" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Back" textAlignment="CENTER">
+                     <font>
+                        <Font name="Supercell-Magic" size="33.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
