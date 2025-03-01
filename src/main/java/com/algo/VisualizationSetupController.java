@@ -107,15 +107,7 @@ public class VisualizationSetupController {
 
     @FXML
     private void handleDataStructures(ActionEvent event) throws IOException {
-        // Load the Data Structures screen
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/data_structures.fxml"));
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Data Structures");
-        stage.centerOnScreen();
-        stage.show();
-        stage.setFullScreen(false);
+        loadPage("data_structures", event);
     }
 
     @FXML
@@ -133,6 +125,7 @@ public class VisualizationSetupController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();
     }
