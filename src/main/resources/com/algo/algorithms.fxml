@@ -46,9 +46,9 @@
             </VBox>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="800.0" fitWidth="687.0" layoutX="414.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="800.0" fitWidth="687.0" layoutX="414.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" styleClass="anchorpane">
          <image>
-            <Image url="@images%20and%20stylesheets/pippooo.png" />
+            <Image url="@images%20and%20stylesheets/pippoo.png" />
          </image></ImageView>
    </children>
 </AnchorPane>
