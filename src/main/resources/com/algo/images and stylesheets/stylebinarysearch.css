@@ -128,8 +128,23 @@
     -fx-text-fill: white; /* White text color on hover */
 }
 
-.menu-item:focused {
-    background-color: rgba(255, 255, 255, 0.2); /* More visible background when focused */
-    -fx-background-color: rgba(255, 255, 255, 0.2); /* More visible background when focused */
-    -fx-text-fill: white; /* White text color when focused */
+.text-area {
+    -fx-font-size: 20px; /* Font size for text area */
+    -fx-padding: 10px; /* Padding inside the text area */
+    -fx-border-color: white; /* Ensure a clear border */
+    -fx-border-width: 2px; /* Medium border width */
+    -fx-border-radius: 8px; /* Rounded corners */
+    -fx-background-radius: 8px; /* Matching rounded background */
+    -fx-background-color: #001a4d; /* Solid dark blue background */
+    -fx-text-fill: black; /* Dark text color for contrast */
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.6); /* Darker text for placeholders */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2); /* Soft shadow */
+    -fx-wrap-text: true; /* Ensure text wraps properly */
+}
+
+/* Ensure text visibility when focused */
+.text-area:focused {
+    -fx-border-color: white; /* Stronger white border on focus */
+    -fx-background-color: #002080; /* Slightly lighter blue when focused */
+    -fx-text-fill: black; /* Dark text color for contrast */
 }

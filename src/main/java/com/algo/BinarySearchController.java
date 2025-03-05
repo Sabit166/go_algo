@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -43,7 +44,7 @@ public class BinarySearchController extends Application {
     private MediaPlayer mediaPlayer;
     private StackPane[] bars;
     private double LastX, LastY;
-    private boolean candraw = false, menubuttonclicked = false;
+    private boolean candraw = false, menubuttonclicked = false, codevisible = false;
 
     @FXML
     private HBox barContainer;
@@ -55,16 +56,19 @@ public class BinarySearchController extends Application {
     private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
 
     @FXML
-    private AnchorPane sidemenu, bpane, mainpane;
+    private AnchorPane sidemenu, bpane, mainpane, codePane;
 
     @FXML
-    private Button menubutton;
+    private Button menubutton, viewCode;
 
     @FXML
     private MenuButton drawitem;
 
     @FXML
     private MenuItem item1, item2, item3;
+
+    @FXML
+    TextArea pseudoCodeArea;
 
     @FXML
     public void initialize() {
@@ -106,6 +110,27 @@ public class BinarySearchController extends Application {
             bpane.setVisible(true);
         });
 
+        viewCode.setOnAction(event -> {
+            codevisible = !codevisible;
+            if (codevisible) {
+                codePane.setVisible(true);
+            } else {
+                codePane.setVisible(false);
+            }
+        });
+
+        pseudoCodeArea.setText(
+            "Pseudocode for Binary Search:\n" +
+                "1. Set low = 0 and high = length of array - 1\n" +
+                "2. While low ≤ high:\n" +
+                "   a. Find mid = (low + high) / 2\n" +
+                "   b. If arr[mid] == target, return mid (found)\n" +
+                "   c. If arr[mid] < target, set low = mid + 1 (search right half)\n" +
+                "   d. Else, set high = mid - 1 (search left half)\n" +
+                "3. If not found, return -1");
+
+        //pseudoCodeArea.setStyle("-fx-font-size: 16px;");
+
         // MenuItem item1 = new MenuItem("Draw");
         // MenuItem item2 = new MenuItem("Erase");
         // MenuItem item3 = new MenuItem("Off");
@@ -123,7 +148,7 @@ public class BinarySearchController extends Application {
         item2.getStyleClass().add("menu-item");
         item3.getStyleClass().add("menu-item");
 
-        //drawitem.getItems().addAll(item1, item2, item3);
+        // drawitem.getItems().addAll(item1, item2, item3);
 
         mainpane.setOnMousePressed(event -> {
             if (candraw) {

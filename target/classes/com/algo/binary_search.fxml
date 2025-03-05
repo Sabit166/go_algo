@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -90,6 +91,20 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
+         </children>
+      </AnchorPane>
+      <Button fx:id="viewCode" layoutX="1340.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+         <graphic>
+            <ImageView fitHeight="68.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+               <image>
+                  <Image url="@images%20and%20stylesheets/view_Code.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <AnchorPane fx:id="codePane" layoutX="1280.0" layoutY="88.0" prefHeight="362.0" prefWidth="250.0" visible="false">
+         <children>
+            <TextArea fx:id="pseudoCodeArea" editable="false" layoutX="-226.0" layoutY="14.0" prefHeight="382.0" prefWidth="462.0" styleClass="text-area" />
          </children>
       </AnchorPane>
    </children>
