@@ -150,11 +150,38 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
         if (nodes.size() == 0) {
             return pushFront(value);
         }
+        if (index < 0 || index > nodes.size()) {
+            alert("Error", "Index out of bounds");
+            return null;
+        }
+
         SinglyNode newNode = new SinglyNode(canvas, value);
-        nodes.get(0).makeHead();
-        int i;
-        for(i=1;i<nodes.size();i++){
-            nodes.get(i).setNormalGradient();
+        stages = new ArrayList<>();
+
+        if (index == 0) {
+            return pushFront(value);
+        } else if (index == nodes.size()) {
+            return pushBack(value);
+        } else {
+            for (int i = 0; i < nodes.size(); i++) {
+                if (i == 0) {
+                    nodes.get(i).makeHead();
+                } else {
+                    nodes.get(i).setNormalGradient();
+                }
+                if (i == index - 1) {
+                    newNode.shiftRight();
+                    nodes.add(index, newNode);
+                    setPointers();
+                    stages.add(new stage(canvas, nodes, map));
+                    map.put(nodes.get(index - 1).getNextPointOut(), nodes.get(index).getNextPointIn());
+                    map.put(nodes.get(index).getNextPointOut(), nodes.get(index + 1).getNextPointIn());
+                    stages.add(new stage(canvas, nodes, map));
+                    break;
+                }
+                nodes.get(i).makeTemp();
+                stages.add(new stage(canvas, nodes, map));
+            }
         }
         return stages;
     }
@@ -162,13 +189,40 @@ public class SinglyLinkedList extends LinkedListVisualizationController {
     // Delete at a specific position
     public ArrayList<stage> deleteAt(int index) {
         if (nodes.size() == 0) {
+            alert("Error", "There are no nodes to delete");
+            return null;
+        }
+        if (index < 0 || index >= nodes.size()) {
+            alert("Error", "Index out of bounds");
             return null;
         }
 
-        if (nodes.size() == 1) {
-            return popFront();
-        }
         stages = new ArrayList<>();
+        stages.add(new stage(canvas, nodes, map));
+
+        if (index == 0) {
+            return popFront();
+        } else if (index == nodes.size() - 1) {
+            return popBack();
+        } else {
+            for (int i = 0; i < nodes.size(); i++) {
+                if (i == 0) {
+                    nodes.get(i).makeHead();
+                } else {
+                    nodes.get(i).setNormalGradient();
+                }
+                if (i == index - 1) {
+                    nodes.remove(index);
+                    setPointers();
+                    stages.add(new stage(canvas, nodes, map));
+                    map.put(nodes.get(index - 1).getNextPointOut(), nodes.get(index).getNextPointIn());
+                    stages.add(new stage(canvas, nodes, map));
+                    break;
+                }
+                nodes.get(i).makeTemp();
+                stages.add(new stage(canvas, nodes, map));
+            }
+        }
         return stages;
     }
 

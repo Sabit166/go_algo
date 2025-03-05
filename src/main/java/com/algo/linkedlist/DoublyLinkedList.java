@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
+
 public class DoublyLinkedList extends SinglyLinkedList {
     private LinkedList<DoublyNode> nodes = new LinkedList<>();
 
@@ -26,13 +27,11 @@ public class DoublyLinkedList extends SinglyLinkedList {
             stages = new ArrayList<>();
             nodes.addFirst(newNode);
             newNode.makeHead();
-            // System.out.println("Nodes after adding first node: " + nodes);
             stages.add(new stage(canvas, nodes, null, true));
             return stages;
         }
         stages = new ArrayList<>();
         nodes.addFirst(newNode);
-        // System.out.println("Nodes after adding new node: " + nodes);
         for (int i = 1; i < nodes.size(); i++) {
             nodes.get(i).shiftRight();
         }
@@ -52,17 +51,15 @@ public class DoublyLinkedList extends SinglyLinkedList {
         nodes.get(1).setNormalGradient();
         stages.add(new stage(canvas, nodes, map, true));
         return stages;
-
     }
 
     // Push to the back
-
     public ArrayList<stage> pushBack(int value) {
         if (nodes.size() == 4) {
             alert("Error", "Cannot add more than 4 nodes");
             return null;
         }
-        if (nodes.size() == 1) {
+        if (nodes.size() == 0) {
             return pushFront(value);
         }
 
@@ -73,7 +70,7 @@ public class DoublyLinkedList extends SinglyLinkedList {
 
         for (int i = 1; i < nodes.size(); i++) {
             nodes.get(i).makeTemp();
-            if(i == 1) nodes.get(i - 1).makeHead();
+            if (i == 1) nodes.get(i - 1).makeHead();
             else nodes.get(i - 1).setNormalGradient();
             stages.add(new stage(canvas, nodes, map, true));
             newNode.shiftRight();
@@ -91,7 +88,6 @@ public class DoublyLinkedList extends SinglyLinkedList {
         map.put(nodes.get(nodes.size() - 2).getPrevPointOut(), nodes.get(nodes.size() - 1).getPrevPointIn());
         stages.add(new stage(canvas, nodes, map, true));
         return stages;
-
     }
 
     // Pop from the front
@@ -130,62 +126,104 @@ public class DoublyLinkedList extends SinglyLinkedList {
             return popFront();
         }
         stages = new ArrayList<>();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         nodes.get(0).makeTemp();
 
         for (int i = 1; i < nodes.size(); i++) {
-            if(i==1) nodes.get(i).makeHead();
+            if (i == 1) nodes.get(i).makeHead();
             else nodes.get(i - 1).setNormalGradient();
             nodes.get(i).makeTemp();
-            stages.add(new stage(canvas, nodes, map));
+            stages.add(new stage(canvas, nodes, map, true));
         }
         nodes.removeLast();
         setPointers();
-        stages.add(new stage(canvas, nodes, map));
+        stages.add(new stage(canvas, nodes, map, true));
         return stages;
     }
 
+    // Insert at a specific position
     public ArrayList<stage> insertAt(int index, int value) {
-        SinglyNode newNode = new DoublyNode(canvas, value);
+        if (nodes.size() == 4) {
+            alert("Error", "Cannot add more than 4 nodes");
+            return null;
+        }
+        if (index < 0 || index > nodes.size()) {
+            alert("Error", "Index out of bounds");
+            return null;
+        }
+
+        DoublyNode newNode = new DoublyNode(canvas, value);
+        stages = new ArrayList<>();
+
         if (index == 0) {
-            newNode.setNext(head);
-            head = newNode;
-            return;
-        }
-        SinglyNode temp = head;
-        for (int i = 0; i < index - 1; i++) {
-            if (temp.getNext() == null) {
-                return null;
+            return pushFront(value);
+        } else if (index == nodes.size()) {
+            return pushBack(value);
+        } else {
+            for (int i = 0; i < nodes.size(); i++) {
+                if (i == 0) {
+                    nodes.get(i).makeHead();
+                } else {
+                    nodes.get(i).setNormalGradient();
+                }
+                if (i == index - 1) {
+                    newNode.shiftRight();
+                    nodes.add(index, newNode);
+                    setPointers();
+                    stages.add(new stage(canvas, nodes, map, true));
+                    map.put(nodes.get(index - 1).getNextPointOut(), nodes.get(index).getNextPointIn());
+                    map.put(nodes.get(index).getNextPointOut(), nodes.get(index + 1).getNextPointIn());
+                    map.put(nodes.get(index - 1).getPrevPointOut(), nodes.get(index).getPrevPointIn());
+                    map.put(nodes.get(index).getPrevPointOut(), nodes.get(index + 1).getPrevPointIn());
+                    stages.add(new stage(canvas, nodes, map, true));
+                    break;
+                }
+                nodes.get(i).makeTemp();
+                stages.add(new stage(canvas, nodes, map, true));
             }
-            temp = temp.getNext();
         }
-        newNode.setNext(temp.getNext());
-        temp.setNext(newNode);
-        nodes.add(index, newNode);
+        return stages;
     }
 
     // Delete at a specific position
     public ArrayList<stage> deleteAt(int index) {
-        if (head == null) {
+        if (nodes.size() == 0) {
+            alert("Error", "There are no nodes to delete");
             return null;
         }
+        if (index < 0 || index >= nodes.size()) {
+            alert("Error", "Index out of bounds");
+            return null;
+        }
+
+        stages = new ArrayList<>();
+        stages.add(new stage(canvas, nodes, map, true));
+
         if (index == 0) {
-            SinglyNode temp = head;
-            head = head.getNext();
-            temp = null;
-            return;
-        }
-        SinglyNode temp = head;
-        for (int i = 0; i < index - 1; i++) {
-            if (temp.getNext() == null) {
-                return;
+            return popFront();
+        } else if (index == nodes.size() - 1) {
+            return popBack();
+        } else {
+            for (int i = 0; i < nodes.size(); i++) {
+                if (i == 0) {
+                    nodes.get(i).makeHead();
+                } else {
+                    nodes.get(i).setNormalGradient();
+                }
+                if (i == index - 1) {
+                    nodes.remove(index);
+                    setPointers();
+                    stages.add(new stage(canvas, nodes, map, true));
+                    map.put(nodes.get(index - 1).getNextPointOut(), nodes.get(index).getNextPointIn());
+                    map.put(nodes.get(index - 1).getPrevPointOut(), nodes.get(index).getPrevPointIn());
+                    stages.add(new stage(canvas, nodes, map, true));
+                    break;
+                }
+                nodes.get(i).makeTemp();
+                stages.add(new stage(canvas, nodes, map, true));
             }
-            temp = temp.getNext();
         }
-        SinglyNode delNode = temp.getNext();
-        temp.setNext(delNode.getNext());
-        delNode = null;
-        nodes.remove(index);
+        return stages;
     }
 
     void setPointers() {
@@ -194,5 +232,13 @@ public class DoublyLinkedList extends SinglyLinkedList {
             map.put(nodes.get(i).getNextPointOut(), nodes.get(i + 1).getNextPointIn());
             map.put(nodes.get(i + 1).getPrevPointIn(), nodes.get(i).getPrevPointOut());
         }
+    }
+
+    void alert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
