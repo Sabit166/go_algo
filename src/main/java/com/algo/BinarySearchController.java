@@ -162,7 +162,6 @@ public class BinarySearchController extends Application {
                 draw(mainpane, event);
             }
         });
-
     }
 
     @FXML

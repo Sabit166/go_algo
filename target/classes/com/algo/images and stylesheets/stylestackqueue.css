@@ -95,14 +95,25 @@ Styling for text areas
     -fx-text-fill: black;
 }
 
+.text-field {
+    -fx-font-size: 24px; /* Larger font size */
+    -fx-pref-height: 50px; /* Increased height */
+    -fx-pref-width: 300px; /* Increased width */
+    -fx-padding: 15px; /* Larger padding */
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
 /* Styling for all HBox elements */
 .hbox {
     -fx-background-color: #f0f0f0;
-    -fx-padding: 10px;
-    -fx-spacing: 10px;
+    -fx-padding: 20px; /* Increased padding */
+    -fx-spacing: 20px; /* Increased spacing */
     -fx-border-color: #000000;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
+    -fx-border-width: 3px;
+    -fx-border-radius: 10px;
 }
 
 /* Styling for HBox with specific fx:id */
@@ -116,6 +127,14 @@ Styling for text areas
     -fx-font-size: 20px; /* Larger font size */
     -fx-font-weight: bold; /* Bold text */
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0.0, 0, 2); /* Shadow effect */
+    -fx-background-image: linear-gradient(to bottom right, #f0f0f0, #d0d0d0); /* Gradient background */
+    -fx-transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+#stackContainer:hover {
+    -fx-background-color: #d0d0d0; /* Slightly darker background on hover */
+    -fx-scale-x: 1.05; /* Slightly larger on hover */
+    -fx-scale-y: 1.05; /* Slightly larger on hover */
 }
 
 /* Styling for MenuButton */
@@ -161,7 +180,40 @@ Styling for text areas
 }
 
 /* Styling for medium text */
-.text-meduim {
+.text-medium {
     -fx-font-size: 24px; /* Medium font size */
     -fx-text-fill: #333333; /* Dark grey text */
+}
+
+/* Styling for ComboBox */
+.combo-box {
+    -fx-font-size: 24px; /* Larger font size */
+    -fx-pref-height: 50px; /* Increased height */
+    -fx-pref-width: 300px; /* Increased width */
+    -fx-padding: 15px; /* Increased padding */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+.combo-box:hover {
+    -fx-background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+.combo-box:focused {
+    -fx-border-color: #666666; /* Darker grey border when focused */
+}
+
+.combo-box .list-cell {
+    -fx-font-size: 24px; /* Larger font size */
+    -fx-padding: 15px; /* Increased padding */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0; /* Light grey background on hover for list cells */
+}
+
+.combo-box .list-cell:focused {
+    -fx-background-color: #e0e0e0; /* Slightly darker grey background when focused for list cells */
 }
