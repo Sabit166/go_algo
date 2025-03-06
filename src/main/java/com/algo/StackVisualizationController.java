@@ -11,11 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Stack;
 
-public class StackVisualizationController {
+public class StackVisualizationController extends Application{
 
     @FXML
     private ComboBox<String> dataTypeComboBox;
@@ -24,6 +25,7 @@ public class StackVisualizationController {
     @FXML
     private HBox stackContainer;
 
+    private static Scene scene;
     private Stack<Object> stack = new Stack<>();
 
     @FXML
@@ -133,5 +135,29 @@ public class StackVisualizationController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("stack_visualization"));
+        scene.getStylesheets()
+                .add(getClass().getResource("/com/algo/images and stylesheets/stylestackqueue.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setTitle("Stack Visualization");
+        stage.show();
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/algo/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }
