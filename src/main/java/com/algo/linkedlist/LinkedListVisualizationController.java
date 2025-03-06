@@ -1,7 +1,9 @@
 package com.algo.linkedlist;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.util.Duration;
@@ -207,19 +211,29 @@ public class LinkedListVisualizationController extends Application {
     // }
 
     void display(ArrayList<stage> stages) {
+        List<KeyFrame> keyFrames = new ArrayList<>();
+        Duration duration = Duration.ZERO;
+        Duration stepDuration = Duration.seconds(2); // Slow down the simulation
+
         for (int i = 0; i < stages.size(); i++) {
             int index = i; // Needed for lambda scope
-            PauseTransition pause = new PauseTransition(Duration.seconds(index + 1));
-            pause.setOnFinished(e -> {
-                System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
-                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                if (isDoubly)
-                    stages.get(index).draw(stages.get(index), true);
-                else
-                    stages.get(index).draw(stages.get(index));
-            });
-            pause.play();
+            System.out.println("Drawing stage " + index + " at time " + (index + 1) + " seconds");
+            duration = duration.add(stepDuration);
+            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            if (isDoubly)
+            {
+                keyFrames.add(new KeyFrame(duration, e -> stages.get(index).draw(stages.get(index), true)));
+            }
+            else
+            {
+                keyFrames.add(new KeyFrame(duration, e -> stages.get(index).draw(stages.get(index))));
+            }
         }
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().addAll(keyFrames);
+        //timeline.setOnFinished(e -> resetBarColors());
+        timeline.play();
     }
 
     private void showAlert(String title, String message) {
