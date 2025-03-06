@@ -3,39 +3,12 @@ package com.algo.segmenttree;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.canvas.Canvas;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.io.IOException;
-import java.util.List;
 
 public class SegmentTreeWriteandDraw extends SegmentTreeVisualizationHelper {
-    List<String> buildLines;
-    List<String> queryLines;
-    List<String> updateLines;
-    double writingHeight;
-    double writingBreadth;
-    double linesDistance;
 
     public SegmentTreeWriteandDraw(Canvas canvas) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
-        try {
-            buildLines = Files.readAllLines(Paths.get("src/main/java/com/algo/segmenttree/BuildOperation.txt"));
-            // System.out.println("BuildOperation Lines:");
-            // for (String line : buildLines) {
-            //     System.out.println(line);
-            // }
-            queryLines = Files.readAllLines(Paths.get("src/main/java/com/algo/segmenttree/QueryOperation.txt"));
-            // for (String line : queryLines) {
-            //     System.out.println(line);
-            // }
-            updateLines = Files.readAllLines(Paths.get("src/main/java/com/algo/segmenttree/UpdateOperation.txt"));
-            // for (String line : updateLines) {
-            //     System.out.println(line);
-            // }
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }
     }
 
     void build_helper(SegmentTreeNodes node, Color color) {
@@ -67,26 +40,5 @@ public class SegmentTreeWriteandDraw extends SegmentTreeVisualizationHelper {
         gc.setLineWidth(0.5);
         gc.strokeLine(x1, y1, x2, y2);
 
-    }
-
-    void write(String key)
-    {
-        writingHeight = 25;
-        writingBreadth = canvas.getWidth() * 0.6 - 10;
-        linesDistance = 40;
-        gc.clearRect(writingBreadth, 0, canvas.getWidth(), canvas.getHeight());
-        List<String> lines = null;
-        if(key == "build") lines = buildLines;
-        if(key == "query") lines = queryLines;
-        if(key == "update") lines = updateLines;
-        
-        for(String line: lines)
-            {
-                gc.setFill(Color.BLACK);
-                gc.setFont(new Font(30));
-                gc.fillText(line, writingBreadth, writingHeight);
-                System.out.println(line);
-                writingHeight += linesDistance;
-            }
     }
 }

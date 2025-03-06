@@ -3,6 +3,8 @@ package com.algo.segmenttree;
 import java.io.IOException;
 
 import javafx.animation.KeyFrame;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,22 +33,22 @@ public class SegmentTreeVisualizationController extends Application {
     protected GraphicsContext gc;
 
     @FXML
-    private TextField BuildInput;
+    private TextField BuildInput, QuerryInput, UpdateInput;
 
     @FXML
-    private TextField QuerryInput;
-
-    @FXML
-    private TextField UpdateInput;
-
-    @FXML
-    private AnchorPane sidemenu, bpane, mainpane;
+    private AnchorPane sidemenu, bpane, mainpane, codePane;
 
     private Timeline timeline;
     @FXML
-    private Button menubutton;
+    private Button menubutton, codeHide;
+
     @FXML
-    private MenuButton drawitem;
+    private MenuButton drawitem, writeCode;
+
+    
+
+    @FXML
+    TextArea pseudoCodeArea;
 
     private double LastX, LastY;
     private boolean candraw = false;
@@ -113,6 +116,9 @@ public class SegmentTreeVisualizationController extends Application {
         MenuItem item1 = new MenuItem("Draw");
         MenuItem item2 = new MenuItem("Erase");
         MenuItem item3 = new MenuItem("Off");
+        MenuItem build = new MenuItem("Build");
+        MenuItem query = new MenuItem("Query");
+        MenuItem update = new MenuItem("Update");
 
         item1.setOnAction(eh -> {
             candraw = true;
@@ -121,8 +127,6 @@ public class SegmentTreeVisualizationController extends Application {
         item3.setOnAction(eh -> {
             candraw = false;
         });
-
-        drawitem.getItems().addAll(item1, item2, item3);
 
         mainpane.setOnMousePressed(event -> {
             if (candraw) {
@@ -136,6 +140,46 @@ public class SegmentTreeVisualizationController extends Application {
                 draw(mainpane, event);
             }
         });
+
+        build.setOnAction(eh -> {
+            pseudoCodeArea.setVisible(true);
+            try {
+                String content = new String(
+                        Files.readAllBytes(Paths.get("src/main/java/com/algo/segmenttree/BuildOperation.txt")));
+                pseudoCodeArea.setText(content);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        query.setOnAction(eh -> {
+            pseudoCodeArea.setVisible(true);
+            try {
+                String content = new String(
+                        Files.readAllBytes(Paths.get("src/main/java/com/algo/segmenttree/QueryOperation.txt")));
+                pseudoCodeArea.setText(content);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        update.setOnAction(eh -> {
+            pseudoCodeArea.setVisible(true);
+            try {
+                String content = new String(
+                        Files.readAllBytes(Paths.get("src/main/java/com/algo/segmenttree/UpdateOperation.txt")));
+                pseudoCodeArea.setText(content);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        codeHide.setOnAction(eh -> {
+            pseudoCodeArea.setVisible(false);
+        });
+
+        drawitem.getItems().addAll(item1, item2, item3);
+        writeCode.getItems().addAll(build, query, update);
 
     }
 
@@ -186,11 +230,10 @@ public class SegmentTreeVisualizationController extends Application {
         draw = new SegmentTreeWriteandDraw(canvas);
         helper = new SegmentTreeVisualizationHelper(canvas, numbers, draw);
 
-        double canvas_width = canvas.getWidth() * (3.0 / 5.0);
+        double canvas_width = canvas.getWidth();
         helper.build_segment_tree(1, 0, numbers.length - 1, 0, canvas_width);
         helper.build_lines(1, 0, numbers.length - 1);
         helper.build_circle(1, 0, numbers.length - 1);
-        draw.write("build");
         helper.prompt("Segment Tree is building.", "Time Complexity: O(n)");
     }
 
@@ -219,7 +262,6 @@ public class SegmentTreeVisualizationController extends Application {
         }
 
         helper.instant_build_circle(1, 0, numbers.length - 1);
-        draw.write("query");
         int result = helper.query_segment_tree(1, 0, numbers.length - 1, l, r);
         helper.prompt("The sum of the range [" + l + ", " + r + "] is: " + result, "Time Complexity: O(log n)");
     }
@@ -246,7 +288,6 @@ public class SegmentTreeVisualizationController extends Application {
         }
 
         helper.instant_build_circle(1, 0, numbers.length - 1);
-        draw.write("update");
         helper.update_segment_tree(1, 0, numbers.length - 1, index, value);
         helper.prompt("The value at index [" + index + "] has been updated to: " + value, "Time Complexity: O(log n)");
     }
