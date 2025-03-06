@@ -63,7 +63,7 @@
          <font>
             <Font size="24.0" />
          </font></TextField>
-      <TextField fx:id="InsertAtIndex" layoutX="668.0" layoutY="294.0" onAction="#handleInsertAt" prefHeight="53.0" prefWidth="206.0" promptText="Enter Insert Index">
+      <TextField fx:id="insertAtIndex" layoutX="668.0" layoutY="294.0" onAction="#handleInsertAt" prefHeight="53.0" prefWidth="206.0" promptText="Enter Insert Index">
          <font>
             <Font size="24.0" />
          </font></TextField>

@@ -162,7 +162,6 @@ public class BinarySearchController extends Application {
                 draw(mainpane, event);
             }
         });
-
     }
 
     @FXML
@@ -176,7 +175,7 @@ public class BinarySearchController extends Application {
         foundLabel.setText(""); // Clear the found label
         String input = inputField.getText();
         try {
-            String[] inputArray = input.split(",");
+            String[] inputArray = input.split("\\s+");
             int numElements = inputArray.length;
             if (inputArray.length != numElements) {
                 showAlert("Input Error", "The number of elements does not match the provided list.");
@@ -191,7 +190,7 @@ public class BinarySearchController extends Application {
             for (int i = 1; i < intArray.length; i++) {
                 if (intArray[i] < intArray[i - 1]) {
                     showAlert("Input Error", "The input array must be sorted in ascending order.");
-                    return;
+                    return; 
                 }
             }
             bars = new StackPane[numElements];

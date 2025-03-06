@@ -67,6 +67,8 @@ public class SelectionSortController extends Application {
             for (int i = 0; i < size; i++) {
                 double height = 100; // Set a constant height for all bars
                 Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.DARKVIOLET);
+                rectangle.setStroke(Color.BLACK); // Set the border color
+                rectangle.setStrokeWidth(5); // Set the border width
                 Label label = new Label(elementsArray[i].trim());
                 label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
@@ -99,7 +101,7 @@ public class SelectionSortController extends Application {
 
                 // Highlight the bars being compared
                 duration = duration.add(stepDuration);
-                keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ,ty,-1)));
+                keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ, ty, -1)));
 
                 if (values[j] < values[minIndex]) {
                     minIndex = j;
@@ -107,14 +109,14 @@ public class SelectionSortController extends Application {
             }
             final int tmp = minIndex;
             duration = duration.add(stepDuration);
-            keyFrames.add(new KeyFrame(duration, e -> highlightBars(-1,ty,tmp)));
-            
+            keyFrames.add(new KeyFrame(duration, e -> highlightBars(-1, ty, tmp)));
+
             // Uplift bars before swapping
             int finalI = i;
             int finalMinIndex1 = minIndex;
             duration = duration.add(stepDuration);
-            if(finalI != finalMinIndex1)
-            keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
+            if (finalI != finalMinIndex1)
+                keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
 
             // Swap values
             int temp = values[minIndex];
@@ -127,8 +129,8 @@ public class SelectionSortController extends Application {
 
             // Lower bars after swapping
             duration = duration.add(stepDuration);
-            if(finalI != finalMinIndex1)
-            keyFrames.add(new KeyFrame(duration, e -> lowerBars(finalI, finalMinIndex1)));
+            if (finalI != finalMinIndex1)
+                keyFrames.add(new KeyFrame(duration, e -> lowerBars(finalI, finalMinIndex1)));
         }
 
         // Play the timeline animation
@@ -144,12 +146,12 @@ public class SelectionSortController extends Application {
         ((Label) bars[index2].getChildren().get(1)).setText(tempLabel);
     }
 
-    private void highlightBars(int index2,int index3,int index1) {
+    private void highlightBars(int index2, int index3, int index1) {
         resetBarColors();
-        if(index1!=-1)
-        ((Rectangle) bars[index1].getChildren().get(0)).setFill(Color.GREEN); // Highlight the selected bar
-        if(index2!=-1)
-        ((Rectangle) bars[index2].getChildren().get(0)).setFill(Color.RED);   // Highlight the comparison
+        if (index1 != -1)
+            ((Rectangle) bars[index1].getChildren().get(0)).setFill(Color.GREEN); // Highlight the selected bar
+        if (index2 != -1)
+            ((Rectangle) bars[index2].getChildren().get(0)).setFill(Color.RED);   // Highlight the comparison
         ((Rectangle) bars[index3].getChildren().get(0)).setFill(Color.BLUE);   // Highlight the initial bar
     }
 
@@ -208,4 +210,4 @@ public class SelectionSortController extends Application {
     public static void main(String[] args) {
         launch();
     }
-}33
+}
