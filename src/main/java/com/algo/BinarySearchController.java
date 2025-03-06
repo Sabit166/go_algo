@@ -191,7 +191,7 @@ public class BinarySearchController extends Application {
             for (int i = 1; i < intArray.length; i++) {
                 if (intArray[i] < intArray[i - 1]) {
                     showAlert("Input Error", "The input array must be sorted in ascending order.");
-                    return;
+                    return; 
                 }
             }
             bars = new StackPane[numElements];
