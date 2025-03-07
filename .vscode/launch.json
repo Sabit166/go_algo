@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GraphVisualizerController",
+            "request": "launch",
+            "mainClass": "com.algo/com.algo.GraphVisualizerController",
+            "projectName": "go_algo"
+        },
+        {
+            "type": "java",
             "name": "BubbleSortController",
             "request": "launch",
             "mainClass": "com.algo/com.algo.BubbleSortController",
