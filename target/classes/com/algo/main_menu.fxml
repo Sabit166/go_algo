@@ -108,7 +108,7 @@
             </AnchorPane>
             <AnchorPane fx:id="aboutus" layoutX="196.0" layoutY="241.0" prefHeight="113.0" prefWidth="144.0" styleClass="all_button" stylesheets="@images%20and%20stylesheets/style.css">
                <children>
-                  <Button fx:id="button4" layoutX="30.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
+                  <Button fx:id="button4" layoutX="30.0" mnemonicParsing="false" onAction="#handleAboutUs" prefHeight="83.0" prefWidth="83.0" styleClass="rbutton">
                      <graphic>
                         <ImageView fx:id="button4image" blendMode="DARKEN" fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="rbutton">
                            <image>

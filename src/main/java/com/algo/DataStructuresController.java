@@ -29,6 +29,7 @@ public class DataStructuresController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Stack Visualization");
         stage.show();
     }
@@ -40,6 +41,7 @@ public class DataStructuresController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Queue Visualization");
         stage.show();
     }

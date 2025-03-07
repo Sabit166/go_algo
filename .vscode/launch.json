@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "QueueVisualizationController",
+            "request": "launch",
+            "mainClass": "com.algo/com.algo.QueueVisualizationController",
+            "projectName": "go_algo"
+        },
+        {
+            "type": "java",
+            "name": "StackVisualizationController",
+            "request": "launch",
+            "mainClass": "com.algo/com.algo.StackVisualizationController",
+            "projectName": "go_algo"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

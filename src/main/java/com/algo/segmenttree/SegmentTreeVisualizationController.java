@@ -55,7 +55,7 @@ public class SegmentTreeVisualizationController extends Application {
 
     SegmentTreeVisualizationHelper helper;
     SegmentTreeWriteandDraw draw;
-    private int maxSize = 8;
+    private int maxSize = 16;
     protected int[] numbers;
     protected SegmentTreeNodes[] segment_tree = new SegmentTreeNodes[4 * maxSize]; // Initialize the segment tree
 
@@ -141,8 +141,19 @@ public class SegmentTreeVisualizationController extends Application {
             }
         });
 
+        // pseudoCodeArea.setText(
+        //     "Pseudocode for Binary Search:\n" +
+        //         "1. Set low = 0 and high = length of array - 1\n" +
+        //         "2. While low ≤ high:\n" +
+        //         "   a. Find mid = (low + high) / 2\n" +
+        //         "   b. If arr[mid] == target, return mid (found)\n" +
+        //         "   c. If arr[mid] < target, set low = mid + 1 (search right half)\n" +
+        //         "   d. Else, set high = mid - 1 (search left half)\n" +
+        //         "3. If not found, return -1");
+
         build.setOnAction(eh -> {
             pseudoCodeArea.setVisible(true);
+            codeHide.setVisible(true);
             try {
                 String content = new String(
                         Files.readAllBytes(Paths.get("src/main/java/com/algo/segmenttree/BuildOperation.txt")));
@@ -154,6 +165,7 @@ public class SegmentTreeVisualizationController extends Application {
 
         query.setOnAction(eh -> {
             pseudoCodeArea.setVisible(true);
+            codeHide.setVisible(true);
             try {
                 String content = new String(
                         Files.readAllBytes(Paths.get("src/main/java/com/algo/segmenttree/QueryOperation.txt")));
@@ -165,6 +177,7 @@ public class SegmentTreeVisualizationController extends Application {
 
         update.setOnAction(eh -> {
             pseudoCodeArea.setVisible(true);
+            codeHide.setVisible(true);
             try {
                 String content = new String(
                         Files.readAllBytes(Paths.get("src/main/java/com/algo/segmenttree/UpdateOperation.txt")));
@@ -176,6 +189,7 @@ public class SegmentTreeVisualizationController extends Application {
 
         codeHide.setOnAction(eh -> {
             pseudoCodeArea.setVisible(false);
+            codeHide.setVisible(false);
         });
 
         drawitem.getItems().addAll(item1, item2, item3);
@@ -310,6 +324,7 @@ public class SegmentTreeVisualizationController extends Application {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Stack Visualization");
         stage.show();
     }
@@ -321,6 +336,7 @@ public class SegmentTreeVisualizationController extends Application {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Queue Visualization");
         stage.show();
     }
@@ -332,6 +348,7 @@ public class SegmentTreeVisualizationController extends Application {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Visualization Setup");
         stage.centerOnScreen();
         stage.show();
