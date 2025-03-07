@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BubbleSortController",
+            "request": "launch",
+            "mainClass": "com.algo/com.algo.BubbleSortController",
+            "projectName": "go_algo"
+        },
+        {
+            "type": "java",
             "name": "QueueVisualizationController",
             "request": "launch",
             "mainClass": "com.algo/com.algo.QueueVisualizationController",

@@ -2,38 +2,162 @@ package com.algo;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BubbleSortController {
+public class BubbleSortController extends Application {
 
-    private static final int BAR_SIZE = 100; // Square size
+    private boolean candraw = false;
+    private double LastX, LastY;
+
+    private boolean menubuttonclicked = false;
+    private boolean codevisible = false;
+
+    private static Scene scene;
+    private static final int BAR_WIDTH = 100; // Increased width
+    private static final int MAX_HEIGHT = 400; // Increased height
     private StackPane[] bars;
 
     @FXML
     private HBox barContainer;
 
     @FXML
-    private TextField numElementsField;
+    private TextField inputField, searchField, numElementsField, elementsField;
 
     @FXML
-    private TextField elementsField;
+    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
+
+    @FXML
+    private AnchorPane sidemenu, bpane, mainpane, codePane;
+
+    @FXML
+    private Button menubutton, viewCode;
+
+    @FXML
+    private MenuButton drawitem;
+
+    @FXML
+    private MenuItem item1, item2, item3;
+
+    @FXML
+    TextArea pseudoCodeArea;
+
+    private Timeline timeline;
+
+    @FXML
+    public void initialize() {
+        sidemenu.setVisible(false);
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+            bpane.setOpacity(0.3);
+        }));
+        timeline.setCycleCount(1); // Run only once
+
+        timeline.play();
+
+        bpane.setOnMouseEntered(event -> {
+            bpane.setOpacity(1.0); // Reset opacity to full
+            timeline.stop(); // Stop the existing timeline
+        });
+
+        bpane.setOnMouseExited(event -> {
+            timeline.stop();
+            timeline.playFromStart(); // Restart the countdown
+        });
+
+        menubutton.setOnAction(event -> {
+            menubuttonclicked = !menubuttonclicked;
+            if (menubuttonclicked) {
+                sidemenu.setVisible(true);
+                bpane.setDisable(true);
+            } else {
+                sidemenu.setVisible(false);
+                bpane.setDisable(false);
+            }
+        });
+
+        mainpane.setOnMouseClicked(event -> {
+            sidemenu.setVisible(false);
+            bpane.setDisable(false);
+            bpane.setVisible(true);
+        });
+
+        viewCode.setOnAction(event -> {
+            codevisible = !codevisible;
+            if (codevisible) {
+                codePane.setVisible(true);
+            } else {
+                codePane.setVisible(false);
+            }
+        });
+
+        pseudoCodeArea.setText(
+            "Pseudocode for Bubble Sort:\n" +
+                "1. Iterate over the array from the first element to the second last element.\n" +
+                "2. For each element, compare it with the next element.\n" +
+                "3. If the current element is greater than the next element, swap them.\n" +
+                "4. Repeat until the array is sorted.");
+
+        item1.setOnAction(eh -> {
+            candraw = true;
+        });
+        item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
+        item3.setOnAction(eh -> {
+            candraw = false;
+        });
+
+        item1.getStyleClass().add("menu-item");
+        item2.getStyleClass().add("menu-item");
+        item3.getStyleClass().add("menu-item");
+
+        mainpane.setOnMousePressed(event -> {
+            if (candraw) {
+                LastX = event.getSceneX();
+                LastY = event.getSceneY();
+            }
+        });
+
+        mainpane.setOnMouseDragged(event -> {
+            if (candraw) {
+                draw(mainpane, event);
+            }
+        });
+    }
+
+    private void draw(AnchorPane pane, MouseEvent event) {
+        Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
+        line.setStroke(Color.web("#FFD700")); // Gold color code
+        line.setStrokeWidth(5);
+        pane.getChildren().add(line);
+
+        LastX = event.getSceneX();
+        LastY = event.getSceneY();
+    }
 
     @FXML
     private void handleBubbleSort() {
@@ -45,7 +169,8 @@ public class BubbleSortController {
         barContainer.getChildren().clear();
         String numElementsInput = numElementsField.getText().trim();
         String elementsInput = elementsField.getText().trim();
-
+        System.out.println(numElementsInput);
+        System.out.println(elementsInput);
         if (numElementsInput.isEmpty() || elementsInput.isEmpty()) {
             showAlert("Input Error", "Please provide the number of elements and the elements separated by spaces.");
             return;
@@ -62,8 +187,10 @@ public class BubbleSortController {
 
             bars = new StackPane[size];
             for (int i = 0; i < size; i++) {
-                int value = Integer.parseInt(elementsArray[i].trim());
-                Rectangle rectangle = new Rectangle(BAR_SIZE, BAR_SIZE, Color.DARKVIOLET);
+                double height = 100; // Set a constant height for all bars
+                Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.DARKVIOLET);
+                rectangle.setStroke(Color.BLACK); // Set the border color
+                rectangle.setStrokeWidth(5); // Set the border width
                 Label label = new Label(elementsArray[i].trim());
                 label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
@@ -71,6 +198,8 @@ public class BubbleSortController {
                 bars[i] = stackPane;
                 barContainer.getChildren().add(bars[i]);
             }
+            barContainer.setSpacing(10); // Add spacing between bars
+            barContainer.setAlignment(Pos.CENTER); // Center align the bars
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure all inputs are valid numbers.");
         }
@@ -97,6 +226,10 @@ public class BubbleSortController {
                 keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ, finalJ1)));
 
                 if (values[j] > values[j + 1]) {
+                    // Uplift bars before swapping
+                    duration = duration.add(stepDuration);
+                    keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalJ, finalJ1)));
+
                     // Swap values
                     int temp = values[j];
                     values[j] = values[j + 1];
@@ -105,6 +238,10 @@ public class BubbleSortController {
                     // Swap bars visually
                     duration = duration.add(stepDuration);
                     keyFrames.add(new KeyFrame(duration, e -> swapBars(finalJ, finalJ1)));
+
+                    // Lower bars after swapping
+                    duration = duration.add(stepDuration);
+                    keyFrames.add(new KeyFrame(duration, e -> lowerBars(finalJ, finalJ1)));
                 }
             }
         }
@@ -124,7 +261,7 @@ public class BubbleSortController {
 
     private void highlightBars(int index1, int index2) {
         resetBarColors();
-        ((Rectangle) bars[index1].getChildren().get(0)).setFill(Color.GREEN); // Highlight the selected bar
+        ((Rectangle) bars[index1].getChildren().get(0)).setFill(Color.BLUE); // Highlight the selected bar
         ((Rectangle) bars[index2].getChildren().get(0)).setFill(Color.RED);   // Highlight the comparison
     }
 
@@ -132,6 +269,16 @@ public class BubbleSortController {
         for (StackPane bar : bars) {
             ((Rectangle) bar.getChildren().get(0)).setFill(Color.DARKVIOLET);
         }
+    }
+
+    private void upliftBars(int index1, int index2) {
+        ((Rectangle) bars[index1].getChildren().get(0)).setTranslateY(-20); // Uplift by 20 pixels
+        ((Rectangle) bars[index2].getChildren().get(0)).setTranslateY(-20); // Uplift by 20 pixels
+    }
+
+    private void lowerBars(int index1, int index2) {
+        ((Rectangle) bars[index1].getChildren().get(0)).setTranslateY(0); // Lower back to original position
+        ((Rectangle) bars[index2].getChildren().get(0)).setTranslateY(0); // Lower back to original position
     }
 
     private void showAlert(String title, String content) {
@@ -144,12 +291,65 @@ public class BubbleSortController {
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/algorithms.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/visualization_setup.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setTitle("Algorithms");
+        stage.setTitle("Visualization Setup");
         stage.show();
+    }
+
+    @FXML
+    private void handleSelectionSort(ActionEvent event) throws IOException {
+        // Load the Selection Sort Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/selection_sort.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Selection Sort Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBinarySearch(ActionEvent event) throws IOException {
+        // Load the Binary Search Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/binary_search.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Binary Search Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBFS(ActionEvent event) throws IOException {
+        // Load the Queue Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bfs.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Queue Visualization");
+        stage.show();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        //Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bubble_sort.fxml"));
+        scene = new Scene(loadFXML("bubble_sort"));
+        stage.setScene(scene);
+        //Scene scene = new Scene(root);
+        //stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setTitle("Bubble Sort");
+        stage.show();
+    }
+
+    private Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }
