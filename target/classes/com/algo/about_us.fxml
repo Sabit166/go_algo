@@ -33,5 +33,14 @@
          </graphic>
       </Button>
       <HBox fx:id="dotbox" layoutX="228.0" layoutY="511.0" prefHeight="22.0" prefWidth="360.0" />
+      <Button layoutX="15.0" layoutY="486.0" mnemonicParsing="false" onAction="#back_button" style="-fx-background-color: rgba(243, 243, 243, 0);">
+         <graphic>
+            <ImageView fx:id="backbutton" fitHeight="42.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20and%20stylesheets/reply.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

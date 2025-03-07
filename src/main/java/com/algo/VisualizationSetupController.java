@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,13 +23,16 @@ import javafx.util.Duration;
 public class VisualizationSetupController {
 
     @FXML
-    private Text text1, text2, text11, text21, title;
+    private Text  title;
 
     @FXML
     private AnchorPane leftanchor, rightanchor, dstruct, algo;
 
     @FXML
     private ImageView anya;
+
+    Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
+    MediaPlayer mediaplayer = new MediaPlayer(sound);
 
     @FXML
     public void initialize() {
@@ -50,13 +55,9 @@ public class VisualizationSetupController {
         slide2.setFromX(180);
         slide2.setToX(10);
 
-        text1.setFont(Font.loadFont(getClass().getResourceAsStream("supercell-magic.ttf"), 19));
-        text2.setFont(Font.loadFont(getClass().getResourceAsStream("supercell-magic.ttf"), 19));
-        text11.setFont(Font.loadFont(getClass().getResourceAsStream("supercell-magic.ttf"), 19));
-        text21.setFont(Font.loadFont(getClass().getResourceAsStream("supercell-magic.ttf"), 19));
         title.setFont(Font.loadFont(getClass().getResourceAsStream("supercell-magic.ttf"), 36));
 
-        Image image1 = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/anya1.png"));
+        Image image1 = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/Bond Anya Sticker.gif"));
         Image image2 = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/anya2.png"));
 
         leftanchor.setVisible(false);
@@ -107,16 +108,22 @@ public class VisualizationSetupController {
 
     @FXML
     private void handleDataStructures(ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         loadPage("data_structures", event);
     }
 
     @FXML
     private void handleAlgorithms(ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         loadPage("algorithms", event);
     }
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         loadPage("main_menu", event);
     }
 
@@ -125,7 +132,9 @@ public class VisualizationSetupController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        if(fxml != "main_menu") stage.setFullScreen(true);
+        if (fxml != "main_menu") {
+            stage.setFullScreen(true);
+        }
         stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();
     }

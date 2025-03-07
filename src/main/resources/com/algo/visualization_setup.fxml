@@ -11,27 +11,35 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@images%20and%20stylesheets/visualstylesgheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.VisualizationSetupController">
    <children>
+      <ImageView fx:id="anya" fitHeight="252.0" fitWidth="253.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images%20and%20stylesheets/Bond%20Anya%20Sticker.gif" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
       <Text fx:id="title" fill="WHITE" layoutX="99.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visualization Setup">
          <font>
             <Font name="Supercell-Magic" size="36.0" />
          </font>
       </Text>
-      <AnchorPane fx:id="rightanchor" layoutX="429.0" layoutY="57.0" prefHeight="422.0" prefWidth="211.0" visible="false">
+      <AnchorPane fx:id="rightanchor" layoutX="433.0" layoutY="57.0" prefHeight="422.0" prefWidth="209.0" visible="false">
          <styleClass>
             <String fx:value="commonAnchorpane" />
             <String fx:value="rightAnchorpane" />
          </styleClass>
          <children>
-            <Text fx:id="text1" layoutX="14.0" layoutY="70.0" stroke="WHITE" strokeLineJoin="ROUND" strokeType="OUTSIDE" text="This will help you to demonstrate many Data Structures " textAlignment="CENTER" wrappingWidth="157.0">
-               <font>
-                  <Font name="Supercell-Magic" size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="text2" layoutX="14.0" layoutY="187.0" stroke="WHITE" strokeLineJoin="ROUND" strokeType="OUTSIDE" text="1.Segment Tree   2.Queue 3.Stack" textAlignment="CENTER" wrappingWidth="157.0">
-               <font>
-                  <Font name="Supercell-Magic" size="19.0" />
-               </font>
-            </Text>
+            <ImageView fitHeight="244.0" fitWidth="158.0" layoutX="25.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20and%20stylesheets/ds.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="63.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="63.625">
+               <image>
+                  <Image url="@images%20and%20stylesheets/Paw.gif" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="dstruct" layoutX="76.0" layoutY="91.0" styleClass="common" stylesheets="@images%20and%20stylesheets/visualstylesgheet.css">
@@ -52,7 +60,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="algo" layoutX="252.0" layoutY="216.0" styleClass="common" stylesheets="@images%20and%20stylesheets/visualstylesgheet.css">
+      <AnchorPane fx:id="algo" layoutX="270.0" layoutY="217.0" styleClass="common" stylesheets="@images%20and%20stylesheets/visualstylesgheet.css">
          <children>
             <Button layoutX="187.0" mnemonicParsing="false" onAction="#handleAlgorithms">
                <graphic>
@@ -70,22 +78,22 @@
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="leftanchor" layoutY="57.0" prefHeight="422.0" prefWidth="211.0" visible="false">
+      <AnchorPane fx:id="leftanchor" layoutX="-20.0" layoutY="57.0" prefHeight="422.0" prefWidth="239.0" visible="false">
          <styleClass>
             <String fx:value="commonAnchorpane" />
             <String fx:value="leftAnchorpane" />
          </styleClass>
          <children>
-            <Text fx:id="text11" layoutX="14.0" layoutY="70.0" stroke="WHITE" strokeLineJoin="ROUND" strokeType="OUTSIDE" text="This will help you to demonstrate many Algorithms " textAlignment="CENTER" wrappingWidth="157.0">
-               <font>
-                  <Font name="Supercell-Magic" size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="text21" layoutX="14.0" layoutY="187.0" stroke="WHITE" strokeLineJoin="ROUND" strokeType="OUTSIDE" text="1.Bubble Sort   2.Selection sort                  3.BFS" textAlignment="CENTER" wrappingWidth="157.0">
-               <font>
-                  <Font name="Supercell-Magic" size="19.0" />
-               </font>
-            </Text>
+            <ImageView fitHeight="338.0" fitWidth="171.0" layoutX="28.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20and%20stylesheets/as.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="157.0" layoutX="77.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0">
+               <image>
+                  <Image url="@images%20and%20stylesheets/anime-girl-gif-2.gif" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="algo1" layoutX="209.0" layoutY="407.0" prefHeight="95.0" prefWidth="182.0" styleClass="common" stylesheets="@images%20and%20stylesheets/visualstylesgheet.css">
@@ -106,13 +114,5 @@
             </Button>
          </children>
       </AnchorPane>
-      <ImageView fx:id="anya" fitHeight="252.0" fitWidth="253.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images%20and%20stylesheets/anya1.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
    </children>
 </AnchorPane>

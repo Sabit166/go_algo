@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,6 +26,9 @@ public class MainMenuController {
 
     @FXML
     private AnchorPane aboutus, visualize, helpme, exit;
+
+    Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
+    MediaPlayer mediaplayer = new MediaPlayer(sound);
 
     @FXML
     public void initialize() {
@@ -82,25 +87,34 @@ public class MainMenuController {
             button3image.setImage(image8);
             etext.setText("Exit");
         });
+
     }
 
     @FXML
     private void handleStartVisualization(ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         loadPage("visualization_setup", event);
     }
 
     @FXML
     private void handleHelpInstructions(ActionEvent event) {
         // Handle help/instructions
+        mediaplayer.stop();
+        mediaplayer.play();
     }
 
     @FXML
     private void handleExit(ActionEvent event) {
+        mediaplayer.stop();
+        mediaplayer.play();
         System.exit(0);
     }
 
     @FXML
     private void handleAboutUs(ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         loadPage("about_us", event);
     }
 
