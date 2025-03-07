@@ -50,7 +50,7 @@ public class BinarySearchController extends Application {
     private HBox barContainer;
 
     @FXML
-    private TextField inputField, searchField;
+    private TextField inputField, searchField;//numElementsField, elementsField;
 
     @FXML
     private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;

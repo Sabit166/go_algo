@@ -6,12 +6,19 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.control.Label;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import java.io.IOException;
@@ -21,8 +28,15 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Pos;
 
 public class SelectionSortController extends Application {
+
+    private boolean candraw = false;
+    private double LastX, LastY;
+
+    private boolean menubuttonclicked = false;
+    private boolean codevisible = false;
 
     private static Scene scene;
     private static final int BAR_WIDTH = 100; // Increased width
@@ -33,10 +47,119 @@ public class SelectionSortController extends Application {
     private HBox barContainer;
 
     @FXML
-    private TextField numElementsField;
+    private TextField inputField, searchField, numElementsField, elementsField;
 
     @FXML
-    private TextField elementsField;
+    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
+
+    @FXML
+    private AnchorPane sidemenu, bpane, mainpane, codePane;
+
+    @FXML
+    private Button menubutton, viewCode;
+
+    @FXML
+    private MenuButton drawitem;
+
+    @FXML
+    private MenuItem item1, item2, item3;
+
+    @FXML
+    TextArea pseudoCodeArea;
+
+    private Timeline timeline;
+
+    @FXML
+    public void initialize() {
+        sidemenu.setVisible(false);
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+            bpane.setOpacity(0.3);
+        }));
+        timeline.setCycleCount(1); // Run only once
+
+        timeline.play();
+
+        bpane.setOnMouseEntered(event -> {
+            bpane.setOpacity(1.0); // Reset opacity to full
+            timeline.stop(); // Stop the existing timeline
+        });
+
+        bpane.setOnMouseExited(event -> {
+            timeline.stop();
+            timeline.playFromStart(); // Restart the countdown
+        });
+
+        menubutton.setOnAction(event -> {
+            menubuttonclicked = !menubuttonclicked;
+            if (menubuttonclicked) {
+                sidemenu.setVisible(true);
+                bpane.setDisable(true);
+            } else {
+                sidemenu.setVisible(false);
+                bpane.setDisable(false);
+            }
+        });
+
+        mainpane.setOnMouseClicked(event -> {
+            sidemenu.setVisible(false);
+            bpane.setDisable(false);
+            bpane.setVisible(true);
+        });
+
+        viewCode.setOnAction(event -> {
+            codevisible = !codevisible;
+            if (codevisible) {
+                codePane.setVisible(true);
+            } else {
+                codePane.setVisible(false);
+            }
+        });
+
+        pseudoCodeArea.setText(
+            "Pseudocode for Selection Sort:\n" +
+                "1. Iterate over the array from the first element to the second last element.\n" +
+                "2. For each element, assume it is the minimum.\n" +
+                "3. Compare it with every other element in the array.\n" +
+                "4. If any element is smaller, update the minimum.\n" +
+                "5. Swap the minimum element with the current element.\n" +
+                "6. Repeat until the array is sorted.");
+
+        item1.setOnAction(eh -> {
+            candraw = true;
+        });
+        item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
+        item3.setOnAction(eh -> {
+            candraw = false;
+        });
+
+        item1.getStyleClass().add("menu-item");
+        item2.getStyleClass().add("menu-item");
+        item3.getStyleClass().add("menu-item");
+
+        mainpane.setOnMousePressed(event -> {
+            if (candraw) {
+                LastX = event.getSceneX();
+                LastY = event.getSceneY();
+            }
+        });
+
+        mainpane.setOnMouseDragged(event -> {
+            if (candraw) {
+                draw(mainpane, event);
+            }
+        });
+    }
+
+    private void draw(AnchorPane pane, MouseEvent event) {
+        Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
+        line.setStroke(Color.web("#FFD700")); // Gold color code
+        line.setStrokeWidth(5);
+        pane.getChildren().add(line);
+
+        LastX = event.getSceneX();
+        LastY = event.getSceneY();
+    }
 
     @FXML
     private void handleSelectionSort() {
@@ -76,6 +199,8 @@ public class SelectionSortController extends Application {
                 bars[i] = stackPane;
                 barContainer.getChildren().add(bars[i]);
             }
+            barContainer.setSpacing(10); // Add spacing between bars
+            barContainer.setAlignment(Pos.CENTER); // Center align the bars
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure the size and all elements are valid numbers.");
         }
@@ -181,11 +306,44 @@ public class SelectionSortController extends Application {
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/algorithms.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/visualization_setup.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Algorithms");
+        stage.setTitle("Visualization Setup");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBubbleSort(ActionEvent event) throws IOException {
+        // Load the Bubble Sort Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bubble_sort.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Bubble Sort Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBinarySearch(ActionEvent event) throws IOException {
+        // Load the Binary Search Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/binary_search.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Binary Search Visualization");
+        stage.show();
+    }
+
+    @FXML
+    private void handleBFS(ActionEvent event) throws IOException {
+        // Load the Queue Visualization screen
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bfs.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Queue Visualization");
         stage.show();
     }
 
