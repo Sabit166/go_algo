@@ -36,14 +36,14 @@ public class aboutuscontroller {
 
     public void initialize() throws Exception {
 
-        Image bgimage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/aboutus.png"));
+        Image bgimage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/aboutus.jpg"));
 
         BackgroundImage bg = new BackgroundImage(bgimage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new javafx.scene.layout.BackgroundSize(100, 100, true, true, true, true));
         mainpane.setBackground(new javafx.scene.layout.Background(bg));
 
         imageUrls.add(getClass().getResource("/com/algo/images and stylesheets/tamim.png").toExternalForm());
         imageUrls.add(getClass().getResource("/com/algo/images and stylesheets/alif.png").toExternalForm());
-        imageUrls.add(getClass().getResource("/com/algo/images and stylesheets/b3.png").toExternalForm());
+        imageUrls.add(getClass().getResource("/com/algo/images and stylesheets/sabit.png").toExternalForm());
 
         aboutus.setImage(new Image(imageUrls.get(0)));
 
