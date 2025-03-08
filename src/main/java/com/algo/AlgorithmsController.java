@@ -1,15 +1,22 @@
 package com.algo;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import java.io.IOException;
 
 public class AlgorithmsController {
+
+    Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
+    MediaPlayer mediaplayer = new MediaPlayer(sound);
+
     @FXML
     private ImageView pippo;
 
@@ -54,11 +61,18 @@ public class AlgorithmsController {
     }
 
     private void loadPage(String fxml, ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/" + fxml + ".fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        if(fxml != "visualization_setup")stage.setFullScreen(true);
+        if (fxml == "visualization_setup") {
+            stage.setFullScreen(false);
+            stage.centerOnScreen();
+        } else {
+            stage.setFullScreen(true);
+        }
         stage.setTitle(fxml.replace("_", " ").toUpperCase());
         stage.show();
     }

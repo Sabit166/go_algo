@@ -76,7 +76,7 @@
                         <Font name="Supercell-Magic" size="33.0" />
                      </font>
                   </Button>
-                  <Button onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
+                  <Button disable="true" onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
                      <font>
                         <Font name="Supercell-Magic" size="33.0" />
                      </font>

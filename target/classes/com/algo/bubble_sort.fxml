@@ -23,7 +23,7 @@
             <TextField fx:id="numElementsField" onAction="#handleBubbleSort" promptText="Enter Number Of Elements" styleClass="text-box" />
             <TextField fx:id="elementsField" onAction="#handleBubbleSort" promptText="Enter The Elements" styleClass="text-box" />
             <Button onAction="#handleBubbleSort" text="Start" />
-            <HBox fx:id="barContainer" alignment="CENTER" prefHeight="221.0" prefWidth="959.0" spacing="5" />
+            <HBox fx:id="barContainer" alignment="CENTER" prefHeight="183.0" prefWidth="1053.0" spacing="5" />
             <HBox alignment="CENTER" prefHeight="166.0" prefWidth="640.0">
                <children>
                   <Label fx:id="startOperation" alignment="CENTER" prefHeight="36.0" prefWidth="244.0" styleClass="label-blue" />
@@ -76,7 +76,7 @@
                         <Font name="Supercell-Magic" size="33.0" />
                      </font>
                   </Button>
-                  <Button onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
+                  <Button disable="true" onAction="#handleBFS" prefHeight="60.0" prefWidth="330.0" stylesheets="@images%20and%20stylesheets/sidemenu.css" text="Breadth Frist Search" textAlignment="CENTER">
                      <font>
                         <Font name="Supercell-Magic" size="33.0" />
                      </font>
