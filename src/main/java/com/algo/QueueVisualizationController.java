@@ -1,33 +1,44 @@
 package com.algo;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class QueueVisualizationController extends Application{
+public class QueueVisualizationController extends Application {
 
     @FXML
     private ComboBox<String> dataTypeComboBox;
@@ -55,6 +66,16 @@ public class QueueVisualizationController extends Application{
     private double LastX, LastY;
     private boolean menubuttonclicked = false;
     private boolean candraw = false;
+
+    private final ColorPicker colorpicker = new ColorPicker();
+    private Color color = Color.BLACK;
+    private int stroke;
+
+    private final Slider slider = new Slider(1, 6, 2);
+
+    Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
+    MediaPlayer mediaplayer = new MediaPlayer(sound);
+
     private Queue<Object> queue = new LinkedList<>();
 
     @FXML
@@ -114,10 +135,14 @@ public class QueueVisualizationController extends Application{
 
         item1.setOnAction(eh -> {
             candraw = true;
+            Image penImage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/pencil.png"));
+            ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
+            mainpane.setCursor(penCursor);
         });
         item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
         item3.setOnAction(eh -> {
             candraw = false;
+            mainpane.setCursor(Cursor.DEFAULT);
         });
 
         // Add CSS classes to the menu items
@@ -126,7 +151,6 @@ public class QueueVisualizationController extends Application{
         item3.getStyleClass().add("menu-item");
 
         // drawitem.getItems().addAll(item1, item2, item3);
-
         mainpane.setOnMousePressed(event -> {
             if (candraw) {
                 LastX = event.getSceneX();
@@ -139,10 +163,35 @@ public class QueueVisualizationController extends Application{
                 draw(mainpane, event);
             }
         });
+
+        //initilizing the slider 
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(1);
+        slider.setBlockIncrement(1);
+        slider.setSnapToTicks(true);
+        stroke = (int) slider.getValue();
+        slider.valueProperty().addListener((obs, oldval, newVal) -> {
+            stroke = (int) newVal.intValue();
+        });
+
+        colorpicker.setValue(Color.BLACK);
+        colorpicker.setOnAction(eh -> color = colorpicker.getValue());
+
+        CustomMenuItem item4 = new CustomMenuItem(colorpicker);
+        item4.setHideOnClick(false);
+
+        CustomMenuItem item5 = new CustomMenuItem(slider);
+        item5.setHideOnClick(false);
+
+        drawitem.getItems().addAll(item4, item5);
+
     }
 
     @FXML
     private void handleEnqueue() {
+        mediaplayer.stop();
+        mediaplayer.play();
         if (queue.size() >= 15) {
             showAlert("Error", "Queue is full. Maximum 15 elements allowed.");
             return;
@@ -151,7 +200,7 @@ public class QueueVisualizationController extends Application{
         String dataType = dataTypeComboBox.getValue();
         String input = inputField.getText();
 
-        if ( input.isEmpty()) {
+        if (input.isEmpty()) {
             showAlert("Error", "Please enter a value.");
             return;
         }
@@ -167,7 +216,9 @@ public class QueueVisualizationController extends Application{
                     value = Integer.parseInt(input);
                     break;
                 case "Character":
-                    if (input.length() != 1) throw new IllegalArgumentException();
+                    if (input.length() != 1) {
+                        throw new IllegalArgumentException();
+                    }
                     value = input.charAt(0);
                     break;
                 case "String":
@@ -188,6 +239,8 @@ public class QueueVisualizationController extends Application{
 
     @FXML
     private void handleDequeue() {
+        mediaplayer.stop();
+        mediaplayer.play();
         if (queue.isEmpty()) {
             showAlert("Error", "Queue is empty.");
             return;
@@ -199,6 +252,8 @@ public class QueueVisualizationController extends Application{
 
     @FXML
     private void handleFront() {
+        mediaplayer.stop();
+        mediaplayer.play();
         if (queue.isEmpty()) {
             showAlert("Error", "Queue is empty.");
             return;
@@ -219,8 +274,10 @@ public class QueueVisualizationController extends Application{
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.web("#FFD700")); // Indigo color code
-        line.setStrokeWidth(5);
+        line.setStroke(color);
+        line.setStrokeWidth(stroke);
+        line.setStrokeLineJoin(StrokeLineJoin.ROUND);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
         pane.getChildren().add(line);
 
         LastX = event.getSceneX();
@@ -237,18 +294,23 @@ public class QueueVisualizationController extends Application{
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/data_structures.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
+        stage.centerOnScreen();
         stage.setTitle("Data Structures");
         stage.show();
     }
 
     @FXML
     private void handleSegmentTree(ActionEvent event) throws IOException {
+
         // Logic for Linked List
+        mediaplayer.stop();
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/segment_tree_visualizer.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -261,6 +323,8 @@ public class QueueVisualizationController extends Application{
     @FXML
     private void handleStack(ActionEvent event) throws IOException {
         // Load the Stack Visualization screen
+        mediaplayer.stop();
+        mediaplayer.play(); 
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/stack_visualization.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

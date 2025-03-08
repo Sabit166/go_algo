@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="631.0" style="-fx-background-radius: 50; -fx-background-color: rgb(224, 196, 191);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.comingsooncontroll">
+   <children>
+      <ImageView fitHeight="495.0" fitWidth="736.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images%20and%20stylesheets/zerotwo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="215.0" fitWidth="308.0" layoutX="247.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images%20and%20stylesheets/Coming%20Soon%20Sticker.gif" />
+         </image>
+         <effect>
+            <ColorAdjust contrast="0.4" hue="0.03" saturation="0.12" />
+         </effect>
+      </ImageView>
+      <Button fx:id="cross" layoutX="554.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="38.0" style="-fx-background-color: rgba(245, 39, 145, 0);">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20and%20stylesheets/letter-x.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

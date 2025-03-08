@@ -27,6 +27,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
@@ -63,9 +65,10 @@ public class SegmentTreeVisualizationController extends Application {
     private Color color = Color.BLACK;
     private int stroke;
 
-    private final Slider slider = new Slider(1, 6 , 2);
+    private final Slider slider = new Slider(1, 6, 2);
 
-
+    Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
+    MediaPlayer mediaplayer = new MediaPlayer(sound);
 
     SegmentTreeVisualizationHelper helper;
     SegmentTreeWriteandDraw draw;
@@ -135,7 +138,7 @@ public class SegmentTreeVisualizationController extends Application {
         slider.setSnapToTicks(true);
         stroke = (int) slider.getValue();
         slider.valueProperty().addListener((obs, oldval, newVal) -> {
-            stroke =(int) newVal.intValue();
+            stroke = (int) newVal.intValue();
         });
 
         MenuItem item1 = new MenuItem("Draw");
@@ -254,6 +257,8 @@ public class SegmentTreeVisualizationController extends Application {
 
     @FXML
     private void HandleBuild() {
+        mediaplayer.stop();
+        mediaplayer.play();
         reset();
 
         String input = BuildInput.getText();
@@ -291,6 +296,8 @@ public class SegmentTreeVisualizationController extends Application {
 
     @FXML
     private void HandleQuerry() {
+        mediaplayer.stop();
+        mediaplayer.play();
         String input = QuerryInput.getText();
         if (!input.matches("[0-9 ]+")) { // Match two numbers separated by one or more spaces, allowing leading/trailing
             helper.alert("Please enter only digits.");
@@ -320,6 +327,8 @@ public class SegmentTreeVisualizationController extends Application {
 
     @FXML
     private void HandleUpdate() {
+        mediaplayer.stop();
+        mediaplayer.play();
         String input = UpdateInput.getText(); // Trim leading/trailing spaces
         if (!input.matches("[0-9 ]+")) { // Match two numbers separated by one or more spaces
             helper.alert("Please enter an index and a value separated by a space.");
@@ -347,6 +356,7 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private void handleLinkedList(ActionEvent event) throws IOException {
         // Logic for Linked List
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -358,6 +368,7 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private void handleStack(ActionEvent event) throws IOException {
         // Load the Stack Visualization screen
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/stack_visualization.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -370,6 +381,7 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private void handleQueue(ActionEvent event) throws IOException {
         // Load the Queue Visualization screen
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/queue_visualization.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -382,12 +394,13 @@ public class SegmentTreeVisualizationController extends Application {
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
         // Load the visualization setup screen
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/data_structures.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setTitle("Visualization Setup");
+        stage.setFullScreen(false);
+        stage.setTitle("Data Structures");
         stage.centerOnScreen();
         stage.show();
     }

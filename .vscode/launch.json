@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CustomAlertApp",
+            "request": "launch",
+            "mainClass": "com.algo/com.algo.CustomAlertApp",
+            "projectName": "go_algo"
+        },
+        {
+            "type": "java",
+            "name": "ComboBoxColorPicker",
+            "request": "launch",
+            "mainClass": "com.algo/com.algo.ComboBoxColorPicker",
+            "projectName": "go_algo"
+        },
+        {
+            "type": "java",
             "name": "GraphVisualizerController",
             "request": "launch",
             "mainClass": "com.algo/com.algo.GraphVisualizerController",
