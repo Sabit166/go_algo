@@ -4,11 +4,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class AlgorithmsController {
+    @FXML
+    private ImageView pippo;
+
+    @FXML
+    private void initialize() {
+        pippo.setOnMouseEntered(event -> {
+            pippo.setScaleX(1.1);
+            pippo.setScaleY(1.1);
+            //pippo.setEffect(new javafx.scene.effect.ColorAdjust(0, 0, 0.3, 0));
+        });
+
+        pippo.setOnMouseExited(event -> {
+            pippo.setScaleX(1.0);
+            pippo.setScaleY(1.0);
+            pippo.setEffect(null);
+        });
+    }
 
     @FXML
     private void loadSelectionSort(ActionEvent event) throws IOException {

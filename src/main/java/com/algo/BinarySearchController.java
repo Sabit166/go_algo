@@ -6,11 +6,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -19,6 +23,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 
@@ -26,6 +32,9 @@ import javafx.application.Application;
 
 import java.io.File;
 import java.io.IOException;
+
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -45,6 +54,10 @@ public class BinarySearchController extends Application {
     private StackPane[] bars;
     private double LastX, LastY;
     private boolean candraw = false, menubuttonclicked = false, codevisible = false;
+    private final ColorPicker colorpicker = new ColorPicker();
+    private Color color = Color.BLACK;
+    private int stroke;
+    private final Slider slider = new Slider(1, 6 , 2);
 
     @FXML
     private HBox barContainer;
@@ -63,9 +76,6 @@ public class BinarySearchController extends Application {
 
     @FXML
     private MenuButton drawitem;
-
-    @FXML
-    private MenuItem item1, item2, item3;
 
     @FXML
     TextArea pseudoCodeArea;
@@ -131,24 +141,48 @@ public class BinarySearchController extends Application {
 
         //pseudoCodeArea.setStyle("-fx-font-size: 16px;");
 
-        // MenuItem item1 = new MenuItem("Draw");
-        // MenuItem item2 = new MenuItem("Erase");
-        // MenuItem item3 = new MenuItem("Off");
+        MenuItem item1 = new MenuItem("Draw");
+        MenuItem item2 = new MenuItem("Erase");
+        MenuItem item3 = new MenuItem("Off");
+
+        //initilizing the slider 
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(1);
+        slider.setBlockIncrement(1);
+        slider.setSnapToTicks(true);
+        stroke = (int) slider.getValue();
+        slider.valueProperty().addListener((obs, oldval, newVal) -> {
+            stroke =(int) newVal.intValue();
+        });
+
+        colorpicker.setValue(Color.BLACK);
+        colorpicker.setOnAction(eh -> color = colorpicker.getValue());
 
         item1.setOnAction(eh -> {
             candraw = true;
+            Image penImage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/pencil.png"));
+            ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
+            mainpane.setCursor(penCursor);
         });
         item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
         item3.setOnAction(eh -> {
             candraw = false;
+            mainpane.setCursor(Cursor.DEFAULT);
         });
+
+        CustomMenuItem item4 = new CustomMenuItem(colorpicker);
+        item4.setHideOnClick(false);
+
+        CustomMenuItem item5 = new CustomMenuItem(slider);
+        item5.setHideOnClick(false);
 
         // Add CSS classes to the menu items
         item1.getStyleClass().add("menu-item");
         item2.getStyleClass().add("menu-item");
         item3.getStyleClass().add("menu-item");
 
-        // drawitem.getItems().addAll(item1, item2, item3);
+        drawitem.getItems().addAll(item1, item2, item3, item4, item5);
 
         mainpane.setOnMousePressed(event -> {
             if (candraw) {
@@ -213,6 +247,10 @@ public class BinarySearchController extends Application {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
         line.setStroke(Color.web("#FFD700")); // Indigo color code
         line.setStrokeWidth(5);
+        line.setStroke(color);
+        line.setStrokeWidth(stroke);
+        line.setStrokeLineJoin(StrokeLineJoin.ROUND);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
         pane.getChildren().add(line);
 
         LastX = event.getSceneX();
