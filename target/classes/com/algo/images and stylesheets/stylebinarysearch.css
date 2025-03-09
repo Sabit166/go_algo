@@ -1,133 +1,203 @@
 .root {
-    -fx-background-image: url('premium_photo-1673126680964-b9fc3587096c.jpeg');
+    -fx-background-image: url('bgg.jpg');
     -fx-background-size: cover;
 }
 
 .rectangle {
-    -fx-fill: #1E90FF; /* DodgerBlue background color */
-    -fx-stroke: black; /* Black border color */
-    -fx-stroke-width: 8; /* Thick border */
-    -fx-arc-width: 20; /* Oval corners */
-    -fx-arc-height: 20; /* Oval corners */
-    -fx-width: 100px; /* Width of the rectangle */
-    -fx-height: 100px; /* Height of the rectangle */
-    -fx-effect: dropshadow(gaussian, rgb(0, 116, 106), 10, 0.5, 0, 0); /* Shadow effect */
+    -fx-fill: #1E90FF;
+    /* DodgerBlue background color */
+    -fx-stroke: black;
+    /* Black border color */
+    -fx-stroke-width: 8;
+    /* Thick border */
+    -fx-arc-width: 20;
+    /* Oval corners */
+    -fx-arc-height: 20;
+    /* Oval corners */
+    -fx-width: 100px;
+    /* Width of the rectangle */
+    -fx-height: 100px;
+    /* Height of the rectangle */
+    -fx-effect: dropshadow(gaussian, rgb(0, 116, 106), 10, 0.5, 0, 0);
+    /* Shadow effect */
 }
 
 .rectangle:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 0, 0), 
-                 innershadow(gaussian, rgba(30, 144, 255, 0.75), 20, 0.5, 0, 0); /* Glow effect on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 0, 0),
+        innershadow(gaussian, rgba(30, 144, 255, 0.75), 20, 0.5, 0, 0);
+    /* Glow effect on hover */
 }
 
 .label {
-    -fx-font-size: 50px; /* Large font size */
-    -fx-text-fill: rgb(0, 0, 0); /* White text color */
-    -fx-font-weight: bold; /* Bold text */
+    -fx-font-size: 50px;
+    /* Large font size */
+    -fx-text-fill: rgb(0, 0, 0);
+    /* White text color */
+    -fx-font-weight: bold;
+    /* Bold text */
 }
 
 .label-red {
-    -fx-font-size: 30px; /* Large font size */
-    -fx-text-fill: red; /* Red text color */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
+    -fx-font-size: 30px;
+    /* Large font size */
+    -fx-text-fill: red;
+    /* Red text color */
+    -fx-font-weight: bold;
+    /* Bold text */
+    -fx-font-family: "Arial", sans-serif;
+    /* Clean and professional font */
 }
 
 .label-blue {
-    -fx-font-size: 30px; /* Large font size */
-    -fx-text-fill: rgb(61, 124, 240); /* Blue text color */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
+    -fx-font-size: 30px;
+    /* Large font size */
+    -fx-text-fill: rgb(61, 124, 240);
+    /* Blue text color */
+    -fx-font-weight: bold;
+    /* Bold text */
+    -fx-font-family: "Arial", sans-serif;
+    /* Clean and professional font */
 }
 
 .label-green {
-    -fx-font-size: 30px; /* Large font size */
-    -fx-text-fill: green; /* Green text color */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
+    -fx-font-size: 30px;
+    /* Large font size */
+    -fx-text-fill: green;
+    /* Green text color */
+    -fx-font-weight: bold;
+    /* Bold text */
+    -fx-font-family: "Arial", sans-serif;
+    /* Clean and professional font */
 }
 
 .label-grey {
-    -fx-font-size: 30px; /* Large font size */
-    -fx-text-fill: grey; /* Grey text color */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-font-family: "Arial", sans-serif; /* Clean and professional font */
+    -fx-font-size: 30px;
+    /* Large font size */
+    -fx-text-fill: grey;
+    /* Grey text color */
+    -fx-font-weight: bold;
+    /* Bold text */
+    -fx-font-family: "Arial", sans-serif;
+    /* Clean and professional font */
 }
 
 /* Styling for text box */
 .text-box {
-    -fx-font-size: 18px; /* Large font size for readability */
-    -fx-padding: 12px; /* More padding for better spacing */
-    -fx-border-color: rgba(255, 255, 255, 0.7); /* Subtle white border */
-    -fx-border-width: 2px; /* Medium border width */
-    -fx-border-radius: 8px; /* Rounded corners for a modern look */
-    -fx-background-radius: 8px; /* Matching rounded background */
-    -fx-background-color: rgba(255, 255, 255, 0.15); /* Soft translucent white */
-    -fx-text-fill: white; /* White text color for contrast */
-    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6); /* Lighter text for placeholders */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2); /* Soft shadow */
-    -fx-transition: all 0.3s ease-in-out; /* Smooth animations */
+    -fx-font-size: 18px;
+    /* Large font size for readability */
+    -fx-padding: 12px;
+    /* More padding for better spacing */
+    -fx-border-color: rgba(255, 255, 255, 0.7);
+    /* Subtle white border */
+    -fx-border-width: 2px;
+    /* Medium border width */
+    -fx-border-radius: 8px;
+    /* Rounded corners for a modern look */
+    -fx-background-radius: 8px;
+    /* Matching rounded background */
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    /* Soft translucent white */
+    -fx-text-fill: white;
+    /* White text color for contrast */
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
+    /* Lighter text for placeholders */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+    /* Soft shadow */
+    -fx-transition: all 0.3s ease-in-out;
+    /* Smooth animations */
 }
 
 .text-box:focused {
-    -fx-border-color: white; /* Stronger white border on focus */
-    -fx-background-color: rgba(255, 255, 255, 0.25); /* Slightly lighter when focused */
+    -fx-border-color: white;
+    /* Stronger white border on focus */
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    /* Slightly lighter when focused */
 }
 
 
 /* Styling for main heading */
 .main-heading {
-    -fx-font-size: 65px; 
-    -fx-text-fill: #FFD700; /* Bright Gold - Stunning on dark blue */
+    -fx-font-size: 65px;
+    -fx-text-fill: #FFD700;
+    /* Bright Gold - Stunning on dark blue */
     -fx-font-weight: bold;
     -fx-padding: 25px;
     -fx-font-family: "Arial Black", sans-serif;
     -fx-background-color: transparent;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 215, 0, 0.6), 10, 0, 0, 5); /* Soft gold glow */
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 215, 0, 0.6), 10, 0, 0, 5);
+    /* Soft gold glow */
     -fx-text-alignment: center;
 }
 
 /* Styling for buttons */
 
 .button {
-    -fx-background-color: rgba(255, 255, 255, 0.2); /* Subtle transparent white */
-    -fx-text-fill: #FFD700; /* Bright Gold text color */
-    -fx-font-size: 18px; /* Font size for button text */
-    -fx-padding: 12px 24px; /* Padding inside the button */
-    -fx-border-radius: 8px; /* Rounded corners */
-    -fx-background-radius: 8px; /* Rounded corners */
-    -fx-border-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
-    -fx-border-width: 2px; /* Border width */
-    -fx-cursor: hand; /* Hand cursor on hover */
-    -fx-transition: all 0.3s ease-in-out; /* Smooth transition */
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    /* Subtle transparent white */
+    -fx-text-fill: #FFD700;
+    /* Bright Gold text color */
+    -fx-font-size: 18px;
+    /* Font size for button text */
+    -fx-padding: 12px 24px;
+    /* Padding inside the button */
+    -fx-border-radius: 8px;
+    /* Rounded corners */
+    -fx-background-radius: 8px;
+    /* Rounded corners */
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+    /* Semi-transparent white border */
+    -fx-border-width: 2px;
+    /* Border width */
+    -fx-cursor: hand;
+    /* Hand cursor on hover */
+    -fx-transition: all 0.3s ease-in-out;
+    /* Smooth transition */
 }
 
 .button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.4); /* Slightly more visible on hover */
-    -fx-border-color: white; /* Fully white border */
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+    /* Slightly more visible on hover */
+    -fx-border-color: white;
+    /* Fully white border */
 }
 
 .button:pressed {
-    -fx-background-color: rgba(255, 255, 255, 0.6); /* Even lighter on press */
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    /* Even lighter on press */
     -fx-border-color: white;
 }
 
 .text-area {
-    -fx-font-size: 20px; /* Font size for text area */
-    -fx-padding: 10px; /* Padding inside the text area */
-    -fx-border-color: white; /* Ensure a clear border */
-    -fx-border-width: 2px; /* Medium border width */
-    -fx-border-radius: 8px; /* Rounded corners */
-    -fx-background-radius: 8px; /* Matching rounded background */
-    -fx-background-color: #001a4d; /* Solid dark blue background */
-    -fx-text-fill: black; /* Dark text color for contrast */
-    -fx-prompt-text-fill: rgba(0, 0, 0, 0.6); /* Darker text for placeholders */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2); /* Soft shadow */
-    -fx-wrap-text: true; /* Ensure text wraps properly */
+    -fx-font-size: 20px;
+    /* Font size for text area */
+    -fx-padding: 10px;
+    /* Padding inside the text area */
+    -fx-border-color: white;
+    /* Ensure a clear border */
+    -fx-border-width: 2px;
+    /* Medium border width */
+    -fx-border-radius: 8px;
+    /* Rounded corners */
+    -fx-background-radius: 8px;
+    /* Matching rounded background */
+    -fx-background-color: #001a4d;
+    /* Solid dark blue background */
+    -fx-text-fill: black;
+    /* Dark text color for contrast */
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.6);
+    /* Darker text for placeholders */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+    /* Soft shadow */
+    -fx-wrap-text: true;
+    /* Ensure text wraps properly */
 }
 
 /* Ensure text visibility when focused */
 .text-area:focused {
-    -fx-border-color: white; /* Stronger white border on focus */
-    -fx-background-color: #002080; /* Slightly lighter blue when focused */
-    -fx-text-fill: black; /* Dark text color for contrast */
+    -fx-border-color: white;
+    /* Stronger white border on focus */
+    -fx-background-color: #002080;
+    /* Slightly lighter blue when focused */
+    -fx-text-fill: black;
+    /* Dark text color for contrast */
 }

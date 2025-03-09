@@ -1,9 +1,18 @@
 package com.algo;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -16,19 +25,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
-import javafx.event.ActionEvent;
-import java.io.IOException;
-import javafx.scene.Parent;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.geometry.Pos;
+import javafx.util.Duration;
 
 public class SelectionSortController extends Application {
 
@@ -42,6 +45,9 @@ public class SelectionSortController extends Application {
     private static final int BAR_WIDTH = 100; // Increased width
     private static final int MAX_HEIGHT = 400; // Increased height
     private StackPane[] bars;
+
+    Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
+    MediaPlayer mediaplayer = new MediaPlayer(sound);
 
     @FXML
     private HBox barContainer;
@@ -306,34 +312,44 @@ public class SelectionSortController extends Application {
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
+        mediaplayer.stop();
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/visualization_setup.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Visualization Setup");
         stage.show();
+        stage.setFullScreen(false);
+        stage.centerOnScreen();
     }
 
     @FXML
     private void handleBubbleSort(ActionEvent event) throws IOException {
         // Load the Bubble Sort Visualization screen
+        mediaplayer.stop();
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/bubble_sort.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Bubble Sort Visualization");
         stage.show();
+        stage.setFullScreen(true);
     }
 
     @FXML
     private void handleBinarySearch(ActionEvent event) throws IOException {
         // Load the Binary Search Visualization screen
+        mediaplayer.stop();
+        mediaplayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("/com/algo/binary_search.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Binary Search Visualization");
         stage.show();
+        stage.setFullScreen(true);
     }
 
     @FXML
