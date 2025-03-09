@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
    <children>
-      <VBox alignment="CENTER" layoutX="212.0" layoutY="2.0" prefHeight="746.0" prefWidth="1039.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+      <VBox alignment="CENTER" layoutX="212.0" layoutY="2.0" prefHeight="746.0" prefWidth="1121.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
          <children>
             <Text fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
             <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers" styleClass="text-box" />
@@ -31,7 +31,7 @@
                   <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="36.0" prefWidth="334.0" styleClass="label-grey" textFill="#514b4b" />
                </children>
             </HBox>
-            <Label fx:id="foundLabel" prefHeight="90.0" prefWidth="906.0" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
+            <Label fx:id="foundLabel" prefHeight="58.0" prefWidth="1118.0" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
          </children>
       </VBox>
       <AnchorPane fx:id="bpane" layoutX="-102.0" layoutY="2.0" prefHeight="238.0" prefWidth="311.0" stylesheets="@images%20and%20stylesheets/sidemenu.css">

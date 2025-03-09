@@ -29,7 +29,7 @@
 }
 
 .label {
-    -fx-font-size: 50px;
+    -fx-font-size: 40px;
     /* Large font size */
     -fx-text-fill: rgb(0, 0, 0);
     /* White text color */

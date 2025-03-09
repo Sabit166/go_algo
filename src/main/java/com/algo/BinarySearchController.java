@@ -55,7 +55,7 @@ public class BinarySearchController extends Application {
     private MediaPlayer mediaPlayer;
     private StackPane[] bars;
     private double LastX, LastY;
-    private boolean candraw = false, menubuttonclicked = false, codevisible = false;
+    private boolean candraw = false, menubuttonclicked = false, codevisible = false, oncereachedfinal = false;
     private final ColorPicker colorpicker = new ColorPicker();
     private Color color = Color.BLACK;
     private int stroke;
@@ -222,7 +222,7 @@ public class BinarySearchController extends Application {
             int[] data = iterationsData.get(iterationScene);
             highlightBars(data[0], data[2], data[1]);
             startOperation.setText("START:  " + data[0]);
-            midOperation.setText("MID:  " + data[1]);
+            midOperation.setText("MID:  " + data[1] + "  (" + data[0] + "+" + data[2] + ")" + "/" +  "2");
             endOperation.setText("END:  " + data[2]);
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
         }
@@ -236,9 +236,14 @@ public class BinarySearchController extends Application {
             int[] data = iterationsData.get(iterationScene);
             highlightBars(data[0], data[2], data[1]);
             startOperation.setText("START:  " + data[0]);
-            midOperation.setText("MID:  " + data[1]);
+            midOperation.setText("MID:  " + data[1] + "  (" + data[0] + "+" + data[2] + ")" + "/" +  "2");
             endOperation.setText("END:  " + data[2]);
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
+            if(iterationScene == iterationsData.size() - 1 && !oncereachedfinal) {
+                oncereachedfinal = true;
+                foundLabel.setText("The target has been found at index = " + data[1]);
+                //playAudio("timecomplexity");
+            }
         }
     }
 
@@ -316,9 +321,12 @@ public class BinarySearchController extends Application {
 
             highlightBars(0, intArray.length - 1, (intArray.length - 1) / 2 );
             startOperation.setText("START:  " + 0);
-            midOperation.setText("MID:  " + (intArray.length - 1) / 2);
+            midOperation.setText("MID:  " + (intArray.length - 1) / 2 + "  (" + "0" + "+" + (intArray.length - 1) + ")" + "/" +  "2");
             endOperation.setText("END:  " + (intArray.length - 1));
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
+            if(intArray[(intArray.length - 1) / 2] == target) {
+                foundLabel.setText("The target has been found at index = " + (intArray.length - 1) / 2);
+            }
 
 
         } catch (NumberFormatException e) {
