@@ -1,0 +1,20 @@
+/* slider-style.css */
+.my-slider .track {
+    -fx-background-color: rgb(244, 244, 244);
+    -fx-background-radius: 5px;
+}
+
+.my-slider .thumb {
+    background-color: rgb(2, 0, 36);
+    -fx-background-color: rgb(21, 123, 240);
+    -fx-background-radius: 5px;
+    -fx-border-color: #b0b0b0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2);
+}
+
+.my-slider .tick-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}
