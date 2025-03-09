@@ -55,7 +55,7 @@ public class BinarySearchController extends Application {
     private MediaPlayer mediaPlayer;
     private StackPane[] bars;
     private double LastX, LastY;
-    private boolean candraw = false, menubuttonclicked = false, codevisible = false, oncereachedfinal = false;
+    private boolean candraw = false, menubuttonclicked = false, codevisible = false;
     private final ColorPicker colorpicker = new ColorPicker();
     private Color color = Color.BLACK;
     private int stroke;
@@ -77,7 +77,7 @@ public class BinarySearchController extends Application {
     private AnchorPane sidemenu, bpane, mainpane, codePane;
 
     @FXML
-    private Button menubutton, viewCode;
+    private Button menubutton, viewCode, leftShift, rightShift;
 
     @FXML
     private MenuButton drawitem;
@@ -186,11 +186,6 @@ public class BinarySearchController extends Application {
         CustomMenuItem item5 = new CustomMenuItem(slider);
         item5.setHideOnClick(false);
 
-        // Add CSS classes to the menu items
-        item1.getStyleClass().add("menu-item");
-        item2.getStyleClass().add("menu-item");
-        item3.getStyleClass().add("menu-item");
-
         drawitem.getItems().addAll(item1, item2, item3, item4, item5);
 
         mainpane.setOnMousePressed(event -> {
@@ -206,6 +201,9 @@ public class BinarySearchController extends Application {
             }
             iterationScene = 0;
         });
+
+        rightShift.setDisable(true);
+        leftShift.setDisable(true);
     }
 
     @FXML
@@ -225,6 +223,13 @@ public class BinarySearchController extends Application {
             midOperation.setText("MID:  " + data[1] + "  (" + data[0] + "+" + data[2] + ")" + "/" +  "2");
             endOperation.setText("END:  " + data[2]);
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
+            if(iterationScene == 0)
+            {
+                foundLabel.setText("");
+                leftShift.setDisable(true);
+            }
+            else rightShift.setDisable(false);
+            
         }
     }
 
@@ -239,11 +244,11 @@ public class BinarySearchController extends Application {
             midOperation.setText("MID:  " + data[1] + "  (" + data[0] + "+" + data[2] + ")" + "/" +  "2");
             endOperation.setText("END:  " + data[2]);
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
-            if(iterationScene == iterationsData.size() - 1 && !oncereachedfinal) {
-                oncereachedfinal = true;
+            if(iterationScene == iterationsData.size() - 1 ) {
                 foundLabel.setText("The target has been found at index = " + data[1]);
-                //playAudio("timecomplexity");
+                rightShift.setDisable(true);
             }
+            else leftShift.setDisable(false);
         }
     }
 
@@ -327,7 +332,7 @@ public class BinarySearchController extends Application {
             if(intArray[(intArray.length - 1) / 2] == target) {
                 foundLabel.setText("The target has been found at index = " + (intArray.length - 1) / 2);
             }
-
+            rightShift.setDisable(false);
 
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure all inputs are valid numbers.");
@@ -470,6 +475,13 @@ public class BinarySearchController extends Application {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+        rightShift.setDisable(true);
+        leftShift.setDisable(true);
+        midOperation.setText("");
+        startOperation.setText("");
+        endOperation.setText("");
+        iterationOperation.setText("");
+        foundLabel.setText("");
     }
 
     private void playAudio(String fileName) {

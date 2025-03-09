@@ -45,7 +45,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton fx:id="drawitem" layoutX="118.0" layoutY="136.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="178.0" styleClass="button" stylesheets="@images%20and%20stylesheets/sidemenu.css">
+            <MenuButton fx:id="drawitem" layoutX="118.0" layoutY="136.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="123.0" styleClass="button" stylesheets="@images%20and%20stylesheets/sidemenu.css">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +70,7 @@
             <TextArea fx:id="pseudoCodeArea" editable="false" layoutX="-226.0" layoutY="14.0" prefHeight="382.0" prefWidth="462.0" styleClass="text-area" />
          </children>
       </AnchorPane>
-      <Button layoutX="1426.0" layoutY="367.0" mnemonicParsing="false" onAction="#rightIteration" prefHeight="66.0" prefWidth="102.0">
+      <Button fx:id="rightShift" layoutX="1426.0" layoutY="367.0" mnemonicParsing="false" onAction="#rightIteration" prefHeight="66.0" prefWidth="102.0">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -110,7 +110,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Button layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#leftIteration" prefHeight="74.0" prefWidth="72.0">
+      <Button fx:id="leftShift" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#leftIteration" prefHeight="74.0" prefWidth="72.0">
          <graphic>
             <ImageView fitHeight="53.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
