@@ -15,6 +15,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -46,6 +48,8 @@ import javafx.scene.media.MediaPlayer;
 
 public class BinarySearchController extends Application {
 
+    private int target;
+    private List<int[]> iterationsData = new ArrayList<>();
     private static Scene scene;
     private Timeline timeline;
     private static final int BAR_SIZE = 100; // Use square blocks
@@ -57,13 +61,13 @@ public class BinarySearchController extends Application {
     private final ColorPicker colorpicker = new ColorPicker();
     private Color color = Color.BLACK;
     private int stroke;
-    private final Slider slider = new Slider(1, 6 , 2);
+    private final Slider slider = new Slider(1, 6, 2);
 
     @FXML
     private HBox barContainer;
 
     @FXML
-    private TextField inputField, searchField;//numElementsField, elementsField;
+    private TextField inputField, searchField;// numElementsField, elementsField;
 
     @FXML
     private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
@@ -79,6 +83,8 @@ public class BinarySearchController extends Application {
 
     @FXML
     TextArea pseudoCodeArea;
+
+    private int iterationScene;
 
     @FXML
     public void initialize() {
@@ -111,8 +117,8 @@ public class BinarySearchController extends Application {
             } else {
                 sidemenu.setVisible(false);
                 bpane.setDisable(false);
-            }
-        });
+                    }
+                });
 
         mainpane.setOnMouseClicked(event -> {
             sidemenu.setVisible(false);
@@ -130,22 +136,22 @@ public class BinarySearchController extends Application {
         });
 
         pseudoCodeArea.setText(
-            "Pseudocode for Binary Search:\n" +
-                "1. Set low = 0 and high = length of array - 1\n" +
-                "2. While low ≤ high:\n" +
-                "   a. Find mid = (low + high) / 2\n" +
-                "   b. If arr[mid] == target, return mid (found)\n" +
-                "   c. If arr[mid] < target, set low = mid + 1 (search right half)\n" +
-                "   d. Else, set high = mid - 1 (search left half)\n" +
-                "3. If not found, return -1");
+                "Pseudocode for Binary Search:\n" +
+                        "1. Set low = 0 and high = length of array - 1\n" +
+                        "2. While low ≤ high:\n" +
+                        "   a. Find mid = (low + high) / 2\n" +
+                        "   b. If arr[mid] == target, return mid (found)\n" +
+                        "   c. If arr[mid] < target, set low = mid + 1 (search right half)\n" +
+                        "   d. Else, set high = mid - 1 (search left half)\n" +
+                        "3. If not found, return -1");
 
-        //pseudoCodeArea.setStyle("-fx-font-size: 16px;");
+        // pseudoCodeArea.setStyle("-fx-font-size: 16px;");
 
         MenuItem item1 = new MenuItem("Draw");
         MenuItem item2 = new MenuItem("Erase");
         MenuItem item3 = new MenuItem("Off");
 
-        //initilizing the slider 
+        // initilizing the slider
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
         slider.setMajorTickUnit(1);
@@ -153,7 +159,7 @@ public class BinarySearchController extends Application {
         slider.setSnapToTicks(true);
         stroke = (int) slider.getValue();
         slider.valueProperty().addListener((obs, oldval, newVal) -> {
-            stroke =(int) newVal.intValue();
+            stroke = (int) newVal.intValue();
         });
 
         colorpicker.setValue(Color.BLACK);
@@ -165,7 +171,9 @@ public class BinarySearchController extends Application {
             ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
             mainpane.setCursor(penCursor);
         });
-        item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
+        item2.setOnAction(event -> {
+            mainpane.getChildren().removeIf(node -> node instanceof Line);
+        });
         item3.setOnAction(eh -> {
             candraw = false;
             mainpane.setCursor(Cursor.DEFAULT);
@@ -195,13 +203,42 @@ public class BinarySearchController extends Application {
             if (candraw) {
                 draw(mainpane, event);
             }
+            iterationScene = 0;
         });
     }
 
     @FXML
     private void handleBinarySearch() {
         initializeBars(); // Initialize the bar visualization
-        binarySearch(); // Perform the search with animation
+        //binarySearch(); // Perform the search with animation
+    }
+
+    @FXML
+    private void leftIteration()
+    {
+        if (iterationScene > 0) {
+            iterationScene--;
+            int[] data = iterationsData.get(iterationScene);
+            highlightBars(data[0], data[2], data[1]);
+            startOperation.setText("START:  " + data[0]);
+            midOperation.setText("MID:  " + data[1]);
+            endOperation.setText("END:  " + data[2]);
+            iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
+        }
+    }
+
+    @FXML
+    private void rightIteration()
+    {
+        if (iterationScene < iterationsData.size() - 1) {
+            iterationScene++;
+            int[] data = iterationsData.get(iterationScene);
+            highlightBars(data[0], data[2], data[1]);
+            startOperation.setText("START:  " + data[0]);
+            midOperation.setText("MID:  " + data[1]);
+            endOperation.setText("END:  " + data[2]);
+            iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
+        }
     }
 
     private void initializeBars() {
@@ -224,9 +261,33 @@ public class BinarySearchController extends Application {
             for (int i = 1; i < intArray.length; i++) {
                 if (intArray[i] < intArray[i - 1]) {
                     showAlert("Input Error", "The input array must be sorted in ascending order.");
-                    return; 
+                    return;
                 }
             }
+
+            try {
+                target = Integer.parseInt(searchField.getText().trim());
+            } catch (NumberFormatException e) {
+                showAlert("Input Error", "Ensure the search input is a valid number.");
+                return;
+            }
+
+            boolean present = false;
+            for (int i = 0; i < numElements; i++) {
+                if (intArray[i] == target) {
+                    present = true;
+                    break;
+                }
+            }
+            if(!present) {
+                showAlert("Target Not Found", "The target element is not present in the array.");
+                return;
+            }
+            
+
+            int left = 0;
+            int right = intArray.length - 1;
+
             bars = new StackPane[numElements];
             for (int i = 0; i < numElements; i++) {
                 Rectangle rectangle = new Rectangle(BAR_SIZE, BAR_SIZE);
@@ -238,9 +299,31 @@ public class BinarySearchController extends Application {
                 bars[i] = stackPane;
                 barContainer.getChildren().add(bars[i]);
             }
+
+            iterationsData.clear();
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                iterationsData.add(new int[] { left, mid, right });
+                if (intArray[mid] == target) {
+                    break;
+                } else if (intArray[mid] < target) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+
+            highlightBars(0, intArray.length - 1, (intArray.length - 1) / 2 );
+            startOperation.setText("START:  " + 0);
+            midOperation.setText("MID:  " + (intArray.length - 1) / 2);
+            endOperation.setText("END:  " + (intArray.length - 1));
+            iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
+
+
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure all inputs are valid numbers.");
         }
+        playAudio("letsdobinarysearch"); // Play the binary search audio
     }
 
     private void draw(AnchorPane pane, MouseEvent event) {
@@ -257,11 +340,11 @@ public class BinarySearchController extends Application {
         LastY = event.getSceneY();
     }
 
+
     private void binarySearch() {
         List<KeyFrame> keyFrames = new ArrayList<>();
         Duration duration = Duration.ZERO;
         Duration stepDuration = Duration.seconds(2); // Slow down the simulation
-        playAudio("letsdobinarysearch"); // Play the binary search audio
 
         int n = bars.length;
         int[] values = new int[n];
@@ -269,13 +352,7 @@ public class BinarySearchController extends Application {
             values[i] = Integer.parseInt(((Label) bars[i].getChildren().get(1)).getText());
         }
 
-        int target;
-        try {
-            target = Integer.parseInt(searchField.getText().trim());
-        } catch (NumberFormatException e) {
-            showAlert("Input Error", "Ensure the search input is a valid number.");
-            return;
-        }
+        // int target;
 
         int iterations = 0;
         int left = 0;
