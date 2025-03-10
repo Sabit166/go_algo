@@ -35,6 +35,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -83,7 +85,10 @@ public class BinarySearchController extends Application {
     private MenuButton drawitem;
 
     @FXML
-    TextArea pseudoCodeArea;
+    private TextArea pseudoCodeArea;
+
+    @FXML
+    private Text mainText; 
 
     private int iterationScene;
 
@@ -146,7 +151,7 @@ public class BinarySearchController extends Application {
                         "   d. Else, set high = mid - 1 (search left half)\n" +
                         "3. If not found, return -1");
 
-        // pseudoCodeArea.setStyle("-fx-font-size: 16px;");
+        mainText.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/fonts/supercell-magic.ttf"), 65));
 
         MenuItem item1 = new MenuItem("Draw");
         MenuItem item2 = new MenuItem("Erase");
@@ -227,8 +232,13 @@ public class BinarySearchController extends Application {
             {
                 foundLabel.setText("");
                 leftShift.setDisable(true);
+                rightShift.setDisable(false);
             }
-            else rightShift.setDisable(false);
+            else
+            {
+                leftShift.setDisable(false);
+                rightShift.setDisable(false);
+            }
             
         }
     }
@@ -247,8 +257,13 @@ public class BinarySearchController extends Application {
             if(iterationScene == iterationsData.size() - 1 ) {
                 foundLabel.setText("The target has been found at index = " + data[1]);
                 rightShift.setDisable(true);
+                leftShift.setDisable(false);
             }
-            else leftShift.setDisable(false);
+            else
+            {
+                leftShift.setDisable(false);
+                rightShift.setDisable(false);
+            }
         }
     }
 
@@ -323,16 +338,22 @@ public class BinarySearchController extends Application {
                     right = mid - 1;
                 }
             }
+            iterationScene = 0;
 
             highlightBars(0, intArray.length - 1, (intArray.length - 1) / 2 );
             startOperation.setText("START:  " + 0);
             midOperation.setText("MID:  " + (intArray.length - 1) / 2 + "  (" + "0" + "+" + (intArray.length - 1) + ")" + "/" +  "2");
             endOperation.setText("END:  " + (intArray.length - 1));
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
-            if(intArray[(intArray.length - 1) / 2] == target) {
+
+            if(intArray[(intArray.length - 1) / 2] == target) 
+            {
                 foundLabel.setText("The target has been found at index = " + (intArray.length - 1) / 2);
+                rightShift.setDisable(true);
             }
-            rightShift.setDisable(false);
+
+            else rightShift.setDisable(false);
+            leftShift.setDisable(true);
 
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure all inputs are valid numbers.");

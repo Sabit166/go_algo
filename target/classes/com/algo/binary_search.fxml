@@ -18,7 +18,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="212.0" layoutY="2.0" prefHeight="746.0" prefWidth="1121.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
          <children>
-            <Text fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
+            <Text fx:id="mainText" fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
             <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers" styleClass="text-box" />
             <TextField fx:id="searchField" onAction="#handleBinarySearch" promptText="Enter number to search" styleClass="text-box" />
             <Button onAction="#handleBinarySearch" text="Start Binary Search" />
