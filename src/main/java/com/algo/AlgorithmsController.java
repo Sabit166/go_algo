@@ -10,7 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AlgorithmsController {
 
@@ -52,7 +54,17 @@ public class AlgorithmsController {
 
     @FXML
     private void loadBFS(ActionEvent event) throws IOException {
-        loadPage("bfs", event);
+        mediaplayer.stop();
+        mediaplayer.play();
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/comingsoon.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
+        stage.setFullScreen(false);
+        stage.centerOnScreen();
     }
 
     @FXML
