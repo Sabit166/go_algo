@@ -23,18 +23,17 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -59,7 +58,7 @@ public class BinarySearchController extends Application {
     private final ColorPicker colorpicker = new ColorPicker();
     private Color color = Color.BLACK;
     private int stroke;
-    private final Slider slider = new Slider(1, 6, 2);
+    private final CustomSlider slider = new CustomSlider();
     
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
@@ -83,7 +82,10 @@ public class BinarySearchController extends Application {
     private MenuButton drawitem;
 
     @FXML
-    TextArea pseudoCodeArea;
+    private TextArea pseudoCodeArea;
+
+    @FXML
+    private Text mainText; 
 
     private int iterationScene;
 
@@ -112,6 +114,8 @@ public class BinarySearchController extends Application {
 
         menubutton.setOnAction(event -> {
             menubuttonclicked = !menubuttonclicked;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (menubuttonclicked) {
                 sidemenu.setVisible(true);
                 bpane.setDisable(true);
@@ -129,6 +133,8 @@ public class BinarySearchController extends Application {
 
         viewCode.setOnAction(event -> {
             codevisible = !codevisible;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (codevisible) {
                 codePane.setVisible(true);
             } else {
@@ -146,18 +152,12 @@ public class BinarySearchController extends Application {
                         "   d. Else, set high = mid - 1 (search left half)\n" +
                         "3. If not found, return -1");
 
-        // pseudoCodeArea.setStyle("-fx-font-size: 16px;");
+        mainText.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/fonts/supercell-magic.ttf"), 65));
 
         MenuItem item1 = new MenuItem("Draw");
         MenuItem item2 = new MenuItem("Erase");
         MenuItem item3 = new MenuItem("Off");
 
-        // initilizing the slider
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(1);
-        slider.setBlockIncrement(1);
-        slider.setSnapToTicks(true);
         stroke = (int) slider.getValue();
         slider.valueProperty().addListener((obs, oldval, newVal) -> {
             stroke = (int) newVal.intValue();
@@ -168,16 +168,22 @@ public class BinarySearchController extends Application {
 
         item1.setOnAction(eh -> {
             candraw = true;
+            mediaplayer.stop();
+            mediaplayer.play();
             Image penImage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/pencil.png"));
             ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
             mainpane.setCursor(penCursor);
         });
         item2.setOnAction(event -> {
             mainpane.getChildren().removeIf(node -> node instanceof Line);
+            mediaplayer.stop();
+            mediaplayer.play();
         });
         item3.setOnAction(eh -> {
             candraw = false;
             mainpane.setCursor(Cursor.DEFAULT);
+            mediaplayer.stop();
+            mediaplayer.play();
         });
 
         CustomMenuItem item4 = new CustomMenuItem(colorpicker);
@@ -208,6 +214,8 @@ public class BinarySearchController extends Application {
 
     @FXML
     private void handleBinarySearch() {
+        mediaplayer.stop();
+        mediaplayer.play();
         initializeBars(); // Initialize the bar visualization
         //binarySearch(); // Perform the search with animation
     }
@@ -216,6 +224,8 @@ public class BinarySearchController extends Application {
     private void leftIteration()
     {
         if (iterationScene > 0) {
+            mediaplayer.stop();
+            mediaplayer.play();
             iterationScene--;
             int[] data = iterationsData.get(iterationScene);
             highlightBars(data[0], data[2], data[1]);
@@ -227,8 +237,13 @@ public class BinarySearchController extends Application {
             {
                 foundLabel.setText("");
                 leftShift.setDisable(true);
+                rightShift.setDisable(false);
             }
-            else rightShift.setDisable(false);
+            else
+            {
+                leftShift.setDisable(false);
+                rightShift.setDisable(false);
+            }
             
         }
     }
@@ -237,6 +252,8 @@ public class BinarySearchController extends Application {
     private void rightIteration()
     {
         if (iterationScene < iterationsData.size() - 1) {
+            mediaplayer.stop();
+            mediaplayer.play();
             iterationScene++;
             int[] data = iterationsData.get(iterationScene);
             highlightBars(data[0], data[2], data[1]);
@@ -247,8 +264,13 @@ public class BinarySearchController extends Application {
             if(iterationScene == iterationsData.size() - 1 ) {
                 foundLabel.setText("The target has been found at index = " + data[1]);
                 rightShift.setDisable(true);
+                leftShift.setDisable(false);
             }
-            else leftShift.setDisable(false);
+            else
+            {
+                leftShift.setDisable(false);
+                rightShift.setDisable(false);
+            }
         }
     }
 
@@ -323,27 +345,32 @@ public class BinarySearchController extends Application {
                     right = mid - 1;
                 }
             }
+            iterationScene = 0;
 
             highlightBars(0, intArray.length - 1, (intArray.length - 1) / 2 );
             startOperation.setText("START:  " + 0);
             midOperation.setText("MID:  " + (intArray.length - 1) / 2 + "  (" + "0" + "+" + (intArray.length - 1) + ")" + "/" +  "2");
             endOperation.setText("END:  " + (intArray.length - 1));
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
-            if(intArray[(intArray.length - 1) / 2] == target) {
+
+            if(intArray[(intArray.length - 1) / 2] == target) 
+            {
                 foundLabel.setText("The target has been found at index = " + (intArray.length - 1) / 2);
+                rightShift.setDisable(true);
             }
-            rightShift.setDisable(false);
+
+            else rightShift.setDisable(false);
+            leftShift.setDisable(true);
 
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure all inputs are valid numbers.");
+            return;
         }
         playAudio("letsdobinarysearch"); // Play the binary search audio
     }
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.web("#FFD700")); // Indigo color code
-        line.setStrokeWidth(5);
         line.setStroke(color);
         line.setStrokeWidth(stroke);
         line.setStrokeLineJoin(StrokeLineJoin.ROUND);
@@ -470,18 +497,18 @@ public class BinarySearchController extends Application {
     }
 
     private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        // Alert alert = new Alert(AlertType.ERROR);
+        // alert.setTitle(title);
+        // alert.setHeaderText(null);
+        // alert.setContentText(content);
+        // alert.showAndWait();
         rightShift.setDisable(true);
         leftShift.setDisable(true);
         midOperation.setText("");
         startOperation.setText("");
         endOperation.setText("");
         iterationOperation.setText("");
-        foundLabel.setText("");
+        foundLabel.setText(content);
     }
 
     private void playAudio(String fileName) {

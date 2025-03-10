@@ -16,9 +16,9 @@
 
 <AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BinarySearchController">
    <children>
-      <VBox alignment="CENTER" layoutX="212.0" layoutY="2.0" prefHeight="746.0" prefWidth="1121.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+      <VBox alignment="CENTER" layoutX="212.0" layoutY="2.0" prefHeight="667.0" prefWidth="1122.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
          <children>
-            <Text fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
+            <Text fx:id="mainText" fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BINARY SEARCH" textAlignment="CENTER" />
             <TextField fx:id="inputField" onAction="#handleBinarySearch" promptText="Enter sorted numbers" styleClass="text-box" />
             <TextField fx:id="searchField" onAction="#handleBinarySearch" promptText="Enter number to search" styleClass="text-box" />
             <Button onAction="#handleBinarySearch" text="Start Binary Search" />
@@ -31,32 +31,9 @@
                   <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="36.0" prefWidth="334.0" styleClass="label-grey" textFill="#514b4b" />
                </children>
             </HBox>
-            <Label fx:id="foundLabel" prefHeight="58.0" prefWidth="1118.0" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
          </children>
       </VBox>
-      <AnchorPane fx:id="bpane" layoutX="-102.0" layoutY="2.0" prefHeight="238.0" prefWidth="311.0" stylesheets="@images%20and%20stylesheets/sidemenu.css">
-         <children>
-            <Button fx:id="menubutton" layoutX="121.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
-               <graphic>
-                  <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images%20and%20stylesheets/menu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <MenuButton fx:id="drawitem" layoutX="118.0" layoutY="136.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="123.0" styleClass="button" stylesheets="@images%20and%20stylesheets/sidemenu.css">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images%20and%20stylesheets/digital-painting.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MenuButton>
-         </children>
-      </AnchorPane>
-      <Button fx:id="viewCode" layoutX="1340.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+      <Button fx:id="viewCode" layoutX="1340.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/slider.css">
          <graphic>
             <ImageView fitHeight="68.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
                <image>
@@ -119,5 +96,28 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label fx:id="foundLabel" layoutX="404.0" layoutY="687.0" prefHeight="58.0" prefWidth="1000.0" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
+      <AnchorPane fx:id="bpane" layoutX="-92.0" layoutY="12.0" prefHeight="238.0" prefWidth="311.0" stylesheets="@images%20and%20stylesheets/sidemenu.css">
+         <children>
+            <Button fx:id="menubutton" layoutX="121.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images%20and%20stylesheets/menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <MenuButton fx:id="drawitem" layoutX="118.0" layoutY="136.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="123.0" styleClass="button" stylesheets="@images%20and%20stylesheets/sidemenu.css">
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images%20and%20stylesheets/digital-painting.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -57,7 +57,8 @@ public class SelectionSortController extends Application {
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
 
-    private final Slider slider = new Slider();
+    // private final Slider slider = new Slider(); // Removed duplicate declaration
+    private final CustomSlider slider = new CustomSlider();
     private final ColorPicker colorpicker = new ColorPicker();
 
     private int stroke;
@@ -306,6 +307,10 @@ public class SelectionSortController extends Application {
             // {
             //      swaplabel.setText("No swapping required");
             // }
+            if (finalI != finalMinIndex1) {
+                keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
+            }
+
             // Swap values
             int temp = values[minIndex];
             values[minIndex] = values[i];
