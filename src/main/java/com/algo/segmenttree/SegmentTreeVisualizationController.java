@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.algo.CustomSlider;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -65,7 +67,7 @@ public class SegmentTreeVisualizationController extends Application {
     private Color color = Color.BLACK;
     private int stroke;
 
-    private final Slider slider = new Slider(1, 6, 2);
+    private final CustomSlider slider = new CustomSlider();
 
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
@@ -131,11 +133,6 @@ public class SegmentTreeVisualizationController extends Application {
         });
 
         //initilizing the slider 
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(1);
-        slider.setBlockIncrement(1);
-        slider.setSnapToTicks(true);
         stroke = (int) slider.getValue();
         slider.valueProperty().addListener((obs, oldval, newVal) -> {
             stroke = (int) newVal.intValue();

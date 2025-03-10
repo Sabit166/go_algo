@@ -11,16 +11,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -30,6 +35,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -45,6 +52,10 @@ public class BubbleSortController extends Application {
     private static final int BAR_WIDTH = 100; // Increased width
     private static final int MAX_HEIGHT = 400; // Increased height
     private StackPane[] bars;
+    private Color color;
+    private final CustomSlider slider = new CustomSlider();
+    private int stroke;
+    private ColorPicker colorpicker = new ColorPicker();
 
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
@@ -129,18 +140,29 @@ public class BubbleSortController extends Application {
                 + "1. Iterate over the array from the first element to the second last element.\n"
                 + "2. For each element, compare it with the next element.\n"
                 + "3. If the current element is greater than the next element, swap them.\n"
-                + "4. Repeat until the array is sorted.");
+                        + "4. Repeat until the array is sorted.");
 
+        stroke = (int) slider.getValue();
+        slider.valueProperty().addListener((obs, oldval, newVal) -> {
+            stroke = (int) newVal.intValue();
+        });
+
+        colorpicker.setValue(Color.BLACK);
+        colorpicker.setOnAction(eh -> color = colorpicker.getValue());
         item1.setOnAction(eh -> {
             mediaplayer.stop();
             mediaplayer.play();
             candraw = true;
+            Image penImage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/pencil.png"));
+            ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
+            mainpane.setCursor(penCursor);
         });
         item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
         item3.setOnAction(eh -> {
             candraw = false;
             mediaplayer.stop();
             mediaplayer.play();
+            mainpane.setCursor(Cursor.DEFAULT);
         });
 
         item1.getStyleClass().add("menu-item");
@@ -154,6 +176,14 @@ public class BubbleSortController extends Application {
             }
         });
 
+        CustomMenuItem item4 = new CustomMenuItem(colorpicker);
+        item4.setHideOnClick(false);
+
+        CustomMenuItem item5 = new CustomMenuItem(slider);
+        item5.setHideOnClick(false);
+
+        drawitem.getItems().addAll(item4, item5);
+
         mainpane.setOnMouseDragged(event -> {
             if (candraw) {
                 draw(mainpane, event);
@@ -163,8 +193,10 @@ public class BubbleSortController extends Application {
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.web("#FFD700")); // Gold color code
-        line.setStrokeWidth(5);
+        line.setStroke(color);
+        line.setStrokeWidth(stroke);
+        line.setStrokeLineJoin(StrokeLineJoin.ROUND);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
         pane.getChildren().add(line);
 
         LastX = event.getSceneX();
