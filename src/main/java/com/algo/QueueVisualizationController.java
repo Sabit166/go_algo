@@ -23,7 +23,6 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -71,7 +70,7 @@ public class QueueVisualizationController extends Application {
     private Color color = Color.BLACK;
     private int stroke;
 
-    private final Slider slider = new Slider(1, 6, 2);
+    private final CustomSlider slider = new CustomSlider();
 
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
@@ -164,12 +163,6 @@ public class QueueVisualizationController extends Application {
             }
         });
 
-        //initilizing the slider 
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(1);
-        slider.setBlockIncrement(1);
-        slider.setSnapToTicks(true);
         stroke = (int) slider.getValue();
         slider.valueProperty().addListener((obs, oldval, newVal) -> {
             stroke = (int) newVal.intValue();

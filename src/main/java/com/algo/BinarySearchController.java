@@ -23,12 +23,9 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -59,7 +56,7 @@ public class BinarySearchController extends Application {
     private final ColorPicker colorpicker = new ColorPicker();
     private Color color = Color.BLACK;
     private int stroke;
-    private final Slider slider = new Slider(1, 6, 2);
+    private final CustomSlider slider = new CustomSlider();
     
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
@@ -152,12 +149,6 @@ public class BinarySearchController extends Application {
         MenuItem item2 = new MenuItem("Erase");
         MenuItem item3 = new MenuItem("Off");
 
-        // initilizing the slider
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(1);
-        slider.setBlockIncrement(1);
-        slider.setSnapToTicks(true);
         stroke = (int) slider.getValue();
         slider.valueProperty().addListener((obs, oldval, newVal) -> {
             stroke = (int) newVal.intValue();
@@ -342,8 +333,6 @@ public class BinarySearchController extends Application {
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.web("#FFD700")); // Indigo color code
-        line.setStrokeWidth(5);
         line.setStroke(color);
         line.setStrokeWidth(stroke);
         line.setStrokeLineJoin(StrokeLineJoin.ROUND);
