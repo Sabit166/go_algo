@@ -364,6 +364,7 @@ public class BinarySearchController extends Application {
 
         } catch (NumberFormatException e) {
             showAlert("Input Error", "Ensure all inputs are valid numbers.");
+            return;
         }
         playAudio("letsdobinarysearch"); // Play the binary search audio
     }
@@ -496,18 +497,18 @@ public class BinarySearchController extends Application {
     }
 
     private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        // Alert alert = new Alert(AlertType.ERROR);
+        // alert.setTitle(title);
+        // alert.setHeaderText(null);
+        // alert.setContentText(content);
+        // alert.showAndWait();
         rightShift.setDisable(true);
         leftShift.setDisable(true);
         midOperation.setText("");
         startOperation.setText("");
         endOperation.setText("");
         iterationOperation.setText("");
-        foundLabel.setText("");
+        foundLabel.setText(content);
     }
 
     private void playAudio(String fileName) {
