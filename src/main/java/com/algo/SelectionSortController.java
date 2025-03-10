@@ -11,16 +11,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -30,6 +36,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -49,6 +57,12 @@ public class SelectionSortController extends Application {
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
 
+    private final Slider slider = new Slider();
+    private final ColorPicker colorpicker = new ColorPicker();
+
+    private int stroke;
+    private Color color;
+
     @FXML
     private HBox barContainer;
 
@@ -56,7 +70,7 @@ public class SelectionSortController extends Application {
     private TextField inputField, searchField, numElementsField, elementsField;
 
     @FXML
-    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
+    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation,currentLabel, smallestLabel,swaplabel;
 
     @FXML
     private AnchorPane sidemenu, bpane, mainpane, codePane;
@@ -98,6 +112,8 @@ public class SelectionSortController extends Application {
 
         menubutton.setOnAction(event -> {
             menubuttonclicked = !menubuttonclicked;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (menubuttonclicked) {
                 sidemenu.setVisible(true);
                 bpane.setDisable(true);
@@ -115,6 +131,8 @@ public class SelectionSortController extends Application {
 
         viewCode.setOnAction(event -> {
             codevisible = !codevisible;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (codevisible) {
                 codePane.setVisible(true);
             } else {
@@ -123,25 +141,49 @@ public class SelectionSortController extends Application {
         });
 
         pseudoCodeArea.setText(
-            "Pseudocode for Selection Sort:\n" +
-                "1. Iterate over the array from the first element to the second last element.\n" +
-                "2. For each element, assume it is the minimum.\n" +
-                "3. Compare it with every other element in the array.\n" +
-                "4. If any element is smaller, update the minimum.\n" +
-                "5. Swap the minimum element with the current element.\n" +
-                "6. Repeat until the array is sorted.");
+                "Pseudocode for Selection Sort:\n"
+                + "1. Iterate over the array from the first element to the second last element.\n"
+                + "2. For each element, assume it is the minimum.\n"
+                + "3. Compare it with every other element in the array.\n"
+                + "4. If any element is smaller, update the minimum.\n"
+                + "5. Swap the minimum element with the current element.\n"
+                + "6. Repeat until the array is sorted.");
+
+        stroke = (int) slider.getValue();
+        slider.valueProperty().addListener((obs, oldval, newVal) -> {
+            stroke = (int) newVal.intValue();
+        });
+
+        colorpicker.setValue(Color.BLACK);
+        colorpicker.setOnAction(eh -> color = colorpicker.getValue());
 
         item1.setOnAction(eh -> {
             candraw = true;
+            mediaplayer.stop();
+            mediaplayer.play();
+            Image penImage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/pencil.png"));
+            ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
+            mainpane.setCursor(penCursor);
         });
         item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
         item3.setOnAction(eh -> {
             candraw = false;
+            mediaplayer.stop();
+            mediaplayer.play();
+            mainpane.setCursor(Cursor.DEFAULT);
         });
 
         item1.getStyleClass().add("menu-item");
         item2.getStyleClass().add("menu-item");
         item3.getStyleClass().add("menu-item");
+
+        CustomMenuItem item4 = new CustomMenuItem(colorpicker);
+        item4.setHideOnClick(false);
+
+        CustomMenuItem item5 = new CustomMenuItem(slider);
+        item5.setHideOnClick(false);
+
+        drawitem.getItems().addAll(item4, item5);
 
         mainpane.setOnMousePressed(event -> {
             if (candraw) {
@@ -159,8 +201,10 @@ public class SelectionSortController extends Application {
 
     private void draw(AnchorPane pane, MouseEvent event) {
         Line line = new Line(LastX, LastY, event.getSceneX(), event.getSceneY());
-        line.setStroke(Color.web("#FFD700")); // Gold color code
-        line.setStrokeWidth(5);
+        line.setStroke(color);
+        line.setStrokeWidth(stroke);
+        line.setStrokeLineJoin(StrokeLineJoin.ROUND);
+        line.setStrokeLineCap(StrokeLineCap.ROUND);
         pane.getChildren().add(line);
 
         LastX = event.getSceneX();
@@ -169,6 +213,8 @@ public class SelectionSortController extends Application {
 
     @FXML
     private void handleSelectionSort() {
+        mediaplayer.stop();
+        mediaplayer.play();
         initializeBars(); // Initialize the bar visualization
         selectionSort();  // Perform the sorting with animation
     }
@@ -245,10 +291,21 @@ public class SelectionSortController extends Application {
             // Uplift bars before swapping
             int finalI = i;
             int finalMinIndex1 = minIndex;
+            System.out.println(values[finalI]+" "+values[finalMinIndex1]);
             duration = duration.add(stepDuration);
-            if (finalI != finalMinIndex1)
+            //keyFrames.add(new KeyFrame(duration, e -> this.currentLabel.setText("Current:  " + values[finalI])));
+            //duration = duration.add(stepDuration);
+            //currentLabel.setText("Current: " + finalI);
+            //smallestLabel.setText("Smallest: " + finalMinIndex1);
+            //keyFrames.add(new KeyFrame(duration, e -> this.smallestLabel.setText("Smallest:  " + values[finalMinIndex1])));
+            if (finalI != finalMinIndex1) {
                 keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
-
+                //swaplabel.setText("Swapping " + values[finalI] + " with " + values[finalMinIndex1]);
+            }
+            // else
+            // {
+            //      swaplabel.setText("No swapping required");
+            // }
             // Swap values
             int temp = values[minIndex];
             values[minIndex] = values[i];
@@ -260,8 +317,12 @@ public class SelectionSortController extends Application {
 
             // Lower bars after swapping
             duration = duration.add(stepDuration);
-            if (finalI != finalMinIndex1)
+            if (finalI != finalMinIndex1) {
                 keyFrames.add(new KeyFrame(duration, e -> lowerBars(finalI, finalMinIndex1)));
+            }
+        //    currentLabel.setText("Current: ");
+        //    smallestLabel.setText("Smallest: ");
+        //    swaplabel.setText("Swapping ");        
         }
 
         // Play the timeline animation
@@ -279,10 +340,14 @@ public class SelectionSortController extends Application {
 
     private void highlightBars(int index2, int index3, int index1) {
         resetBarColors();
-        if (index1 != -1)
+        if (index1 != -1) {
             ((Rectangle) bars[index1].getChildren().get(0)).setFill(Color.GREEN); // Highlight the selected bar
-        if (index2 != -1)
+
+        }
+        if (index2 != -1) {
             ((Rectangle) bars[index2].getChildren().get(0)).setFill(Color.RED);   // Highlight the comparison
+
+        }
         ((Rectangle) bars[index3].getChildren().get(0)).setFill(Color.BLUE);   // Highlight the initial bar
     }
 
