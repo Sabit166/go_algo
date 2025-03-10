@@ -98,6 +98,8 @@ public class SelectionSortController extends Application {
 
         menubutton.setOnAction(event -> {
             menubuttonclicked = !menubuttonclicked;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (menubuttonclicked) {
                 sidemenu.setVisible(true);
                 bpane.setDisable(true);
@@ -115,6 +117,8 @@ public class SelectionSortController extends Application {
 
         viewCode.setOnAction(event -> {
             codevisible = !codevisible;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (codevisible) {
                 codePane.setVisible(true);
             } else {
@@ -133,10 +137,14 @@ public class SelectionSortController extends Application {
 
         item1.setOnAction(eh -> {
             candraw = true;
+            mediaplayer.stop();
+            mediaplayer.play();
         });
         item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
         item3.setOnAction(eh -> {
             candraw = false;
+            mediaplayer.stop();
+            mediaplayer.play();
         });
 
         item1.getStyleClass().add("menu-item");
@@ -169,6 +177,8 @@ public class SelectionSortController extends Application {
 
     @FXML
     private void handleSelectionSort() {
+        mediaplayer.stop();
+        mediaplayer.play();
         initializeBars(); // Initialize the bar visualization
         selectionSort();  // Perform the sorting with animation
     }

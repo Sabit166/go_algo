@@ -117,6 +117,8 @@ public class BinarySearchController extends Application {
 
         menubutton.setOnAction(event -> {
             menubuttonclicked = !menubuttonclicked;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (menubuttonclicked) {
                 sidemenu.setVisible(true);
                 bpane.setDisable(true);
@@ -134,6 +136,8 @@ public class BinarySearchController extends Application {
 
         viewCode.setOnAction(event -> {
             codevisible = !codevisible;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (codevisible) {
                 codePane.setVisible(true);
             } else {
@@ -173,16 +177,22 @@ public class BinarySearchController extends Application {
 
         item1.setOnAction(eh -> {
             candraw = true;
+            mediaplayer.stop();
+            mediaplayer.play();
             Image penImage = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/pencil.png"));
             ImageCursor penCursor = new ImageCursor(penImage, penImage.getWidth() / 2, penImage.getHeight() / 2);
             mainpane.setCursor(penCursor);
         });
         item2.setOnAction(event -> {
             mainpane.getChildren().removeIf(node -> node instanceof Line);
+            mediaplayer.stop();
+            mediaplayer.play();
         });
         item3.setOnAction(eh -> {
             candraw = false;
             mainpane.setCursor(Cursor.DEFAULT);
+            mediaplayer.stop();
+            mediaplayer.play();
         });
 
         CustomMenuItem item4 = new CustomMenuItem(colorpicker);
@@ -213,6 +223,8 @@ public class BinarySearchController extends Application {
 
     @FXML
     private void handleBinarySearch() {
+        mediaplayer.stop();
+        mediaplayer.play();
         initializeBars(); // Initialize the bar visualization
         //binarySearch(); // Perform the search with animation
     }
@@ -221,6 +233,8 @@ public class BinarySearchController extends Application {
     private void leftIteration()
     {
         if (iterationScene > 0) {
+            mediaplayer.stop();
+            mediaplayer.play();
             iterationScene--;
             int[] data = iterationsData.get(iterationScene);
             highlightBars(data[0], data[2], data[1]);
@@ -247,6 +261,8 @@ public class BinarySearchController extends Application {
     private void rightIteration()
     {
         if (iterationScene < iterationsData.size() - 1) {
+            mediaplayer.stop();
+            mediaplayer.play();
             iterationScene++;
             int[] data = iterationsData.get(iterationScene);
             highlightBars(data[0], data[2], data[1]);

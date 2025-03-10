@@ -357,7 +357,7 @@ public class SegmentTreeVisualizationController extends Application {
     private void handleLinkedList(ActionEvent event) throws IOException {
         // Logic for Linked List
         mediaplayer.play();
-        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/linkedlist_visualizer.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/algo/comingsoon.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

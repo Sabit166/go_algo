@@ -115,6 +115,8 @@ public class BubbleSortController extends Application {
 
         viewCode.setOnAction(event -> {
             codevisible = !codevisible;
+            mediaplayer.stop();
+            mediaplayer.play();
             if (codevisible) {
                 codePane.setVisible(true);
             } else {
@@ -130,11 +132,15 @@ public class BubbleSortController extends Application {
                 + "4. Repeat until the array is sorted.");
 
         item1.setOnAction(eh -> {
+            mediaplayer.stop();
+            mediaplayer.play();
             candraw = true;
         });
         item2.setOnAction(event -> mainpane.getChildren().removeIf(node -> node instanceof Line));
         item3.setOnAction(eh -> {
             candraw = false;
+            mediaplayer.stop();
+            mediaplayer.play();
         });
 
         item1.getStyleClass().add("menu-item");
@@ -167,6 +173,8 @@ public class BubbleSortController extends Application {
 
     @FXML
     private void handleBubbleSort() {
+        mediaplayer.stop();
+        mediaplayer.play();
         initializeBars(); // Initialize the bar visualization
         bubbleSort();     // Perform the sorting with animation
     }
