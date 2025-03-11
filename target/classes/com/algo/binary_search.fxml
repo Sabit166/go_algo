@@ -33,9 +33,9 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="viewCode" layoutX="1340.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/slider.css">
+      <Button fx:id="viewCode" layoutX="1340.0" layoutY="18.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="102.0" styleClass="circular-button-blue" stylesheets="@images%20and%20stylesheets/slider.css">
          <graphic>
-            <ImageView fitHeight="68.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+            <ImageView fitHeight="68.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" styleClass="circular-button-blue">
                <image>
                   <Image url="@images%20and%20stylesheets/view_Code.png" />
                </image>
@@ -47,7 +47,7 @@
             <TextArea fx:id="pseudoCodeArea" editable="false" layoutX="-226.0" layoutY="14.0" prefHeight="382.0" prefWidth="462.0" styleClass="text-area" />
          </children>
       </AnchorPane>
-      <Button fx:id="rightShift" layoutX="1426.0" layoutY="367.0" mnemonicParsing="false" onAction="#rightIteration" prefHeight="66.0" prefWidth="102.0">
+      <Button fx:id="rightShift" layoutX="1426.0" layoutY="367.0" mnemonicParsing="false" onAction="#rightIteration" prefHeight="66.0" prefWidth="102.0" styleClass="circular-button-green">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -87,7 +87,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Button fx:id="leftShift" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#leftIteration" prefHeight="74.0" prefWidth="72.0">
+      <Button fx:id="leftShift" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#leftIteration" prefHeight="74.0" prefWidth="72.0" styleClass="circular-button-green">
          <graphic>
             <ImageView fitHeight="53.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,7 +96,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="foundLabel" layoutX="404.0" layoutY="687.0" prefHeight="58.0" prefWidth="1000.0" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
+      <Label fx:id="foundLabel" layoutX="404.0" layoutY="687.0" prefHeight="58.0" prefWidth="1000.0" style="-fx-text-fill: green;" styleClass="label-found" text="" textAlignment="CENTER" />
       <AnchorPane fx:id="bpane" layoutX="-92.0" layoutY="12.0" prefHeight="238.0" prefWidth="311.0" stylesheets="@images%20and%20stylesheets/sidemenu.css">
          <children>
             <Button fx:id="menubutton" layoutX="121.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">

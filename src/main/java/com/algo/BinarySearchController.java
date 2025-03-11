@@ -152,7 +152,8 @@ public class BinarySearchController extends Application {
                         "   d. Else, set high = mid - 1 (search left half)\n" +
                         "3. If not found, return -1");
 
-        mainText.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/fonts/supercell-magic.ttf"), 65));
+        mainText.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/supercell-magic.ttf"), 60));
+        foundLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/supercell-magic.ttf"), 36));
 
         MenuItem item1 = new MenuItem("Draw");
         MenuItem item2 = new MenuItem("Erase");
@@ -263,6 +264,7 @@ public class BinarySearchController extends Application {
             iterationOperation.setText("ITERATION:  " + iterationScene + " / " + (iterationsData.size() - 1));
             if(iterationScene == iterationsData.size() - 1 ) {
                 foundLabel.setText("The target has been found at index = " + data[1]);
+                foundLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/supercell-magic.ttf"), 36));
                 rightShift.setDisable(true);
                 leftShift.setDisable(false);
             }
@@ -288,6 +290,11 @@ public class BinarySearchController extends Application {
             int[] intArray = new int[numElements];
             for (int i = 0; i < numElements; i++) {
                 intArray[i] = Integer.parseInt(inputArray[i].trim());
+            }
+
+            if (numElements > 10) {
+                showAlert("Input Error", "The input array must contain at most 10 numbers.");
+                return;
             }
 
             // Check if the array is sorted
@@ -326,7 +333,7 @@ public class BinarySearchController extends Application {
                 Rectangle rectangle = new Rectangle(BAR_SIZE, BAR_SIZE);
                 rectangle.getStyleClass().add("rectangle"); // Apply the CSS class to the rectangle
                 Label label = new Label(inputArray[i].trim());
-                label.getStyleClass().add("label"); // Apply the CSS class to the label
+                label.getStyleClass().add("label-rectangles"); // Apply the CSS class to the label
                 StackPane stackPane = new StackPane();
                 stackPane.getChildren().addAll(rectangle, label);
                 bars[i] = stackPane;
