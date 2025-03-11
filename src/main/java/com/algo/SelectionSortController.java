@@ -16,6 +16,7 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -56,6 +57,7 @@ public class SelectionSortController extends Application {
     Media sound = new Media(getClass().getResource("/com/algo/buttonclick.mp3").toExternalForm());
     MediaPlayer mediaplayer = new MediaPlayer(sound);
 
+    // private final Slider slider = new Slider(); // Removed duplicate declaration
     private final CustomSlider slider = new CustomSlider();
     private final ColorPicker colorpicker = new ColorPicker();
 
@@ -69,7 +71,7 @@ public class SelectionSortController extends Application {
     private TextField inputField, searchField, numElementsField, elementsField;
 
     @FXML
-    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
+    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation,currentLabel, smallestLabel,swaplabel;
 
     @FXML
     private AnchorPane sidemenu, bpane, mainpane, codePane;
@@ -290,7 +292,21 @@ public class SelectionSortController extends Application {
             // Uplift bars before swapping
             int finalI = i;
             int finalMinIndex1 = minIndex;
+            System.out.println(values[finalI]+" "+values[finalMinIndex1]);
             duration = duration.add(stepDuration);
+            //keyFrames.add(new KeyFrame(duration, e -> this.currentLabel.setText("Current:  " + values[finalI])));
+            //duration = duration.add(stepDuration);
+            //currentLabel.setText("Current: " + finalI);
+            //smallestLabel.setText("Smallest: " + finalMinIndex1);
+            //keyFrames.add(new KeyFrame(duration, e -> this.smallestLabel.setText("Smallest:  " + values[finalMinIndex1])));
+            if (finalI != finalMinIndex1) {
+                keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
+                //swaplabel.setText("Swapping " + values[finalI] + " with " + values[finalMinIndex1]);
+            }
+            // else
+            // {
+            //      swaplabel.setText("No swapping required");
+            // }
             if (finalI != finalMinIndex1) {
                 keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
             }
@@ -309,6 +325,9 @@ public class SelectionSortController extends Application {
             if (finalI != finalMinIndex1) {
                 keyFrames.add(new KeyFrame(duration, e -> lowerBars(finalI, finalMinIndex1)));
             }
+        //    currentLabel.setText("Current: ");
+        //    smallestLabel.setText("Smallest: ");
+        //    swaplabel.setText("Swapping ");        
         }
 
         // Play the timeline animation

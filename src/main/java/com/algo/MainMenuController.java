@@ -70,11 +70,11 @@ public class MainMenuController {
         Image image6 = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/cloud-computing.png"));
         helpme.setOnMouseEntered(event -> {
             button2image.setImage(image5);
-            htext.setText("Sure Gotcha!!");
+            htext.setText("Sure!!");
         });
         helpme.setOnMouseExited(event -> {
             button2image.setImage(image6);
-            htext.setText("Help Me!!");
+            htext.setText("Next Updates!!");
         });
 
         Image image7 = new Image(getClass().getResourceAsStream("/com/algo/images and stylesheets/exit2.png"));
@@ -98,10 +98,11 @@ public class MainMenuController {
     }
 
     @FXML
-    private void handleHelpInstructions(ActionEvent event) {
+    private void handleHelpInstructions(ActionEvent event) throws IOException {
         // Handle help/instructions
         mediaplayer.stop();
         mediaplayer.play();
+        loadPage("updatepage", event);
     }
 
     @FXML

@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Text fx:id="htext" fill="WHITE" layoutX="-35.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help me!!" textAlignment="CENTER" wrappingWidth="212.84375">
+                  <Text fx:id="htext" fill="WHITE" layoutX="-2.0" layoutY="103.0" stroke="#b49494" strokeType="OUTSIDE" strokeWidth="0.0" text="Next Updates!!" textAlignment="CENTER" wrappingWidth="150.34375">
                      <font>
                         <Font name="Supercell-Magic" size="19.0" />
                      </font>

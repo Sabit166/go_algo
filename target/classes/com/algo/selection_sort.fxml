@@ -30,9 +30,12 @@
                   <Label fx:id="midOperation" alignment="CENTER" prefHeight="36.0" prefWidth="249.0" styleClass="label-green" textFill="#ea0c0c" />
                   <Label fx:id="endOperation" alignment="CENTER" prefHeight="36.0" prefWidth="219.0" styleClass="label-red" textFill="#2a810a" />
                   <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="36.0" prefWidth="244.0" styleClass="label-grey" textFill="#514b4b" />
-               </children>
+               </children> 
             </HBox>
             <Label fx:id="foundLabel" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
+             <!-- <Label fx:id="currentLabel" style="-fx-text-fill: blue;" text="Current : " textAlignment="LEFT" />
+             <Label fx:id="smallestLabel" style="-fx-text-fill: green;" text="Smallest : " textAlignment="CENTER" />
+             <Label fx:id="swaplabel" style="-fx-text-fill: red;" text="Swap : " textAlignment="RIGHT" /> -->
          </children>
       </VBox>
       <AnchorPane fx:id="bpane" layoutX="-102.0" layoutY="2.0" prefHeight="238.0" prefWidth="311.0" stylesheets="@images%20and%20stylesheets/sidemenu.css">
