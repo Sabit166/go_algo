@@ -294,11 +294,11 @@ public class SelectionSortController extends Application {
             int finalMinIndex1 = minIndex;
             System.out.println(values[finalI]+" "+values[finalMinIndex1]);
             duration = duration.add(stepDuration);
-            //keyFrames.add(new KeyFrame(duration, e -> this.currentLabel.setText("Current:  " + values[finalI])));
-            //duration = duration.add(stepDuration);
-            //currentLabel.setText("Current: " + finalI);
-            //smallestLabel.setText("Smallest: " + finalMinIndex1);
-            //keyFrames.add(new KeyFrame(duration, e -> this.smallestLabel.setText("Smallest:  " + values[finalMinIndex1])));
+            keyFrames.add(new KeyFrame(duration, e -> this.currentLabel.setText("Current:  " + values[finalI])));
+            duration = duration.add(stepDuration);
+            currentLabel.setText("Current: " + finalI);
+            smallestLabel.setText("Smallest: " + finalMinIndex1);
+            keyFrames.add(new KeyFrame(duration, e -> this.smallestLabel.setText("Smallest:  " + values[finalMinIndex1])));
             if (finalI != finalMinIndex1) {
                 keyFrames.add(new KeyFrame(duration, e -> upliftBars(finalI, finalMinIndex1)));
                 //swaplabel.setText("Swapping " + values[finalI] + " with " + values[finalMinIndex1]);
