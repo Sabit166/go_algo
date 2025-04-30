@@ -30,12 +30,12 @@ Whether you're learning or teaching, this application provides a user-friendly w
   <img src="src/main/resources/com/algo/Java_Project_Readme/Algorithm_Page.gif" alt="Algorithms Page" width="400">
 </p>
 
-<ul>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/binary_search_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Binary Search</li>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Bubble Sort</li>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/selection_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Selection Sort</li>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/bfs_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Breadth First Search</li>
-</ul>
+<p style="font-size: larger;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/binary_search_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/selection_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/bfs_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
+</p>
 
 <p>
   <img src="src/main/resources/com/algo/Java_Project_Readme/Bubble_sort_Page.gif" alt="Bubble Sort Operation" width="400">
@@ -50,12 +50,12 @@ Whether you're learning or teaching, this application provides a user-friendly w
 </p>
 
 <h3>Data Structures Covered</h3>
-<ul style="font-size: larger;">
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/linked_list_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Linked List</li>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/stack_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Stack</li>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/queue_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Queue</li>
-  <li><img src="src/main/resources/com/algo/Java_Project_Readme/segment_tree_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Segment Tree</li>
-</ul>
+<p style="font-size: larger;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/linked_list_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Linked List<br>
+  <img src="src/main/resources/com/algo/Java_Project_Readme/stack_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Stack<br>
+  <img src="src/main/resources/com/algo/Java_Project_Readme/queue_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Queue<br>
+  <img src="src/main/resources/com/algo/Java_Project_Readme/segment_tree_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Segment Tree
+</p>
 
 <p>
   <img src="src/main/resources/com/algo/Java_Project_Readme/Segment_tree_page.gif" alt="Segment Tree Operation" width="400">
@@ -113,9 +113,6 @@ git clone https://github.com/Sabit166/go_algo.git
 
 <hr>
 
-<h2>👥 Authors</h2>
-<ul>
-  <li>UI/UX   <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @Tamim-Rizvee</li>
-  <li>Backend <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @Sabit166<br>
-              <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @alif-ul-haque</li>
-</ul>
+UI/UX <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @Tamim-Rizvee  
+Backend <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @Sabit166  
+Backend <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @alif-ul-haque
