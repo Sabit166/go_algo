@@ -1,4 +1,4 @@
-<h1>📊 go_algo</h1>
+<h1><img src="src/main/resources/com/algo/images%20and%20stylesheets/newlogo.png" alt="go_algo logo" width="24" style="vertical-align:middle;"> go_algo</h1>
 
 <p>
 A powerful and interactive tool built with Java and JavaFX to help students and developers <strong>visualize how data structures work</strong> in real-time.
@@ -19,12 +19,12 @@ Whether you're learning or teaching, this application provides a user-friendly w
   <li>🧠 Educational tooltips and operation descriptions</li>
   <li>🎨 Clean, modern JavaFX UI with interactive controls</li>
   <li>📊 Real-time updates to data structure after every operation</li>
-  <li>📊 Analysis of Pseudo Code along with visualization</li>
+  <li>🧑‍💻 Analysis of Pseudo Code along with visualization</li>
 </ul>
 
 <hr>
 
-<h2>✨ Algorithms</h2>
+<h2> Algorithms</h2>
 
 <p>
   <img src="src/main/resources/com/algo/Java_Project_Readme/Algorithm_Page.gif" alt="Algorithms Page" width="600">
@@ -114,7 +114,7 @@ git clone https://github.com/Sabit166/go_algo.git
 
 <h2>👥 Authors</h2>
 <ul>
-  <li>UI/UX – @Tamim-Rizvee</li>
-  <li>Backend - @Sabit166<br>
-           - @alif-ul-haque</li>
+  <li>UI/UX   <img src="src/main/resources/com/algo/images%20and%20stylesheets/newlogo.png" alt="go_algo logo" width="24" style="vertical-align:middle;"> @Tamim-Rizvee</li>
+  <li>Backend <img src="src/main/resources/com/algo/images%20and%20stylesheets/developer_logo.png" alt="go_algo logo" width="24" style="vertical-align:middle;"> @Sabit166<br>
+              <img src="src/main/resources/com/algo/images%20and%20stylesheets/newlogo.png" alt="go_algo logo" width="24" style="vertical-align:middle;"> @alif-ul-haque</li>
 </ul>
