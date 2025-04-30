@@ -4,7 +4,7 @@
 }
 
 .rectangle {
-    -fx-fill: #1E90FF;
+    -fx-fill: #1e90ff;
     /* DodgerBlue background color */
     -fx-stroke: black;
     /* Black border color */

@@ -37,6 +37,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -67,7 +68,16 @@ public class BubbleSortController extends Application {
     private TextField inputField, searchField, numElementsField, elementsField;
 
     @FXML
-    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation;
+    private Label mainLabel;
+
+    @FXML
+    private Label iterator1; // Ensure this is a Label, not an int
+
+    @FXML
+    private Label iterator2;
+
+    @FXML
+    private Label swap;
 
     @FXML
     private AnchorPane sidemenu, bpane, mainpane, codePane;
@@ -165,6 +175,7 @@ public class BubbleSortController extends Application {
             mainpane.setCursor(Cursor.DEFAULT);
         });
 
+        mainLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/com/algo/supercell-magic.ttf"), 60));
         item1.getStyleClass().add("menu-item");
         item2.getStyleClass().add("menu-item");
         item3.getStyleClass().add("menu-item");
@@ -235,10 +246,12 @@ public class BubbleSortController extends Application {
             for (int i = 0; i < size; i++) {
                 double height = 100; // Set a constant height for all bars
                 Rectangle rectangle = new Rectangle(BAR_WIDTH, height, Color.DARKVIOLET);
-                rectangle.setStroke(Color.BLACK); // Set the border color
-                rectangle.setStrokeWidth(5); // Set the border width
+                //rectangle.setStroke(Color.BLACK); // Set the border color
+                //rectangle.setStrokeWidth(5); // Set the border width
+                rectangle.getStyleClass().add("rectangle");
                 Label label = new Label(elementsArray[i].trim());
-                label.setTextFill(Color.BLACK);
+                label.getStyleClass().add("label-rectangles");
+                //label.setTextFill(Color.BLACK);
                 StackPane stackPane = new StackPane();
                 stackPane.getChildren().addAll(rectangle, label);
                 bars[i] = stackPane;
@@ -264,12 +277,14 @@ public class BubbleSortController extends Application {
 
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
-                int finalJ = j;
-                int finalJ1 = j + 1;
+                final int finalJ = j; // Create a final copy of j
+                final int finalJ1 = j + 1; // Create a final copy of j + 1
 
                 // Highlight the bars being compared
                 duration = duration.add(stepDuration);
                 keyFrames.add(new KeyFrame(duration, e -> highlightBars(finalJ, finalJ1)));
+                keyFrames.add(new KeyFrame(duration, e -> this.iterator1.setText("Iterator 1 : " + finalJ)));
+                keyFrames.add(new KeyFrame(duration, e -> this.iterator2.setText("Iterator 2 : " + finalJ1)));
 
                 if (values[j] > values[j + 1]) {
                     // Uplift bars before swapping
@@ -280,6 +295,7 @@ public class BubbleSortController extends Application {
                     int temp = values[j];
                     values[j] = values[j + 1];
                     values[j + 1] = temp;
+                    keyFrames.add(new KeyFrame(duration, e -> this.swap.setText("Swapped indices " + finalJ + " and " + finalJ1)));
 
                     // Swap bars visually
                     duration = duration.add(stepDuration);
@@ -291,6 +307,7 @@ public class BubbleSortController extends Application {
                 }
             }
         }
+        keyFrames.add(new KeyFrame(duration, e -> this.swap.setText("Sorted!")));
 
         // Play the timeline animation
         Timeline timeline = new Timeline();
@@ -313,7 +330,7 @@ public class BubbleSortController extends Application {
 
     private void resetBarColors() {
         for (StackPane bar : bars) {
-            ((Rectangle) bar.getChildren().get(0)).setFill(Color.DARKVIOLET);
+            ((Rectangle) bar.getChildren().get(0)).setFill(Color.web("#1e90ff"));
         }
     }
 

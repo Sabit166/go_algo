@@ -48,6 +48,43 @@
     -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
+/* Circular button with green background */
+.circular-button-green {
+    -fx-background-color: rgba(0, 255, 0, 0.2);
+    /* Subtle transparent green */
+    -fx-text-fill: white;
+    /* White text color */
+    -fx-font-size: 18px;
+    /* Font size for button text */
+    -fx-padding: 12px;
+    /* Padding inside the button */
+    -fx-border-radius: 50%;
+    /* Circular shape */
+    -fx-background-radius: 50%;
+    /* Circular shape */
+    -fx-border-color: rgba(0, 255, 0, 0.5);
+    /* Semi-transparent green border */
+    -fx-border-width: 2px;
+    /* Border width */
+    -fx-cursor: hand;
+    /* Hand cursor on hover */
+    -fx-transition: all 0.3s ease-in-out;
+    /* Smooth transition */
+}
+
+.circular-button-green:hover {
+    -fx-background-color: rgba(0, 255, 0, 0.4);
+    /* Slightly more visible on hover */
+    -fx-border-color: green;
+    /* Fully green border */
+}
+
+.circular-button-green:pressed {
+    -fx-background-color: rgba(0, 255, 0, 0.6);
+    /* Even lighter on press */
+    -fx-border-color: green;
+}
+
 .go-back-button {
     -fx-background-radius: 25px;
     -fx-border-radius: 25px;

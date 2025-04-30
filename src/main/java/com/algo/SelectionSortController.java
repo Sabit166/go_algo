@@ -71,7 +71,7 @@ public class SelectionSortController extends Application {
     private TextField inputField, searchField, numElementsField, elementsField;
 
     @FXML
-    private Label foundLabel, startOperation, midOperation, endOperation, iterationOperation,currentLabel, smallestLabel,swaplabel;
+    private Label currentLabel, smallestLabel,swaplabel;
 
     @FXML
     private AnchorPane sidemenu, bpane, mainpane, codePane;

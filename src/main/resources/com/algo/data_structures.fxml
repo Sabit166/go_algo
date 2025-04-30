@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@images%20and%20stylesheets/stylefordatasmainpage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.DataStructuresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@images%20and%20stylesheets/stylefordatasmainpage.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.DataStructuresController">
    <children>
       <AnchorPane layoutX="-8.0" prefHeight="800.0" prefWidth="421.0" styleClass="anchorpane" stylesheets="@images%20and%20stylesheets/stylefordatasmainpage.css">
          <children>
@@ -46,7 +46,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="785.0" fitWidth="804.0" layoutX="429.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="785.0" fitWidth="804.0" layoutX="414.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images%20and%20stylesheets/new.png" />
          </image>

@@ -13,25 +13,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BubbleSortController">
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="1544.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algo.BubbleSortController">
    <children>
       <VBox alignment="CENTER" layoutX="292.0" layoutY="2.0" prefHeight="760.0" prefWidth="959.0" spacing="20.0" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
          <children>
-            <Text fill="#ffd726" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-heading" text="BUBBLE SORT" textAlignment="CENTER" />
+            <Label fx:id="mainLabel" styleClass="main-heading" text="Bubble Sort " />
             <TextField fx:id="numElementsField" onAction="#handleBubbleSort" promptText="Enter Number Of Elements" styleClass="text-box" />
             <TextField fx:id="elementsField" onAction="#handleBubbleSort" promptText="Enter The Elements" styleClass="text-box" />
             <Button onAction="#handleBubbleSort" text="Start" />
             <HBox fx:id="barContainer" alignment="CENTER" prefHeight="183.0" prefWidth="1053.0" spacing="5" />
-            <HBox alignment="CENTER" prefHeight="166.0" prefWidth="640.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="startOperation" alignment="CENTER" prefHeight="36.0" prefWidth="244.0" styleClass="label-blue" />
-                  <Label fx:id="midOperation" alignment="CENTER" prefHeight="36.0" prefWidth="249.0" styleClass="label-green" textFill="#ea0c0c" />
-                  <Label fx:id="endOperation" alignment="CENTER" prefHeight="36.0" prefWidth="219.0" styleClass="label-red" textFill="#2a810a" />
-                  <Label fx:id="iterationOperation" alignment="CENTER" prefHeight="36.0" prefWidth="244.0" styleClass="label-grey" textFill="#514b4b" />
+                  <Label fx:id="iterator1" styleClass="label-blue" />
+                  <Label fx:id="iterator2" styleClass="label-green" />
+                  <Label fx:id="swap" styleClass="label-red" />
                </children>
-            </HBox>
+            </VBox>
             <Label fx:id="foundLabel" style="-fx-text-fill: green;" text="" textAlignment="CENTER" />
          </children>
       </VBox>
@@ -93,9 +91,9 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Button fx:id="viewCode" layoutX="1340.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
+      <Button fx:id="viewCode" layoutX="1340.0" layoutY="14.0" mnemonicParsing="false" styleClass="circular-button-blue" stylesheets="@images%20and%20stylesheets/stylebinarysearch.css">
          <graphic>
-            <ImageView fitHeight="68.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+            <ImageView fitHeight="68.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" styleClass="circular-button-blue">
                <image>
                   <Image url="@images%20and%20stylesheets/view_Code.png" />
                </image>
