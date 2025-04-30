@@ -1,4 +1,4 @@
-<h1><img src="src/main/resources/com/algo/images%20and%20stylesheets/newlogo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> go_algo</h1>
+<h1><img src="src/main/resources/com/algo/images%20and%20stylesheets/newlogo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> GO_ALGO</h1>
 
 <p>
 A powerful and interactive tool built with Java and JavaFX to help students and developers <strong>visualize how data structures work</strong> in real-time.
@@ -35,7 +35,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
   <img src="src/main/resources/com/algo/Java_Project_Readme/binary_search_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Binary Search <br>
   <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Bubble Sort <br>
   <img src="src/main/resources/com/algo/Java_Project_Readme/selection_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Selection Sort <br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/bfs_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/bfs_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Breadth First Search 
 </p>
 
 <p>
@@ -64,7 +64,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
 
 <hr>
 
-<h2>🛠️ Technologies Used</h2>
+<h2>🛠️ TECHNOLOGIES USED</h2>
 <ul>
   <li><strong>Java 21+</strong></li>
   <li><strong>JavaFX</strong> for the UI</li>
@@ -73,7 +73,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
 
 <hr>
 
-<h2>🚀 Installation</h2>
+<h2>🚀 INSTALLATION</h2>
 
 <h3>Prerequisites</h3>
 <ul>
@@ -85,11 +85,10 @@ Whether you're learning or teaching, this application provides a user-friendly w
 <h3>Steps</h3>
 <pre><code># Clone the repository
 git clone https://github.com/Sabit166/go_algo.git
-
-# Run the project using your IDE
 </code></pre>
+Run the project using your IDE
 
-<h2>📌 Usage</h2>
+<h2>📌 USAGE</h2>
 <ul>
   <li>Launch the application.</li>
   <li>Navigate to "Data Structures" or "Algorithms"</li>
@@ -101,7 +100,7 @@ git clone https://github.com/Sabit166/go_algo.git
 
 <hr>
 
-<h2>🤝 Contributing</h2>
+<h2>🤝 CONTRIBUTING</h2>
 <p>Contributions are welcome!</p>
 <ol>
   <li>Fork the repository</li>
@@ -114,6 +113,15 @@ git clone https://github.com/Sabit166/go_algo.git
 
 <hr>
 
-UI/UX <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @Tamim-Rizvee  
-Backend <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @Sabit166  
-Backend <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> @alif-ul-haque
+<h2>🫂 AUTHORS</h2>
+UI/UX 
+<img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> 
+<a href="https://github.com/Tamim-Rizvee" target="_blank">@Tamim-Rizvee</a><br>
+
+Backend  
+<img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> 
+<a href="https://github.com/Sabit166" target="_blank">@Sabit166</a><br>
+
+<img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> 
+<a href="https://github.com/alif-ul-haque" target="_blank">@alif-ul-haque</a>
+
