@@ -24,16 +24,17 @@ Whether you're learning or teaching, this application provides a user-friendly w
 
 <hr>
 
-<h2><img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> Algorithms</h2>
+<h2><img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> ALGORITHMS</h2>
 
 <p>
   <img src="src/main/resources/com/algo/Java_Project_Readme/Algorithm_Page.gif" alt="Algorithms Page" width="400">
 </p>
 
+<h3>Algorithms Covered</h3>
 <p style="font-size: larger;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/binary_search_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/selection_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/binary_search_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Binary Search <br>
+  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Bubble Sort <br>
+  <img src="src/main/resources/com/algo/Java_Project_Readme/selection_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Selection Sort <br>
   <img src="src/main/resources/com/algo/Java_Project_Readme/bfs_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;">
 </p>
 
@@ -43,7 +44,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
 
 <hr>
 
-<h2><img src="src/main/resources/com/algo/Java_Project_Readme/data_structures_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> Data Structures</h2>
+<h2><img src="src/main/resources/com/algo/Java_Project_Readme/data_structures_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> DATA STRUCTURES</h2>
 
 <p>
   <img src="src/main/resources/com/algo/Java_Project_Readme/DS_Page.gif" alt="Data Structures Page" width="400">
