@@ -27,7 +27,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
 <h2><img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> ALGORITHMS</h2>
 
 <p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_Page.gif" alt="Algorithms Page" width="400">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/Algorithm_Page.gif" alt="Algorithms Page" width="400">
 </p>
 
 <h3>Algorithms Covered</h3>
@@ -39,7 +39,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
 </p>
 
 <p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_page.gif" alt="Bubble Sort Operation" width="400">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_page.gif" alt="Bubble Sort Operation" width="400">
 </p>
 
 
