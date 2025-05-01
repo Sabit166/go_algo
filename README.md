@@ -27,7 +27,7 @@ Whether you're learning or teaching, this application provides a user-friendly w
 <h2><img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> ALGORITHMS</h2>
 
 <p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/Algorithm_Page.gif" alt="Algorithms Page" width="400">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_Page.gif" alt="Algorithms Page" width="400">
 </p>
 
 <h3>Algorithms Covered</h3>
@@ -39,8 +39,9 @@ Whether you're learning or teaching, this application provides a user-friendly w
 </p>
 
 <p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/Bubble_sort_Page.gif" alt="Bubble Sort Operation" width="400">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_page.gif" alt="Bubble Sort Operation" width="400">
 </p>
+
 
 <hr>
 
@@ -114,14 +115,25 @@ Run the project using your IDE
 <hr>
 
 <h2>🫂 AUTHORS</h2>
-UI/UX 
-<img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> 
-<a href="https://github.com/Tamim-Rizvee" target="_blank">@Tamim-Rizvee</a><br>
 
-Backend  
-<img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> 
-<a href="https://github.com/Sabit166" target="_blank">@Sabit166</a><br>
+<div style="margin-bottom: 8px;">
+  <strong>UI/UX</strong>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
+  <a href="https://github.com/Tamim-Rizvee" target="_blank">@Tamim-Rizvee</a>
+</div>
 
-<img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> 
-<a href="https://github.com/alif-ul-haque" target="_blank">@alif-ul-haque</a>
+<div style="margin-bottom: 8px;">
+  <strong>Backend</strong>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
+  <a href="https://github.com/Sabit166" target="_blank">@Sabit166</a>
+</div>
+<div style="display: flex; align-items: center; gap: 8px;">
+  <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
+  <a href="https://github.com/alif-ul-haque" target="_blank">@alif-ul-haque</a>
+</div>
+
 
