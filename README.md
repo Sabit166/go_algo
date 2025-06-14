@@ -118,15 +118,15 @@ Run the project using your IDE
 
 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
   <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
-  <a href="https://github.com/Tamim-Rizvee" target="_blank">@Tamim-Rizvee</a>
+  <a href="https://github.com/Tamim-Rizvee" target="_blank">TAMIM RIZVEE</a>
 </div>
 
 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
   <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
-  <a href="https://github.com/Sabit166" target="_blank">@Sabit166</a>
+  <a href="https://github.com/Sabit166" target="_blank">SABIT SIRAJI</a>
 </div>
 
 <div style="display: flex; align-items: center; gap: 8px;">
   <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
-  <a href="https://github.com/alif-ul-haque" target="_blank">@alif-ul-haque</a>
+  <a href="https://github.com/alif-ul-haque" target="_blank">ALIF UL HAQUE</a>
 </div>
