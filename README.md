@@ -1,132 +1,248 @@
-<h1><img src="src/main/resources/com/algo/images%20and%20stylesheets/newlogo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> GO_ALGO <a href="https://www.linkedin.com/posts/sabit-siraji-1732b9259_java-javafx-softwaredevelopment-activity-7339544976193699840-Fw16?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD-VIKcBqenpJyISCLU2OR4JE5312x8cMvQ" target="_blank">-Video Link</a></h1>
+<div align="center">
 
-<p>
-A powerful and interactive tool built with Java and JavaFX to help students and developers <strong>visualize how data structures work</strong> in real-time.
-Whether you're learning or teaching, this application provides a user-friendly way to understand the mechanics behind various data structures.
-</p>
+# ⚡ GO_ALGO - YOUR MODERN DATA STRUCTURE VISUALIZER ⚡
+### `> Where Code Meets Digital Revolution`
 
-<hr>
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=28&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=800&lines=Welcome+to+the+Neural+Grid!;データベース革命へようこそ;Visualize+%7C+Analyze+%7C+Dominate;Powered+by+Cyber+Tech!" alt="Typing SVG" />
 
-<p align="center">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/Java_Home_Page.png" alt="Main Page" width="400">
-</p>
+<a href="https://www.linkedin.com/posts/sabit-siraji-1732b9259_java-javafx-softwaredevelopment-activity-7339544976193699840-Fw16?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD-VIKcBqenpJyISCLU2OR4JE5312x8cMvQ" target="_blank">
+  <img src="https://img.shields.io/badge/🎬_DEMO_VIDEO-00FF41?style=for-the-badge&logo=youtube&logoColor=black&labelColor=0d1117" />
+</a>
 
-<hr>
+</div>
 
-<h2><img src="src/main/resources/com/algo/Java_Project_Readme/features_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> Features</h2>
-<ul>
-  <li>🎯 Step-by-step animation of operations (insert, delete, search)</li>
-  <li>🧠 Educational tooltips and operation descriptions</li>
-  <li>🎨 Clean, modern JavaFX UI with interactive controls</li>
-  <li>📊 Real-time updates to data structure after every operation</li>
-  <li>🧑‍💻 Analysis of Pseudo Code along with visualization</li>
-</ul>
+---
 
-<hr>
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=20,14,25,17,12&height=200&section=header&text=%20Data%20Structures%20and%20Algorithms&fontSize=40&fontColor=ffffff&animation=twinkling" width="100%"/>
+</div>
 
-<h2><img src="src/main/resources/com/algo/Java_Project_Readme/algorithm_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> ALGORITHMS</h2>
+---
 
-<p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/Algorithm_Page.gif" alt="Algorithms Page" width="400">
-</p>
+<img align="right" alt="Anime Coding Girl" width="350" src="src/main/resources/com/algo/Java_Project_Readme/Java_Home_Page.png">
 
-<h3>Algorithms Covered</h3>
-<p style="font-size: larger;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/binary_search_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Binary Search <br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Bubble Sort <br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/selection_sort_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Selection Sort <br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/bfs_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Breadth First Search 
-</p>
+### ⚡ **SYSTEM SPECIFICATIONS** ⚡
 
-<p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/bubble_page.gif" alt="Bubble Sort Operation" width="400">
-</p>
+<table>
+<tr>
+<td><strong>🎯 MISSION</strong></td>
+<td><code>Data Structure Visualization Engine</code></td>
+</tr>
+<tr>
+<td><strong>⚙️ CORE TECH</strong></td>
+<td><code>Java 21+ | JavaFX | SceneBuilder</code></td>
+</tr>
+<tr>
+<td><strong>🔋 POWER LEVEL</strong></td>
+<td><code>Educational | Interactive | Real-time</code></td>
+</tr>
+<tr>
+<td><strong>🎮 USER MODE</strong></td>
+<td><code>Learn → Visualize → Master</code></td>
+</tr>
+<tr>
+<td><strong>🌐 STATUS</strong></td>
+<td><img src="https://img.shields.io/badge/ONLINE-00FF41?style=flat&logoColor=black&labelColor=0d1117" /></td>
+</tr>
+</table>
+
+<br clear="both">
+
+---
+
+<div align="center">
+
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=Sabit166&repo=go_algo&theme=radical&hide_border=true&bg_color=0d1117&title_color=ff69b4&icon_color=00ff41&text_color=ffffff" />
+
+## ⚡ **FEATURES** ⚡
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=20&duration=2000&pause=500&color=00FF41&center=true&vCenter=true&width=900&lines=🎯+Step-by-step+algorithm+animation;🧠+Educational+tooltips+and+guides;🎨+Stunning+JavaFX+UI+with+anime+touch;📊+Real-time+data+structure+updates;🧑‍💻+Pseudo+code+analysis+with+visualization" alt="Features Typing SVG" />
+
+</div>
+
+---
+<div align="center">
+
+## ⚡ **CYBER ARSENAL** ⚡
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=22&duration=3000&pause=800&color=00FF41&center=true&vCenter=true&width=700&lines=Loading+Algorithm+Matrix...;Initializing+Data+Structures...;Neural+Network+Ready!;Execute+%7C+Visualize+%7C+Learn" alt="Arsenal Loading" />
+
+### **🔥 ALGORITHM PROTOCOLS 🔥**
+
+<img src="https://img.shields.io/badge/🔍_BINARY_SEARCH-00FF41?style=for-the-badge&logoColor=black&labelColor=0d1117&logo=search" />
+<img src="https://img.shields.io/badge/🫧_BUBBLE_SORT-FF1493?style=for-the-badge&logoColor=white&labelColor=0d1117&logo=sort" />
+
+<img src="https://img.shields.io/badge/⚔️_SELECTION_SORT-00FFFF?style=for-the-badge&logoColor=black&labelColor=0d1117&logo=checkcircle" />
+<img src="https://img.shields.io/badge/🌊_BREADTH_FIRST-9D4EDD?style=for-the-badge&logoColor=white&labelColor=0d1117&logo=tree" />
+
+### **🌐 DATA STRUCTURE NEXUS 🌐**
+
+<img src="https://img.shields.io/badge/🔗_LINKED_LIST-FFD700?style=for-the-badge&logoColor=black&labelColor=0d1117&logo=link" />
+<img src="https://img.shields.io/badge/📚_STACK_ARRAY-06FFA5?style=for-the-badge&logoColor=black&labelColor=0d1117&logo=stack" />
+
+<img src="https://img.shields.io/badge/🎭_QUEUE_SYSTEM-FF69B4?style=for-the-badge&logoColor=white&labelColor=0d1117&logo=queue" />
+<img src="https://img.shields.io/badge/🌳_SEGMENT_TREE-B8860B?style=for-the-badge&logoColor=white&labelColor=0d1117&logo=tree" />
+
+<br>
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=16&duration=4000&pause=1000&color=FF69B4&center=true&vCenter=true&width=600&lines=Real-time+complexity+analysis;Interactive+step-by-step+execution;Visual+debugging+capabilities;Performance+metrics+tracking" alt="Capabilities" />
+
+</div>
+
+---
+
+<div align="center">
 
 
-<hr>
+### **🎌 Digital Constructs 🎌**
 
-<h2><img src="src/main/resources/com/algo/Java_Project_Readme/data_structures_logo.png" alt="go_algo logo" width="48" style="vertical-align:middle;"> DATA STRUCTURES</h2>
+<div align="center">
+<img src="https://skillicons.dev/icons?i=java&theme=dark" height="60"/>
+<img src="https://img.shields.io/badge/JavaFX-FF69B4?style=for-the-badge&logo=java&logoColor=white&labelColor=0d1117" height="60"/>
+<img src="https://img.shields.io/badge/SceneBuilder-00FF41?style=for-the-badge&logo=java&logoColor=black&labelColor=0d1117" height="60"/>
+</div>
 
-<p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/DS_Page.gif" alt="Data Structures Page" width="400">
-</p>
 
-<h3>Data Structures Covered</h3>
-<p style="font-size: larger;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/linked_list_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Linked List<br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/stack_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Stack<br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/queue_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Queue<br>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/segment_tree_logo.png" alt="go_algo logo" width="32" style="vertical-align:middle;"> Segment Tree
-</p>
+</div>
 
-<p>
-  <img src="src/main/resources/com/algo/Java_Project_Readme/Segment_tree_page.gif" alt="Segment Tree Operation" width="400">
-</p>
+---
 
-<hr>
+<div align="center">
 
-<h2>🛠️ TECHNOLOGIES USED</h2>
-<ul>
-  <li><strong>Java 21+</strong></li>
-  <li><strong>JavaFX</strong> for the UI</li>
-  <li><strong>Scene Builder</strong> (for FXML layout design)</li>
-</ul>
+## 🚀 **INSTALLATION RITUAL** 🚀
 
-<hr>
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=18&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&width=600&lines=Prepare+your+development+environment;Channel+the+power+of+Java;Let+the+magic+begin!" alt="Install Typing SVG" />
 
-<h2>🚀 INSTALLATION</h2>
+</div>
 
-<h3>Prerequisites</h3>
-<ul>
-  <li>Java JDK 11 or above</li>
-  <li>JavaFX SDK</li>
-  <li>IDE like IntelliJ IDEA, Eclipse, or VS Code with JavaFX support</li>
-</ul>
+### **🔧 Required Artifacts:**
+- **Java JDK 11+** ⚡ (The source of our power)
+- **JavaFX SDK** 🎨 (For beautiful UI magic)
+- **IDE** 💻 (IntelliJ IDEA, Eclipse, or VS Code)
 
-<h3>Steps</h3>
-<pre><code># Clone the repository
+### **🌟 Summoning Commands:**
+```bash
+# Clone the sacred repository
 git clone https://github.com/Sabit166/go_algo.git
-</code></pre>
-Run the project using your IDE
 
-<h2>📌 USAGE</h2>
-<ul>
-  <li>Launch the application.</li>
-  <li>Navigate to "Data Structures" or "Algorithms"</li>
-  <li>Select a data structure from the sidebar.</li>
-  <li>Perform operations using the control panel.</li>
-  <li>Watch the real-time visualization and understand how it works!</li>
-  <li>Teach your students Data Structures and Algorithms using smart drawing technology</li>
-</ul>
+# Enter the digital dojo
+cd go_algo
 
-<hr>
+# Compile with Java magic
+javac -cp "path/to/javafx/lib/*" src/**/*.java
 
-<h2>🤝 CONTRIBUTING</h2>
-<p>Contributions are welcome!</p>
-<ol>
-  <li>Fork the repository</li>
-  <li>Create a new feature branch: <code>git checkout -b feature-name</code></li>
-  <li>Commit your changes: <code>git commit -m 'Add new feature'</code></li>
-  <li>Push to the branch: <code>git push origin feature-name</code></li>
-  <li>Create a Pull Request</li>
-</ol>
-<p>Feel free to open issues or suggest improvements as well!</p>
+# Run and witness the beauty
+java --module-path "path/to/javafx/lib" --add-modules javafx.controls,javafx.fxml Main
+```
 
-<hr>
+---
 
-<h2>🫂 AUTHORS</h2>
+<div align="center">
 
-<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
-  <a href="https://github.com/Tamim-Rizvee" target="_blank">TAMIM RIZVEE</a>
+## 🎮 **USAGE GUIDE** 🎮
+
+<img src="https://img.shields.io/badge/1._Launch_Application-FF69B4?style=for-the-badge&logoColor=white&labelColor=0d1117" />
+<img src="https://img.shields.io/badge/2._Choose_Algorithm/DS-00FF41?style=for-the-badge&logoColor=black&labelColor=0d1117" />
+<img src="https://img.shields.io/badge/3._Watch_Magic_Happen-FF1493?style=for-the-badge&logoColor=white&labelColor=0d1117" />
+
 </div>
 
-<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
-  <a href="https://github.com/Sabit166" target="_blank">SABIT SIRAJI</a>
+### **✨ Step-by-Step Magic:**
+1. **🌸 Launch** the cyber dojo application
+2. **🎯 Navigate** to "Algorithms" or "Data Structures" 
+3. **⚔️ Select** your desired algorithm/structure
+4. **🎭 Perform** operations using intuitive controls
+5. **🌟 Watch** real-time visualization unfold
+6. **🧠 Learn** through interactive anime-styled tutorials
+
+---
+
+<div align="center">
+
+## � **DEVELOPMENT TEAM** �
+
+<table>
+<tr>
+<td align="center">
+<img src="https://github.com/Tamim-Rizvee.png" width="100" height="100" style="border-radius: 50%;" />
+<br />
+<img src="https://img.shields.io/badge/TAMIM_RIZVEE-FFD700?style=for-the-badge&logoColor=black&labelColor=1a1a1a" />
+<br />
+<sub><b>⚡ Algorithm Architect</b></sub>
+<br />
+<a href="https://github.com/Tamim-Rizvee">
+<img src="https://img.shields.io/badge/GitHub-2C2C2C?style=for-the-badge&logo=github&logoColor=FFD700&labelColor=1a1a1a" />
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/Sabit166.png" width="100" height="100" style="border-radius: 50%;" />
+<br />
+<img src="https://img.shields.io/badge/SABIT_SIRAJI-B8860B?style=for-the-badge&logoColor=white&labelColor=1a1a1a" />
+<br />
+<sub><b>🛠️ UI Master</b></sub>
+<br />
+<a href="https://github.com/Sabit166">
+<img src="https://img.shields.io/badge/GitHub-2C2C2C?style=for-the-badge&logo=github&logoColor=FFD700&labelColor=1a1a1a" />
+</a>
+</td>
+<td align="center">
+<img src="https://github.com/alif-ul-haque.png" width="100" height="100" style="border-radius: 50%;" />
+<br />
+<img src="https://img.shields.io/badge/ALIF_UL_HAQUE-DAA520?style=for-the-badge&logoColor=black&labelColor=1a1a1a" />
+<br />
+<sub><b>🔧 Logic Engineer</b></sub>
+<br />
+<a href="https://github.com/alif-ul-haque">
+<img src="https://img.shields.io/badge/GitHub-2C2C2C?style=for-the-badge&logo=github&logoColor=FFD700&labelColor=1a1a1a" />
+</a>
+</td>
+</tr>
+</table>
+
 </div>
 
-<div style="display: flex; align-items: center; gap: 8px;">
-  <img src="src/main/resources/com/algo/Java_Project_Readme/developer_logo.png" alt="go_algo logo" width="32">
-  <a href="https://github.com/alif-ul-haque" target="_blank">ALIF UL HAQUE</a>
+---
+
+<div align="center">
+
+## 🤝 **JOIN OUR GUILD** 🤝
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=16&duration=4000&pause=1000&color=FF69B4&center=true&vCenter=true&width=600&lines=Contributions+are+welcome+in+our+guild!;Fork+%7C+Code+%7C+Create+%7C+Contribute;Together+we+build+the+future!" alt="Contribute Typing SVG" />
+
+</div>
+
+### **🌟 Contribution Ritual:**
+1. **🍴 Fork** the sacred repository
+2. **🌿 Create** your feature branch: `git checkout -b feature-anime-magic`
+3. **💫 Commit** your changes: `git commit -m 'Add new anime feature'`
+4. **🚀 Push** to the branch: `git push origin feature-anime-magic`
+5. **✨ Create** a Pull Request and join our guild!
+
+---
+
+<div align="center">
+
+## 📄 **LICENSE & ACKNOWLEDGMENTS** 📄
+
+<img src="https://img.shields.io/badge/License-MIT-FF69B4?style=for-the-badge&logoColor=white&labelColor=0d1117" />
+
+**Special Thanks To:**
+- 🤖 **Pippo ** - For welcoming users in Algorithm page
+- 👑 **Archer Queen** - For welcoming users in Data Structures page  
+- 🚀 **JavaFX Team** - For powerful UI capabilities
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=20&duration=5000&pause=1000&color=00FF41&center=true&vCenter=true&width=800&lines=Thank+you+for+visiting+our++guild!;May+your+code+be+as+beautiful+as+anime!;データ構造を学んで、未来を創ろう!" alt="Footer Typing SVG" />
+
+<img src="https://komarev.com/ghpvc/?username=go-algo&color=ff69b4&style=for-the-badge&label=VISITORS" />
+
+</div>
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=20,14,25,17,12&height=150&section=footer" width="100%"/>
 </div>
